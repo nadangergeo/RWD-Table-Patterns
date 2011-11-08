@@ -5,16 +5,11 @@
 */
 
 
-
-
-
-
 (function( $ ) {
-  $.widget( "awesome.table", { // need to come up with a better namespace var...
+  $.widget( "filament.table", { // need to come up with a better namespace var...
  
     options: { 
       idprefix: null,   // specify a prefix for the id/headers values
-      optMinWidth: null, //  breakpoint (screen width) at which optional columns are visible
       checkContainer: null // container element where the hide/show checkboxes will be inserted; if none specified, the script creates a menu
     },
  
@@ -50,7 +45,7 @@
          
          // create the hide/show toggles
          // TEMP - hard-coded for now
-         toggle = $('<div><input type="checkbox" name="toggle-cols" id="toggle-col-'+i+'" value="'+id+'" /> <label for="toggle-col-'+i+'">'+th.text()+'</label></div>');
+         var toggle = $('<div><input type="checkbox" name="toggle-cols" id="toggle-col-'+i+'" value="'+id+'" /> <label for="toggle-col-'+i+'">'+th.text()+'</label></div>');
          
          if (classes) { toggle.addClass(classes); };
          
@@ -77,29 +72,37 @@
                
       }); // end hdrCols loop
       
-      $(window).resize(function(){
+      // update the inputs' checked status
+      $(window).bind("orientationchange resize", function(){
          container.find("input").trigger("updateCheck");
       });
             
       // if no container specified for the checkboxes, create a "Display" menu      
       if (!o.checkContainer) {
          var menuWrapper = $('<div class="table-menu-wrapper" />'),
-               menuBtn = $('<a href="#" class="table-menu-btn">Display</a>');
+               menuBtn = $('<a href="#" class="table-menu-btn">Display</a>'),
+               menuClose = $('<a href="#" class="table-menu-close">Done</a>');
                
          menuBtn.click(function(){
             container.toggleClass("table-menu-hidden");            
             return false;
          });
+         
+         menuClose.click(function(){
+            container.toggleClass("table-menu-hidden");            
+            return false;
+         });
                
-         menuWrapper.append(menuBtn).append(container)
+         container.append(menuClose);      
+         menuWrapper.append(menuBtn).append(container);
          table.before(menuWrapper);
       };
       
       
               
-    },
+   }, // end _create
     
-    disable: function() {
+   disable: function() {
 		// TBD
 	},
 
@@ -115,57 +118,9 @@
 $(function(){ // on DOM ready
 
 
-$(".movies").table({
-   idprefix: "mv-",
-   optMinWidth: 500
-});
-
-
-
-
-
-$("#scroll-table").click(function(){
-	var t = $("table"),
-			tWidth = t.width(), 
-			rows = t.find("tr"),
-			firstBodyRow = t.find("tbody tr:first-child"),
-			col1width = firstBodyRow.children().eq(0).width(),
-			col2width = firstBodyRow.children().eq(1).width(),
-			newTable = $("<table class='clone'><thead></thead><tbody></tbody></table>");
-
-	t.width(tWidth).wrap('<div class="scroll-wrapper"><div class="scrollable"/></div>');
-	
-	newTable.appendTo(".scroll-wrapper");
-	
-	rows.each(function(i){
-		var r = $(this),
-				col1 = r.children().eq(0),
-				col2 = r.children().eq(1),
-				fixedCol = $( $.merge($.merge([], col1), col2) );
-				
-		r.height(r.height());			
-		
-		col1.width(col1width);
-		
-		col2.css({
-				width: col2width,
-				left: col1width
-			});		
-		
-		fixedCol.addClass("fixed");
-		
-		if (i===0) {
-			r.clone().appendTo(newTable.find("thead"));
-		}
-		else {
-			r.clone().appendTo(newTable.find("tbody"));
-		}
-		
-		newTable.find("th, td").not(".fixed").remove();
-	});
-	
-	return false;	
-});
+   $(".movies").table({
+      idprefix: "mv-"
+   });
 
 
 });  // end DOM ready

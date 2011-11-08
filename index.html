@@ -8,7 +8,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 		 
-		<title>table manipulation patterns</title>
+		<title>responsive table patterns</title>
 		<meta name="description" content="Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus." />
 		
 		<link rel="stylesheet" href="_css/reset.css" />
@@ -22,140 +22,129 @@
 
 <body>
 
+
+<p></p>
+
+
+
+
+
+
 <div class="table-wrapper">
 
 <table cellspacing="0" class="movies">
 	<thead>
 		<tr>
-			<th class="essential"><span class="a11y-only">Check to edit</span></th>
-			<th class="essential">Movie</th>
+			<th class="essential persists">Movie</th>
+			<th class="optional">Type</th>
+			<th class="optional">Location</th>
 			<th class="essential" id="director">Director</th>
-			<th class="optional">Writers</th>
+			<th>Writers</th>
 			<th class="optional">Release Date</th>
 			<th>Gross</th>
-			<th>Location</th>
+			<th>Avg Rating</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td>
-				<label for="movie-1" class="a11y-only">Edit movie</label>
-				<input type="checkbox" name="movies" id="movie-1" />
-			</td>
 			<th>The Muppets Take Manhattan</th>
-			<td>Frank Oz</td>
-			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
-			<td>July 1984</td>
-			<td>$25,534,703</td>
+			<th>Musical Comedy</th>
 			<td>New York, NY</td>
+			<td>Frank Oz</td>
+			<td>Frank&nbsp;Oz, Tom&nbsp;Patchett, Jay&nbsp;Tarses</td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>			
+			<td>3 stars</td>
 		</tr>		
 		<tr>
-			<td>
-				<label for="movie-1" class="a11y-only">Edit movie</label>
-				<input type="checkbox" name="movies" id="movie-1" />
-			</td>
 			<th>The Muppets Take Manhattan</th>
-			<td>Frank Oz</td>
-			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
-			<td>July 1984</td>
-			<td>$25,534,703</td>
+			<th>Musical Comedy</th>
 			<td>New York, NY</td>
+			<td>Frank Oz</td>
+			<td>Frank&nbsp;Oz, Tom&nbsp;Patchett, Jay&nbsp;Tarses</td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>			
+			<td>3 stars</td>
 		</tr>	
 		<tr>
-			<td>
-				<label for="movie-1" class="a11y-only">Edit movie</label>
-				<input type="checkbox" name="movies" id="movie-1" />
-			</td>
 			<th>The Muppets Take Manhattan</th>
-			<td>Frank Oz</td>
-			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
-			<td>July 1984</td>
-			<td>$25,534,703</td>
+			<th>Musical Comedy</th>
 			<td>New York, NY</td>
+			<td>Frank Oz</td>
+			<td>Frank&nbsp;Oz, Tom&nbsp;Patchett, Jay&nbsp;Tarses</td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>			
+			<td>3 stars</td>
 		</tr>		
 		<tr>
-			<td>
-				<label for="movie-1" class="a11y-only">Edit movie</label>
-				<input type="checkbox" name="movies" id="movie-1" />
-			</td>
 			<th>The Muppets Take Manhattan</th>
-			<td>Frank Oz</td>
-			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
-			<td>July 1984</td>
-			<td>$25,534,703</td>
+			<th>Musical Comedy</th>
 			<td>New York, NY</td>
+			<td>Frank Oz</td>
+			<td>Frank&nbsp;Oz, Tom&nbsp;Patchett, Jay&nbsp;Tarses</td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>			
+			<td>3 stars</td>
 		</tr>	
 		<tr>
-			<td>
-				<label for="movie-1" class="a11y-only">Edit movie</label>
-				<input type="checkbox" name="movies" id="movie-1" />
-			</td>
 			<th>The Muppets Take Manhattan</th>
-			<td>Frank Oz</td>
-			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
-			<td>July 1984</td>
-			<td>$25,534,703</td>
+			<th>Musical Comedy</th>
 			<td>New York, NY</td>
+			<td>Frank Oz</td>
+			<td>Frank&nbsp;Oz, Tom&nbsp;Patchett, Jay&nbsp;Tarses</td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>			
+			<td>3 stars</td>
 		</tr>		
 		<tr>
-			<td>
-				<label for="movie-1" class="a11y-only">Edit movie</label>
-				<input type="checkbox" name="movies" id="movie-1" />
-			</td>
 			<th>The Muppets Take Manhattan</th>
-			<td>Frank Oz</td>
-			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
-			<td>July 1984</td>
-			<td>$25,534,703</td>
+			<th>Musical Comedy</th>
 			<td>New York, NY</td>
+			<td>Frank Oz</td>
+			<td>Frank&nbsp;Oz, Tom&nbsp;Patchett, Jay&nbsp;Tarses</td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>			
+			<td>3 stars</td>
 		</tr>	
 		<tr>
-			<td>
-				<label for="movie-1" class="a11y-only">Edit movie</label>
-				<input type="checkbox" name="movies" id="movie-1" />
-			</td>
 			<th>The Muppets Take Manhattan</th>
-			<td>Frank Oz</td>
-			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
-			<td>July 1984</td>
-			<td>$25,534,703</td>
+			<th>Musical Comedy</th>
 			<td>New York, NY</td>
+			<td>Frank Oz</td>
+			<td>Frank&nbsp;Oz, Tom&nbsp;Patchett, Jay&nbsp;Tarses</td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>			
+			<td>3 stars</td>
 		</tr>		
 		<tr>
-			<td>
-				<label for="movie-1" class="a11y-only">Edit movie</label>
-				<input type="checkbox" name="movies" id="movie-1" />
-			</td>
 			<th>The Muppets Take Manhattan</th>
-			<td>Frank Oz</td>
-			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
-			<td>July 1984</td>
-			<td>$25,534,703</td>
+			<th>Musical Comedy</th>
 			<td>New York, NY</td>
+			<td>Frank Oz</td>
+			<td>Frank&nbsp;Oz, Tom&nbsp;Patchett, Jay&nbsp;Tarses</td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>			
+			<td>3 stars</td>
 		</tr>	
 		<tr>
-			<td>
-				<label for="movie-1" class="a11y-only">Edit movie</label>
-				<input type="checkbox" name="movies" id="movie-1" />
-			</td>
 			<th>The Muppets Take Manhattan</th>
-			<td>Frank Oz</td>
-			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
-			<td>July 1984</td>
-			<td>$25,534,703</td>
+			<th>Musical Comedy</th>
 			<td>New York, NY</td>
+			<td>Frank Oz</td>
+			<td>Frank&nbsp;Oz, Tom&nbsp;Patchett, Jay&nbsp;Tarses</td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>			
+			<td>3 stars</td>
 		</tr>		
 		<tr>
-			<td>
-				<label for="movie-1" class="a11y-only">Edit movie</label>
-				<input type="checkbox" name="movies" id="movie-1" />
-			</td>
 			<th>The Muppets Take Manhattan</th>
-			<td>Frank Oz</td>
-			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
-			<td>July 1984</td>
-			<td>$25,534,703</td>
+			<th>Musical Comedy</th>
 			<td>New York, NY</td>
+			<td>Frank Oz</td>
+			<td>Frank&nbsp;Oz, Tom&nbsp;Patchett, Jay&nbsp;Tarses</td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>			
+			<td>3 stars</td>
 		</tr>	
 	</tbody>
 </table>	

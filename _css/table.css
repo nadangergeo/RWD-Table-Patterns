@@ -42,6 +42,15 @@ body {
    padding: .3em 10px .3em 20px;
    border: 1px solid #ccc;
 }
+.table-menu-close {
+   position: absolute;
+   top: 5px; 
+   right: 5px;
+   border: 1px solid #D8E4EB;
+   text-decoration: none;
+   color: #3991B3;
+   padding: .2em .5em;
+}
 .table-menu div {
    padding: .3em 0;
 }
@@ -69,7 +78,7 @@ tbody th a {
 
 th, td {
    display: none;
-	padding: .5em;
+	padding: .5em 1em;
 	background-color: #fff;
 }
 th.essential, 
