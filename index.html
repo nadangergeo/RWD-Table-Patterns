@@ -1,0 +1,166 @@
+ <!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6 legacy-ie"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7 legacy-ie"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8 legacy-ie"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		 
+		<title>table manipulation patterns</title>
+		<meta name="description" content="Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus." />
+		
+		<link rel="stylesheet" href="_css/reset.css" />
+		<link rel="stylesheet" href="_css/table.css" />
+		
+		<script src="_js/lib/respond.js"></script>
+		<script src="_js/lib/jquery.js"></script>
+		<script src="_js/lib/jquery-ui.widget.min.js"></script>
+		<script src="_js/table.js"></script>
+	</head>
+
+<body>
+
+<div class="table-wrapper">
+
+<table cellspacing="0" class="movies">
+	<thead>
+		<tr>
+			<th class="essential"><span class="a11y-only">Check to edit</span></th>
+			<th class="essential">Movie</th>
+			<th class="essential" id="director">Director</th>
+			<th class="optional">Writers</th>
+			<th class="optional">Release Date</th>
+			<th>Gross</th>
+			<th>Location</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<label for="movie-1" class="a11y-only">Edit movie</label>
+				<input type="checkbox" name="movies" id="movie-1" />
+			</td>
+			<th>The Muppets Take Manhattan</th>
+			<td>Frank Oz</td>
+			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>
+			<td>New York, NY</td>
+		</tr>		
+		<tr>
+			<td>
+				<label for="movie-1" class="a11y-only">Edit movie</label>
+				<input type="checkbox" name="movies" id="movie-1" />
+			</td>
+			<th>The Muppets Take Manhattan</th>
+			<td>Frank Oz</td>
+			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>
+			<td>New York, NY</td>
+		</tr>	
+		<tr>
+			<td>
+				<label for="movie-1" class="a11y-only">Edit movie</label>
+				<input type="checkbox" name="movies" id="movie-1" />
+			</td>
+			<th>The Muppets Take Manhattan</th>
+			<td>Frank Oz</td>
+			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>
+			<td>New York, NY</td>
+		</tr>		
+		<tr>
+			<td>
+				<label for="movie-1" class="a11y-only">Edit movie</label>
+				<input type="checkbox" name="movies" id="movie-1" />
+			</td>
+			<th>The Muppets Take Manhattan</th>
+			<td>Frank Oz</td>
+			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>
+			<td>New York, NY</td>
+		</tr>	
+		<tr>
+			<td>
+				<label for="movie-1" class="a11y-only">Edit movie</label>
+				<input type="checkbox" name="movies" id="movie-1" />
+			</td>
+			<th>The Muppets Take Manhattan</th>
+			<td>Frank Oz</td>
+			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>
+			<td>New York, NY</td>
+		</tr>		
+		<tr>
+			<td>
+				<label for="movie-1" class="a11y-only">Edit movie</label>
+				<input type="checkbox" name="movies" id="movie-1" />
+			</td>
+			<th>The Muppets Take Manhattan</th>
+			<td>Frank Oz</td>
+			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>
+			<td>New York, NY</td>
+		</tr>	
+		<tr>
+			<td>
+				<label for="movie-1" class="a11y-only">Edit movie</label>
+				<input type="checkbox" name="movies" id="movie-1" />
+			</td>
+			<th>The Muppets Take Manhattan</th>
+			<td>Frank Oz</td>
+			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>
+			<td>New York, NY</td>
+		</tr>		
+		<tr>
+			<td>
+				<label for="movie-1" class="a11y-only">Edit movie</label>
+				<input type="checkbox" name="movies" id="movie-1" />
+			</td>
+			<th>The Muppets Take Manhattan</th>
+			<td>Frank Oz</td>
+			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>
+			<td>New York, NY</td>
+		</tr>	
+		<tr>
+			<td>
+				<label for="movie-1" class="a11y-only">Edit movie</label>
+				<input type="checkbox" name="movies" id="movie-1" />
+			</td>
+			<th>The Muppets Take Manhattan</th>
+			<td>Frank Oz</td>
+			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>
+			<td>New York, NY</td>
+		</tr>		
+		<tr>
+			<td>
+				<label for="movie-1" class="a11y-only">Edit movie</label>
+				<input type="checkbox" name="movies" id="movie-1" />
+			</td>
+			<th>The Muppets Take Manhattan</th>
+			<td>Frank Oz</td>
+			<td>Frank Oz, Tom Patchett, Jay Tarses</a></td>
+			<td>July 1984</td>
+			<td>$25,534,703</td>
+			<td>New York, NY</td>
+		</tr>	
+	</tbody>
+</table>	
+
+</div><!-- /table-wrapper -->
+		
+	</body>
+</html>
