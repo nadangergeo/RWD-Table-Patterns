@@ -10,6 +10,7 @@
  
     options: { 
       idprefix: null,   // specify a prefix for the id/headers values
+      persist: null, // specify a class assigned to column headers (th) that should always be present; the script not create a checkbox for these columns
       checkContainer: null // container element where the hide/show checkboxes will be inserted; if none specified, the script creates a menu
     },
  
@@ -45,30 +46,32 @@
          
          // create the hide/show toggles
          // TEMP - hard-coded for now
-         var toggle = $('<div><input type="checkbox" name="toggle-cols" id="toggle-col-'+i+'" value="'+id+'" /> <label for="toggle-col-'+i+'">'+th.text()+'</label></div>');
-         
-         if (classes) { toggle.addClass(classes); };
-         
-         container.append(toggle);
-         
-         toggle.find("input")
-            .change(function(){
-               var input = $(this), 
-                  val = input.val(), 
-                  cols = $("#" + val + ", [headers="+ val +"]");
-               
-               if (input.is(":checked")) { cols.show(); }
-               else { cols.hide(); };		
-            })
-            .bind("updateCheck", function(){
-               if ( th.css("display") ==  "table-cell") {
-                  $(this).attr("checked", true);
-               }
-               else {
-                  $(this).attr("checked", false);
-               }
-            })
-            .trigger("updateCheck");            
+         if ( !th.is("." + o.persist) ) {
+	         var toggle = $('<div><input type="checkbox" name="toggle-cols" id="toggle-col-'+i+'" value="'+id+'" /> <label for="toggle-col-'+i+'">'+th.text()+'</label></div>');
+	         
+	         if (classes) { toggle.addClass(classes); };
+	         
+	         container.append(toggle);
+	         
+	         toggle.find("input")
+	            .change(function(){
+	               var input = $(this), 
+	                  val = input.val(), 
+	                  cols = $("#" + val + ", [headers="+ val +"]");
+	               
+	               if (input.is(":checked")) { cols.show(); }
+	               else { cols.hide(); };		
+	            })
+	            .bind("updateCheck", function(){
+	               if ( th.css("display") ==  "table-cell") {
+	                  $(this).attr("checked", true);
+	               }
+	               else {
+	                  $(this).attr("checked", false);
+	               }
+	            })
+	            .trigger("updateCheck");  
+					};        
                
       }); // end hdrCols loop
       
