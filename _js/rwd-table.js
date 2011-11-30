@@ -1,9 +1,7 @@
-/* Scripts for the Thomson PR
+/* Scripts for the tables test page 
    Author: Maggie Wachs, www.filamentgroup.com
    Date: November 2011
    Dependencies: jQuery, jQuery UI widget factory
-   Notes:
-      This version is customized for Thomson PR Platform.
 */
 
 
@@ -121,11 +119,13 @@
 }( jQuery ) );
 
 
+
 $(function(){ // on DOM ready
 
    $("#tech-companies").table({
       idprefix: "co-",
       persist: "persist"
    });
+
 
 });  // end DOM ready
