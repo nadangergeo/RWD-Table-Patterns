@@ -127,5 +127,4 @@ $(function(){ // on DOM ready
       persist: "persist"
    });
 
-
 });  // end DOM ready
