@@ -1,0 +1,119 @@
+ <!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6 legacy-ie"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7 legacy-ie"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8 legacy-ie"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		 
+		<title>responsive table patterns</title>
+		<meta name="description" content="Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus." />
+		
+		<link rel="stylesheet" href="_css/reset.css" />
+		<link rel="stylesheet" href="_css/table.css" />
+		
+		<script src="_js/lib/respond.js"></script>
+		<script src="_js/lib/jquery.js"></script>
+		<script src="_js/lib/jquery-ui.widget.min.js"></script>
+		<script src="_js/rwd-table.js"></script>
+	</head>
+
+<body>
+
+Intro: 
+
+Tables that display complex data can play nicely with a responsive design, with a little help.  Using progressive enhancement and responsive design methods, we developed a way to render a complex table that displays comfortably on small screens, provides quick access to all data points, and preserves the visual relationships between the headings and columns of data that we (or the user) deem important.  
+
+On smartphones, a complex HTML data table displayed at its full width may require zooming or scrolling, which in a way defeats the purpose of displaying data in a table.  Visual relationships between headings and cells, and between neighboring columns, are often crucial to understanding the data.  When whole sections of the table are out of view the experience can be frustrating.  
+
+Chris Coyier developed a <a href="http://css-tricks.com/9096-responsive-data-tables/">responsive CSS workaround that leverages media queries and CSS-generated content</a> to display table cells and their headers in a vertical list on smaller screens.  Table data is infinitely more readable on a mobile device when rendered this way, however, in many cases, the relationships among columns of data are just as important as the connection between headings and cells.  So we decided to find a way to keep the basic table structure in place -- with headings above whole columns that sit side-by-side -- at all screen sizes.
+
+
+
+Solution:
+
+It's easier to explain with a concrete example, so we'll use a table that lists technology companies and their stock pricing.  Each row displays data for a single company; columns organize data points by type.
+
+Our goal is to show as many columns of data as will fit on the screen.  The entire table will fit on larger screens -- no problem there.  But smaller tablet and smartphone screens can fit only a subset of columns comfortably, in which case we'll need to hide columns of less essential data and provide a way to access them easily.  To do that we'll create a menu for selecting which columns to show.  
+
+Before we dive into code, first we should define which data is essential (always visible) or optional (shown only if space allows).  In our table of tech companies, the data is somewhat meaningless without the company name or current stock value.  The trade time, change, previous close and open values
+
+
+* 
+
+
+
+
+
+
+
+
+, 
+
+
+
+
+[link to demo]
+
+
+
+
+
+
+
+
+Solution overview: 
+
+Our goal is to 
+
+
+- display as many columns of data will fit at a given browser width, and give users a way 
+- identify which columns are essential (must be visible at all screen sizes) or optional (shown if space allows).  Any 
+
+
+
+
+
+
+
+
+ .  , and any additional columns that don't fit are made accessible in an alternate way -- in this case, a custom menu appears which lets the user choose which columns to show.  
+- many data types and ways to display it; the pattern discussed here is just one possibility
+
+
+
+
+Markup
+
+First, a basic table -- with consecutive columns and descriptive headings -- is a concise and simple way to display a complex data set.  Data arranged into columns and rows are easy to scan and compare.  Second, an HTML table is the clear markup choice for displaying tabular data... 
+
+[code]
+
+
+
+
+
+
+
+
+
+
+
+* Start with a well-formed table that contains a thead for the heading row (th), followed by a tbody for the cells. (The tbody may also contain heading cells (th).)  At this point -- pre-CSS and JS -- we have a usable table that will work on any device that renders HTML.  
+* 
+
+CSS
+
+* basic styling -- when JS fails, this is the table that will render
+
+
+JS
+
+Loop through the headers (thead th), and assign unique IDs if not already present...
+
+
+		
+	</body>
+</html>
