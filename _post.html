@@ -34,23 +34,31 @@ Chris Coyier developed a <a href="http://css-tricks.com/9096-responsive-data-tab
 
 Solution:
 
-It's easier to explain with a concrete example, so we'll use a table that lists technology companies and their stock pricing.  Each row displays data for a single company; columns organize data points by type.
+It's easier to explain with a concrete example, so we'll use a table that lists technology companies and their stock price.  Each row displays data for a single company; columns organize data points by type.
 
-Our goal is to show as many columns of data as will fit on the screen.  The entire table will fit on larger screens -- no problem there.  But smaller tablet and smartphone screens can fit only a subset of columns comfortably, in which case we'll need to hide columns of less essential data and provide a way to access them easily.  To do that we'll create a menu for selecting which columns to show.  
+Our goal is to take advantage of the available space and show as many columns of data as will fit on the screen.  We also want to preserve the table structure at all screen sizes because it formats the data into an easily digestible grid, and the less we change the underlying markup (via CSS or JavaScript), the better the page will perform. [IS THAT ENTIRELY TRUE?  NOT SURE IF IT'S STATED RIGHT.]
 
-Before we dive into code, first we should define which data is essential (always visible) or optional (shown only if space allows).  In our table of tech companies, the data is somewhat meaningless without the company name or current stock value.  The trade time, change, previous close and open values
+The entire table will fit on desktop and tablet screens in landscape orientation, but only a subset of columns will fit comfortably on anything smaller, in which case we'll hide columns of less essential data and provide a way to access them easily.  To do that we'll create a menu for selecting which columns to show.
 
+First, we need to define which data is essential (must always be visible), or optional (shown only if space allows).  In our table of tech companies, the data is somewhat meaningless without the company name or current stock value -- both are essential.  The trade time, change, previous close and open values
 
-* 
+ 
 
-
-
-
-
+ 
 
 
+***
 
-, 
+The number of columns displayed in the table below depends on the available screen space, by default; a smartphone will display 2 columns, for example, while an expanded desktop browser displays the full set. This is accomplished by assigning semantic classes to the column headings that indicate which data values take precedence (essential vs optional), in combination with media queries to display them at different screen widths (a.k.a., responsive design).
+
+We added a bit of JavaScript logic so you can control which data is displayed by checking column names in the "Display" menu on the right. Once an option is checked, the associated data will persist and display at all screen widths until the option is unchecked.
+
+You can also set a column to always persist by assigning a class in the markup, in which case it has no menu option. Here, the "Company" column is persistent.
+
+
+
+
+
 
 
 
