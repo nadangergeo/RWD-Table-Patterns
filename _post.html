@@ -18,6 +18,15 @@
 		<script src="_js/lib/jquery.js"></script>
 		<script src="_js/lib/jquery-ui.widget.min.js"></script>
 		<script src="_js/rwd-table.js"></script>
+		
+		<style type="text/css">
+		body { padding: 3%; }
+		h2 { font-size: 1.5em; margin: 1em 0; font-weight: bold; }
+		 p, code { display: block; font-size: 1.2em; margin: 0 0 1em; }
+		 p code { display: inline; }
+		</style>
+		
+		
 	</head>
 
 <body>
@@ -47,7 +56,7 @@ You can also set a column to always persist by assigning a class in the markup, 
 
 <p>It's easier to explain with a concrete example, so we'll use a table that lists technology companies and their stock price.  Each row displays data for a single company; columns organize data points by type.</p>
 
-<p>We want to take advantage of the available space and show as many columns of data as will fit on the screen.  We also want to preserve the table structure at all screen sizes because it formats the data into an easily digestible grid, and the less we dynamically change the markup via CSS or JavaScript, the better the page will perform. [IS THAT GLOSSING OVER PERFORMANCE TOO MUCH?  NEED TO BE MORE SPECIFIC?]</p>
+<p>We want to take advantage of the available space and show as many columns of data as will fit on the screen.  We also want to preserve the table structure at all screen sizes because it formats the data into an easily digestible grid, and the less we dynamically change the markup via CSS or JavaScript, the better the page will perform. [IS THIS GLOSSING OVER PERFORMANCE TOO MUCH?  NEED TO BE MORE SPECIFIC?]</p>
 
 <p>The entire table will fit on desktop and tablet screens in landscape orientation, but only a subset of columns will fit comfortably on anything smaller.  So the first order of business is to identify which columns of data are essential (visible at all screen widths by default) or optional (shown only if space allows).  In our table of tech company stocks, the data is somewhat meaningless without the company name, current stock value, or most recent change, so we'll consider those essential.   The trade time, previous close, and open values would be nice to see if the screen can fit those columns, so we'll make them optional.  The remaining data &#8212; bid, ask, and 1-year target estimate &#8212; are less important, so they will be shown by default on only the widest screens.</p>
 
@@ -172,9 +181,9 @@ You can also set a column to always persist by assigning a class in the markup, 
 }
 </code></pre>
 
-<p>We applied a light visual design to make the grid more readable; to see the full range of styles, take a look at the style sheet [link].</p>
+<p>We applied a light visual design to make the table content more readable; to see the full range of styles, take a look at the style sheet [link].</p>
 
-<p>The important styles to note are those that hide and show the columns.  We've scoped these styles to a class, <code>enhanced</code>, which the script dynamically assigns to the table.  This ensures that the column visibility is altered only when JavaScript is available.  By default, we'll hide all columns, and show only those marked with the <code>essential</code> class:</p>
+<p>The important styles to note are those that hide and show the columns.  We've scoped these styles to a class, <code>enhanced</code>, which is assigned to the table via JavaScript.  This ensures that the column visibility is altered only when JavaScript is available.  By default, we'll hide all columns, and show only those marked with the <code>essential</code> class:</p>
 
 <pre><code>.enhanced th,
 .enhanced td {
@@ -203,7 +212,34 @@ You can also set a column to always persist by assigning a class in the markup, 
 }
 </code></pre>
 
-<p>We'll add relative positioning to the table's container so that later when the menu is inserted we can position it without having to calculate coordinates:</p>
+<p>When the custom menu is inserted into the table's container, it will appear just above the table on the right:</p>
+
+<pre><code>.table-menu-wrapper {
+   position: absolute;
+   top: -3em;
+   right: 0;
+}
+</code></pre>
+
+<p>The menu itself will also be absolutely positioned, and by default will be hidden off the screen with the <code>table-menu-hidden</code> class (later, we'll write JavaScript to toggle that class when the "Display" button is clicked):</p>
+
+<pre><code>.table-menu {
+   <strong>position: absolute;   
+   right: 0;
+   left: auto;</strong>
+   background-color: #fff;
+   padding: 10px;
+   border: 1px solid #ccc;
+   font-size: 1.2em;
+   width: 12em;
+}
+.table-menu-hidden {
+   left: -999em;
+   right: auto;
+}
+</code></pre>
+
+<p>Finally, we'll add relative positioning to the table's container so that later when the menu is inserted we can position it without having to calculate coordinates:</p>
 
 <pre><code>.table-wrapper {
    <strong>position: relative;</strong>
