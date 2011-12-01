@@ -24,6 +24,7 @@ body {
    position: absolute;
    left: -999em;
 }
+
 .table-wrapper {
    position: relative;
    margin: 5em 5%;
@@ -64,7 +65,7 @@ body {
    color: #3991B3;
    padding: .2em .5em;
 }
-.table-menu div {
+.table-menu li {
    padding: .3em 0;
 }
 
@@ -72,7 +73,6 @@ body {
 
 /* Table styles */
 table {
-	clear: both;
 	width: 100%;
 	font-size: 1.2em;
 }
@@ -81,62 +81,34 @@ thead th {
 	border-bottom: 1px solid #ccc;
 	color: #888;
 }
-tbody th a {
-	font-weight: bold;
-	display: block;
-}
-
 th, td {
    padding: .5em 1em;
 	background-color: #fff;
 	text-align: right;
 }
-th.name, 
-td.name {
+th:first-child, 
+td:first-child {
    text-align: left;
 }
-
 tbody th, td {
 	border-bottom: 1px solid #e6e6e6;
+}
+.co-name {
+   display: block;
+   font-size: .9em;
+   opacity: .4;
 }
 
 .enhanced th,
 .enhanced td {
    display: none;
 }
-.enhanced th.persist, 
-.enhanced td.persist,
 .enhanced th.essential, 
 .enhanced td.essential {
 	display: table-cell;
 }
 
-.scroll-wrapper {
-	clear: both;
-	width: 600px;
-	margin: 5%;
-	position: relative;
-}
-.scroll-wrapper table {
-	margin: 0;
-}
-.scroll-wrapper table.clone {
-	width: auto;
-	position: absolute;
-	top: 0;
-	left: 0;
-	border-right: 1px solid #eee;
-}
-.scrollable {
-	overflow-x: scroll;
-	width: 100%;
-}
 
-.co-name {
-   display: block;
-   font-size: .9em;
-   opacity: .4;
-}
 
 
 @media screen and (min-width: 500px) {
@@ -147,9 +119,6 @@ tbody th, td {
 }
 
 @media screen and (min-width: 800px) {
-	.table-menu-wrapper {
-	  display: block;
-	}	
    .enhanced th, 
    .enhanced td {
       display: table-cell;

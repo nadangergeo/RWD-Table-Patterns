@@ -23,7 +23,7 @@
             tbody = table.find("tbody"),
             hdrCols = thead.find("th"),
             bodyRows = tbody.find("tr"),
-            container = o.checkContainer ? $(o.checkContainer) : $('<div class="table-menu table-menu-hidden" />');         
+            container = o.checkContainer ? $(o.checkContainer) : $('<div class="table-menu table-menu-hidden"><ul /></div>');         
       
       // add class for scoping styles - cells should be hidden only when JS is on
       table.addClass("enhanced");
@@ -49,11 +49,11 @@
          
          // create the hide/show toggles
          if ( !th.is("." + o.persist) ) {
-	         var toggle = $('<div><input type="checkbox" name="toggle-cols" id="toggle-col-'+i+'" value="'+id+'" /> <label for="toggle-col-'+i+'">'+th.text()+'</label></div>');
+	         var toggle = $('<li><input type="checkbox" name="toggle-cols" id="toggle-col-'+i+'" value="'+id+'" /> <label for="toggle-col-'+i+'">'+th.text()+'</label></li>');
 	         
 	         if (classes) { toggle.addClass(classes); };
 	         
-	         container.append(toggle);         
+	         container.find("ul").append(toggle);         
 	         
 	         toggle.find("input")
 	            .change(function(){

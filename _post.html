@@ -22,104 +22,205 @@
 
 <body>
 
-Intro: 
 
-Tables that display complex data can play nicely with a responsive design, with a little help.  Using progressive enhancement and responsive design methods, we developed a way to render a complex table that displays comfortably on small screens, provides quick access to all data points, and preserves the visual relationships between the headings and columns of data that we (or the user) deem important.  
-
-On smartphones, a complex HTML data table displayed at its full width may require zooming or scrolling, which in a way defeats the purpose of displaying data in a table.  Visual relationships between headings and cells, and between neighboring columns, are often crucial to understanding the data.  When whole sections of the table are out of view the experience can be frustrating.  
-
-Chris Coyier developed a <a href="http://css-tricks.com/9096-responsive-data-tables/">responsive CSS workaround that leverages media queries and CSS-generated content</a> to display table cells and their headers in a vertical list on smaller screens.  Table data is infinitely more readable on a mobile device when rendered this way, however, in many cases, the relationships among columns of data are just as important as the connection between headings and cells.  So we decided to find a way to keep the basic table structure in place -- with headings above whole columns that sit side-by-side -- at all screen sizes.
-
-
-
-Solution:
-
-It's easier to explain with a concrete example, so we'll use a table that lists technology companies and their stock price.  Each row displays data for a single company; columns organize data points by type.
-
-Our goal is to take advantage of the available space and show as many columns of data as will fit on the screen.  We also want to preserve the table structure at all screen sizes because it formats the data into an easily digestible grid, and the less we change the underlying markup (via CSS or JavaScript), the better the page will perform. [IS THAT ENTIRELY TRUE?  NOT SURE IF IT'S STATED RIGHT.]
-
-The entire table will fit on desktop and tablet screens in landscape orientation, but only a subset of columns will fit comfortably on anything smaller, in which case we'll hide columns of less essential data and provide a way to access them easily.  To do that we'll create a menu for selecting which columns to show.
-
-First, we need to define which data is essential (must always be visible), or optional (shown only if space allows).  In our table of tech companies, the data is somewhat meaningless without the company name or current stock value -- both are essential.  The trade time, change, previous close and open values
-
- 
-
- 
-
-
-***
-
+<!--
 The number of columns displayed in the table below depends on the available screen space, by default; a smartphone will display 2 columns, for example, while an expanded desktop browser displays the full set. This is accomplished by assigning semantic classes to the column headings that indicate which data values take precedence (essential vs optional), in combination with media queries to display them at different screen widths (a.k.a., responsive design).
 
 We added a bit of JavaScript logic so you can control which data is displayed by checking column names in the "Display" menu on the right. Once an option is checked, the associated data will persist and display at all screen widths until the option is unchecked.
 
 You can also set a column to always persist by assigning a class in the markup, in which case it has no menu option. Here, the "Company" column is persistent.
+-->
 
 
 
 
 
+<p>Tables that display complex data can play nicely with a responsive design, with a little help.  [THIS IS IN RESPONSE TO A POPLAR BELIEF THAT TABLES AND RESPONSIVE DESIGN DON'T MIX -- THEY DO WITH A LITTLE TLC.  CAN WE STATE THAT WITHOUT SEEMING SNARKY? :) ] Using progressive enhancement and responsive design methods, we developed a way to render a complex table that displays comfortably on small screens, provides quick access to the data, and preserves the table structure so that data can still be rendered in an easy-to-read grid.</p>
+
+<p>On smartphones, a complex HTML data table displayed at its full width may require zooming or scrolling, which in a way defeats the purpose of displaying data in a table.  Visual relationships between headings and cells, and between neighboring columns, are often crucial to understanding the data.  When whole sections of the table are out of view the experience can be frustrating.</p>
+
+<p>Chris Coyier developed a <a href="http://css-tricks.com/9096-responsive-data-tables/">responsive CSS workaround</a> that leverages media queries and CSS-generated content to display table cells and their headers in a vertical list on smaller screens.  Table data is infinitely more readable on a mobile device when rendered this way, however, in many cases, the relationships among columns of data are just as important as the connection between headings and cells.  So we decided to find a way to keep the basic table structure in place &#8212; with headings above whole columns that sit side-by-side &#8212; at all screen sizes.</p>
+
+
+
+<h2>Solution (x-ray)</h2>
+
+<p>It's easier to explain with a concrete example, so we'll use a table that lists technology companies and their stock price.  Each row displays data for a single company; columns organize data points by type.</p>
+
+<p>We want to take advantage of the available space and show as many columns of data as will fit on the screen.  We also want to preserve the table structure at all screen sizes because it formats the data into an easily digestible grid, and the less we dynamically change the markup via CSS or JavaScript, the better the page will perform. [IS THAT GLOSSING OVER PERFORMANCE TOO MUCH?  NEED TO BE MORE SPECIFIC?]</p>
+
+<p>The entire table will fit on desktop and tablet screens in landscape orientation, but only a subset of columns will fit comfortably on anything smaller.  So the first order of business is to identify which columns of data are essential (visible at all screen widths by default) or optional (shown only if space allows).  In our table of tech company stocks, the data is somewhat meaningless without the company name, current stock value, or most recent change, so we'll consider those essential.   The trade time, previous close, and open values would be nice to see if the screen can fit those columns, so we'll make them optional.  The remaining data &#8212; bid, ask, and 1-year target estimate &#8212; are less important, so they will be shown by default on only the widest screens.</p>
+
+<p>[ img of table at 3 breakpoints: smartphone w/ essential cols, ~500px w/ optional cols, ~800px w/ all cols ]</p>
+
+<p>When optional columns are hidden on smaller screens, we we'll provide a simple and clear way to access their data.  We'll create a custom menu that lets the user choose which columns to display.</p>
+
+<p>[ img of menu design ]</p>
+
+
+<h2>Markup</h2>
+
+<p>A basic table &#8212; with consecutive columns and descriptive headings &#8212; is a concise and simple way to display a complex data set; data arranged into columns and rows are easy to scan and compare.  So an HTML table is the clear markup choice for our financial data.</p>
+
+<p>We'll start with a well-formed table that contains a <code>thead</code> for the heading row, followed by a <code>tbody</code> for the cells. </p>
+
+<pre><code>&lt;table cellspacing=&quot;0&quot; id=&quot;tech-companies&quot;&gt;
+   &lt;thead&gt;
+      &lt;tr&gt;
+         ...header cells...
+      &lt;/tr&gt;
+   &lt;/thead&gt;
+   &lt;tbody&gt;
+      ...rows of data...
+   &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+
+<p>As we fill in the content, we'll add descriptive classes to identify the essential and optional content.  We'll assign these classes only to the headers; later, we'll write a little JavaScript to map these headers to their respective columns of data.</p>
+
+<pre><code>&lt;thead&gt;
+   &lt;tr&gt;
+      &lt;th class=&quot;essential persist&quot;&gt;Company&lt;/th&gt;
+      &lt;th class=&quot;essential&quot;&gt;Last Trade&lt;/th&gt;
+      &lt;th class=&quot;optional&quot;&gt;Trade Time&lt;/th&gt;
+      &lt;th class=&quot;essential&quot;&gt;Change&lt;/th&gt;
+      &lt;th class=&quot;optional&quot;&gt;Prev Close&lt;/th&gt;
+      &lt;th class=&quot;optional&quot;&gt;Open&lt;/th&gt;
+      &lt;th&gt;Bid&lt;/th&gt;
+      &lt;th&gt;Ask&lt;/th&gt;
+      &lt;th&gt;1y Target Est&lt;/th&gt;
+   &lt;/tr&gt;
+   ...
+&lt;/thead&gt;
+</code></pre>
+
+<p>You'll see that we added a second class to the Company header, <code>persist</code>.  Essential columns are present by default at small screen sizes, but we'll still be able to toggle their visibility with the custom menu.  Marking the Company column with this class provides a way for us to omit it from the menu, and prevent it from being hidden.</p>
+
+<p>We'll complete the table with rows of data that correspond to the column headers:</p>
+
+<pre><code>&lt;table cellspacing=&quot;0&quot; id=&quot;tech-companies&quot;&gt;
+&lt;thead&gt;
+   ...
+&lt;/thead&gt;
+&lt;tbody&gt;
+   &lt;tr&gt;
+      &lt;th&gt;GOOG &lt;span class=&quot;co-name&quot;&gt;Google Inc.&lt;/span&gt;&lt;/th&gt;
+      &lt;td&gt;597.74&lt;/td&gt;
+      &lt;td&gt;12:12PM&lt;/td&gt;
+      &lt;td&gt;14.81 (2.54%)&lt;/td&gt;
+      &lt;td&gt;582.93&lt;/td&gt;
+      &lt;td&gt;597.95&lt;/td&gt;
+      &lt;td&gt;597.73 x 100&lt;/td&gt;
+      &lt;td&gt;597.91 x 300&lt;/td&gt;
+      &lt;td&gt;731.10&lt;/td&gt;
+   &lt;/tr&gt;
+   ...
+&lt;/tbody&gt;
+</code></pre>
+
+<p>Later when we apply JavaScript, we'll create a custom menu based on the table's content.  The menu will consist of a container element that holds a "Display" button and the menu overlay:</p>
+
+<pre><code>&lt;div class=&quot;table-menu-wrapper&quot;&gt;
+   &lt;a href=&quot;#&quot; class=&quot;table-menu-btn&quot;&gt;Display&lt;/a&gt;
+   &lt;div class=&quot;table-menu&quot;&gt;
+      ...menu content...   
+   &lt;/div&gt;   
+&lt;/div&gt;
+</code></pre>
+
+<p>The menu overlay will hold a list of options, one for each column, where each option has a <code>label</code> and checkbox <code>input</code> for toggling that column's visibility (columns with the <code>persist</code> class are excluded).  Following the list is a "Done" button for closing the menu.</p>
+
+<pre><code>&lt;div class=&quot;table-menu-wrapper&quot;&gt;
+   &lt;a href=&quot;#&quot; class=&quot;table-menu-btn&quot;&gt;Display&lt;/a&gt;
+   &lt;div class=&quot;table-menu&quot;&gt;
+      &lt;ul&gt;
+         &lt;li&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;toggle-cols&quot; id=&quot;toggle-col-1&quot; value=&quot;co-1&quot;&gt;
+            &lt;label for=&quot;toggle-col-1&quot;&gt;Last Trade&lt;/label&gt;
+         &lt;/li&gt;
+         &lt;li class=&quot;optional&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;toggle-cols&quot; id=&quot;toggle-col-2&quot; value=&quot;co-2&quot;&gt;
+            &lt;label for=&quot;toggle-col-2&quot;&gt;Trade Time&lt;/label&gt;
+         &lt;/li&gt;
+         ...
+      &lt;/ul&gt;
+      &lt;a href=&quot;#&quot; class=&quot;table-menu-close&quot;&gt;Done&lt;/a&gt;   
+   &lt;/div&gt;   
+&lt;/div&gt;
+</code></pre>
+
+<p>When the script builds the menu, it will automatically assign <code>name</code> and <code>value</code> attributes and unique IDs to the <code>input</code> elements, and matching <code>for</code> attributes to their labels.</p>
+
+<p>Last but not least, we'll wrap the table in a container element to simplify positioning the menu:</p>
+
+<pre><code>&lt;div class=&quot;table-wrapper&quot;&gt;
+   &lt;table cellspacing=&quot;0&quot; id=&quot;tech-companies&quot;&gt;
+      ...
+   &lt;/table&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<h2>CSS</h2>
+<p class="note">We'll assume you're already familiar with using CSS media queries to render pages responsively.  If not, we highly recommend Ethan Marcotte's definitive article, <a href="http://www.alistapart.com/articles/responsive-web-design/">Responsive Web Design</a>, and <a href="http://www.abookapart.com/products/responsive-web-design">book by the same title</a>.</p>
+
+<p>Let's start with the table.  We want it to fill the available space, so we'll assign a width of 100%:</p>
+
+<pre><code>table {
+	<strong>width: 100%;</strong>
+	font-size: 1.2em;
+}
+</code></pre>
+
+<p>We applied a light visual design to make the grid more readable; to see the full range of styles, take a look at the style sheet [link].</p>
+
+<p>The important styles to note are those that hide and show the columns.  We've scoped these styles to a class, <code>enhanced</code>, which the script dynamically assigns to the table.  This ensures that the column visibility is altered only when JavaScript is available.  By default, we'll hide all columns, and show only those marked with the <code>essential</code> class:</p>
+
+<pre><code>.enhanced th,
+.enhanced td {
+   display: none;
+}
+.enhanced th.essential, 
+.enhanced td.essential {
+	display: table-cell;
+}
+</code></pre>
+
+<p>Using CSS media queries, we'll show optional columns when the browser is 500px wide or greater, and all columns at 800px or greater:</p>
+
+<pre><code>@media screen and (min-width: 500px) {
+	.enhanced th.optional, 
+	.enhanced td.optional {
+		display: table-cell;
+	}
+}
+
+@media screen and (min-width: 800px) {
+   .enhanced th, 
+   .enhanced td {
+      display: table-cell;
+   }
+}
+</code></pre>
+
+<p>We'll add relative positioning to the table's container so that later when the menu is inserted we can position it without having to calculate coordinates:</p>
+
+<pre><code>.table-wrapper {
+   <strong>position: relative;</strong>
+   margin: 5em 5%;
+}
+</code></pre>
 
 
 
 
-[link to demo]
+
+<h2>JS</h2>
 
 
 
-
-
-
-
-
-Solution overview: 
-
-Our goal is to 
-
-
-- display as many columns of data will fit at a given browser width, and give users a way 
-- identify which columns are essential (must be visible at all screen sizes) or optional (shown if space allows).  Any 
-
-
-
-
-
-
-
-
- .  , and any additional columns that don't fit are made accessible in an alternate way -- in this case, a custom menu appears which lets the user choose which columns to show.  
+<h2>Summary</h2>
 - many data types and ways to display it; the pattern discussed here is just one possibility
-
-
-
-
-Markup
-
-First, a basic table -- with consecutive columns and descriptive headings -- is a concise and simple way to display a complex data set.  Data arranged into columns and rows are easy to scan and compare.  Second, an HTML table is the clear markup choice for displaying tabular data... 
-
-[code]
-
-
-
-
-
-
-
-
-
-
-
-* Start with a well-formed table that contains a thead for the heading row (th), followed by a tbody for the cells. (The tbody may also contain heading cells (th).)  At this point -- pre-CSS and JS -- we have a usable table that will work on any device that renders HTML.  
-* 
-
-CSS
-
-* basic styling -- when JS fails, this is the table that will render
-
-
-JS
-
-Loop through the headers (thead th), and assign unique IDs if not already present...
 
 
 		
