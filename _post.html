@@ -103,7 +103,7 @@ You can also set a column to always persist by assigning a class in the markup, 
 &lt;/thead&gt;
 </code></pre>
 
-<p>You'll see that we added a second class to the Company header, <code>persist</code>.  Essential columns are present by default at small screen sizes, but we'll still be able to toggle their visibility with the custom menu.  Marking the Company column with this class provides a way for us to omit it from the menu, and prevent it from being hidden.</p>
+<p>Notice that we added a second class to the Company header, <code>persist</code>.  Essential columns are present by default at small screen sizes, but we'll still be able to toggle their visibility with the custom menu.  Marking the Company column with this class provides a way for us to omit it from the menu, and prevent it from being hidden.</p>
 
 <p>We'll complete the table with rows of data that correspond to the column headers:</p>
 
@@ -127,7 +127,7 @@ You can also set a column to always persist by assigning a class in the markup, 
 &lt;/tbody&gt;
 </code></pre>
 
-<p>Later when we apply JavaScript, we'll create a custom menu based on the table's content.  The menu will consist of a container element that holds a "Display" button and the menu overlay:</p>
+<p>Later when we apply JavaScript, we'll create a custom menu based on the table's content and append it to the page, immediately above the table.  The menu will consist of a container element that holds a "Display" button and the menu overlay:</p>
 
 <pre><code>&lt;div class=&quot;table-menu-wrapper&quot;&gt;
    &lt;a href=&quot;#&quot; class=&quot;table-menu-btn&quot;&gt;Display&lt;/a&gt;
@@ -137,7 +137,7 @@ You can also set a column to always persist by assigning a class in the markup, 
 &lt;/div&gt;
 </code></pre>
 
-<p>The menu overlay will hold a list of options, one for each column, where each option has a <code>label</code> and checkbox <code>input</code> for toggling that column's visibility (columns with the <code>persist</code> class are excluded).  Following the list is a "Done" button for closing the menu.</p>
+<p>The menu overlay will hold a list of options, one for each column, where each option has a <code>label</code> and checkbox <code>input</code> for toggling that column's visibility (columns with the <code>persist</code> class are excluded).  After the list is a "Done" button for closing the menu.</p>
 
 <pre><code>&lt;div class=&quot;table-menu-wrapper&quot;&gt;
    &lt;a href=&quot;#&quot; class=&quot;table-menu-btn&quot;&gt;Display&lt;/a&gt;
@@ -176,14 +176,31 @@ You can also set a column to always persist by assigning a class in the markup, 
 <p>Let's start with the table.  We want it to fill the available space, so we'll assign a width of 100%:</p>
 
 <pre><code>table {
-	<strong>width: 100%;</strong>
-	font-size: 1.2em;
+   <strong>width: 100%;</strong>
+   font-size: 1.2em;
 }
 </code></pre>
 
-<p>We applied a light visual design to make the table content more readable; to see the full range of styles, take a look at the style sheet [link].</p>
+<p>And then apply color, padding, and alignment properties to make the table easy to scan:</p>
 
-<p>The important styles to note are those that hide and show the columns.  We've scoped these styles to a class, <code>enhanced</code>, which is assigned to the table via JavaScript.  This ensures that the column visibility is altered only when JavaScript is available.  By default, we'll hide all columns, and show only those marked with the <code>essential</code> class:</p>
+<pre><code>thead th {
+   white-space: nowrap;
+   border-bottom: 1px solid #ccc;
+   color: #888;
+}
+th, td {
+   padding: .5em 1em;
+   text-align: right;
+}
+th:first-child, 
+td:first-child {
+   text-align: left;
+}
+tbody th, td {
+   border-bottom: 1px solid #e6e6e6;
+}</code></pre>
+
+<p>Next, we'll write the rules that hide and show columns.  We've scoped these styles to a class, <code>enhanced</code>, which is assigned to the table via JavaScript.  This ensures that the column visibility is altered only when JavaScript is available.  By default, we'll hide all columns, and show only those marked with the <code>essential</code> class:</p>
 
 <pre><code>.enhanced th,
 .enhanced td {
@@ -191,17 +208,17 @@ You can also set a column to always persist by assigning a class in the markup, 
 }
 .enhanced th.essential, 
 .enhanced td.essential {
-	display: table-cell;
+   display: table-cell;
 }
 </code></pre>
 
 <p>Using CSS media queries, we'll show optional columns when the browser is 500px wide or greater, and all columns at 800px or greater:</p>
 
 <pre><code>@media screen and (min-width: 500px) {
-	.enhanced th.optional, 
-	.enhanced td.optional {
-		display: table-cell;
-	}
+   .enhanced th.optional, 
+   .enhanced td.optional {
+      display: table-cell;
+   }
 }
 
 @media screen and (min-width: 800px) {
@@ -239,7 +256,7 @@ You can also set a column to always persist by assigning a class in the markup, 
 }
 </code></pre>
 
-<p>Finally, we'll add relative positioning to the table's container so that later when the menu is inserted we can position it without having to calculate coordinates:</p>
+<p>Finally, we'll add relative positioning to the table's container.  Later, when we append the menu we can position it without having to calculate location coordinates:</p>
 
 <pre><code>.table-wrapper {
    <strong>position: relative;</strong>
@@ -248,16 +265,125 @@ You can also set a column to always persist by assigning a class in the markup, 
 </code></pre>
 
 
-
-
-
 <h2>JS</h2>
 
+<p>The table we just created is usable on its own; any browser that renders HTML will display it.  With a few JavaScript enhancements, we can make the data easier to decipher, especially when viewed on small screens.  (The following examples use <a href="jquery.com">jQuery</a>.)</p>
+
+<p>First we'll enhance the markup with classes and attributes that allow us to control column visibility.  We'll append the <code>enhanced</code> class for scoping styles:</p>
+
+<pre><code>// add class for scoping styles - cells should be hidden only when JS is on
+table.addClass("enhanced");</code></pre>
+
+<p>We'll also create a container element for the menu, which will come into play a little later in the script:</p>
+
+<pre><code>var container = $('&lt;div class=&quot;table-menu table-menu-hidden&quot;&gt;&lt;ul /&gt;&lt;/div&gt;'); </code></pre>
+
+<p>Then we'll loop through the table headers and map them to their respective cells.  We'll apply unique IDs to the headers, then reference those IDs in <code>headers</code> attributes assigned to the cells.  (The <code><a href="http://www.w3.org/TR/html4/struct/tables.html#adef-headers">headers</a></code> attribute identifies to which header(s) a cell belongs.)  We'll also copy the classes that we assigned to the column headers &#8212; essential and optional &#8212; and assign them to the associated columns.</p>
+
+<pre><code>$( "thead th" ).each(function(i){
+   var th = $(this),
+      id = th.attr("id"), 
+      classes = th.attr("class");  // essential, optional (or other content identifiers)
+         
+   // assign an ID to each header, if none is in the markup
+   if (!id) {
+      id = ( "col-" ) + i;
+      th.attr("id", id);
+   };      
+         
+   // loop through each row and assign a "headers" attribute and any classes (essential, optional) to the matching cell
+   // the "headers" attribute value = the header's ID
+   $( "tbody tr" ).each(function(){
+      var cell = $(this).find("th, td").eq(i);                        
+      cell.attr("headers", id);
+      if (classes) { cell.addClass(classes); };
+   });
+   ...      
+</code></pre>
+
+<p>Next, while still looping through the headers, we'll create a menu item for each column, except for those marked with the <code>persist</code> class.  Each menu item consists of a checkbox and label with the column header text. </p>
+
+<pre><code>   ...  
+   // create the menu hide/show toggles
+   if ( !th.is(".persist") ) {
+   
+      // note that each input's value matches the header's ID; later we'll use this value to control the visibility of that header and it's associated cells
+      var toggle = $('&lt;li&gt;&lt;input type=&quot;checkbox&quot; name=&quot;toggle-cols&quot; id=&quot;toggle-col-'+i+'&quot; value=&quot;'+id+'&quot; /&gt; &lt;label for=&quot;toggle-col-'+i+'&quot;&gt;'+th.text()+'&lt;/label&gt;&lt;/li&gt;');
+      
+      // append each toggle to the container
+      container.find("ul").append(toggle);         
+      
+      ...   
+</code></pre>
+
+<p>And then bind events to each checkbox for controlling that column's visibility.  </p>
+
+<pre><code>      ...  
+      
+      // assign behavior
+      toggle.find("input")
+      
+         // when the checkbox is toggled
+         .change(function(){
+            var input = $(this), 
+                  val = input.val(),  // this equals the header's ID, i.e. "company"
+                  cols = $("#" + val + ", [headers="+ val +"]"); // so we can easily find the matching header (id="company") and cells (headers="company")
+         
+            if (input.is(":checked")) { cols.show(); }
+            else { cols.hide(); };		
+         })
+         
+         // custom event that sets the checked state for each toggle based on column visibility, which is controlled by @media rules in the CSS
+         // called whenever the window is resized or reoriented (mobile)
+         .bind("updateCheck", function(){
+            if ( th.css("display") ==  "table-cell") {
+               $(this).attr("checked", true);
+            }
+            else {
+               $(this).attr("checked", false);
+            };
+         })
+         
+         // call the custom event on load
+         .trigger("updateCheck");  
+         
+   }; // end conditional statement ( !th.is(".persist") )
+}); // end headers loop   
+</code></pre>
+
+<p>After closing the headers loop, we'll bind our custom event to the window's resize and orientation change events:</p>
+
+<pre><code>// update the inputs' checked status
+$(window).bind("orientationchange resize", function(){
+   container.find("input").trigger("updateCheck");
+}); </code></pre>
+
+<p>And, last but not least, append our checkbox menu to the page and bind show/hide events:</p>
+
+<pre><code>var menuWrapper = $('&lt;div class=&quot;table-menu-wrapper&quot; /&gt;'),
+   menuBtn = $('&lt;a href=&quot;#&quot; class=&quot;table-menu-btn&quot;&gt;Display&lt;/a&gt;'),
+   menuClose = $('&lt;a href=&quot;#&quot; class=&quot;table-menu-close&quot;&gt;Done&lt;/a&gt;');
+      
+menuBtn.click(function(){
+   container.toggleClass("table-menu-hidden");            
+   return false;
+});
+
+menuClose.click(function(){
+   container.toggleClass("table-menu-hidden");            
+   return false;
+});
+      
+container.append(menuClose);      
+menuWrapper.append(menuBtn).append(container);
+$( "table" ).before(menuWrapper); // append the menu immediately before the table
+</code></pre>
 
 
 <h2>Summary</h2>
-- many data types and ways to display it; the pattern discussed here is just one possibility
-
+<p>TBD                                                                                         </p>
+<p>- many data types and ways to display it; the pattern discussed here is just one possibility</p>
+<p>- JS should be edited to accommodate colspans                                               </p>
 
 		
 	</body>

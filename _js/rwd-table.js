@@ -42,16 +42,14 @@
          // assign matching "headers" attributes to the associated cells
          // TEMP - needs to be edited to accommodate colspans
          bodyRows.each(function(){
-            var thisRow = $(this).find("th, td").eq(i);                        
-            thisRow.attr("headers", id);
-            if (classes) { thisRow.addClass(classes); };
+            var cell = $(this).find("th, td").eq(i);                        
+            cell.attr("headers", id);
+            if (classes) { cell.addClass(classes); };
          });     
          
          // create the hide/show toggles
          if ( !th.is("." + o.persist) ) {
 	         var toggle = $('<li><input type="checkbox" name="toggle-cols" id="toggle-col-'+i+'" value="'+id+'" /> <label for="toggle-col-'+i+'">'+th.text()+'</label></li>');
-	         
-	         if (classes) { toggle.addClass(classes); };
 	         
 	         container.find("ul").append(toggle);         
 	         
@@ -101,8 +99,7 @@
          container.append(menuClose);      
          menuWrapper.append(menuBtn).append(container);
          table.before(menuWrapper);
-      };
-      
+      };   
       
               
    }, // end _create
