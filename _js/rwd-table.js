@@ -83,22 +83,22 @@
       // if no container specified for the checkboxes, create a "Display" menu      
       if (!o.checkContainer) {
          var menuWrapper = $('<div class="table-menu-wrapper" />'),
-               menuBtn = $('<a href="#" class="table-menu-btn">Display</a>'),
-               menuClose = $('<a href="#" class="table-menu-close">Done</a>');
+               menuBtn = $('<a href="#" class="table-menu-btn">Display</a>');
                
          menuBtn.click(function(){
             container.toggleClass("table-menu-hidden");            
             return false;
          });
-         
-         menuClose.click(function(){
-            container.toggleClass("table-menu-hidden");            
-            return false;
-         });
                
-         container.append(menuClose);      
          menuWrapper.append(menuBtn).append(container);
          table.before(menuWrapper);
+         
+         // assign click-to-close event
+			$(document).click(function(e){								
+				if ( !$(e.target).is( container ) && !$(e.target).is( container.find("*") ) ) {			
+					container.addClass("table-menu-hidden");
+				}				
+			});
       };   
       
               
