@@ -94,15 +94,23 @@ tbody th, td {
 .enhanced td {
    display: none;
 }
+
+.legacy-ie .enhanced th.essential, 
+.legacy-ie .enhanced td.essential {
+	display: inline;
+}
 .enhanced th.essential, 
 .enhanced td.essential {
-	display: table-cell;
+   display: table-cell;
 }
 
 
 
-
 @media screen and (min-width: 500px) {
+	.legacy-ie .enhanced th.optional, 
+	.legacy-ie .enhanced td.optional {
+		display: inline;
+	}
 	.enhanced th.optional, 
 	.enhanced td.optional {
 		display: table-cell;
@@ -110,6 +118,10 @@ tbody th, td {
 }
 
 @media screen and (min-width: 800px) {
+   .legacy-ie .enhanced th, 
+   .legacy-ie .enhanced td {
+      display: inline;
+   }
    .enhanced th, 
    .enhanced td {
       display: table-cell;
