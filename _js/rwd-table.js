@@ -63,7 +63,7 @@
 	               else { cols.hide(); };		
 	            })
 	            .bind("updateCheck", function(){
-	               if ( th.css("display") ==  "table-cell") {
+	               if ( th.css("display") == "table-cell" || th.css("display") == "inline" ) {
 	                  $(this).attr("checked", true);
 	               }
 	               else {
