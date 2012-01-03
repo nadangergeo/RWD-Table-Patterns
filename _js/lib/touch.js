@@ -1,5 +1,0 @@
-(function(win, undefined){
-
-	
-
-})(this);
