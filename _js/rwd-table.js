@@ -73,6 +73,16 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 	}
 }
 
+//make width of each th match the orginal
+function matchThWidths(thead, theadClone) {
+	theadClone.find('th').each(function(i){
+		var orgTh = thead.find('th')[i];
+		var width = $(orgTh).innerWidth() / thead.innerWidth() * 100;
+
+		$(this).css('width', width  + "%");
+	});
+}
+
 (function( $ ) {
 	$.widget( "filament.table", { // need to come up with a better namespace var...
  
@@ -119,6 +129,7 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 						var checkbox = toggle.find("input");
 						checkbox.prop("checked", !checkbox.prop("checked"));
 						checkbox.trigger("change");
+						matchThWidths(thead, tableClone);
 					});
 
 					toggle.find("label").click(function(event){
@@ -310,14 +321,7 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 				$(this).attr('id', $(this).attr('id') + '-clone');
 			});
 
-			//make width of each th match the orginal
-			theadClone.find('th').each(function(i){
-				var orgTh = thead.find('th')[i];
-				var width = $(orgTh).innerWidth() / thead.innerWidth() * 100;
-
-				$(this).css('width', width  + "%");
-			});
-			
+			matchThWidths(thead, theadClone);
 
 			// wrap table clone (this is our "sticky table head" now)
 			$(tableClone).wrap('<div class="stickyTableHead"/>');
@@ -339,6 +343,8 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 			table.toggleClass('auto-on');
 			tableClone.toggleClass('auto-on');
 			$(window).trigger('auto-on');
+
+			matchThWidths(thead, tableClone);
 		});
 
 		// Focus on single row
