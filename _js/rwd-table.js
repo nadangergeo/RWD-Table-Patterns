@@ -73,16 +73,6 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 	}
 }
 
-//make width of each th match the orginal
-function matchThWidths(thead, theadClone) {
-	theadClone.find('th').each(function(i){
-		var orgTh = thead.find('th')[i];
-		var width = $(orgTh).innerWidth() / thead.innerWidth() * 100;
-
-		$(this).css('width', width  + "%");
-	});
-}
-
 (function( $ ) {
 	$.widget( "filament.table", { // need to come up with a better namespace var...
  
@@ -129,7 +119,6 @@ function matchThWidths(thead, theadClone) {
 						var checkbox = toggle.find("input");
 						checkbox.prop("checked", !checkbox.prop("checked"));
 						checkbox.trigger("change");
-						matchThWidths(thead, tableClone);
 					});
 
 					toggle.find("label").click(function(event){
@@ -306,29 +295,26 @@ function matchThWidths(thead, theadClone) {
 			// Sticky table head
 			// -------------------------
 
-			//create table
-			var tableClone = $('<table />');
-			//copy classes from original table
-			tableClone.addClass(table.attr('class'));
-
 			//clone table head
-			var theadClone = thead.clone();
-			tableClone.append(theadClone);
+			var tableClone = $(table).clone();
 
 			//replace ids
 			$(tableClone).attr('id', table.attr('id') + '-clone');
-			$(theadClone).find('[id]').each(function() {
+			$(tableClone).find('[id]').each(function() {
 				$(this).attr('id', $(this).attr('id') + '-clone');
 			});
-
-			matchThWidths(thead, theadClone);
 
 			// wrap table clone (this is our "sticky table head" now)
 			$(tableClone).wrap('<div class="stickyTableHead"/>');
 			var stickyTableHead = $(tableClone).parent();
 
+			// give the sticky table head same height as original
+			$(stickyTableHead).css("height", thead.height());
+
 			//insert clone
 			$(table).before(stickyTableHead);
+
+			// var bodyRowsClone = $(tableClone).find('tbody').find('tr');
 
 			// bind scroll and resize with updateStickyTableHead
 			$(window).bind("scroll resize", function(){
@@ -343,8 +329,6 @@ function matchThWidths(thead, theadClone) {
 			table.toggleClass('auto-on');
 			tableClone.toggleClass('auto-on');
 			$(window).trigger('auto-on');
-
-			matchThWidths(thead, tableClone);
 		});
 
 		// Focus on single row
