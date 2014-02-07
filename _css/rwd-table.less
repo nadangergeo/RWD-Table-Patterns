@@ -1,0 +1,242 @@
+@import "vendor/bootstrap_variables.less";
+
+// Z-index master list
+// -------------------------
+// Used for a bird's eye view of components dependent on the z-axis
+// Try to avoid customizing these :)
+
+@zindex-stickyHeader:      990;
+
+
+// The dropdown menu (ul)
+// ----------------------
+.dropdown-menu {
+    // Checkbox-rows within the dropdown menu
+    > li.checkbox-row {
+      padding: 5px 20px;
+    }
+
+    // links and checkbox-rows within the dropdown menu
+    li.checkbox-row {
+      display: block;
+      clear: both;
+      font-weight: normal;
+      line-height: @line-height-computed;
+      color: @dropdown-link-color;
+      white-space: nowrap;
+
+      label {
+        font-weight: normal;
+      }
+    }
+}
+
+//
+// Tables
+// --------------------------------------------------
+
+
+.table-scroll-wrapper {
+    overflow-x: scroll;
+    border: 1px solid @gray-light;
+    border-radius: @border-radius-small;
+    margin-bottom: @line-height-computed;
+    position: relative;
+}
+
+#table-wrapper {
+    max-width: 100%;
+}
+
+.btn-toolbar {
+    margin-bottom: @line-height-computed;
+}
+
+.stickyTableHead {
+  border-top: 1px solid @gray-lighter;
+  border-bottom: 1px solid @gray-light;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  z-index: @zindex-stickyHeader;
+  overflow: hidden;
+  min-width: 100%;
+
+  table {
+    width: 100%;
+  }
+}
+
+//we might want to have different kinds of responsive tables — ergo the double class
+table.responsive.financial {
+    font-size: @font-size-small;
+    -webkit-text-size-adjust:none;
+    line-height: 1.5em;
+    width: 100%;
+    color: #000;
+
+    thead {
+        // .gradientBar(@white, darken(@white, 7%), @gray-dark, 0 1px 0 rgba(255,255,255,.75));
+        background-color: #fff;
+        border-bottom: 1px solid @gray-light;
+        tr:nth-child(odd) {
+            background-color: transparent;
+        }
+        th {
+            white-space: nowrap;
+            font-weight: normal;
+        }
+    }
+
+    th, td {
+        padding: .5em 1em;
+        text-align: right;
+    }
+    th:first-child, 
+    td:first-child {
+       text-align: left;
+    }
+    tr:nth-child(odd) { background-color: rgba(150,150,150,0.1); }
+    tbody th, td {
+        border-bottom: 1px solid @gray-lighter;
+    }
+
+    tr:last-child td {
+            border-bottom: none;
+    }
+
+    tfoot td {
+        padding-top: 20px;
+        border: none;
+    }
+
+    // focus
+    &.focus-on tbody tr:hover { cursor: pointer;}
+
+    tbody tr {
+        &.unfocused { opacity: 0.4; }
+        &.focused { opacity: 1; background-color: @brand-info; color: #000; }
+    }
+    // end focus
+
+    // tbody {
+    //     .info, .success, .warning, .danger { color: @label-color; }
+
+    //     .info { background-color: @label-info-bg; }
+
+    //     .success { background-color: @label-success-bg; }
+
+    //     .warning { background-color: @label-warning-bg; }
+
+    //     .danger { background-color: @label-danger-bg; }
+    // }
+
+
+    .js &.auto-on th[data-priority="1"],
+    .js &.auto-on td[data-priority="1"],
+    .js &.auto-on th[data-priority="2"],
+    .js &.auto-on td[data-priority="2"],
+    .js &.auto-on th[data-priority="3"],
+    .js &.auto-on td[data-priority="3"],
+    .js &.auto-on th[data-priority="4"],
+    .js &.auto-on td[data-priority="4"],
+    .js &.auto-on th[data-priority="5"],
+    .js &.auto-on td[data-priority="5"],
+    .js &.auto-on th[data-priority="6"],
+    .js &.auto-on td[data-priority="6"] {
+       display: none;
+    }
+
+    .lt-ie9.js &.auto-on th[data-priority="1"], 
+    .lt-ie9.js &.auto-on td[data-priority="1"] {
+        display: inline;
+    }
+    .js &.auto-on th[data-priority="1"], 
+    .js &.auto-on td[data-priority="1"] {
+        display: table-cell;
+    }
+
+    @media screen and (min-width: 480px) {
+        .lt-ie9.js &.auto-on th[data-priority="2"], 
+        .lt-ie9.js &.auto-on td[data-priority="2"] {
+            display: inline;
+        }
+        .js &.auto-on th[data-priority="2"], 
+        .js &.auto-on td[data-priority="2"] {
+            display: table-cell;
+        }
+    }
+
+    @media screen and (min-width: 640px) {
+        .lt-ie9.js &.auto-on th[data-priority="3"], 
+        .lt-ie9.js &.auto-on td[data-priority="3"] {
+            display: inline;
+        }
+        .js &.auto-on th[data-priority="3"], 
+        .js &.auto-on td[data-priority="3"] {
+            display: table-cell;
+        }
+    }
+
+    @media screen and (min-width: 800px) {
+        .lt-ie9.js &.auto-on th[data-priority="4"], 
+        .lt-ie9.js &.auto-on td[data-priority="4"] {
+            display: inline;
+        }
+        .js &.auto-on th[data-priority="4"], 
+        .js &.auto-on td[data-priority="4"] {
+            display: table-cell;
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+        .lt-ie9.js &.auto-on th[data-priority="5"], 
+        .lt-ie9.js &.auto-on td[data-priority="5"] {
+            display: inline;
+        }
+        .js &.auto-on th[data-priority="5"], 
+        .js &.auto-on td[data-priority="5"] {
+            display: table-cell;
+        }
+    }
+
+    @media screen and (min-width: 1120px) {
+        .lt-ie9.js &.auto-on th[data-priority="6"], 
+        .lt-ie9.js &.auto-on td[data-priority="6"] {
+            display: inline;
+        }
+        .js &.auto-on th[data-priority="6"], 
+        .js &.auto-on td[data-priority="6"] {
+            display: table-cell;
+        }
+    }
+
+    // @media screen and (min-width: 800px) {
+    //    .lt-ie9.js & th, 
+    //    .lt-ie9.js & td {
+    //       display: inline;
+    //    }
+    //    .js & th, 
+    //    .js & td {
+    //       display: table-cell;
+    //    }
+    // }
+
+    // give this class to a column (to the header) to hide the column per default
+    // useful if we want to save and load the user selections
+    .js & th.col-hidden,
+    .js & td.col-hidden {
+       display: none;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+    .table-wrapper .btn-toolbar {
+        // text-align: right;
+
+        .focus-btn-group {
+            float: left;
+        }
+    }
+}
