@@ -319,7 +319,7 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 			var stickyTableHead = $(tableClone).parent();
 
 			// give the sticky table head same height as original
-			$(stickyTableHead).css("height", thead.height());
+			$(stickyTableHead).css("height", thead.height() + 2);
 
 			//insert clone
 			$(table).before(stickyTableHead);
