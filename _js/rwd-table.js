@@ -26,22 +26,6 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 	) {
 
 		iOS = true;
-
-		// Toolbar doesn't disappear in iOS7,
-		// and scrollTop doesn't account for the content that the toolbar is covering.
-		// Let us account for that
-		if(navigator.userAgent.match(/OS 7_/i)) {
-			// the height to account for
-			var fix = 20;
-
-			// If landscape
-			if(Math.abs(window.orientation) === 90 ) {
-				fix = 20;
-			}
-
-			// Add it ScrollTop
-			scrollTop = scrollTop + fix;
-		}
 	}
 
 	// Calculate top property value
