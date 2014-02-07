@@ -90,12 +90,45 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 						tbody = table.find("tbody"),
 						hdrCells = thead.find("th"),
 						bodyRows = tbody.find("tr"),
-						tableWrapper = table.parent(),
 						container = o.checkContainer ? $(o.checkContainer) : $('<ul class="dropdown-menu"/>');
 
-			// wrap table in div for scrolling
-			$(table).wrap('<div class="table-scroll-wrapper"/>');
-			var tableScrollWrapper = $(table).parent();
+			// wrap table in div for scrolling if needed
+			if($(table).parent().hasClass('table-scroll-wrapper') === false){
+				// console.log('Wrapped table with scroll-wrapper');
+				$(table).wrap('<div class="table-scroll-wrapper"/>');
+			}
+			var tableScrollWrapper = $(table).parent(),
+				tableWrapper = tableScrollWrapper.parent();
+
+			// Toolbar
+			// -------------------------
+
+			// if no container specified for the checkboxes, create a toolbar with buttons.    
+			var btnToolbar = $('<div class="btn-toolbar" />'),
+					dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />'),
+					dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>'),
+					modeGroup = $('<div class="btn-group mode-btn-group" />'),
+					modeBtn = $('<button class="btn btn-default">Auto</button>'),
+					focusGroup = $('<div class="btn-group focus-btn-group" />'),
+					focusBtn = $('<button class="btn btn-default"><span class="glyphicon glyphicon-screenshot"></span> Focus</button>');
+
+			if (table.hasClass('auto-on')) {
+				modeBtn.addClass('btn-primary');
+			}
+
+			focusGroup.append(focusBtn);
+			modeGroup.append(modeBtn);
+			dropdownGroup.append(dropdownBtn).append(container);
+
+			btnToolbar.append(focusGroup);
+			btnToolbar.append(modeGroup);
+			btnToolbar.append(dropdownGroup);
+
+			tableWrapper.prepend(btnToolbar);
+
+
+			// Setup cells
+			// -------------------------
 			
 			// for each header column
 			hdrCells.each(function(i){
@@ -263,29 +296,6 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 				});
 
 			});
-						
-			// if no container specified for the checkboxes, create a toolbar with buttons.    
-			var btnToolbar = $('<div class="btn-toolbar" />'),
-					dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />'),
-					dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>'),
-					modeGroup = $('<div class="btn-group mode-btn-group" />'),
-					modeBtn = $('<button class="btn btn-default">Auto</button>'),
-					focusGroup = $('<div class="btn-group focus-btn-group" />'),
-					focusBtn = $('<button class="btn btn-default"><span class="glyphicon glyphicon-screenshot"></span> Focus</button>');
-
-			if (table.hasClass('auto-on')) {
-				modeBtn.addClass('btn-primary');
-			}
-
-				focusGroup.append(focusBtn);
-				modeGroup.append(modeBtn);
-				dropdownGroup.append(dropdownBtn).append(container);
-
-				btnToolbar.append(focusGroup);
-				btnToolbar.append(modeGroup);
-				btnToolbar.append(dropdownGroup);
-
-				tableWrapper.prepend(btnToolbar);
 
 			// hide toggle button if the list is empty
 			if(container.children('li').length === 0){
