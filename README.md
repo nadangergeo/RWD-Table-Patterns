@@ -1,7 +1,9 @@
 RWD-Table-Patterns
 ==================
 
-* Changes:
+Changes:
+--------
+
 - Sticky table header
 - Support for colspans
 - Scrollable on overflow
@@ -9,6 +11,8 @@ RWD-Table-Patterns
 - Auto-hide based on column priority now has toggle-button
 - Changed the way column priorities are definied. If data-priority is not definied, 
 the column will allways be visible and not hideable from the dropdown).
+
+
 data-priority="1" : Always visible (but hidable from dropdown)
 data-priority="2" : (min-width: 480px)
 data-priority="3" : (min-width: 640px)
