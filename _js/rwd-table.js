@@ -90,7 +90,8 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 						tbody = table.find("tbody"),
 						hdrCells = thead.find("th"),
 						bodyRows = tbody.find("tr"),
-						container = o.checkContainer ? $(o.checkContainer) : $('<ul class="dropdown-menu"/>');
+						container = o.checkContainer ? $(o.checkContainer) : $('<ul class="dropdown-menu"/>'),
+						autoHideTrigger = 'auto-on-' + table.attr('id');
 
 			// wrap table in div for scrolling if needed
 			if($(table).parent().hasClass('table-scroll-wrapper') === false){
@@ -266,11 +267,11 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 			});
 			
 			// update the inputs' checked status and colspans
-			$(window).bind("orientationchange resize auto-on", function(){
+			$(window).bind("orientationchange resize " + autoHideTrigger, function(){
 				container.find("input").trigger("updateCheck");
  
 				// iterate through cells with class 'spn-cell'
-				$(tableScrollWrapper).find('.spn-cell').each( function(){
+				$(table).find('.spn-cell').each( function(){
 					var cell = $(this);
 					var columnsAttr = cell.attr("data-columns");
 					//console.log(columnsAttr);
@@ -338,7 +339,7 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 			modeBtn.toggleClass('btn-primary');
 			table.toggleClass('auto-on');
 			tableClone.toggleClass('auto-on');
-			$(window).trigger('auto-on');
+			$(window).trigger(autoHideTrigger);
 		});
 
 		// Focus on single row
