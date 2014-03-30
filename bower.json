@@ -7,7 +7,10 @@
   ],
   "description": "RWD Table Patterns",
   "license": "MIT",
-  "main": "_js/rwd-table.min.js",
+  "main": [
+    "_js/rwd-table.min.js",
+    "_css/rwd-table.min.css"
+  ],
   "dependencies": {
     "jquery": ">=1.10.1",
     "jquery-ui": ">=1.8.16",
