@@ -78,7 +78,9 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
  
 		options: {
 			idprefix: "col-",   // specify a prefix for the values of the id- and columns attributes.
-			checkContainer: null // container element where the hide/show checkboxes will be inserted; if none specified, the script creates a menu
+			checkContainer: null, // container element where the hide/show checkboxes will be inserted; if none specified, the script creates a menu
+			addAutoButton: false, // should it have a auto button?
+			addFocusButton: false  // should it have a focus button?
 		},
  
 		// Set up the widget
@@ -108,21 +110,27 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 			var btnToolbar = $('<div class="btn-toolbar" />'),
 					dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />'),
 					dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>'),
-					modeGroup = $('<div class="btn-group mode-btn-group" />'),
-					modeBtn = $('<button class="btn btn-default">Auto</button>'),
+					autoGroup = $('<div class="btn-group auto-btn-group" />'),
+					autoBtn = $('<button class="btn btn-default">Auto</button>'),
 					focusGroup = $('<div class="btn-group focus-btn-group" />'),
 					focusBtn = $('<button class="btn btn-default"><span class="glyphicon glyphicon-screenshot"></span> Focus</button>');
 
 			if (table.hasClass('auto-on')) {
-				modeBtn.addClass('btn-primary');
+				autoBtn.addClass('btn-primary');
 			}
 
 			focusGroup.append(focusBtn);
-			modeGroup.append(modeBtn);
+			autoGroup.append(autoBtn);
 			dropdownGroup.append(dropdownBtn).append(container);
 
-			btnToolbar.append(focusGroup);
-			btnToolbar.append(modeGroup);
+			if(o.addFocusButton) {
+				btnToolbar.append(focusGroup);
+			}
+
+			if(o.addAutoButton) {
+				btnToolbar.append(autoGroup);
+			}
+
 			btnToolbar.append(dropdownGroup);
 
 			tableWrapper.prepend(btnToolbar);
@@ -335,8 +343,8 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 
 		// Auto
 		// -------------------------
-		modeBtn.click(function(){
-			modeBtn.toggleClass('btn-primary');
+		autoBtn.click(function(){
+			autoBtn.toggleClass('btn-primary');
 			table.toggleClass('auto-on');
 			tableClone.toggleClass('auto-on');
 			$(window).trigger(autoHideTrigger);

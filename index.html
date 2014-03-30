@@ -1005,7 +1005,10 @@
       <script src="_js/rwd-table.js"></script>
       <script>
        $(function() {
-          $("table.responsive").table();
+          $("table.responsive").table({
+            addAutoButton: true,
+            addFocusButton: true
+          });
       });
       </script>
       <script src="_js/vendor/bootstrap.min.js"></script>
