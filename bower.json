@@ -1,6 +1,6 @@
 {
   "name": "RWD-Table-Patterns",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "homepage": "http://gergeo.se/RWD-Table-Patterns",
   "authors": [
     "Nadan Gergeo <nadan.gergeo@gmail.com>"
@@ -8,8 +8,13 @@
   "description": "RWD Table Patterns",
   "license": "MIT",
   "main": [
-    "_js/rwd-table.min.js",
-    "_css/rwd-table.min.css"
+    "js/rwd-table.min.js",
+    "css/rwd-table.min.css"
+  ],
+  "keywords": [
+    "RWD",
+    "responsive",
+    "tables"
   ],
   "dependencies": {
     "jquery": ">=1.10.1",
