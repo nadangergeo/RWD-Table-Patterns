@@ -6,13 +6,13 @@
 */
 
 // Prevent dropdown from closing when toggling checkbox
-$(document).on('click.dropdown.data-api', '.dropdown-menu .checkbox-row', function (e) { 
+$(document).on('click.dropdown.data-api', '.dropdown-menu .checkbox-row', function (e) {
 	e.stopPropagation();
 });
 
 // Feature detection (instead of Modernizr)
 function mediaQueriesSupported() {
-    return (typeof window.matchMedia != "undefined" || typeof window.msMatchMedia != "undefined");
+    return (typeof window.matchMedia !== "undefined" || typeof window.msMatchMedia !== "undefined");
 }
 
 function hasTouch() {
@@ -23,14 +23,14 @@ $(document).ready(function() {
 	// Change `no-js` to `js`
     document.documentElement.className = document.documentElement.className.replace("no-js","js");
 
-    if(mediaQueriesSupported()) {
-    	jQuery('html').addClass('mq');
+	if(mediaQueriesSupported()) {
+		jQuery('html').addClass('mq');
 	} else {
 		jQuery('html').addClass('no-mq');
 	}
 
 	if(hasTouch()) {
-    	jQuery('html').addClass('touch');
+		jQuery('html').addClass('touch');
 	} else {
 		jQuery('html').addClass('no-touch');
 	}
@@ -38,12 +38,12 @@ $(document).ready(function() {
 
 // Help function for sticky header
 function updateStickyTableHead(orgTable, stickyTableHead, fixedNavbar) {
-	orgTable      	   	 = $(orgTable);
-	var thead          	 = orgTable.find("thead"),
-		offsetTop        = orgTable.offset().top,
-		scrollTop        = $(window).scrollTop(),
-		maxTop           = orgTable.height() - stickyTableHead.height(),
-		rubberBandOffset = (scrollTop + $(window).height()) - $(document).height(),
+	orgTable				= $(orgTable);
+	var thead				= orgTable.find("thead"),
+		offsetTop			= orgTable.offset().top,
+		scrollTop			= $(window).scrollTop(),
+		maxTop				= orgTable.height() - stickyTableHead.height(),
+		rubberBandOffset	= (scrollTop + $(window).height()) - $(document).height(),
 		top;
 
 
