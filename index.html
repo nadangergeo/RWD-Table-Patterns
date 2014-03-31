@@ -11,45 +11,11 @@
 		 
 		<title>Responsive tables</title>
 		
-		<link rel="stylesheet" href="_css/vendor/bootstrap.min.css" />
-		<link rel="stylesheet" href="_css/rwd-table.min.css" />
+		<!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-      <style>
-
-         body { 
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-         }
-
-          #wrapper {
-              width: 1420px;
-              max-width: 100%;
-              margin: 60px auto;
-          }
-
-          #content {
-              max-width: 100%;
-              padding: 0 20px;
-          }
-
-          #social-buttons {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-          }
-
-          /* Mobile */
-          @media only screen and (max-width: 767px) {
-              #wrapper {
-                  margin-top: 20px;
-              }
-
-              .page-header h1 { font-size: 32px; }
-              .page-header small { font-size: 12px; }
-          }
-
-      </style>
+      <link rel="stylesheet" href="_css/rwd-table.min.css">
+		<link rel="stylesheet" href="_css/demo.min.css">
 		
       <script type="text/javascript">
 
@@ -66,24 +32,111 @@
       </script>
 	</head>
 
-   <body>
-      <div id="social-buttons">
-         <iframe src="http://ghbtns.com/github-btn.html?user=nadangergeo&repo=RWD-Table-Patterns&type=fork"
-      allowtransparency="true" frameborder="0" scrolling="0" width="59" height="20"></iframe>
+   <body data-spy="scroll" data-target="#navbar" data-offset="50">
+      <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <span class="navbar-brand" href="#"><span class="fa fa-table"></span> Responsive tables</span>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-to-use">How to use</a></li>
+              <li><a href="#demo">Demo</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
 
-         <iframe src="http://ghbtns.com/github-btn.html?user=nadangergeo&repo=RWD-Table-Patterns&type=watch&count=true"
-      allowtransparency="true" frameborder="0" scrolling="0" width="83" height="20"></iframe>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Responsive tables</h1>
+        <h3><a href="https://twitter.com/nadangergeo">by @nadangergeo</a></h3>
+        <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.<br>
+         It's a fork based on Filament Group's <a href="https://github.com/filamentgroup/RWD-Table-Patterns">repo</a> with a more complete solutions and some new features.</p>
+        <p>
+         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
+         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> Fork on github</a>
+        </p>
 
-         <a href="https://twitter.com/nadangergeo" class="twitter-follow-button" data-show-count="false">Follow @nadangergeo</a>
-         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </div>
-      <div id="wrapper">
-          <div id="content">
+    </div>
+
+      <section id="features">
+         <div class="container">
+            <div class="page-header">
+                <h1>Features</h1>
+            </div>
+
+            <div class="row">
+               <div class="feature col-lg-3 col-md-6 col-sm-12">
+                  <h4><i class="fa fa-twitter"></i>Made for Twitter Bootstrap</h4>
+                  <p>Designed to be used with <a href="http://getbootstrap.com">Bootstrap 3</a>. If you don't want to use bootstrap, just <a href="https://github.com/nadangergeo/RWD-Table-Patterns">fork the repo</a> and customize it to your needs!</p>
+               </div>
+               <div class="feature col-lg-3 col-md-6 col-sm-12">
+                  <h4><i class="fa fa-mobile-phone"></i>Mobile first</h4>
+                  <p>Built with mobile first in mind. As a bonus, the tables won't break on old browsers :)</p>
+               </div>
+               <div class="feature col-lg-3 col-md-6 col-sm-12">
+                  <h4><i class="fa fa-coffee"></i>Graceful JS fallback</h4>
+                  In browsers without JavaScript, the tables will still be scrollable. I.e. there's still some responsiveness.
+               </div>
+               <div class="feature col-lg-3 col-md-6 col-sm-12">
+                  <h4><i class="fa fa-thumbs-o-up"></i>Easy to use</h4>
+                  <p>You only need to include one JS-file, one CSS-file and one line of JavaScript and your tables are responsive.</p>
+                  <p><b>Dependencies:</b> jQuery, jQuery-UI-widget, and Twitter Bootstrap 3.</p>
+               </div>
+            </div>
+
+         </div>
+      </section>
+
+      <section id="how-to-use">
+         <div class="container">
+            <div class="page-header">
+                <h1>How to use</h1>
+            </div>
+
+            <h3>1. Add CSS file <small>to the &lt;head&gt;</small></h3>
+            <code>
+               <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="ns">"stylesheet"</span> <span class="na">href=</span><span class="ns">"css/rwd-table.min.css"</span><span class="nt">&gt;</span>
+            </code>
+
+            <h3>2. Add JavaScript <small>Either to the &lt;head&gt;, or to the bottom of &lt;body&gt;</small></h3>
+            <div class="highlight">
+<pre><code><span class="nt">&lt;script</span> <span class="na">type=</span><span class="ns">"text/javascript"</span> <span class="na">src=</span><span class="ns">"js/rwd-table.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code>
+<code><span class="nt">&lt;script&gt;</span>
+   <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">() {</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">'table.responsive'</span><span class="p">).</span><span class="nx">table</span><span class="p">({</span>
+        <span class="nx">addAutoButton</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="nx">addFocusButton</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="nx">fixedNavbar</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#navbar'</span><span class="p">)
+      <span class="p">})</span>
+   <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre>
+            </div>
+
+            <h3>3. Add dependencies <small></small></h3>
+            <ul>
+               <li>jQuery (>=1.11.0)</li>
+               <li>jQuery-UI-widget (>=1.8.16)</li>
+               <li>Twitter Bootstrap 3 (>=3.1.1)</li>
+            </ul>
+
+         </div>
+      </section>
+
+      <section id="demo">
+          <div class="container">
               <div class="page-header">
-                  <h1>Responsive tables 
-                     <a href="https://github.com/nadangergeo/RWD-Table-Patterns"><small>github.com/nadangergeo/RWD-Table-Patterns</small></a>
-                  </h1>
+                  <h1>Demo</h1>
               </div>
+
               <div class="table-wrapper">
                 <div class="table-scroll-wrapper"/>
                   <table cellspacing="0" id="tech-companies" class="responsive auto-on">
@@ -161,8 +214,8 @@
                            <td>25.50 x 71100</td>
                            <td>25.51 x 17800</td>
                            <td>31.50</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>  
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
                         </tr>
                         <tr>
                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
@@ -174,8 +227,8 @@
                            <td>18.65 x 10300</td>
                            <td>18.66 x 24000</td>
                            <td>21.12</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>  
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
                         </tr>      
                         <tr>
                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
@@ -187,8 +240,8 @@
                            <td>15.79 x 6100</td>
                            <td>15.80 x 17000</td>
                            <td>18.16</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>         
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>         
                         </tr>
                         <!-- Repeat -->
                         <tr>
@@ -249,8 +302,8 @@
                            <td>25.50 x 71100</td>
                            <td>25.51 x 17800</td>
                            <td>31.50</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>  
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
                         </tr>
                         <tr>
                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
@@ -262,8 +315,8 @@
                            <td>18.65 x 10300</td>
                            <td>18.66 x 24000</td>
                            <td>21.12</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>  
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
                         </tr>      
                         <tr>
                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
@@ -275,8 +328,8 @@
                            <td>15.79 x 6100</td>
                            <td>15.80 x 17000</td>
                            <td>18.16</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>         
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>         
                         </tr>
                         <!-- Repeat -->
                         <tr>
@@ -337,8 +390,8 @@
                            <td>25.50 x 71100</td>
                            <td>25.51 x 17800</td>
                            <td>31.50</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>  
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
                         </tr>
                         <tr>
                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
@@ -350,8 +403,8 @@
                            <td>18.65 x 10300</td>
                            <td>18.66 x 24000</td>
                            <td>21.12</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>  
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
                         </tr>      
                         <tr>
                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
@@ -363,8 +416,8 @@
                            <td>15.79 x 6100</td>
                            <td>15.80 x 17000</td>
                            <td>18.16</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>         
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>         
                         </tr>
                         <!-- Repeat -->
                         <tr>
@@ -425,8 +478,8 @@
                            <td>25.50 x 71100</td>
                            <td>25.51 x 17800</td>
                            <td>31.50</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>  
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
                         </tr>
                         <tr>
                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
@@ -438,8 +491,8 @@
                            <td>18.65 x 10300</td>
                            <td>18.66 x 24000</td>
                            <td>21.12</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>  
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
                         </tr>      
                         <tr>
                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
@@ -451,8 +504,8 @@
                            <td>15.79 x 6100</td>
                            <td>15.80 x 17000</td>
                            <td>18.16</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>         
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>         
                         </tr>
                         <!-- Repeat -->
                         <tr>
@@ -513,8 +566,8 @@
                            <td>25.50 x 71100</td>
                            <td>25.51 x 17800</td>
                            <td>31.50</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>  
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
                         </tr>
                         <tr>
                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
@@ -526,8 +579,8 @@
                            <td>18.65 x 10300</td>
                            <td>18.66 x 24000</td>
                            <td>21.12</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>  
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
                         </tr>      
                         <tr>
                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
@@ -539,8 +592,8 @@
                            <td>15.79 x 6100</td>
                            <td>15.80 x 17000</td>
                            <td>18.16</td>
-                           <td>Non-spanning cell</td>
-                           <td>Non-spanning cell</td>         
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>         
                         </tr>
                      </tbody>
                   </table>
@@ -626,8 +679,8 @@
                             <td>25.50 x 71100</td>
                             <td>25.51 x 17800</td>
                             <td>31.50</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>  
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
                          </tr>
                          <tr>
                             <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
@@ -639,8 +692,8 @@
                             <td>18.65 x 10300</td>
                             <td>18.66 x 24000</td>
                             <td>21.12</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>  
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
                          </tr>      
                          <tr>
                             <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
@@ -652,8 +705,8 @@
                             <td>15.79 x 6100</td>
                             <td>15.80 x 17000</td>
                             <td>18.16</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>         
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>         
                          </tr>
                          <!-- Repeat -->
                          <tr>
@@ -714,8 +767,8 @@
                             <td>25.50 x 71100</td>
                             <td>25.51 x 17800</td>
                             <td>31.50</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>  
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
                          </tr>
                          <tr>
                             <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
@@ -727,8 +780,8 @@
                             <td>18.65 x 10300</td>
                             <td>18.66 x 24000</td>
                             <td>21.12</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>  
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
                          </tr>      
                          <tr>
                             <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
@@ -740,8 +793,8 @@
                             <td>15.79 x 6100</td>
                             <td>15.80 x 17000</td>
                             <td>18.16</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>         
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>         
                          </tr>
                          <!-- Repeat -->
                          <tr>
@@ -802,8 +855,8 @@
                             <td>25.50 x 71100</td>
                             <td>25.51 x 17800</td>
                             <td>31.50</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>  
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
                          </tr>
                          <tr>
                             <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
@@ -815,8 +868,8 @@
                             <td>18.65 x 10300</td>
                             <td>18.66 x 24000</td>
                             <td>21.12</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>  
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
                          </tr>      
                          <tr>
                             <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
@@ -828,8 +881,8 @@
                             <td>15.79 x 6100</td>
                             <td>15.80 x 17000</td>
                             <td>18.16</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>         
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>         
                          </tr>
                          <!-- Repeat -->
                          <tr>
@@ -890,8 +943,8 @@
                             <td>25.50 x 71100</td>
                             <td>25.51 x 17800</td>
                             <td>31.50</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>  
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
                          </tr>
                          <tr>
                             <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
@@ -903,8 +956,8 @@
                             <td>18.65 x 10300</td>
                             <td>18.66 x 24000</td>
                             <td>21.12</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>  
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
                          </tr>      
                          <tr>
                             <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
@@ -916,8 +969,8 @@
                             <td>15.79 x 6100</td>
                             <td>15.80 x 17000</td>
                             <td>18.16</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>         
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>         
                          </tr>
                          <!-- Repeat -->
                          <tr>
@@ -978,8 +1031,8 @@
                             <td>25.50 x 71100</td>
                             <td>25.51 x 17800</td>
                             <td>31.50</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>  
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
                          </tr>
                          <tr>
                             <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
@@ -991,8 +1044,8 @@
                             <td>18.65 x 10300</td>
                             <td>18.66 x 24000</td>
                             <td>21.12</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>  
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
                          </tr>      
                          <tr>
                             <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
@@ -1004,31 +1057,33 @@
                             <td>15.79 x 6100</td>
                             <td>15.80 x 17000</td>
                             <td>18.16</td>
-                            <td>Non-spanning cell</td>
-                            <td>Non-spanning cell</td>         
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>         
                          </tr>
                       </tbody>
                    </table>
                 </div>
                </div>
+          </div> <!-- end container -->
+      </section> <!-- end section -->
 
 
-          </div>
-      </div>
-
-
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <script src="_js/vendor/jquery-ui.widget.min.js"></script>
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
       <script src="_js/rwd-table.js"></script>
       <script>
        $(function() {
           $("table.responsive").table({
             addAutoButton: true,
-            addFocusButton: true
+            addFocusButton: true,
+            fixedNavbar: $('#navbar')
           });
       });
       </script>
-      <script src="_js/vendor/bootstrap.min.js"></script>
 		
 	</body>
 </html>
