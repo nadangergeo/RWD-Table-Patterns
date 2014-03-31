@@ -14,7 +14,6 @@
   "dependencies": {
     "jquery": ">=1.10.1",
     "jquery-ui": ">=1.8.16",
-    "bootstrap": ">=3.0.3",
-    "modernizr": ">=2.7.1"
+    "bootstrap": ">=3.0.3"
   }
 }

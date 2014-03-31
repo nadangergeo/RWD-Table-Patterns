@@ -5,7 +5,36 @@
 		Dependencies: jQuery, jQuery UI widget factory
 */
 
-$(document).on('click.dropdown.data-api', '.dropdown-menu .checkbox-row', function (e) { e.stopPropagation(); });
+// Prevent dropdown from closing when toggling checkbox
+$(document).on('click.dropdown.data-api', '.dropdown-menu .checkbox-row', function (e) { 
+	e.stopPropagation();
+});
+
+// Feature detection (instead of Modernizr)
+function mediaQueriesSupported() {
+    return (typeof window.matchMedia != "undefined" || typeof window.msMatchMedia != "undefined");
+}
+
+function hasTouch() {
+	return 'ontouchstart' in window;
+}
+
+$(document).ready(function() {
+	// Change `no-js` to `js`
+    document.documentElement.className = document.documentElement.className.replace("no-js","js");
+
+    if(mediaQueriesSupported()) {
+    	jQuery('html').addClass('mq');
+	} else {
+		jQuery('html').addClass('no-mq');
+	}
+
+	if(hasTouch()) {
+    	jQuery('html').addClass('touch');
+	} else {
+		jQuery('html').addClass('no-touch');
+	}
+});
 
 // Help function for sticky header
 function updateStickyTableHead(orgTable, stickyTableHead) {
