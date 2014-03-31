@@ -106,15 +106,15 @@
             <h3>1. Add CSS file <small>to the &lt;head&gt;</small></h3>
             <pre><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="ns">"stylesheet"</span> <span class="na">href=</span><span class="ns">"css/rwd-table.min.css"</span><span class="nt">&gt;</span></code></pre>
 
-            <h3>2. Add JavaScript <small>Either to the &lt;head&gt;, or to the bottom of &lt;body&gt;</small></h3>
+            <h3>2. Add JavaScript <small>either to the &lt;head&gt;, or to the bottom of &lt;body&gt;</small></h3>
             <div class="highlight">
 <pre><code><span class="nt">&lt;script</span> <span class="na">type=</span><span class="ns">"text/javascript"</span> <span class="na">src=</span><span class="ns">"js/rwd-table.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code>
 <code><span class="nt">&lt;script&gt;</span>
    <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">() {</span>
       <span class="nx">$</span><span class="p">(</span><span class="s1">'table.responsive'</span><span class="p">).</span><span class="nx">table</span><span class="p">({</span>
-        <span class="nx">addAutoButton</span><span class="o">:</span> <span class="kc">true</span>
-        <span class="nx">addFocusButton</span><span class="o">:</span> <span class="kc">true</span>
-        <span class="nx">fixedNavbar</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#navbar'</span><span class="p">)
+        <span class="nx">addAutoButton</span><span class="o">:</span> <span class="kc">true</span>,
+        <span class="nx">addFocusButton</span><span class="o">:</span> <span class="kc">true</span>,
+        <span class="nx">fixedNavbar</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#navbar'</span><span class="p">) <span class="nc">//In case you have a fixed navbar.</span>
       <span class="p">})</span>
    <span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span></code></pre>
@@ -170,7 +170,7 @@
                   </table>
                </div>
 
-               <p><em>In step 2, you can see that <code><span class="nx">$</span><span class="p">(</span><span class="s1">'table.responsive'</span><span class="p">)</code> is the jQuery selector of the tables. Make sure to add the 'responsive' class to the tables.</em></p>
+               <h3>5. Add <code>responsive</code> class to the tables <small>& wrap the tables with <code><span class="nt">&lt;div</span> <span class="na">class=</span>"table-scroll-wrapper"<span class="nt">&gt;</span></code></small></h3> 
             </div>
 
          </div>
@@ -1125,7 +1125,7 @@
           $("table.responsive").table({
             addAutoButton: true,
             addFocusButton: true,
-            fixedNavbar: $('#navbar')
+            fixedNavbar: $('#navbar') //In case you have a fixed navbar.
           });
       });
       </script>
