@@ -120,58 +120,68 @@
 <span class="nt">&lt;/script&gt;</span></code></pre>
             </div>
 
-            <h3>3. Add dependencies</h3>
+            <br>
+            <h4>You also need to add the dependencies</h4>
             <ul>
                <li>jQuery (>=1.11.0)</li>
                <li>jQuery-UI-widget (>=1.8.16)</li>
                <li>Twitter Bootstrap 3 (>=3.1.1)</li>
             </ul>
 
-            <h3>4. Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
-            <div class="table-wrapper">
-              <div class="table-scroll-wrapper"/>
-                  <table class="table table-bordered">
-                     <thead>
-                        <tr>
-                           <th style="width: 100px;">Attribute</th>
-                           <th>Description/Breakpoint</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td><code><span class="na">data-priority=</span><span class="ns">""</span></code></td>
-                           <td>Always visible and not hideable from dropdown</td>
-                        </tr>
-                        <tr>
-                           <td><code><span class="na">data-priority=</span><span class="ns">"1"</span></code></td>
-                           <td>Always visible (but hidable from dropdown)</td>
-                        </tr>
-                        <tr>
-                           <td><code><span class="na">data-priority=</span><span class="ns">"2"</span></code></td>
-                           <td>Visible when (min-width: 480px)</td>
-                        </tr>
-                        <tr>
-                           <td><code><span class="na">data-priority=</span><span class="ns">"3"</span></code></td>
-                           <td>(min-width: 640px)</td>
-                        </tr>
-                        <tr>
-                           <td><code><span class="na">data-priority=</span><span class="ns">"4"</span></code></td>
-                           <td>(min-width: 800px)</td>
-                        </tr>
-                        <tr>
-                           <td><code><span class="na">data-priority=</span><span class="ns">"5"</span></code></td>
-                           <td>(min-width: 960px)</td>
-                        </tr>
-                        <tr>
-                           <td><code><span class="na">data-priority=</span><span class="ns">"6"</span></code></td>
-                           <td>(min-width: 1120px)</td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
+            
 
-               <h3>5. Add <code>responsive</code> class to the tables <small>& wrap the tables with <code><span class="nt">&lt;div</span> <span class="na">class=</span>"table-scroll-wrapper"<span class="nt">&gt;</span></code></small></h3> 
-            </div>
+               <h3>3. Markup</h3>
+               <p>Add <code>.responsive</code> class to the tables and wrap them in <code>.table-responsive</code></p>
+
+               <pre><code><span class="nt">&lt;div</span> <span class="na"></span><span class="ns">"table-scroll-wrapper"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;table</span> <span class="na"></span><span class="ns">"responsive"</span><span class="nt">&gt;</span>
+      ...
+   <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+
+               <h3>4. Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
+               <div class="table-wrapper">
+                 <div class="table-scroll-wrapper">
+                     <table class="table table-bordered">
+                        <thead>
+                           <tr>
+                              <th style="width: 100px;">Attribute</th>
+                              <th>Description/Breakpoint</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">""</span></code></td>
+                              <td>Always visible and not hideable from dropdown</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"1"</span></code></td>
+                              <td>Always visible (but hidable from dropdown)</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"2"</span></code></td>
+                              <td>Visible when (min-width: 480px)</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"3"</span></code></td>
+                              <td>(min-width: 640px)</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"4"</span></code></td>
+                              <td>(min-width: 800px)</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"5"</span></code></td>
+                              <td>(min-width: 960px)</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"6"</span></code></td>
+                              <td>(min-width: 1120px)</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
 
          </div>
       </section>
