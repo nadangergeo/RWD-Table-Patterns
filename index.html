@@ -19,15 +19,15 @@
 		
       <script type="text/javascript">
 
-        // var _gaq = _gaq || [];
-        // _gaq.push(['_setAccount', 'UA-19870163-1']);
-        // _gaq.push(['_trackPageview']);
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19870163-1']);
+        _gaq.push(['_trackPageview']);
 
-        // (function() {
-        //   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        //   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        //   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        // })();
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
 
       </script>
 	</head>
@@ -121,12 +121,58 @@
 <span class="nt">&lt;/script&gt;</span></code></pre>
             </div>
 
-            <h3>3. Add dependencies <small></small></h3>
+            <h3>3. Add dependencies</h3>
             <ul>
                <li>jQuery (>=1.11.0)</li>
                <li>jQuery-UI-widget (>=1.8.16)</li>
                <li>Twitter Bootstrap 3 (>=3.1.1)</li>
             </ul>
+
+            <h3>4. Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
+            <div class="table-wrapper">
+              <div class="table-scroll-wrapper"/>
+                  <table class="table table-bordered">
+                     <thead>
+                        <tr>
+                           <th style="width: 100px;">Attribute</th>
+                           <th>Description/Breakpoint</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td><code><span class="na">data-priority=</span><span class="ns">""</span></code></td>
+                           <td>Always visible and not hideable from dropdown</td>
+                        </tr>
+                        <tr>
+                           <td><code><span class="na">data-priority=</span><span class="ns">"1"</span></code></td>
+                           <td>Always visible (but hidable from dropdown)</td>
+                        </tr>
+                        <tr>
+                           <td><code><span class="na">data-priority=</span><span class="ns">"2"</span></code></td>
+                           <td>Visible when (min-width: 480px)</td>
+                        </tr>
+                        <tr>
+                           <td><code><span class="na">data-priority=</span><span class="ns">"3"</span></code></td>
+                           <td>(min-width: 640px)</td>
+                        </tr>
+                        <tr>
+                           <td><code><span class="na">data-priority=</span><span class="ns">"4"</span></code></td>
+                           <td>(min-width: 800px)</td>
+                        </tr>
+                        <tr>
+                           <td><code><span class="na">data-priority=</span><span class="ns">"5"</span></code></td>
+                           <td>(min-width: 960px)</td>
+                        </tr>
+                        <tr>
+                           <td><code><span class="na">data-priority=</span><span class="ns">"6"</span></code></td>
+                           <td>(min-width: 1120px)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+
+               <p><em>In step 2, you can see that <code><span class="nx">$</span><span class="p">(</span><span class="s1">'table.responsive'</span><span class="p">)</code> is the jQuery selector of the tables. Make sure to add the 'responsive' class to the tables.</em></p>
+            </div>
 
          </div>
       </section>
