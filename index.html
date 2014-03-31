@@ -10,6 +10,8 @@
       <meta name="format-detection" content="telephone=no">
 		 
 		<title>Responsive tables</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, minimal-ui">
+      <meta name="format-detection" content="telephone=no">
 		
 		<!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -57,11 +59,10 @@
       <div class="container">
         <h1>Responsive tables</h1>
         <h3><a href="https://twitter.com/nadangergeo">by @nadangergeo</a></h3>
-        <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.<br>
-         It's a fork based on Filament Group's <a href="https://github.com/filamentgroup/RWD-Table-Patterns">repo</a> with a more complete solutions and some new features.</p>
+        <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
         <p>
-         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
-         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> Fork on github</a>
+         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
+         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="fork-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> Fork on github</a>
         </p>
 
       </div>
@@ -103,9 +104,7 @@
             </div>
 
             <h3>1. Add CSS file <small>to the &lt;head&gt;</small></h3>
-            <code>
-               <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="ns">"stylesheet"</span> <span class="na">href=</span><span class="ns">"css/rwd-table.min.css"</span><span class="nt">&gt;</span>
-            </code>
+            <pre><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="ns">"stylesheet"</span> <span class="na">href=</span><span class="ns">"css/rwd-table.min.css"</span><span class="nt">&gt;</span></code></pre>
 
             <h3>2. Add JavaScript <small>Either to the &lt;head&gt;, or to the bottom of &lt;body&gt;</small></h3>
             <div class="highlight">
