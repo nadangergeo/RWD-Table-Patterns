@@ -60,7 +60,7 @@ bower install RWD-Table-Patterns
 
 ####3. Markup
 Add ```.responsive``` class to the tables and wrap them in ```.table-responsive```.<br>
-You also need to give the able a unique ```id```.
+You also need to give the table a unique ```id```.
 ```html
 <div class="table-scroll-wrapper" id="example-table">
    <table class="responsive">
