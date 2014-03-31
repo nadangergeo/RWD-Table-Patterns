@@ -37,13 +37,14 @@ $(document).ready(function() {
 });
 
 // Help function for sticky header
-function updateStickyTableHead(orgTable, stickyTableHead) {
-	orgTable      = $(orgTable);
-	var thead          = orgTable.find("thead"),
-			offsetTop      = orgTable.offset().top,
-			scrollTop      = $(window).scrollTop(),
-			maxTop         = orgTable.height() - stickyTableHead.height(),
-			top;
+function updateStickyTableHead(orgTable, stickyTableHead, fixedNavbar) {
+	orgTable      	   	 = $(orgTable);
+	var thead          	 = orgTable.find("thead"),
+		offsetTop        = orgTable.offset().top,
+		scrollTop        = $(window).scrollTop(),
+		maxTop           = orgTable.height() - stickyTableHead.height(),
+		rubberBandOffset = (scrollTop + $(window).height()) - $(document).height(),
+		top;
 
 
 	// Check if iOS
@@ -57,6 +58,11 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 		iOS = true;
 	}
 
+	//Is there a fixed navbar?
+	if(fixedNavbar) {
+		scrollTop = scrollTop + $(fixedNavbar).height();
+	}
+
 	// Calculate top property value
 	top = scrollTop - offsetTop;
 	// accomodate for top border (1px)
@@ -67,6 +73,11 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 		top = 0;
 	} else if (top > maxTop) {
 		top = maxTop;
+	}
+
+	// Accomandate for rubber band effect
+	if(rubberBandOffset > 0) {
+		top = top - rubberBandOffset;
 	}
 
 	if ((scrollTop > offsetTop) && (scrollTop < offsetTop + orgTable.height())) {
@@ -109,7 +120,8 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 			idprefix: "col-",   // specify a prefix for the values of the id- and columns attributes.
 			checkContainer: null, // container element where the hide/show checkboxes will be inserted; if none specified, the script creates a menu
 			addAutoButton: false, // should it have a auto button?
-			addFocusButton: false  // should it have a focus button?
+			addFocusButton: false,  // should it have a focus button?
+			fixedNavbar: null  // Is there a fixed navbar? The stickyTableHead needs to know about it!
 		},
  
 		// Set up the widget
@@ -366,7 +378,7 @@ function updateStickyTableHead(orgTable, stickyTableHead) {
 
 			// bind scroll and resize with updateStickyTableHead
 			$(window).bind("scroll resize", function(){
-					updateStickyTableHead(table, stickyTableHead);
+					updateStickyTableHead(table, stickyTableHead, o.fixedNavbar);
 			});
 
 
