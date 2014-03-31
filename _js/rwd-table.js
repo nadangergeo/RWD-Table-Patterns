@@ -117,7 +117,6 @@ function updateStickyTableHead(orgTable, stickyTableHead, fixedNavbar) {
 	$.widget( "filament.table", { // need to come up with a better namespace var...
  
 		options: {
-			idprefix: "col-",   // specify a prefix for the values of the id- and columns attributes.
 			checkContainer: null, // container element where the hide/show checkboxes will be inserted; if none specified, the script creates a menu
 			addAutoButton: false, // should it have a auto button?
 			addFocusButton: false,  // should it have a focus button?
@@ -134,7 +133,8 @@ function updateStickyTableHead(orgTable, stickyTableHead, fixedNavbar) {
 						hdrCells = thead.find("th"),
 						bodyRows = tbody.find("tr"),
 						container = o.checkContainer ? $(o.checkContainer) : $('<ul class="dropdown-menu"/>'),
-						autoHideTrigger = 'auto-on-' + table.attr('id');
+						autoHideTrigger = 'auto-on-' + table.attr('id'),
+                        idPrefix = table.attr('id') + '-col-';
 
 			// wrap table in div for scrolling if needed
 			if($(table).parent().hasClass('table-scroll-wrapper') === false){
@@ -187,13 +187,13 @@ function updateStickyTableHead(orgTable, stickyTableHead, fixedNavbar) {
 				 
 				// assign an id to each header, if none is in the markup
 				if (!id) {
-					id = o.idprefix + i;
+					id = idPrefix + i;
 					th.attr("id", id);
 				}
 				 
 				// create the hide/show toggle for the current column
 				if ( th.is("[data-priority]") ) {
-					var toggle = $('<li class="checkbox-row"><input type="checkbox" name="toggle-cols" id="toggle-col-'+i+'" value="'+id+'" /> <label for="toggle-col-'+i+'">'+th.text()+'</label></li>');
+					var toggle = $('<li class="checkbox-row"><input type="checkbox" name="toggle-'+id+'" id="toggle-'+id+'" value="'+id+'" /> <label for="toggle-'+id+'">'+th.text()+'</label></li>');
 					 
 					container.append(toggle);
 
@@ -282,10 +282,10 @@ function updateStickyTableHead(orgTable, stickyTableHead, fixedNavbar) {
 					// loop through columns that the cell spans over
 					for (var k = idStart; k < (idStart + colSpan); k++) {
 						// add column id
-						columnsAttr = columnsAttr + " " + o.idprefix + k;
+						columnsAttr = columnsAttr + " " + idPrefix + k;
 
 						// get colulm header
-						var colHdr = $(tableScrollWrapper).find('#' + o.idprefix + k);
+						var colHdr = $(tableScrollWrapper).find('#' + idPrefix + k);
 
 						// copy class attribute from column header
 						var classes = colHdr.attr("class");
