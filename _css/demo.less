@@ -1,3 +1,9 @@
+@import "vendor/bootstrap_variables.less";
+
+//Variables
+@doc-yellow:        #ffea00;
+@doc-warm-gray:     #f7f5ed;
+
 /* ONLY STYLES FOR DEMO PAGE! */
 
 body {
@@ -35,29 +41,29 @@ section {
     background-color: #000000;
     span.navbar-brand {
         letter-spacing: -0.04em;
-        color: #ffea00;
+        color: @doc-yellow;
         font-weight: bold;
         &:hover {
-            color: #ffea00;
+            color: @doc-yellow;
         }
         .glyphicon {
             font-weight: normal;
         }
     }
     .nav li.active a, .nav li.active a:hover, .nav li a:hover {
-        color: #ffea00;
+        color: @doc-yellow;
     }
 }
 .navbar-header {
     .navbar-toggle .icon-bar {
-        background-color: #ffea00;
+        background-color: @doc-yellow;
     }
     .navbar-toggle {
         border-color: #000;
         background-color: #000;
     }
     .navbar-toggle:hover, .navbar-toggle:focus {
-        border-color: #ffea00;
+        border-color: @doc-yellow;
         background-color: #000;
     }
 }
@@ -66,7 +72,7 @@ section {
  /* Jumbotron */
 
 .jumbotron {
-    background-color: #ffea00;
+    background-color: @doc-yellow;
     color: #000;
     h1 {
         font-size: 80px;
@@ -100,7 +106,7 @@ section {
  /* Buttons */
 
 .btn-primary {
-    color: #ffea00;
+    color: @doc-yellow;
     background-color: #000;
     border-color: #000;
 }
@@ -109,7 +115,7 @@ section {
 .btn-primary:active, 
 .btn-primary.active, 
 .open .dropdown-toggle.btn-primary {
-    color: #ffea00;
+    color: @doc-yellow;
     background-color: #222;
     border-color: #222;
 }
@@ -124,7 +130,7 @@ section {
     border-color: #000;
 }
 .btn-outline:hover, .btn-outline:focus, .btn-outline:active {
-    color: #ffea00;
+    color: @doc-yellow;
     background-color: #000;
     border-color: #000;
 }
@@ -156,13 +162,13 @@ section {
 
 table.responsive {
     tr:nth-child(odd) {
-      background-color: #f5f4e9;
+      background-color: @doc-warm-gray;
     }
 
     tbody tr.focused { 
       opacity: 1; 
       background-color: 
-      #ffea00; 
+      @doc-yellow; 
       color: #000; 
     }
 }
@@ -198,11 +204,23 @@ table.responsive {
   }
 
   tr:nth-child(odd) td {
-      background-color: rgba(245, 244, 233, 1.0);
+      background-color: @doc-warm-gray;
   }
   margin-bottom: 0;
 }
 
+
+/* Dropdown */
+
+// Hover/Focus state for checkbox-rows
+.no-touch .dropdown-menu > .checkbox-row {
+  &:hover,
+  &:active {
+    text-decoration: none;
+    color: @dropdown-link-hover-color;
+    background-color: @doc-warm-gray;
+  }
+}
 
 
  /* Media queries */
@@ -242,7 +260,7 @@ table.responsive {
 /* Code highlighting */
 
 pre, code {
-  color: #ffea00;
+  color: @doc-yellow;
   background-color: #000;
 }
 
