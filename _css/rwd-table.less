@@ -118,8 +118,14 @@ table.responsive {
     &.focus-on tbody tr:hover { cursor: pointer;}
 
     tbody tr {
-        &.unfocused { opacity: 0.4; }
-        &.focused { opacity: 1; background-color: @brand-info; color: #000; }
+        &.unfocused { 
+            opacity: 0.4;
+        }
+        &.focused {
+            opacity: 1; 
+            background-color: @brand-info; 
+            color: #000;
+        }
     }
     // end focus
 
@@ -136,95 +142,84 @@ table.responsive {
     // }
 
 
-    .js &.auto-on th[data-priority="1"],
-    .js &.auto-on td[data-priority="1"],
-    .js &.auto-on th[data-priority="2"],
-    .js &.auto-on td[data-priority="2"],
-    .js &.auto-on th[data-priority="3"],
-    .js &.auto-on td[data-priority="3"],
-    .js &.auto-on th[data-priority="4"],
-    .js &.auto-on td[data-priority="4"],
-    .js &.auto-on th[data-priority="5"],
-    .js &.auto-on td[data-priority="5"],
-    .js &.auto-on th[data-priority="6"],
-    .js &.auto-on td[data-priority="6"] {
+    .mq.js &.auto-on th[data-priority="1"],
+    .mq.js &.auto-on td[data-priority="1"],
+    .mq.js &.auto-on th[data-priority="2"],
+    .mq.js &.auto-on td[data-priority="2"],
+    .mq.js &.auto-on th[data-priority="3"],
+    .mq.js &.auto-on td[data-priority="3"],
+    .mq.js &.auto-on th[data-priority="4"],
+    .mq.js &.auto-on td[data-priority="4"],
+    .mq.js &.auto-on th[data-priority="5"],
+    .mq.js &.auto-on td[data-priority="5"],
+    .mq.js &.auto-on th[data-priority="6"],
+    .mq.js &.auto-on td[data-priority="6"] {
        display: none;
     }
 
-    .lt-ie9.js &.auto-on th[data-priority="1"], 
-    .lt-ie9.js &.auto-on td[data-priority="1"] {
+    .mq.lt-ie9.js &.auto-on th[data-priority="1"], 
+    .mq.lt-ie9.js &.auto-on td[data-priority="1"] {
         display: inline;
     }
-    .js &.auto-on th[data-priority="1"], 
-    .js &.auto-on td[data-priority="1"] {
+    .mq.js &.auto-on th[data-priority="1"], 
+    .mq.js &.auto-on td[data-priority="1"] {
         display: table-cell;
     }
 
     @media screen and (min-width: 480px) {
-        .lt-ie9.js &.auto-on th[data-priority="2"], 
-        .lt-ie9.js &.auto-on td[data-priority="2"] {
+        .mq.lt-ie9.js &.auto-on th[data-priority="2"], 
+        .mq.lt-ie9.js &.auto-on td[data-priority="2"] {
             display: inline;
         }
-        .js &.auto-on th[data-priority="2"], 
-        .js &.auto-on td[data-priority="2"] {
+        .mq.js &.auto-on th[data-priority="2"], 
+        .mq.js &.auto-on td[data-priority="2"] {
             display: table-cell;
         }
     }
 
     @media screen and (min-width: 640px) {
-        .lt-ie9.js &.auto-on th[data-priority="3"], 
-        .lt-ie9.js &.auto-on td[data-priority="3"] {
+        .mq.lt-ie9.js &.auto-on th[data-priority="3"], 
+        .mq.lt-ie9.js &.auto-on td[data-priority="3"] {
             display: inline;
         }
-        .js &.auto-on th[data-priority="3"], 
-        .js &.auto-on td[data-priority="3"] {
+        .mq.js &.auto-on th[data-priority="3"], 
+        .mq.js &.auto-on td[data-priority="3"] {
             display: table-cell;
         }
     }
 
     @media screen and (min-width: 800px) {
-        .lt-ie9.js &.auto-on th[data-priority="4"], 
-        .lt-ie9.js &.auto-on td[data-priority="4"] {
+        .mq.lt-ie9.js &.auto-on th[data-priority="4"], 
+        .mq.lt-ie9.js &.auto-on td[data-priority="4"] {
             display: inline;
         }
-        .js &.auto-on th[data-priority="4"], 
-        .js &.auto-on td[data-priority="4"] {
+        .mq.js &.auto-on th[data-priority="4"], 
+        .mq.js &.auto-on td[data-priority="4"] {
             display: table-cell;
         }
     }
 
     @media screen and (min-width: 960px) {
-        .lt-ie9.js &.auto-on th[data-priority="5"], 
-        .lt-ie9.js &.auto-on td[data-priority="5"] {
+        .mq.lt-ie9.js &.auto-on th[data-priority="5"], 
+        .mq.lt-ie9.js &.auto-on td[data-priority="5"] {
             display: inline;
         }
-        .js &.auto-on th[data-priority="5"], 
-        .js &.auto-on td[data-priority="5"] {
+        .mq.js &.auto-on th[data-priority="5"], 
+        .mq.js &.auto-on td[data-priority="5"] {
             display: table-cell;
         }
     }
 
     @media screen and (min-width: 1120px) {
-        .lt-ie9.js &.auto-on th[data-priority="6"], 
-        .lt-ie9.js &.auto-on td[data-priority="6"] {
+        .mq.lt-ie9.js &.auto-on th[data-priority="6"], 
+        .mq.lt-ie9.js &.auto-on td[data-priority="6"] {
             display: inline;
         }
-        .js &.auto-on th[data-priority="6"], 
-        .js &.auto-on td[data-priority="6"] {
+        .mq.js &.auto-on th[data-priority="6"], 
+        .mq.js &.auto-on td[data-priority="6"] {
             display: table-cell;
         }
     }
-
-    // @media screen and (min-width: 800px) {
-    //    .lt-ie9.js & th, 
-    //    .lt-ie9.js & td {
-    //       display: inline;
-    //    }
-    //    .js & th, 
-    //    .js & td {
-    //       display: table-cell;
-    //    }
-    // }
 
     // give this class to a column (to the header) to hide the column per default
     // useful if we want to save and load the user selections
