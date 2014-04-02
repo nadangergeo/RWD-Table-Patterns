@@ -41,7 +41,17 @@
       //misc
       this.autoHideTrigger = 'auto-on-' + this.$table.attr('id') + '.bs.responsivetable';
       this.idPrefix = this.$table.attr('id') + '-col-';
-      this.scrollBuffer = 0;
+      
+      // Check if iOS
+      // property to save performance
+      this.iOS = false;
+      if(
+      (navigator.userAgent.match(/iPhone/i)) ||
+      (navigator.userAgent.match(/iPad/i)) ||
+      (navigator.userAgent.match(/iPod/i))
+      ) {
+        this.iOS = true;
+      }
       
       
       // Setup table
@@ -222,6 +232,87 @@
       $(window).bind("scroll resize", function(){
           $.proxy(that.updateStickyTableHead(), that);
       });
+      
+      $(that.$tableScrollWrapper).bind("scroll", function(){
+          $.proxy(that.updateStickyTableHead(), that);
+      });
+  };
+    
+  // Help function for sticky header
+  ResponsiveTable.prototype.updateStickyTableHead = function() {
+      var that              = this,
+          top               = 0,
+          offsetTop         = that.$table.offset().top,
+          scrollTop         = $(window).scrollTop(),
+          maxTop            = that.$table.height() - that.$stickyTableHead.height(),
+          rubberBandOffset  = (scrollTop + $(window).height()) - $(document).height(),
+//          useFixedSolution  = that.$table.parent().prop('scrollWidth') === that.$table.parent().width();
+          useFixedSolution  = !that.iOS;
+
+      //Is there a fixed navbar?
+      if(that.options.fixednavbar) {
+        var $navbar = $(that.options.fixednavbar);
+        scrollTop = scrollTop + $navbar.height();
+        top = $navbar.height();
+      }
+      
+      var shouldBeVisible   = (scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height());
+
+      if(useFixedSolution) {
+          //add fixedSolution class
+          that.$stickyTableHead.addClass('fixedSolution');
+          
+          if (shouldBeVisible) {
+              //show sticky table head and update top and width.
+              that.$stickyTableHead.css({ "visibility": "visible", "top": top + "px", "width": that.$table.width() + "px"});
+              
+              that.$stickyTableHead.scrollLeft(that.$tableScrollWrapper.scrollLeft());
+              
+              //no more stuff to do - return!
+              return;
+          } else {
+            //hide sticky table head and reset width
+            that.$stickyTableHead.css({"visibility": "hidden", "width": "auto" });
+         }
+          
+      } else { // alternate method
+          //remove fixedSolution class
+          that.$stickyTableHead.removeClass('fixedSolution');
+          
+          // Calculate top property value (-1 to accomodate for top border)
+          top = scrollTop - offsetTop - 1;
+
+          // Make sure the sticky header doesn't slide up/down too far.
+          if(top < 0) {
+            top = 0;
+          } else if (top > maxTop) {
+            top = maxTop;
+          }
+
+          // Accomandate for rubber band effect
+          if(rubberBandOffset > 0) {
+            top = top - rubberBandOffset;
+          }
+
+          if (shouldBeVisible) {
+              //show sticky table head (the clone) (animate repositioning)
+              that.$stickyTableHead.css({ "visibility": "visible" });
+              that.$stickyTableHead.animate({ "top": top + "px" }, 400);
+
+              // hide original table head
+              that.$thead.css({ "visibility": "hidden" });
+
+          } else {
+
+              that.$stickyTableHead.animate({ "top": "0" }, 400, function(){
+                // show original table head
+                that.$thead.css({ "visibility": "visible" });
+
+                // hide sticky table head (the clone)
+                that.$stickyTableHead.css({ "visibility": "hidden" });
+              });
+          }
+      }
   };
     
   // Setup header cells
@@ -397,93 +488,6 @@
         $cell.prop('colSpan',Math.max((colSpan - numOfHidden),1));
       });
   };
-
-  // Help function for sticky header
-  ResponsiveTable.prototype.updateStickyTableHead = function() {
-      var that           = this,
-          offsetTop     = that.$table.offset().top,
-          scrollTop     = $(window).scrollTop(),
-          maxTop        = that.$table.height() - that.$stickyTableHead.height(),
-          rubberBandOffset  = (scrollTop + $(window).height()) - $(document).height(),
-          top           = 0;
-
-      //Is there a fixed navbar?
-      if(that.options.fixednavbar) {
-        var $navbar = $(that.options.fixednavbar);
-        scrollTop = scrollTop + $navbar.height();
-        top = $navbar.height();
-      }
-
-      if(that.$table.parent().prop('scrollWidth') === that.$table.parent().width()) {
-          if ((scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height())) {
-              //show sticky table head (the clone)
-              that.$stickyTableHead.css({ "visibility": "visible", "position": "fixed", "top": top + "px", "width": that.$table.width() + "px", "min-width": "0" });
-              return;
-          }
-      } else {
-          //hide sticky table head and reset css
-          that.$stickyTableHead.css({"visibility": "hidden", "position": "absolute", "width": "auto", "min-width": "100%" });
-      }
-
-      // Calculate top property value (-1 to accomodate for top border)
-      top = scrollTop - offsetTop -1;
-
-      // Make sure the sticky header doesn't slide down too far.
-      if(top < 0) {
-        top = 0;
-      } else if (top > maxTop) {
-        top = maxTop;
-      }
-
-      // Accomandate for rubber band effect
-      if(rubberBandOffset > 0) {
-        top = top - rubberBandOffset;
-      }
-
-      // Check if iOS
-      var iOS = false;
-      if(
-      (navigator.userAgent.match(/iPhone/i)) ||
-      (navigator.userAgent.match(/iPad/i)) ||
-      (navigator.userAgent.match(/iPod/i))
-      ) {
-
-        iOS = true;
-      }
-
-      if ((scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height())) {
-        if(!iOS){
-
-          //show sticky table head (the clone)
-          that.$stickyTableHead.css({ "visibility": "visible", "top": top + "px" });
-
-        } else {
-
-          //show sticky table head (the clone) (animate repositioning)
-          that.$stickyTableHead.css({ "visibility": "visible" });
-          that.$stickyTableHead.animate({ "top": top + "px" }, 400);
-
-          // hide original table head
-          that.$thead.css({ "visibility": "hidden" });
-        }
-
-      } else {
-        if(!iOS){
-          that.$stickyTableHead.css({ "visibility": "hidden" });
-        } else {
-
-          that.$stickyTableHead.animate({ "top": "0" }, 400, function(){
-            // show original table head
-            that.$thead.css({ "visibility": "visible" });
-
-            // hide sticky table head (the clone)
-            that.$stickyTableHead.css({ "visibility": "hidden" });
-          });
-
-        }
-      }
-  };
-
 
   // RESPONSIVE TABLE PLUGIN DEFINITION
   // ===========================
