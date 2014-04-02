@@ -254,7 +254,6 @@
       if(that.options.fixednavbar) {
         var $navbar = $(that.options.fixednavbar);
         scrollTop = scrollTop + $navbar.height();
-        top = $navbar.height();
       }
       
       var shouldBeVisible   = (scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height());
@@ -262,6 +261,14 @@
       if(useFixedSolution) {
           //add fixedSolution class
           that.$stickyTableHead.addClass('fixedSolution');
+          
+          // Calculate top property value (-1 to accomodate for top border)
+          top = $navbar.height() - 1;
+          
+          // When the about to scroll past the table, move sticky table head up
+          if(((scrollTop - offsetTop) > maxTop)){
+              top = $navbar.height() - 1 - ((scrollTop - offsetTop) - maxTop);
+          }
           
           if (shouldBeVisible) {
               //show sticky table head and update top and width.
