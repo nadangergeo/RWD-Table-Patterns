@@ -43,7 +43,7 @@ bower install RWD-Table-Patterns
 <script type="text/javascript" src="js/rwd-table.js"></script>
 <script>
    $(function() {
-      $('table.responsive').table({
+      $('table.responsive').responsiveTable({
         addautobtn: true,
         addfocusbtn: true,
         fixednavbar: $('#navbar') //In case you have a fixed navbar.
