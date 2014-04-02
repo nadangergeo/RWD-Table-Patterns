@@ -265,7 +265,7 @@
           
           if (shouldBeVisible) {
               //show sticky table head and update top and width.
-              that.$stickyTableHead.css({ "visibility": "visible", "top": top + "px", "width": that.$table.width() + "px"});
+              that.$stickyTableHead.css({ "visibility": "visible", "top": top + "px", "width": that.$tableScrollWrapper.innerWidth() + "px"});
               
               that.$stickyTableHead.scrollLeft(that.$tableScrollWrapper.scrollLeft());
               
