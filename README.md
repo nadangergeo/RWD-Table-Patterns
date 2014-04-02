@@ -22,7 +22,7 @@ In browsers without JavaScript, the tables will still be scrollable. I.e. there'
 
 You only need to include one JS-file, one CSS-file and one line of JavaScript and your tables are responsive.
 
-Dependencies: jQuery, jQuery-UI-widget, and Twitter Bootstrap 3.
+Dependencies: jQuery and Twitter Bootstrap 3.
 
 
 How to use:
@@ -44,9 +44,9 @@ bower install RWD-Table-Patterns
 <script>
    $(function() {
       $('table.responsive').table({
-        addAutoButton: true,
-        addFocusButton: true,
-        fixedNavbar: $('#navbar') //In case you have a fixed navbar.
+        addautobtn: true,
+        addfocusbtn: true,
+        fixednavbar: $('#navbar') //In case you have a fixed navbar.
       })
    });
 </script>
@@ -54,7 +54,6 @@ bower install RWD-Table-Patterns
 
 #####You also need to add the dependencies
 - jQuery (>=1.11.0)
-- jQuery-UI-widget (>=1.8.16)
 - Twitter Bootstrap 3 (>=3.1.1)
 
 
