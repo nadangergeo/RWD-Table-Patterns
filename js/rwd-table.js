@@ -77,6 +77,12 @@
       $.proxy(this.createStickyTableHead(), this);
       
       
+      // hide toggle button if the list is empty
+      if(this.$dropdownContainer.is(":empty")){
+        this.$dropdownGroup.hide();
+      }
+      
+      
       // Window event binding
       // -------------------------
       
@@ -147,11 +153,6 @@
       //add dropdown btn toolbar
       that.$dropdownGroup.append(that.$dropdownBtn).append(that.$dropdownContainer);
       that.$btnToolbar.append(that.$dropdownGroup);
-      
-      // hide toggle button if the list is empty
-      if(this.$dropdownContainer.is(":empty")){
-        this.$dropdownGroup.hide();
-      }
 
       // add toolbar above table
       that.$tableWrapper.prepend(that.$btnToolbar);
