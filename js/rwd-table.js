@@ -12,6 +12,8 @@
   // ==========================
 
   var ResponsiveTable = function(element, options) {
+      var that = this;
+      
       this.options = options;
       this.$table = $(element);
       
@@ -72,10 +74,10 @@
       $(window).bind("orientationchange resize " + this.autoHideTrigger, function(){
         
         //update the inputs' checked status
-        this.$dropdownContainer.find("input").trigger("updateCheck");
+        that.$dropdownContainer.find("input").trigger("updateCheck");
           
         //update colspan and visibility of spanning cells
-        $.proxy(this.updateSpanningCells(), this);
+        $.proxy(that.updateSpanningCells(), that);
 
       });
       
