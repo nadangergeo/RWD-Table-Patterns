@@ -259,6 +259,8 @@
       var shouldBeVisible   = (scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height());
 
       if(useFixedSolution) {
+          that.$stickyTableHead.scrollLeft(that.$tableScrollWrapper.scrollLeft());
+
           //add fixedSolution class
           that.$stickyTableHead.addClass('fixedSolution');
           
@@ -273,8 +275,6 @@
           if (shouldBeVisible) {
               //show sticky table head and update top and width.
               that.$stickyTableHead.css({ "visibility": "visible", "top": top + "px", "width": that.$tableScrollWrapper.innerWidth() + "px"});
-              
-              that.$stickyTableHead.scrollLeft(that.$tableScrollWrapper.scrollLeft());
               
               //no more stuff to do - return!
               return;
