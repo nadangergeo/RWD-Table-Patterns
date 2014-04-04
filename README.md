@@ -46,7 +46,7 @@ bower install RWD-Table-Patterns
       $('table.responsive').responsiveTable({
         addautobtn: true,
         addfocusbtn: true,
-        fixednavbar: $('#navbar') //In case you have a fixed navbar.
+        fixednavbar: '#navbar' //In case you have a fixed navbar.
       })
    });
 </script>
