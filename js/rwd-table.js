@@ -248,12 +248,14 @@
           maxTop            = that.$table.height() - that.$stickyTableHead.height(),
           rubberBandOffset  = (scrollTop + $(window).height()) - $(document).height(),
 //          useFixedSolution  = that.$table.parent().prop('scrollWidth') === that.$table.parent().width();
-          useFixedSolution  = !that.iOS;
+          useFixedSolution  = !that.iOS,
+          navbarHeight      = 0;
 
       //Is there a fixed navbar?
       if(that.options.fixednavbar) {
         var $navbar = $(that.options.fixednavbar);
-        scrollTop = scrollTop + $navbar.height();
+        navbarHeight = $navbar.height();
+        scrollTop = scrollTop + navbarHeight;
       }
       
       var shouldBeVisible   = (scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height());
@@ -264,12 +266,12 @@
           //add fixedSolution class
           that.$stickyTableHead.addClass('fixedSolution');
           
-          // Calculate top property value (-1 to accomodate for top border)
-          top = $navbar.height() - 1;
+          // Calculate top property value
+          top = navbarHeight;
           
           // When the about to scroll past the table, move sticky table head up
           if(((scrollTop - offsetTop) > maxTop)){
-              top = $navbar.height() - 1 - ((scrollTop - offsetTop) - maxTop);
+              top -= ((scrollTop - offsetTop) - maxTop);
           }
           
           if (shouldBeVisible) {
