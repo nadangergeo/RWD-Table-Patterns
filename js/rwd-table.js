@@ -39,7 +39,7 @@
       this.$focusBtn = null; //defined farther down
       
       //misc
-      this.autoHideTrigger = 'auto-on-' + this.$table.attr('id') + '.bs.responsivetable';
+      this.autoHideTrigger = 'auto-on-' + this.$table.attr('id') + '.responsiveTable';
       this.idPrefix = this.$table.attr('id') + '-col-';
       
       // Check if iOS
@@ -505,11 +505,11 @@
   $.fn.responsiveTable = function (option) {
     return this.each(function () {
       var $this   = $(this);
-      var data    = $this.data('bs.responsivetable');
+      var data    = $this.data('responsiveTable');
       var options = $.extend({}, ResponsiveTable.DEFAULTS, $this.data(), typeof option === 'object' && option);
 
       if (!data) {
-          $this.data('bs.responsivetable', (data = new ResponsiveTable(this, options)));
+          $this.data('responsiveTable', (data = new ResponsiveTable(this, options)));
       }
       if (typeof option === 'string') {
           data[option]();
@@ -531,7 +531,7 @@
   // RESPONSIVE TABLE DATA-API
   // ==================
 
-  $(window).on('load.bs.responsivetable.data-api', function () {
+  $(window).on('load.responsiveTable.data-api', function () {
     $('table[data-responsive="true"]').each(function () {
       var $table = $(this);
       $table.responsiveTable($table.data());
