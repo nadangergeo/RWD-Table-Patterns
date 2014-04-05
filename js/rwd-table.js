@@ -272,6 +272,9 @@
           // When the about to scroll past the table, move sticky table head up
           if(((scrollTop - offsetTop) > maxTop)){
               top -= ((scrollTop - offsetTop) - maxTop);
+              that.$stickyTableHead.addClass('borderRadiusFix');
+          } else {
+              that.$stickyTableHead.removeClass('borderRadiusFix');
           }
           
           if (shouldBeVisible) {
