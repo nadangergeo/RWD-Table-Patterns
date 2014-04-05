@@ -17,6 +17,9 @@
       this.options = options;
       this.$table = $(element);
       
+      this.$tableWrapper = null; //defined later in wrapTable
+      this.$tableScrollWrapper = null; //defined later in wrapTable
+      
       this.$tableClone = null; //defined farther down
       this.$stickyTableHead = null; //defined farther down
       
