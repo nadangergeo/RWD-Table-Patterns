@@ -85,17 +85,13 @@
         // -moz-box-sizing: border-box;    /* Firefox, other Gecko */
         // box-sizing: border-box;         /* Opera/IE 8+ */
     }
-      
-    .lt-ie8 & thead tr th {
-        border-bottom: none;
-    }
   }
     
   &.fixedSolution {
       min-width: 0;
       position: fixed;
       
-      .ie9 & {
+      .lt-ie10 & {
           border-left: 1px solid @gray-light;
           border-right: 1px solid @gray-light;
           box-sizing: content-box;

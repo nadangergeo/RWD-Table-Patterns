@@ -228,7 +228,7 @@
       that.$stickyTableHead.css("height", that.$thead.height() + 2);
 
       //insert clone
-      if($('html').hasClass('ie9')){
+      if($('html').hasClass('lt-ie10')){
           that.$tableWrapper.before(that.$stickyTableHead);
       } else {
           that.$table.before(that.$stickyTableHead);
