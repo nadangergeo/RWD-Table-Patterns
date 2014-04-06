@@ -161,7 +161,7 @@ section {
  /* Tables */
 
 table.responsive {
-    tr:nth-child(odd) {
+    tbody tr:nth-child(odd) {
       background-color: @doc-warm-gray;
     }
 
@@ -185,6 +185,10 @@ table.responsive {
           white-space: nowrap;
           font-weight: bold;
           border-right: 1px solid #eee;
+      }
+      
+      .lt-ie8 & th {
+            border-bottom: 1px solid #999;
       }
   }
 

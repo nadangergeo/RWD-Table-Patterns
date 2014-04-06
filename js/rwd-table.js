@@ -228,7 +228,11 @@
       that.$stickyTableHead.css("height", that.$thead.height() + 2);
 
       //insert clone
-      that.$table.before(that.$stickyTableHead);
+      if($('html').hasClass('ie9')){
+          that.$tableWrapper.before(that.$stickyTableHead);
+      } else {
+          that.$table.before(that.$stickyTableHead);
+      }
 
       // var bodyRowsClone = $(tableClone).find('tbody').find('tr');
 
@@ -295,6 +299,9 @@
           //remove fixedSolution class
           that.$stickyTableHead.removeClass('fixedSolution');
           
+          //animation duration
+          var animationDuration = 400;
+          
           // Calculate top property value (-1 to accomodate for top border)
           top = scrollTop - offsetTop - 1;
 
@@ -313,14 +320,14 @@
           if (shouldBeVisible) {
               //show sticky table head (the clone) (animate repositioning)
               that.$stickyTableHead.css({ "visibility": "visible" });
-              that.$stickyTableHead.animate({ "top": top + "px" }, 400);
+              that.$stickyTableHead.animate({ "top": top + "px" }, animationDuration);
 
               // hide original table head
               that.$thead.css({ "visibility": "hidden" });
 
           } else {
 
-              that.$stickyTableHead.animate({ "top": "0" }, 400, function(){
+              that.$stickyTableHead.animate({ "top": "0" }, animationDuration, function(){
                 // show original table head
                 that.$thead.css({ "visibility": "visible" });
 
@@ -563,7 +570,7 @@ $(document).on('click.dropdown.data-api', '.dropdown-menu .checkbox-row', functi
 
 // media queries
 function mediaQueriesSupported() {
-    return (typeof window.matchMedia !== "undefined" || typeof window.msMatchMedia !== "undefined");
+    return (typeof window.matchMedia !== "undefined" || typeof window.msMatchMedia !== "undefined" || typeof window.styleMedia !== "undefined");
 }
 
 // touch
