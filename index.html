@@ -111,7 +111,7 @@
 <pre><code><span class="nt">&lt;script</span> <span class="na">type=</span><span class="ns">"text/javascript"</span> <span class="na">src=</span><span class="ns">"js/rwd-table.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code>
 <code><span class="nt">&lt;script&gt;</span>
    <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">() {</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s1">'table.responsive'</span><span class="p">).</span><span class="nx">responsiveTable</span><span class="p">({</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">'.table-complex'</span><span class="p">).</span><span class="nx">responsiveTable</span><span class="p">({</span>
         <span class="nx">addautobtn</span><span class="o">:</span> <span class="kc">true</span>,
         <span class="nx">addfocusbtn</span><span class="o">:</span> <span class="kc">true</span>,
         <span class="nx">fixednavbar</span><span class="o">:</span> <span class="s1">'#navbar'</span><span class="nc">//In case you have a fixed navbar.</span>
@@ -127,21 +127,27 @@
                <li>Twitter Bootstrap 3 (>=3.1.1)</li>
             </ul>
 
-            
+           <h3>3. HTML Classes</h3>
+           <p>For better IE support, you need to have IE classes. Replace<code>&lt;html&gt;</code> with:</p>
+           <pre><code>&lt;!--[if lt IE 7 ]&gt; &lt;html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7 ]&gt;    &lt;html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8 ]&gt;    &lt;html lang="en" class="no-js lt-ie10 lt-ie9"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 9 ]&gt;    &lt;html lang="en" class="no-js lt-ie10"&gt; &lt;![endif]--&gt;
+&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html lang="en" class="no-js"&gt; &lt;!--&lt;![endif]--&gt;</code></pre>
 
-               <h3>3. Markup</h3>
-               <p>Add <code>.responsive</code> class to the tables and wrap them in <code>.table-responsive</code><br>
-                You also need to give the table a unique <code>id</code>.</p>
+           <h3>4. Markup</h3>
+           <p>Add the classes <code>.table</code>, <code>.table-complex</code> to the tables and wrap them in <code>.table-responsive</code><br>
+            You also need to give the table a unique <code>id</code>.</p>
+            <p>The table is also compatible with Twitter Bootstrap's <code>.table-striped</code> and <code>.table-bordered</code> classes.</p>
 
-               <pre><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="ns">"table-scroll-wrapper"</span> <span class="na">id=</span><span class="ns">"example-table"</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;table</span> <span class="na">class=</span><span class="ns">"responsive"</span><span class="nt">&gt;</span>
+               <pre><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="ns">"table-responsive"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;table</span> <span class="na">id=</span><span class="ns">"example-table"</span> <span class="na">class=</span><span class="ns">"table table-complex table-bordered table-striped"</span><span class="nt">&gt;</span>
       ...
    <span class="nt">&lt;/table&gt;</span>
 <span class="nt">&lt;/div&gt;</span></code></pre>
 
-               <h3>4. Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
-               <div class="table-wrapper">
-                 <div class="table-scroll-wrapper">
+               <h3>5. Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
+                 <div class="table-responsive">
                      <table class="table table-bordered">
                         <thead>
                            <tr>
@@ -181,7 +187,6 @@
                         </tbody>
                      </table>
                   </div>
-               </div>
 
          </div>
       </section>
@@ -192,9 +197,8 @@
                   <h1>Demo</h1>
               </div>
 
-              <div class="table-wrapper">
-                <div class="table-scroll-wrapper"/>
-                  <table cellspacing="0" id="tech-companies" class="responsive auto-on">
+                <div class="table-responsive"/>
+                  <table cellspacing="0" id="tech-companies" class="table table-complex table-bordered table-striped">
                      <thead>
                         <tr>
                            <th>Company</th>
@@ -653,13 +657,11 @@
                      </tbody>
                   </table>
                 </div>
-              </div>
 
                <div style="height:50px;"></div>
 
-               <div class="table-wrapper">
-                <div class="table-scroll-wrapper"/>
-                   <table cellspacing="0" id="tech-companies-2" class="responsive auto-on">
+                <div class="table-responsive"/>
+                   <table cellspacing="0" id="tech-companies-2" class="table table-complex table-striped">
                       <thead>
                          <tr>
                             <th>Company</th>
@@ -1118,7 +1120,6 @@
                       </tbody>
                    </table>
                 </div>
-               </div>
           </div> <!-- end container -->
       </section> <!-- end section -->
 
@@ -1131,7 +1132,7 @@
       <script src="js/rwd-table.js"></script>
       <script>
        $(function() {
-          $("table.responsive").responsiveTable({
+          $(".table-complex").responsiveTable({
             addautobtn: true,
             addfocusbtn: true,
             fixednavbar: '#navbar' //In case you have a fixed navbar.

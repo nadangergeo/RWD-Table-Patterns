@@ -46,16 +46,6 @@
 // --------------------------------------------------
 
 
-.table-scroll-wrapper {
-    overflow-x: scroll;
-    border: 1px solid @gray-light;
-    border-radius: @border-radius-small;
-    margin-bottom: @line-height-computed;
-    position: relative;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    -webkit-overflow-scrolling: touch;
-}
-
 .btn-toolbar {
     margin-bottom: @line-height-computed;
 }
@@ -66,118 +56,94 @@
    } 
 }
 
-.stickyTableHead {
-  background-color: #fff;
-  border-top: 1px solid @gray-lighter;
-  border-bottom: 1px solid @gray-light;
-  position: absolute;
-  top: 0;
-  visibility: hidden;
-  z-index: @zindex-stickyHeader;
-  overflow: hidden;
-  min-width: 100%;
-
-  table {
+.table-responsive {
+    position: relative;
     width: 100%;
+    margin-bottom: @line-height-computed;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border-radius: @border-radius-small;
+    border: 1px solid @table-border-color;
+    -webkit-overflow-scrolling: touch;
 
-    th {
-        // -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-        // -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-        // box-sizing: border-box;         /* Opera/IE 8+ */
-    }
-  }
-    
-  &.fixedSolution {
-      min-width: 0;
-      position: fixed;
-      
-      .lt-ie10 & {
-          border-left: 1px solid @gray-light;
-          border-right: 1px solid @gray-light;
-          box-sizing: content-box;
-          border-bottom: none
+    // Tighten up spacing
+    > .table {
+      margin-bottom: 0;
+
+      // Ensure the content doesn't wrap
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th,
+          > td {
+            white-space: nowrap;
+          }
+        }
       }
-  }
-    
-  &.borderRadiusFix {
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
-  }
+    }
+
+    // Special overrides for the bordered tables
+    > .table-bordered {
+      border: 0;
+
+      // Nuke the appropriate borders so that the parent can handle them
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th:first-child,
+          > td:first-child {
+            border-left: 0;
+          }
+          > th:last-child,
+          > td:last-child {
+            border-right: 0;
+          }
+        }
+      }
+
+      // Only nuke the last row's bottom-border in `tbody` and `tfoot` since
+      // chances are there will be only one `tr` in a `thead` and that would
+      // remove the border altogether.
+      > tbody,
+      > tfoot {
+        > tr:last-child {
+          > th,
+          > td {
+            border-bottom: 0;
+          }
+        }
+      }
+
+    }
 }
 
-//we might want to have different kinds of responsive tables — ergo the double class
-table.responsive {
+.table-complex {
     font-size: @font-size-small;
     -webkit-text-size-adjust:none;
     line-height: 1.5em;
     width: 100%;
-    color: #000;
-
-    thead {
-        // .gradientBar(@white, darken(@white, 7%), @gray-dark, 0 1px 0 rgba(255,255,255,.75));
-        background-color: #fff;
-        border-bottom: 1px solid @gray-light;
-        
-        th {
-            white-space: nowrap;
-            font-weight: bold;
-        }
-        
-        .lt-ie8 & th {
-            border-bottom: 1px solid @gray-light;
-        }
-    }
-
-    th, td {
-        padding: .5em 1em;
-        text-align: right;
-    }
-    th:first-child, 
-    td:first-child {
-       text-align: left;
-    }
-    tbody tr:nth-child(odd) { 
-        background-color: rgba(150,150,150,0.1);
-    }
-    tbody th, td {
-        border-bottom: 1px solid @gray-lighter;
-    }
-
-    tr:last-child td {
-            border-bottom: none;
-    }
-
-    tfoot td {
-        padding-top: 20px;
-        border: none;
-    }
-
+    
     // focus
     &.focus-on tbody tr:hover { cursor: pointer;}
 
     tbody tr {
-        &.unfocused { 
-            color: @gray-light;
-            color: rgba(0,0,0,0.4);
+        &.unfocused {
+            th, td { 
+                color: @gray-light;
+                color: rgba(0,0,0,0.4);
+            }
         }
-        &.focused { 
-            background-color: @brand-info; 
-            color: #000;
+        &.focused {
+            th, td { 
+                background-color: @brand-info; 
+                color: #000;
+            }
         }
     }
     // end focus
-
-    // tbody {
-    //     .info, .success, .warning, .danger { color: @label-color; }
-
-    //     .info { background-color: @label-info-bg; }
-
-    //     .success { background-color: @label-success-bg; }
-
-    //     .warning { background-color: @label-warning-bg; }
-
-    //     .danger { background-color: @label-danger-bg; }
-    // }
 
 
     .mq.js &.auto-on th[data-priority="1"],
@@ -265,15 +231,87 @@ table.responsive {
     .js & td.col-hidden {
        display: none;
     }
-
 }
 
-@media screen and (min-width: 768px) {
-    .table-wrapper .btn-toolbar {
-        // text-align: right;
+.sticky-table-head {
+  background-color: #fff;
+  border: none;
+  border-radius: 0;
+  border-top: 1px solid @table-border-color;
+  border-bottom: 1px solid @table-border-color;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  z-index: @zindex-stickyHeader;
+  overflow: hidden;
+  min-width: 100%;
 
-        .focus-btn-group {
-            float: left;
+  &.fixed-solution {
+      min-width: 0;
+      position: fixed;
+      
+      .lt-ie10 & {
+          border-left: 1px solid @table-border-color;
+          border-right: 1px solid @table-border-color;
+          box-sizing: content-box;
+          border-bottom: none
+      }
+  }
+    
+  &.border-radius-fix {
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+  }
+    
+    // Tighten up spacing
+    > .table {
+      margin-bottom: 0;
+
+      // Ensure the content doesn't wrap
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th,
+          > td {
+            white-space: nowrap;
+          }
         }
+      }
+    }
+
+    // Special overrides for the bordered tables
+    > .table-bordered {
+      border: 0;
+
+      // Nuke the appropriate borders so that the parent can handle them
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th:first-child,
+          > td:first-child {
+            border-left: 0;
+          }
+          > th:last-child,
+          > td:last-child {
+            border-right: 0;
+          }
+        }
+      }
+
+      // Only nuke the last row's bottom-border in `tbody` and `tfoot` since
+      // chances are there will be only one `tr` in a `thead` and that would
+      // remove the border altogether.
+      > tbody,
+      > tfoot {
+        > tr:last-child {
+          > th,
+          > td {
+            border-bottom: 0;
+          }
+        }
+      }
+
     }
 }

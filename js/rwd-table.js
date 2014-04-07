@@ -63,6 +63,8 @@
       //wrap table
       $.proxy(this.wrapTable(), this);
 
+      this.$table.addClass('auto-on')
+      
       //create toolbar with buttons
       $.proxy(this.createButtonToolbar(), this);
 
@@ -113,9 +115,9 @@
       var that = this;
       
       // wrap table in div for scrolling if needed
-      if(that.$table.parent().hasClass('table-scroll-wrapper') === false){
+      if(that.$table.parent().hasClass('table-responsive') === false){
         // console.log('Wrapped table with scroll-wrapper');
-        that.$table.wrap('<div class="table-scroll-wrapper"/>');
+        that.$table.wrap('<div class="table-responsive"/>');
       }
       that.$tableScrollWrapper = that.$table.parent();
       that.$tableWrapper = that.$tableScrollWrapper.parent();
@@ -158,7 +160,7 @@
       that.$btnToolbar.append(that.$dropdownGroup);
 
       // add toolbar above table
-      that.$tableWrapper.prepend(that.$btnToolbar);
+      that.$tableScrollWrapper.before(that.$btnToolbar);
       
       
       // Bind events
@@ -221,7 +223,7 @@
       });
 
       // wrap table clone (this is our "sticky table head" now)
-      that.$tableClone.wrap('<div class="stickyTableHead"/>');
+      that.$tableClone.wrap('<div class="sticky-table-head"/>');
       that.$stickyTableHead = that.$tableClone.parent();
 
       // give the sticky table head same height as original
@@ -229,7 +231,7 @@
 
       //insert clone
       if($('html').hasClass('lt-ie10')){
-          that.$tableWrapper.before(that.$stickyTableHead);
+          that.$tableScrollWrapper.closest('.container').prepend(that.$stickyTableHead);
       } else {
           that.$table.before(that.$stickyTableHead);
       }
@@ -251,7 +253,7 @@
       var that              = this,
           top               = 0,
           offsetTop         = that.$table.offset().top,
-          scrollTop         = $(window).scrollTop(),
+          scrollTop         = $(window).scrollTop() -1, //-1 to accomodate for top border
           maxTop            = that.$table.height() - that.$stickyTableHead.height(),
           rubberBandOffset  = (scrollTop + $(window).height()) - $(document).height(),
 //          useFixedSolution  = that.$table.parent().prop('scrollWidth') === that.$table.parent().width();
@@ -271,17 +273,17 @@
           that.$stickyTableHead.scrollLeft(that.$tableScrollWrapper.scrollLeft());
 
           //add fixedSolution class
-          that.$stickyTableHead.addClass('fixedSolution');
+          that.$stickyTableHead.addClass('fixed-solution');
           
-          // Calculate top property value
-          top = navbarHeight;
+          // Calculate top property value (-1 to accomodate for top border)
+          top = navbarHeight - 1;
           
           // When the about to scroll past the table, move sticky table head up
           if(((scrollTop - offsetTop) > maxTop)){
               top -= ((scrollTop - offsetTop) - maxTop);
-              that.$stickyTableHead.addClass('borderRadiusFix');
+              that.$stickyTableHead.addClass('border-radius-fix');
           } else {
-              that.$stickyTableHead.removeClass('borderRadiusFix');
+              that.$stickyTableHead.removeClass('border-radius-fix');
           }
           
           if (shouldBeVisible) {
@@ -297,7 +299,7 @@
           
       } else { // alternate method
           //remove fixedSolution class
-          that.$stickyTableHead.removeClass('fixedSolution');
+          that.$stickyTableHead.removeClass('fixed-solution');
           
           //animation duration
           var animationDuration = 400;
@@ -547,8 +549,9 @@
   // ==================
 
   $(window).on('load.responsiveTable.data-api', function () {
-    $('table[data-responsive="true"]').each(function () {
+    $('table[data-complex="true"]').each(function () {
       var $table = $(this);
+      $table.addClass('table-complex');
       $table.responsiveTable($table.data());
     });
   });
