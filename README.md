@@ -43,10 +43,10 @@ bower install RWD-Table-Patterns
 <script type="text/javascript" src="js/rwd-table.js"></script>
 <script>
    $(function() {
-      $('table.responsive').responsiveTable({
+      $('.table-complex').responsiveTable({
         addautobtn: true,
         addfocusbtn: true,
-        fixednavbar: '#navbar' //In case you have a fixed navbar.
+        fixednavbar: '#navbar'//In case you have a fixed navbar.
       })
    });
 </script>
@@ -56,19 +56,30 @@ bower install RWD-Table-Patterns
 - jQuery (>=1.11.0)
 - Twitter Bootstrap 3 (>=3.1.1)
 
-
-####3. Markup
-Add ```.responsive``` class to the tables and wrap them in ```.table-responsive```.<br>
-You also need to give the table a unique ```id```.
+####3. HTML Classes
+For better IE support, you need to have IE classes. Replace ```<html>``` with:
 ```html
-<div class="table-scroll-wrapper" id="example-table">
-   <table class="responsive">
+<!--[if lt IE 7 ]> <html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js lt-ie10"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+```
+
+####4. Markup
+Add the classes ```.table```, ```.table-complex``` to the tables and wrap them in ```.table-responsive```
+You also need to give the table a unique ```id```.
+
+The table is also compatible with Twitter Bootstrap's ```.table-striped``` and ```.table-bordered``` classes.
+```html
+<div class="table-responsive">
+   <table id="example-table" class="table table-complex table-bordered table-striped">
       ...
    </table>
 </div>
 ```
 
-####4. Setup your table with ```data-priority``` attributes for each ```<th>```
+####5. Setup your table with ```data-priority``` attributes for each ```<th>```
 
 Attribute          |  Description/Breakpoint
 ------------------ |  ------------------
