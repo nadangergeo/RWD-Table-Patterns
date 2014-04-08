@@ -1,8 +1,6 @@
-/*	Scripts for the tables test page 
-		Original author: Maggie Wachs, www.filamentgroup.com
-		Author of extended script: Nadan Gergeo
-		Date: November 2011
-		Dependencies: jQuery, jQuery UI widget factory
+/*	Responsive Tables with priority columns and sticky table header
+		Author: Nadan Gergeo - www.gergeo.se & Maggie Wachs, www.filamentgroup.com
+		Dependencies: jQuery, Twitter Bootstrap
 */
 
 +function ($) {
@@ -63,7 +61,9 @@
       //wrap table
       $.proxy(this.wrapTable(), this);
 
-      this.$table.addClass('auto-on')
+      if(this.options.autoon){
+        this.$table.addClass('auto-on');
+      }
       
       //create toolbar with buttons
       $.proxy(this.createButtonToolbar(), this);
@@ -107,7 +107,8 @@
   ResponsiveTable.DEFAULTS = {
     addautobtn: false, // should it have a auto button?
     addfocusbtn: false,  // should it have a focus button?
-    fixednavbar: null  // Is there a fixed navbar? The stickyTableHead needs to know about it!
+    fixednavbar: null,  // Is there a fixed navbar? The stickyTableHead needs to know about it!
+    autoon: true
   };
     
   // Wrap table
