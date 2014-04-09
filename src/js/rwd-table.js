@@ -1,4 +1,4 @@
-+function ($) {
+(function ($) {
   'use strict';
 
   // RESPONSIVE TABLE CLASS DEFINITION
@@ -580,7 +580,7 @@
   });
 
 
-}(jQuery);
+})(jQuery);
 
 
 // DROPDOWN

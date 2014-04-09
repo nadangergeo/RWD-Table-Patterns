@@ -5,7 +5,7 @@
  * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
  */
-+function ($) {
+(function ($) {
   'use strict';
 
   // RESPONSIVE TABLE CLASS DEFINITION
@@ -587,7 +587,7 @@
   });
 
 
-}(jQuery);
+})(jQuery);
 
 
 // DROPDOWN
