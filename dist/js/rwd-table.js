@@ -219,7 +219,6 @@
       var displayProp = 'table-cell';
       if($('html').hasClass('lt-ie9')){
           displayProp = 'inline';
-          console.log('hej');
       }
       
       $(that.$table).find("th, td").each(function(){
