@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js lt-ie10"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+      <meta name="format-detection" content="telephone=no">
+		 
+		<title>Responsive tables</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, minimal-ui">
+      <meta name="format-detection" content="telephone=no">
+		
+		<!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+      <link rel="stylesheet" href="css/rwd-table.min.css">
+		<link rel="stylesheet" href="css/docs.min.css">
+		
+      <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19870163-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
+	</head>
+
+   <body data-spy="scroll" data-target="#navbar" data-offset="50">
+      <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <span class="navbar-brand" href="#"><span class="fa fa-table"></span> Responsive tables</span>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-to-use">How to use</a></li>
+              <li><a href="#demo">Demo</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Responsive tables</h1>
+        <h3>by <a href="https://twitter.com/nadangergeo">@nadangergeo</a> & <a href="https://twitter.com/filamentgroup">@filamentgroup</a></h3>
+        <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
+        <p>
+         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
+         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="fork-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> Fork on GitHub</a>
+        </p>
+
+      </div>
+    </div>
+
+      <section id="features">
+         <div class="container">
+            <div class="page-header">
+                <h1>Features</h1>
+            </div>
+
+            <div class="row">
+               <div class="feature col-lg-3 col-md-6 col-sm-12">
+                  <h4><i class="fa fa-twitter"></i>Made for Twitter Bootstrap</h4>
+                  <p>Designed to be used with <a href="http://getbootstrap.com">Bootstrap 3</a>. If you don't want to use bootstrap, just <a href="https://github.com/nadangergeo/RWD-Table-Patterns">fork the repo</a> and customize it to your needs!</p>
+               </div>
+               <div class="feature col-lg-3 col-md-6 col-sm-12">
+                  <h4><i class="fa fa-mobile-phone"></i>Mobile first</h4>
+                  <p>Built with mobile first in mind. As a bonus, the tables won't break on old browsers :)</p>
+               </div>
+               <div class="feature col-lg-3 col-md-6 col-sm-12">
+                  <h4><i class="fa fa-coffee"></i>Graceful JS fallback</h4>
+                  In browsers without JavaScript, the tables will still be scrollable. I.e. there's still some responsiveness.
+               </div>
+               <div class="feature col-lg-3 col-md-6 col-sm-12">
+                  <h4><i class="fa fa-thumbs-o-up"></i>Easy to use</h4>
+                  <p>You only need to include one JS-file, one CSS-file and one line of JavaScript and your tables are responsive.</p>
+                  <p><b>Dependencies:</b> jQuery and Twitter Bootstrap 3.</p>
+               </div>
+            </div>
+
+         </div>
+      </section>
+
+      <section id="how-to-use">
+         <div class="container">
+            <div class="page-header">
+                <h1>How to use</h1>
+            </div>
+
+            <h3>1. Add CSS file <small>to the &lt;head&gt;</small></h3>
+            <pre><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="ns">"stylesheet"</span> <span class="na">href=</span><span class="ns">"css/rwd-table.min.css"</span><span class="nt">&gt;</span></code></pre>
+
+            <h3>2. Add JavaScript <small>either to the &lt;head&gt;, or to the bottom of &lt;body&gt;</small></h3>
+            <div class="highlight">
+<pre><code><span class="nt">&lt;script</span> <span class="na">type=</span><span class="ns">"text/javascript"</span> <span class="na">src=</span><span class="ns">"js/rwd-table.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code>
+<code><span class="nt">&lt;script&gt;</span>
+   <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">() {</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">'.table-complex'</span><span class="p">).</span><span class="nx">responsiveTable</span><span class="p">({</span>
+        <span class="nx">addautobtn</span><span class="o">:</span> <span class="kc">true</span>,
+        <span class="nx">addfocusbtn</span><span class="o">:</span> <span class="kc">true</span>,
+        <span class="nx">fixednavbar</span><span class="o">:</span> <span class="s1">'#navbar'</span><span class="nc">//In case you have a fixed navbar.</span>
+      <span class="p">})</span>
+   <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre>
+            </div>
+
+            <br>
+            <h4>You also need to add the dependencies</h4>
+            <ul>
+               <li>jQuery (>=1.11.0)</li>
+               <li>Twitter Bootstrap 3 (>=3.1.1)</li>
+            </ul>
+
+           <h3>3. HTML Classes</h3>
+           <p>For better IE support, you need to have IE classes. Replace <code>&lt;html&gt;</code> with:</p>
+           <pre><code>&lt;!--[if lt IE 7 ]&gt; &lt;html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7 ]&gt;    &lt;html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8 ]&gt;    &lt;html lang="en" class="no-js lt-ie10 lt-ie9"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 9 ]&gt;    &lt;html lang="en" class="no-js lt-ie10"&gt; &lt;![endif]--&gt;
+&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html lang="en" class="no-js"&gt; &lt;!--&lt;![endif]--&gt;</code></pre>
+
+           <h3>4. Markup</h3>
+           <p>Add the classes <code>.table</code>, <code>.table-complex</code> to the tables and wrap them in <code>.table-responsive</code><br>
+            You also need to give the table a unique <code>id</code>.</p>
+            <p>The table is also compatible with Twitter Bootstrap's <code>.table-striped</code> and <code>.table-bordered</code> classes.</p>
+
+               <pre><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="ns">"table-responsive"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;table</span> <span class="na">id=</span><span class="ns">"example-table"</span> <span class="na">class=</span><span class="ns">"table table-complex table-bordered table-striped"</span><span class="nt">&gt;</span>
+      ...
+   <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+
+               <h3>5. Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
+                 <div class="table-responsive">
+                     <table class="table table-bordered">
+                        <thead>
+                           <tr>
+                              <th style="width: 100px;">Attribute</th>
+                              <th>Description/Breakpoint</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">""</span></code></td>
+                              <td>Always visible and not hideable from dropdown</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"1"</span></code></td>
+                              <td>Always visible (but hidable from dropdown)</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"2"</span></code></td>
+                              <td>Visible when (min-width: 480px)</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"3"</span></code></td>
+                              <td>(min-width: 640px)</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"4"</span></code></td>
+                              <td>(min-width: 800px)</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"5"</span></code></td>
+                              <td>(min-width: 960px)</td>
+                           </tr>
+                           <tr>
+                              <td><code><span class="na">data-priority=</span><span class="ns">"6"</span></code></td>
+                              <td>(min-width: 1120px)</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+
+         </div>
+      </section>
+
+      <section id="demo">
+          <div class="container">
+              <div class="page-header">
+                  <h1>Demo</h1>
+              </div>
+
+                <div class="table-responsive"/>
+                  <table cellspacing="0" id="tech-companies" class="table table-complex table-bordered table-striped">
+                     <thead>
+                        <tr>
+                           <th>Company</th>
+                           <th data-priority="1" >Last Trade</th>
+                           <th data-priority="1">Trade Time</th>
+                           <th data-priority="3" >Change</th>
+                           <th data-priority="3">Prev Close</th>
+                           <th data-priority="3">Open</th>
+                           <th data-priority="6">Bid</th>
+                           <th data-priority="6">Ask</th>
+                           <th data-priority="6">1y Target Est</th>
+                           <th data-priority="6">Lorem</th>
+                           <th data-priority="6">Ipsum</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th>GOOG <span class="co-name">Google Inc.</span></th>
+                           <td>597.74</td>
+                           <td>12:12PM</td>
+                           <td>14.81 (2.54%)</td>
+                           <td>582.93</td>
+                           <td>597.95</td>
+                           <td>597.73 x 100</td>
+                           <td>597.91 x 300</td>
+                           <td>731.10</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                           <td>378.94</td>
+                           <td>12:22PM</td>
+                           <td>5.74 (1.54%)</td>
+                           <td>373.20</td>
+                           <td>381.02</td>
+                           <td>378.92 x 300</td>
+                           <td>378.99 x 100</td>
+                           <td>505.94</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                           <td>191.55</td>
+                           <td>12:23PM</td>
+                           <td>3.16 (1.68%)</td>
+                           <td>188.39</td>
+                           <td>194.99</td>
+                           <td>191.52 x 300</td>
+                           <td>191.58 x 100</td>
+                           <td>240.32</td>
+                           <td colspan="2">Spanning cell</td>  
+                        </tr>       
+                        <tr>
+                           <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                           <td>31.15</td>
+                           <td>12:44PM</td>
+                           <td>1.41 (4.72%)</td>
+                           <td>29.74</td>
+                           <td>30.67</td>
+                           <td>31.14 x 6500</td>
+                           <td>31.15 x 3200</td>
+                           <td>36.11</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                           <td>25.50</td>
+                           <td>12:27PM</td>
+                           <td>0.66 (2.67%)</td>
+                           <td>24.84</td>
+                           <td>25.37</td>
+                           <td>25.50 x 71100</td>
+                           <td>25.51 x 17800</td>
+                           <td>31.50</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
+                        </tr>
+                        <tr>
+                           <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                           <td>18.65</td>
+                           <td>12:45PM</td>
+                           <td>0.97 (5.49%)</td>
+                           <td>17.68</td>
+                           <td>18.23</td>
+                           <td>18.65 x 10300</td>
+                           <td>18.66 x 24000</td>
+                           <td>21.12</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
+                        </tr>      
+                        <tr>
+                           <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                           <td>15.81</td>
+                           <td>12:25PM</td>
+                           <td>0.11 (0.67%)</td>
+                           <td>15.70</td>
+                           <td>15.94</td>
+                           <td>15.79 x 6100</td>
+                           <td>15.80 x 17000</td>
+                           <td>18.16</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>         
+                        </tr>
+                        <!-- Repeat -->
+                        <tr>
+                           <th>GOOG <span class="co-name">Google Inc.</span></th>
+                           <td>597.74</td>
+                           <td>12:12PM</td>
+                           <td>14.81 (2.54%)</td>
+                           <td>582.93</td>
+                           <td>597.95</td>
+                           <td>597.73 x 100</td>
+                           <td>597.91 x 300</td>
+                           <td>731.10</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                           <td>378.94</td>
+                           <td>12:22PM</td>
+                           <td>5.74 (1.54%)</td>
+                           <td>373.20</td>
+                           <td>381.02</td>
+                           <td>378.92 x 300</td>
+                           <td>378.99 x 100</td>
+                           <td>505.94</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                           <td>191.55</td>
+                           <td>12:23PM</td>
+                           <td>3.16 (1.68%)</td>
+                           <td>188.39</td>
+                           <td>194.99</td>
+                           <td>191.52 x 300</td>
+                           <td>191.58 x 100</td>
+                           <td>240.32</td>
+                           <td colspan="2">Spanning cell</td>  
+                        </tr>       
+                        <tr>
+                           <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                           <td>31.15</td>
+                           <td>12:44PM</td>
+                           <td>1.41 (4.72%)</td>
+                           <td>29.74</td>
+                           <td>30.67</td>
+                           <td>31.14 x 6500</td>
+                           <td>31.15 x 3200</td>
+                           <td>36.11</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                           <td>25.50</td>
+                           <td>12:27PM</td>
+                           <td>0.66 (2.67%)</td>
+                           <td>24.84</td>
+                           <td>25.37</td>
+                           <td>25.50 x 71100</td>
+                           <td>25.51 x 17800</td>
+                           <td>31.50</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
+                        </tr>
+                        <tr>
+                           <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                           <td>18.65</td>
+                           <td>12:45PM</td>
+                           <td>0.97 (5.49%)</td>
+                           <td>17.68</td>
+                           <td>18.23</td>
+                           <td>18.65 x 10300</td>
+                           <td>18.66 x 24000</td>
+                           <td>21.12</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
+                        </tr>      
+                        <tr>
+                           <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                           <td>15.81</td>
+                           <td>12:25PM</td>
+                           <td>0.11 (0.67%)</td>
+                           <td>15.70</td>
+                           <td>15.94</td>
+                           <td>15.79 x 6100</td>
+                           <td>15.80 x 17000</td>
+                           <td>18.16</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>         
+                        </tr>
+                        <!-- Repeat -->
+                        <tr>
+                           <th>GOOG <span class="co-name">Google Inc.</span></th>
+                           <td>597.74</td>
+                           <td>12:12PM</td>
+                           <td>14.81 (2.54%)</td>
+                           <td>582.93</td>
+                           <td>597.95</td>
+                           <td>597.73 x 100</td>
+                           <td>597.91 x 300</td>
+                           <td>731.10</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                           <td>378.94</td>
+                           <td>12:22PM</td>
+                           <td>5.74 (1.54%)</td>
+                           <td>373.20</td>
+                           <td>381.02</td>
+                           <td>378.92 x 300</td>
+                           <td>378.99 x 100</td>
+                           <td>505.94</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                           <td>191.55</td>
+                           <td>12:23PM</td>
+                           <td>3.16 (1.68%)</td>
+                           <td>188.39</td>
+                           <td>194.99</td>
+                           <td>191.52 x 300</td>
+                           <td>191.58 x 100</td>
+                           <td>240.32</td>
+                           <td colspan="2">Spanning cell</td>  
+                        </tr>       
+                        <tr>
+                           <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                           <td>31.15</td>
+                           <td>12:44PM</td>
+                           <td>1.41 (4.72%)</td>
+                           <td>29.74</td>
+                           <td>30.67</td>
+                           <td>31.14 x 6500</td>
+                           <td>31.15 x 3200</td>
+                           <td>36.11</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                           <td>25.50</td>
+                           <td>12:27PM</td>
+                           <td>0.66 (2.67%)</td>
+                           <td>24.84</td>
+                           <td>25.37</td>
+                           <td>25.50 x 71100</td>
+                           <td>25.51 x 17800</td>
+                           <td>31.50</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
+                        </tr>
+                        <tr>
+                           <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                           <td>18.65</td>
+                           <td>12:45PM</td>
+                           <td>0.97 (5.49%)</td>
+                           <td>17.68</td>
+                           <td>18.23</td>
+                           <td>18.65 x 10300</td>
+                           <td>18.66 x 24000</td>
+                           <td>21.12</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
+                        </tr>      
+                        <tr>
+                           <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                           <td>15.81</td>
+                           <td>12:25PM</td>
+                           <td>0.11 (0.67%)</td>
+                           <td>15.70</td>
+                           <td>15.94</td>
+                           <td>15.79 x 6100</td>
+                           <td>15.80 x 17000</td>
+                           <td>18.16</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>         
+                        </tr>
+                        <!-- Repeat -->
+                        <tr>
+                           <th>GOOG <span class="co-name">Google Inc.</span></th>
+                           <td>597.74</td>
+                           <td>12:12PM</td>
+                           <td>14.81 (2.54%)</td>
+                           <td>582.93</td>
+                           <td>597.95</td>
+                           <td>597.73 x 100</td>
+                           <td>597.91 x 300</td>
+                           <td>731.10</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                           <td>378.94</td>
+                           <td>12:22PM</td>
+                           <td>5.74 (1.54%)</td>
+                           <td>373.20</td>
+                           <td>381.02</td>
+                           <td>378.92 x 300</td>
+                           <td>378.99 x 100</td>
+                           <td>505.94</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                           <td>191.55</td>
+                           <td>12:23PM</td>
+                           <td>3.16 (1.68%)</td>
+                           <td>188.39</td>
+                           <td>194.99</td>
+                           <td>191.52 x 300</td>
+                           <td>191.58 x 100</td>
+                           <td>240.32</td>
+                           <td colspan="2">Spanning cell</td>  
+                        </tr>       
+                        <tr>
+                           <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                           <td>31.15</td>
+                           <td>12:44PM</td>
+                           <td>1.41 (4.72%)</td>
+                           <td>29.74</td>
+                           <td>30.67</td>
+                           <td>31.14 x 6500</td>
+                           <td>31.15 x 3200</td>
+                           <td>36.11</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                           <td>25.50</td>
+                           <td>12:27PM</td>
+                           <td>0.66 (2.67%)</td>
+                           <td>24.84</td>
+                           <td>25.37</td>
+                           <td>25.50 x 71100</td>
+                           <td>25.51 x 17800</td>
+                           <td>31.50</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
+                        </tr>
+                        <tr>
+                           <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                           <td>18.65</td>
+                           <td>12:45PM</td>
+                           <td>0.97 (5.49%)</td>
+                           <td>17.68</td>
+                           <td>18.23</td>
+                           <td>18.65 x 10300</td>
+                           <td>18.66 x 24000</td>
+                           <td>21.12</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
+                        </tr>      
+                        <tr>
+                           <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                           <td>15.81</td>
+                           <td>12:25PM</td>
+                           <td>0.11 (0.67%)</td>
+                           <td>15.70</td>
+                           <td>15.94</td>
+                           <td>15.79 x 6100</td>
+                           <td>15.80 x 17000</td>
+                           <td>18.16</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>         
+                        </tr>
+                        <!-- Repeat -->
+                        <tr>
+                           <th>GOOG <span class="co-name">Google Inc.</span></th>
+                           <td>597.74</td>
+                           <td>12:12PM</td>
+                           <td>14.81 (2.54%)</td>
+                           <td>582.93</td>
+                           <td>597.95</td>
+                           <td>597.73 x 100</td>
+                           <td>597.91 x 300</td>
+                           <td>731.10</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                           <td>378.94</td>
+                           <td>12:22PM</td>
+                           <td>5.74 (1.54%)</td>
+                           <td>373.20</td>
+                           <td>381.02</td>
+                           <td>378.92 x 300</td>
+                           <td>378.99 x 100</td>
+                           <td>505.94</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                           <td>191.55</td>
+                           <td>12:23PM</td>
+                           <td>3.16 (1.68%)</td>
+                           <td>188.39</td>
+                           <td>194.99</td>
+                           <td>191.52 x 300</td>
+                           <td>191.58 x 100</td>
+                           <td>240.32</td>
+                           <td colspan="2">Spanning cell</td>  
+                        </tr>       
+                        <tr>
+                           <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                           <td>31.15</td>
+                           <td>12:44PM</td>
+                           <td>1.41 (4.72%)</td>
+                           <td>29.74</td>
+                           <td>30.67</td>
+                           <td>31.14 x 6500</td>
+                           <td>31.15 x 3200</td>
+                           <td>36.11</td>
+                           <td colspan="2">Spanning cell</td>
+                        </tr>      
+                        <tr>
+                           <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                           <td>25.50</td>
+                           <td>12:27PM</td>
+                           <td>0.66 (2.67%)</td>
+                           <td>24.84</td>
+                           <td>25.37</td>
+                           <td>25.50 x 71100</td>
+                           <td>25.51 x 17800</td>
+                           <td>31.50</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
+                        </tr>
+                        <tr>
+                           <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                           <td>18.65</td>
+                           <td>12:45PM</td>
+                           <td>0.97 (5.49%)</td>
+                           <td>17.68</td>
+                           <td>18.23</td>
+                           <td>18.65 x 10300</td>
+                           <td>18.66 x 24000</td>
+                           <td>21.12</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>  
+                        </tr>      
+                        <tr>
+                           <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                           <td>15.81</td>
+                           <td>12:25PM</td>
+                           <td>0.11 (0.67%)</td>
+                           <td>15.70</td>
+                           <td>15.94</td>
+                           <td>15.79 x 6100</td>
+                           <td>15.80 x 17000</td>
+                           <td>18.16</td>
+                           <td>Non-spanning</td>
+                           <td>Non-spanning</td>         
+                        </tr>
+                     </tbody>
+                  </table>
+                </div>
+
+               <div style="height:50px;"></div>
+
+                <div class="table-responsive"/>
+                   <table cellspacing="0" id="tech-companies-2" class="table table-complex table-striped">
+                      <thead>
+                         <tr>
+                            <th>Company</th>
+                            <th data-priority="1" >Last Trade</th>
+                            <th data-priority="1">Trade Time</th>
+                            <th data-priority="3" >Change</th>
+                            <th data-priority="3">Prev Close</th>
+                            <th data-priority="3">Open</th>
+                            <th data-priority="6">Bid</th>
+                            <th data-priority="6">Ask</th>
+                            <th data-priority="6">1y Target Est</th>
+                            <th data-priority="6">Lorem</th>
+                            <th data-priority="6">Ipsum</th>
+                         </tr>
+                      </thead>
+                      <tbody>
+                         <tr>
+                            <th>GOOG <span class="co-name">Google Inc.</span></th>
+                            <td>597.74</td>
+                            <td>12:12PM</td>
+                            <td>14.81 (2.54%)</td>
+                            <td>582.93</td>
+                            <td>597.95</td>
+                            <td>597.73 x 100</td>
+                            <td>597.91 x 300</td>
+                            <td>731.10</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                            <td>378.94</td>
+                            <td>12:22PM</td>
+                            <td>5.74 (1.54%)</td>
+                            <td>373.20</td>
+                            <td>381.02</td>
+                            <td>378.92 x 300</td>
+                            <td>378.99 x 100</td>
+                            <td>505.94</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                            <td>191.55</td>
+                            <td>12:23PM</td>
+                            <td>3.16 (1.68%)</td>
+                            <td>188.39</td>
+                            <td>194.99</td>
+                            <td>191.52 x 300</td>
+                            <td>191.58 x 100</td>
+                            <td>240.32</td>
+                            <td colspan="2">Spanning cell</td>  
+                         </tr>       
+                         <tr>
+                            <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                            <td>31.15</td>
+                            <td>12:44PM</td>
+                            <td>1.41 (4.72%)</td>
+                            <td>29.74</td>
+                            <td>30.67</td>
+                            <td>31.14 x 6500</td>
+                            <td>31.15 x 3200</td>
+                            <td>36.11</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                            <td>25.50</td>
+                            <td>12:27PM</td>
+                            <td>0.66 (2.67%)</td>
+                            <td>24.84</td>
+                            <td>25.37</td>
+                            <td>25.50 x 71100</td>
+                            <td>25.51 x 17800</td>
+                            <td>31.50</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
+                         </tr>
+                         <tr>
+                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                            <td>18.65</td>
+                            <td>12:45PM</td>
+                            <td>0.97 (5.49%)</td>
+                            <td>17.68</td>
+                            <td>18.23</td>
+                            <td>18.65 x 10300</td>
+                            <td>18.66 x 24000</td>
+                            <td>21.12</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
+                         </tr>      
+                         <tr>
+                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                            <td>15.81</td>
+                            <td>12:25PM</td>
+                            <td>0.11 (0.67%)</td>
+                            <td>15.70</td>
+                            <td>15.94</td>
+                            <td>15.79 x 6100</td>
+                            <td>15.80 x 17000</td>
+                            <td>18.16</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>         
+                         </tr>
+                         <!-- Repeat -->
+                         <tr>
+                            <th>GOOG <span class="co-name">Google Inc.</span></th>
+                            <td>597.74</td>
+                            <td>12:12PM</td>
+                            <td>14.81 (2.54%)</td>
+                            <td>582.93</td>
+                            <td>597.95</td>
+                            <td>597.73 x 100</td>
+                            <td>597.91 x 300</td>
+                            <td>731.10</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                            <td>378.94</td>
+                            <td>12:22PM</td>
+                            <td>5.74 (1.54%)</td>
+                            <td>373.20</td>
+                            <td>381.02</td>
+                            <td>378.92 x 300</td>
+                            <td>378.99 x 100</td>
+                            <td>505.94</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                            <td>191.55</td>
+                            <td>12:23PM</td>
+                            <td>3.16 (1.68%)</td>
+                            <td>188.39</td>
+                            <td>194.99</td>
+                            <td>191.52 x 300</td>
+                            <td>191.58 x 100</td>
+                            <td>240.32</td>
+                            <td colspan="2">Spanning cell</td>  
+                         </tr>       
+                         <tr>
+                            <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                            <td>31.15</td>
+                            <td>12:44PM</td>
+                            <td>1.41 (4.72%)</td>
+                            <td>29.74</td>
+                            <td>30.67</td>
+                            <td>31.14 x 6500</td>
+                            <td>31.15 x 3200</td>
+                            <td>36.11</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                            <td>25.50</td>
+                            <td>12:27PM</td>
+                            <td>0.66 (2.67%)</td>
+                            <td>24.84</td>
+                            <td>25.37</td>
+                            <td>25.50 x 71100</td>
+                            <td>25.51 x 17800</td>
+                            <td>31.50</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
+                         </tr>
+                         <tr>
+                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                            <td>18.65</td>
+                            <td>12:45PM</td>
+                            <td>0.97 (5.49%)</td>
+                            <td>17.68</td>
+                            <td>18.23</td>
+                            <td>18.65 x 10300</td>
+                            <td>18.66 x 24000</td>
+                            <td>21.12</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
+                         </tr>      
+                         <tr>
+                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                            <td>15.81</td>
+                            <td>12:25PM</td>
+                            <td>0.11 (0.67%)</td>
+                            <td>15.70</td>
+                            <td>15.94</td>
+                            <td>15.79 x 6100</td>
+                            <td>15.80 x 17000</td>
+                            <td>18.16</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>         
+                         </tr>
+                         <!-- Repeat -->
+                         <tr>
+                            <th>GOOG <span class="co-name">Google Inc.</span></th>
+                            <td>597.74</td>
+                            <td>12:12PM</td>
+                            <td>14.81 (2.54%)</td>
+                            <td>582.93</td>
+                            <td>597.95</td>
+                            <td>597.73 x 100</td>
+                            <td>597.91 x 300</td>
+                            <td>731.10</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                            <td>378.94</td>
+                            <td>12:22PM</td>
+                            <td>5.74 (1.54%)</td>
+                            <td>373.20</td>
+                            <td>381.02</td>
+                            <td>378.92 x 300</td>
+                            <td>378.99 x 100</td>
+                            <td>505.94</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                            <td>191.55</td>
+                            <td>12:23PM</td>
+                            <td>3.16 (1.68%)</td>
+                            <td>188.39</td>
+                            <td>194.99</td>
+                            <td>191.52 x 300</td>
+                            <td>191.58 x 100</td>
+                            <td>240.32</td>
+                            <td colspan="2">Spanning cell</td>  
+                         </tr>       
+                         <tr>
+                            <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                            <td>31.15</td>
+                            <td>12:44PM</td>
+                            <td>1.41 (4.72%)</td>
+                            <td>29.74</td>
+                            <td>30.67</td>
+                            <td>31.14 x 6500</td>
+                            <td>31.15 x 3200</td>
+                            <td>36.11</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                            <td>25.50</td>
+                            <td>12:27PM</td>
+                            <td>0.66 (2.67%)</td>
+                            <td>24.84</td>
+                            <td>25.37</td>
+                            <td>25.50 x 71100</td>
+                            <td>25.51 x 17800</td>
+                            <td>31.50</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
+                         </tr>
+                         <tr>
+                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                            <td>18.65</td>
+                            <td>12:45PM</td>
+                            <td>0.97 (5.49%)</td>
+                            <td>17.68</td>
+                            <td>18.23</td>
+                            <td>18.65 x 10300</td>
+                            <td>18.66 x 24000</td>
+                            <td>21.12</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
+                         </tr>      
+                         <tr>
+                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                            <td>15.81</td>
+                            <td>12:25PM</td>
+                            <td>0.11 (0.67%)</td>
+                            <td>15.70</td>
+                            <td>15.94</td>
+                            <td>15.79 x 6100</td>
+                            <td>15.80 x 17000</td>
+                            <td>18.16</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>         
+                         </tr>
+                         <!-- Repeat -->
+                         <tr>
+                            <th>GOOG <span class="co-name">Google Inc.</span></th>
+                            <td>597.74</td>
+                            <td>12:12PM</td>
+                            <td>14.81 (2.54%)</td>
+                            <td>582.93</td>
+                            <td>597.95</td>
+                            <td>597.73 x 100</td>
+                            <td>597.91 x 300</td>
+                            <td>731.10</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                            <td>378.94</td>
+                            <td>12:22PM</td>
+                            <td>5.74 (1.54%)</td>
+                            <td>373.20</td>
+                            <td>381.02</td>
+                            <td>378.92 x 300</td>
+                            <td>378.99 x 100</td>
+                            <td>505.94</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                            <td>191.55</td>
+                            <td>12:23PM</td>
+                            <td>3.16 (1.68%)</td>
+                            <td>188.39</td>
+                            <td>194.99</td>
+                            <td>191.52 x 300</td>
+                            <td>191.58 x 100</td>
+                            <td>240.32</td>
+                            <td colspan="2">Spanning cell</td>  
+                         </tr>       
+                         <tr>
+                            <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                            <td>31.15</td>
+                            <td>12:44PM</td>
+                            <td>1.41 (4.72%)</td>
+                            <td>29.74</td>
+                            <td>30.67</td>
+                            <td>31.14 x 6500</td>
+                            <td>31.15 x 3200</td>
+                            <td>36.11</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                            <td>25.50</td>
+                            <td>12:27PM</td>
+                            <td>0.66 (2.67%)</td>
+                            <td>24.84</td>
+                            <td>25.37</td>
+                            <td>25.50 x 71100</td>
+                            <td>25.51 x 17800</td>
+                            <td>31.50</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
+                         </tr>
+                         <tr>
+                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                            <td>18.65</td>
+                            <td>12:45PM</td>
+                            <td>0.97 (5.49%)</td>
+                            <td>17.68</td>
+                            <td>18.23</td>
+                            <td>18.65 x 10300</td>
+                            <td>18.66 x 24000</td>
+                            <td>21.12</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
+                         </tr>      
+                         <tr>
+                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                            <td>15.81</td>
+                            <td>12:25PM</td>
+                            <td>0.11 (0.67%)</td>
+                            <td>15.70</td>
+                            <td>15.94</td>
+                            <td>15.79 x 6100</td>
+                            <td>15.80 x 17000</td>
+                            <td>18.16</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>         
+                         </tr>
+                         <!-- Repeat -->
+                         <tr>
+                            <th>GOOG <span class="co-name">Google Inc.</span></th>
+                            <td>597.74</td>
+                            <td>12:12PM</td>
+                            <td>14.81 (2.54%)</td>
+                            <td>582.93</td>
+                            <td>597.95</td>
+                            <td>597.73 x 100</td>
+                            <td>597.91 x 300</td>
+                            <td>731.10</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                            <td>378.94</td>
+                            <td>12:22PM</td>
+                            <td>5.74 (1.54%)</td>
+                            <td>373.20</td>
+                            <td>381.02</td>
+                            <td>378.92 x 300</td>
+                            <td>378.99 x 100</td>
+                            <td>505.94</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                            <td>191.55</td>
+                            <td>12:23PM</td>
+                            <td>3.16 (1.68%)</td>
+                            <td>188.39</td>
+                            <td>194.99</td>
+                            <td>191.52 x 300</td>
+                            <td>191.58 x 100</td>
+                            <td>240.32</td>
+                            <td colspan="2">Spanning cell</td>  
+                         </tr>       
+                         <tr>
+                            <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                            <td>31.15</td>
+                            <td>12:44PM</td>
+                            <td>1.41 (4.72%)</td>
+                            <td>29.74</td>
+                            <td>30.67</td>
+                            <td>31.14 x 6500</td>
+                            <td>31.15 x 3200</td>
+                            <td>36.11</td>
+                            <td colspan="2">Spanning cell</td>
+                         </tr>      
+                         <tr>
+                            <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                            <td>25.50</td>
+                            <td>12:27PM</td>
+                            <td>0.66 (2.67%)</td>
+                            <td>24.84</td>
+                            <td>25.37</td>
+                            <td>25.50 x 71100</td>
+                            <td>25.51 x 17800</td>
+                            <td>31.50</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
+                         </tr>
+                         <tr>
+                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                            <td>18.65</td>
+                            <td>12:45PM</td>
+                            <td>0.97 (5.49%)</td>
+                            <td>17.68</td>
+                            <td>18.23</td>
+                            <td>18.65 x 10300</td>
+                            <td>18.66 x 24000</td>
+                            <td>21.12</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>  
+                         </tr>      
+                         <tr>
+                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                            <td>15.81</td>
+                            <td>12:25PM</td>
+                            <td>0.11 (0.67%)</td>
+                            <td>15.70</td>
+                            <td>15.94</td>
+                            <td>15.79 x 6100</td>
+                            <td>15.80 x 17000</td>
+                            <td>18.16</td>
+                            <td>Non-spanning</td>
+                            <td>Non-spanning</td>         
+                         </tr>
+                      </tbody>
+                   </table>
+                </div>
+          </div> <!-- end container -->
+      </section> <!-- end section -->
+
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+      <script src="js/rwd-table.min.js"></script>
+      <script>
+       $(function() {
+          $(".table-complex").responsiveTable({
+            addautobtn: true,
+            addfocusbtn: true,
+            fixednavbar: '#navbar' //In case you have a fixed navbar.
+          });
+      });
+      </script>
+		
+	</body>
+</html>
