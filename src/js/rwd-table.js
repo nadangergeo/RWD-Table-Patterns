@@ -367,15 +367,22 @@
         // create the hide/show toggle for the current column
         if ( $th.is("[data-priority]") ) {
           var $toggle = $('<li class="checkbox-row"><input type="checkbox" name="toggle-'+id+'" id="toggle-'+id+'" value="'+id+'" /> <label for="toggle-'+id+'">'+$th.text()+'</label></li>');
+          var $checkbox = $toggle.find("input");
            
           that.$dropdownContainer.append($toggle);
 
           $toggle.click(function(){
             // console.log("cliiiick!");
-            var $checkbox = $toggle.find("input");
             $checkbox.prop("checked", !$checkbox.prop("checked"));
             $checkbox.trigger("change");
           });
+            
+         //Freakin' IE fix
+          if ($('html').hasClass('lt-ie9')) {  
+            $checkbox.click(function() {  
+              $(this).trigger("change");
+            });  
+          }
 
           $toggle.find("label").click(function(event){
             event.stopPropagation();
@@ -386,6 +393,8 @@
               event.stopPropagation();
             })
             .change(function(){ // bind change event on checkbox
+//                console.log('cccchange');
+                
                 var $checkbox = $(this),
                     val = $checkbox.val(),
                     //all cells under the column, including the header and its clone
@@ -620,5 +629,5 @@ $(document).ready(function() {
     jQuery('html').addClass('touch');
   } else {
     jQuery('html').addClass('no-touch');
-  }
+  }    
 });

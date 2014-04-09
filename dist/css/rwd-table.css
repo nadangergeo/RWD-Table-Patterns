@@ -28,7 +28,7 @@
 .btn-toolbar {
   margin-bottom: 20px;
 }
-.lt-ie9 .btn-toolbar {
+.lt-ie8 .btn-toolbar {
   display: none;
 }
 .table-responsive {
