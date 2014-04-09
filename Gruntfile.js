@@ -10,6 +10,9 @@ module.exports = function(grunt) {
             ' * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)\n' +
             ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
             ' */',
+      jshint: {
+        all: ['src/js/*.js']
+      },
       uglify: {
         build: {
           src: 'src/js/<%= filename %>.js',
@@ -104,6 +107,7 @@ module.exports = function(grunt) {
     });
     
     // Load the plugin that provides the "uglify" task.
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -111,6 +115,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-banner');
 
     grunt.registerTask('build', [
+        'jshint',
         'uglify',
         'less',
         'copy:dist',
