@@ -35,14 +35,14 @@
       this.$dropdownBtn = null; //defined farther down
       this.$dropdownContainer = null; //defined farther down
       
-      this.$autoGroup = null; //defined farther down
-      this.$autoBtn = null; //defined farther down
+      this.$displayAllGroup = null; //defined farther down
+      this.$displayAllBtn = null; //defined farther down
       
       this.$focusGroup = null; //defined farther down
       this.$focusBtn = null; //defined farther down
       
       //misc
-      this.autoHideTrigger = 'auto-on-' + this.$table.attr('id') + '.responsiveTable';
+      this.displayAllTrigger = 'display-all-' + this.$table.attr('id') + '.responsiveTable';
       this.idPrefix = this.$table.attr('id') + '-col-';
       
       // Check if iOS
@@ -63,8 +63,8 @@
       //wrap table
       $.proxy(this.wrapTable(), this);
 
-      if(this.options.autoon){
-        this.$table.addClass('auto-on');
+      if(this.options.displayall){
+        this.$table.addClass('display-all');
       }
       
       //create toolbar with buttons
@@ -93,8 +93,8 @@
       // Window event binding
       // -------------------------
       
-      // on orientchange, resize and autoBtn-click
-      $(window).bind("orientationchange resize " + this.autoHideTrigger, function(){
+      // on orientchange, resize and displayAllBtn-click
+      $(window).bind("orientationchange resize " + this.displayAllTrigger, function(){
         
         //update the inputs' checked status
         that.$dropdownContainer.find("input").trigger("updateCheck");
@@ -107,10 +107,10 @@
   };
 
   ResponsiveTable.DEFAULTS = {
-    addautobtn: false, // should it have a auto button?
+    adddisplayallbtn: false, // should it have a display-all button?
     addfocusbtn: false,  // should it have a focus button?
     fixednavbar: null,  // Is there a fixed navbar? The stickyTableHead needs to know about it!
-    autoon: true
+    displayall: false
   };
     
   // Wrap table
@@ -136,11 +136,11 @@
       that.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>');
       that.$dropdownContainer = $('<ul class="dropdown-menu"/>');
       
-      that.$autoGroup = $('<div class="btn-group auto-btn-group" />');
-      that.$autoBtn = $('<button class="btn btn-default">Auto</button>');
+      that.$displayAllGroup = $('<div class="btn-group display-all-btn-group pull-right" />');
+      that.$displayAllBtn = $('<button class="btn btn-default">Display all</button>');
       
-      if (that.$table.hasClass('auto-on')) {
-        that.$autoBtn.addClass('btn-primary');
+      if (that.$table.hasClass('display-all')) {
+        that.$displayAllBtn.addClass('btn-primary');
       }
       
       that.$focusGroup = $('<div class="btn-group focus-btn-group" />');
@@ -152,15 +152,15 @@
         that.$btnToolbar.append(that.$focusGroup);
       }
       
-      //add auto btn to toolbar
-      that.$autoGroup.append(that.$autoBtn);
-      if(that.options.addautobtn) {
-        that.$btnToolbar.append(that.$autoGroup);
-      }
-      
       //add dropdown btn toolbar
       that.$dropdownGroup.append(that.$dropdownBtn).append(that.$dropdownContainer);
       that.$btnToolbar.append(that.$dropdownGroup);
+      
+      //add display-all btn to toolbar
+      that.$displayAllGroup.append(that.$displayAllBtn);
+      if(that.options.adddisplayallbtn) {
+        that.$btnToolbar.append(that.$displayAllGroup);
+      }
 
       // add toolbar above table
       that.$tableScrollWrapper.before(that.$btnToolbar);
@@ -169,13 +169,13 @@
       // Bind events
       // -----------------------------------------------
       
-      // Auto
+      // Display all
       // -------------------------
-      this.$autoBtn.click(function(){
-          that.$autoBtn.toggleClass('btn-primary');
-          that.$table.toggleClass('auto-on');
-          that.$tableClone.toggleClass('auto-on');
-          $(window).trigger(that.autoHideTrigger);
+      this.$displayAllBtn.click(function(){
+          that.$displayAllBtn.toggleClass('btn-primary');
+          that.$table.toggleClass('display-all');
+          that.$tableClone.toggleClass('display-all');
+          $(window).trigger(that.displayAllTrigger);
       });
 
       // Focus on single row
@@ -211,6 +211,20 @@
           that.$bodyRows.removeClass('unfocused');
           that.$bodyRows.removeClass('focused');
       }
+  };
+    
+  ResponsiveTable.prototype.preserveShowAll = function() {
+      var that = this;
+      
+      var displayProp = 'table-cell';
+      if($('html').hasClass('lt-ie9')){
+          displayProp = 'inline';
+          console.log('hej');
+      }
+      
+      $(that.$table).find("th, td").each(function(){
+          $(this).css('display', displayProp);
+      });
   };
     
   ResponsiveTable.prototype.createStickyTableHead = function() {
@@ -385,6 +399,17 @@
                     //all cells under the column, including the header and its clone
                     $cells = that.$tableScrollWrapper.find("#" + val + ", #" + val + "-clone, [data-columns~="+ val +"]");
 
+                //if display-all is on - save state and carry on
+                if(that.$table.hasClass('display-all')){
+                    //save state
+                    $.proxy(that.preserveShowAll(), that);
+                    //remove display all class
+                    that.$table.removeClass('display-all');
+                    that.$tableClone.removeClass('display-all');
+                    //switch off button
+                    that.$displayAllBtn.removeClass('btn-primary');
+                }
+
                 // loop through the cells
                 $cells.each(function(){
                   var $cell = $(this);
@@ -507,6 +532,8 @@
         // if one of the columns that the cell belongs to is visible then show the cell
         if(numOfHidden !== colSpan){
           $cell.show();
+        } else {
+           $cell.hide(); //just in case
         }
 
         // console.log('numOfHidden: ' + numOfHidden);

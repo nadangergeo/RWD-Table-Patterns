@@ -112,7 +112,7 @@
 <code><span class="nt">&lt;script&gt;</span>
    <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">() {</span>
       <span class="nx">$</span><span class="p">(</span><span class="s1">'.table-complex'</span><span class="p">).</span><span class="nx">responsiveTable</span><span class="p">({</span>
-        <span class="nx">addautobtn</span><span class="o">:</span> <span class="kc">true</span>,
+        <span class="nx">adddisplayallbtn</span><span class="o">:</span> <span class="kc">true</span>,
         <span class="nx">addfocusbtn</span><span class="o">:</span> <span class="kc">true</span>,
         <span class="nx">fixednavbar</span><span class="o">:</span> <span class="s1">'#navbar'</span><span class="nc">//In case you have a fixed navbar.</span>
       <span class="p">})</span>
@@ -1129,11 +1129,11 @@
       <!-- Latest compiled and minified JavaScript -->
       <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-      <script src="js/rwd-table.min.js"></script>
+      <script src="js/rwd-table.js"></script>
       <script>
        $(function() {
           $(".table-complex").responsiveTable({
-            addautobtn: true,
+            adddisplayallbtn: true,
             addfocusbtn: true,
             fixednavbar: '#navbar' //In case you have a fixed navbar.
           });

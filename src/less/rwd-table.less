@@ -145,82 +145,99 @@
     }
     // end focus
 
+    
+    
+    // display all
+    .lt-ie9 &.display-all {
+        th, td {
+            display: inline !important;
+        }
+    }
+    
+    &.display-all {
+        th, td {
+            display: table-cell !important;
+        }
+    }
+    
 
-    .mq.js &.auto-on th[data-priority="1"],
-    .mq.js &.auto-on td[data-priority="1"],
-    .mq.js &.auto-on th[data-priority="2"],
-    .mq.js &.auto-on td[data-priority="2"],
-    .mq.js &.auto-on th[data-priority="3"],
-    .mq.js &.auto-on td[data-priority="3"],
-    .mq.js &.auto-on th[data-priority="4"],
-    .mq.js &.auto-on td[data-priority="4"],
-    .mq.js &.auto-on th[data-priority="5"],
-    .mq.js &.auto-on td[data-priority="5"],
-    .mq.js &.auto-on th[data-priority="6"],
-    .mq.js &.auto-on td[data-priority="6"] {
+    // priorities
+    
+    .mq.js & th[data-priority="1"],
+    .mq.js & td[data-priority="1"],
+    .mq.js & th[data-priority="2"],
+    .mq.js & td[data-priority="2"],
+    .mq.js & th[data-priority="3"],
+    .mq.js & td[data-priority="3"],
+    .mq.js & th[data-priority="4"],
+    .mq.js & td[data-priority="4"],
+    .mq.js & th[data-priority="5"],
+    .mq.js & td[data-priority="5"],
+    .mq.js & th[data-priority="6"],
+    .mq.js & td[data-priority="6"] {
        display: none;
     }
 
-    .mq.lt-ie9.js &.auto-on th[data-priority="1"], 
-    .mq.lt-ie9.js &.auto-on td[data-priority="1"] {
+    .mq.lt-ie9.js & th[data-priority="1"], 
+    .mq.lt-ie9.js & td[data-priority="1"] {
         display: inline;
     }
-    .mq.js &.auto-on th[data-priority="1"], 
-    .mq.js &.auto-on td[data-priority="1"] {
+    .mq.js & th[data-priority="1"], 
+    .mq.js & td[data-priority="1"] {
         display: table-cell;
     }
 
     @media screen and (min-width: 480px) {
-        .mq.lt-ie9.js &.auto-on th[data-priority="2"], 
-        .mq.lt-ie9.js &.auto-on td[data-priority="2"] {
+        .mq.lt-ie9.js & th[data-priority="2"], 
+        .mq.lt-ie9.js & td[data-priority="2"] {
             display: inline;
         }
-        .mq.js &.auto-on th[data-priority="2"], 
-        .mq.js &.auto-on td[data-priority="2"] {
+        .mq.js & th[data-priority="2"], 
+        .mq.js & td[data-priority="2"] {
             display: table-cell;
         }
     }
 
     @media screen and (min-width: 640px) {
-        .mq.lt-ie9.js &.auto-on th[data-priority="3"], 
-        .mq.lt-ie9.js &.auto-on td[data-priority="3"] {
+        .mq.lt-ie9.js & th[data-priority="3"], 
+        .mq.lt-ie9.js & td[data-priority="3"] {
             display: inline;
         }
-        .mq.js &.auto-on th[data-priority="3"], 
-        .mq.js &.auto-on td[data-priority="3"] {
+        .mq.js & th[data-priority="3"], 
+        .mq.js & td[data-priority="3"] {
             display: table-cell;
         }
     }
 
     @media screen and (min-width: 800px) {
-        .mq.lt-ie9.js &.auto-on th[data-priority="4"], 
-        .mq.lt-ie9.js &.auto-on td[data-priority="4"] {
+        .mq.lt-ie9.js & th[data-priority="4"], 
+        .mq.lt-ie9.js & td[data-priority="4"] {
             display: inline;
         }
-        .mq.js &.auto-on th[data-priority="4"], 
-        .mq.js &.auto-on td[data-priority="4"] {
+        .mq.js & th[data-priority="4"], 
+        .mq.js & td[data-priority="4"] {
             display: table-cell;
         }
     }
 
     @media screen and (min-width: 960px) {
-        .mq.lt-ie9.js &.auto-on th[data-priority="5"], 
-        .mq.lt-ie9.js &.auto-on td[data-priority="5"] {
+        .mq.lt-ie9.js & th[data-priority="5"], 
+        .mq.lt-ie9.js & td[data-priority="5"] {
             display: inline;
         }
-        .mq.js &.auto-on th[data-priority="5"], 
-        .mq.js &.auto-on td[data-priority="5"] {
+        .mq.js & th[data-priority="5"], 
+        .mq.js & td[data-priority="5"] {
             display: table-cell;
         }
     }
 
     @media screen and (min-width: 1120px) {
-        .mq.lt-ie9.js &.auto-on th[data-priority="6"], 
-        .mq.lt-ie9.js &.auto-on td[data-priority="6"] {
+        .mq.lt-ie9.js & th[data-priority="6"], 
+        .mq.lt-ie9.js & td[data-priority="6"] {
             display: inline;
         }
-        .mq.js &.auto-on th[data-priority="6"], 
-        .mq.js &.auto-on td[data-priority="6"] {
+        .mq.js & th[data-priority="6"], 
+        .mq.js & td[data-priority="6"] {
             display: table-cell;
         }
     }
