@@ -28,7 +28,7 @@ Dependencies: jQuery and Twitter Bootstrap 3.
 How to use:
 --------
 
-####0. Protip: Install using bower
+####0. Protip: Install using Bower
 ```shell
 bower install RWD-Table-Patterns
 ```
