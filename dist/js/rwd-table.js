@@ -110,7 +110,8 @@
     adddisplayallbtn: false, // should it have a display-all button?
     addfocusbtn: false,  // should it have a focus button?
     fixednavbar: null,  // Is there a fixed navbar? The stickyTableHead needs to know about it!
-    displayall: false
+    displayall: false,
+    copiesClasses: false
   };
     
   // Wrap table
@@ -385,10 +386,10 @@
           });
             
          //Freakin' IE fix
-          if ($('html').hasClass('lt-ie9')) {  
-            $checkbox.click(function() {  
+          if ($('html').hasClass('lt-ie9')) {
+            $checkbox.click(function() {
               $(this).trigger("change");
-            });  
+            });
           }
 
           $toggle.find("label").click(function(event){
@@ -493,7 +494,9 @@
 
             // copy class attribute from column header
             var classes = $colHdr.attr("class");
-            if (classes) { $cell.addClass(classes); }
+            if (that.options.copiesClasses === true) {
+              $cell.addClass(classes);
+            }
 
             // copy data-priority attribute from column header
             var dataPriority = $colHdr.attr("data-priority");
@@ -636,5 +639,5 @@ $(document).ready(function() {
     jQuery('html').addClass('touch');
   } else {
     jQuery('html').addClass('no-touch');
-  }    
+  }
 });
