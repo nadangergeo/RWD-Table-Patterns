@@ -76,7 +76,6 @@
       //create sticky table head
       $.proxy(this.createStickyTableHead(), this);
       
-      
       // hide toggle button if the list is empty
       if(this.$dropdownContainer.is(":empty")){
         this.$dropdownGroup.hide();
@@ -103,7 +102,8 @@
     adddisplayallbtn: false, // should it have a display-all button?
     addfocusbtn: false,  // should it have a focus button?
     fixednavbar: null,  // Is there a fixed navbar? The stickyTableHead needs to know about it!
-    displayall: false
+    displayall: false,
+    copiesClasses: false
   };
     
   // Wrap table
@@ -356,17 +356,22 @@
       // for each header column
       that.$hdrCells.each(function(i){
         var $th = $(this),
-            id = $th.attr("id");
+            id = $th.attr("id"),
+            thText = $th.text();
          
         // assign an id to each header, if none is in the markup
         if (!id) {
           id = that.idPrefix + i;
           $th.attr("id", id);
         }
+
+        if(thText === ""){
+          thText = $th.attr("data-col-name");
+        }
          
         // create the hide/show toggle for the current column
         if ( $th.is("[data-priority]") ) {
-          var $toggle = $('<li class="checkbox-row"><input type="checkbox" name="toggle-'+id+'" id="toggle-'+id+'" value="'+id+'" /> <label for="toggle-'+id+'">'+$th.text()+'</label></li>');
+          var $toggle = $('<li class="checkbox-row"><input type="checkbox" name="toggle-'+id+'" id="toggle-'+id+'" value="'+id+'" /> <label for="toggle-'+id+'">'+ thText +'</label></li>');
           var $checkbox = $toggle.find("input");
            
           that.$dropdownContainer.append($toggle);
@@ -378,10 +383,10 @@
           });
             
          //Freakin' IE fix
-          if ($('html').hasClass('lt-ie9')) {  
-            $checkbox.click(function() {  
+          if ($('html').hasClass('lt-ie9')) {
+            $checkbox.click(function() {
               $(this).trigger("change");
-            });  
+            });
           }
 
           $toggle.find("label").click(function(event){
@@ -486,7 +491,9 @@
 
             // copy class attribute from column header
             var classes = $colHdr.attr("class");
-            if (classes) { $cell.addClass(classes); }
+            if (that.options.copiesClasses === true) {
+              $cell.addClass(classes);
+            }
 
             // copy data-priority attribute from column header
             var dataPriority = $colHdr.attr("data-priority");
@@ -629,5 +636,5 @@ $(document).ready(function() {
     jQuery('html').addClass('touch');
   } else {
     jQuery('html').addClass('no-touch');
-  }    
+  }
 });
