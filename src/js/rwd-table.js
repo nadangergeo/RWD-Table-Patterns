@@ -28,7 +28,6 @@
       this.$dropdownBtn = null; //defined farther down
       this.$dropdownContainer = null; //defined farther down
       
-      this.$displayAllGroup = null; //defined farther down
       this.$displayAllBtn = null; //defined farther down
       
       this.$focusGroup = null; //defined farther down
@@ -129,7 +128,6 @@
       that.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>');
       that.$dropdownContainer = $('<ul class="dropdown-menu"/>');
       
-      that.$displayAllGroup = $('<div class="btn-group display-all-btn-group pull-right" />');
       that.$displayAllBtn = $('<button class="btn btn-default">Display all</button>');
       
       if (that.$table.hasClass('display-all')) {
@@ -145,15 +143,16 @@
         that.$btnToolbar.append(that.$focusGroup);
       }
       
-      //add dropdown btn toolbar
-      that.$dropdownGroup.append(that.$dropdownBtn).append(that.$dropdownContainer);
-      that.$btnToolbar.append(that.$dropdownGroup);
-      
-      //add display-all btn to toolbar
-      that.$displayAllGroup.append(that.$displayAllBtn);
+      //add display-all btn to dropdown-btn-group
       if(that.options.adddisplayallbtn) {
-        that.$btnToolbar.append(that.$displayAllGroup);
+        that.$dropdownGroup.append(that.$displayAllBtn);
       }
+      
+      //add dropdown btn and menu to dropdown-btn-group
+      that.$dropdownGroup.append(that.$dropdownBtn).append(that.$dropdownContainer);
+      
+      //add dropdown group to toolbar
+      that.$btnToolbar.append(that.$dropdownGroup);
 
       // add toolbar above table
       that.$tableScrollWrapper.before(that.$btnToolbar);
