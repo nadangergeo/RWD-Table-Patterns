@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v4.1.0 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v4.2.0 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Copyright 2011-2014 
  * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)
