@@ -3,6 +3,11 @@ RWD-Table-Patterns
 
 This is an experimental awesome solution for responsive tables with complex data. It's a fork based on Filament Group's repo with a more complete solutions and some new features.
 
+Demo:
+--------
+
+For demo: http://gergeo.se/RWD-Table-Patterns/
+
 Features:
 --------
 
@@ -90,8 +95,3 @@ data-priority="3"  |  (min-width: 640px)
 data-priority="4"  |  (min-width: 800px)
 data-priority="5"  |  (min-width: 960px)
 data-priority="6"  |  (min-width: 1120px)
-
-Demo:
---------
-
-For demo: http://gergeo.se/RWD-Table-Patterns/
