@@ -102,7 +102,7 @@
     addfocusbtn: false,  // should it have a focus button?
     fixednavbar: null,  // Is there a fixed navbar? The stickyTableHead needs to know about it!
     displayall: false,
-    copiesClasses: false
+    copyClasses: true
   };
     
   // Wrap table
@@ -490,7 +490,7 @@
 
             // copy class attribute from column header
             var classes = $colHdr.attr("class");
-            if (that.options.copiesClasses === true) {
+            if (that.options.copyClasses) {
               $cell.addClass(classes);
             }
 
