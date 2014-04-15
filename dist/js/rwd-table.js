@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v4.2.0 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v4.3.0 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Copyright 2011-2014 
  * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)
@@ -109,7 +109,7 @@
     addfocusbtn: false,  // should it have a focus button?
     fixednavbar: null,  // Is there a fixed navbar? The stickyTableHead needs to know about it!
     displayall: false,
-    copiesClasses: false
+    copyClasses: true
   };
     
   // Wrap table
@@ -497,7 +497,7 @@
 
             // copy class attribute from column header
             var classes = $colHdr.attr("class");
-            if (that.options.copiesClasses === true) {
+            if (that.options.copyClasses) {
               $cell.addClass(classes);
             }
 
