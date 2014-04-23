@@ -28,6 +28,7 @@
       this.$dropdownBtn = null; //defined farther down
       this.$dropdownContainer = null; //defined farther down
       
+      this.$displayAllGroup = null; //defined farther down
       this.$displayAllBtn = null; //defined farther down
       
       this.$focusGroup = null; //defined farther down
@@ -74,6 +75,10 @@
       
       //create sticky table head
       $.proxy(this.createStickyTableHead(), this);
+
+      if(that.options.dropdownInTable){
+        $.proxy(this.dropdownInTables(), this);
+      }
       
       // hide toggle button if the list is empty
       if(this.$dropdownContainer.is(":empty")){
@@ -102,7 +107,8 @@
     addfocusbtn: false,  // should it have a focus button?
     fixednavbar: null,  // Is there a fixed navbar? The stickyTableHead needs to know about it!
     displayall: false,
-    copyClasses: true
+    copyClasses: true,
+    dropdownInTable: false //Are there dropdowns in the table? 
   };
     
   // Wrap table
@@ -128,6 +134,7 @@
       that.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>');
       that.$dropdownContainer = $('<ul class="dropdown-menu"/>');
       
+      that.$displayAllGroup = $('<div class="btn-group display-all-btn-group pull-right" />');
       that.$displayAllBtn = $('<button class="btn btn-default">Display all</button>');
       
       if (that.$table.hasClass('display-all')) {
@@ -143,16 +150,15 @@
         that.$btnToolbar.append(that.$focusGroup);
       }
       
-      //add display-all btn to dropdown-btn-group
-      if(that.options.adddisplayallbtn) {
-        that.$dropdownGroup.append(that.$displayAllBtn);
-      }
-      
-      //add dropdown btn and menu to dropdown-btn-group
+      //add dropdown btn toolbar
       that.$dropdownGroup.append(that.$dropdownBtn).append(that.$dropdownContainer);
-      
-      //add dropdown group to toolbar
       that.$btnToolbar.append(that.$dropdownGroup);
+      
+      //add display-all btn to toolbar
+      that.$displayAllGroup.append(that.$displayAllBtn);
+      if(that.options.adddisplayallbtn) {
+        that.$btnToolbar.append(that.$displayAllGroup);
+      }
 
       // add toolbar above table
       that.$tableScrollWrapper.before(that.$btnToolbar);
@@ -351,7 +357,7 @@
   // Setup header cells
   ResponsiveTable.prototype.setupHdrCells = function() {
       var that = this;
-      
+
       // for each header column
       that.$hdrCells.each(function(i){
         var $th = $(this),
@@ -364,7 +370,7 @@
           $th.attr("id", id);
         }
 
-        if(thText === ""){
+        if(thText === "" || $th.attr("data-col-name")){
           thText = $th.attr("data-col-name");
         }
          
@@ -549,6 +555,30 @@
         //update colSpan to match number of visible columns that i belongs to
         $cell.prop('colSpan',Math.max((colSpan - numOfHidden),1));
       });
+  };
+
+  //Add height to table-responsive class so dropdowns in tables don't get cut off
+  ResponsiveTable.prototype.dropdownInTables = function() {
+    var alreadyRan = false;
+
+    function calcHeightOfTable(){
+      //Make sure this doesn't run more than once on page load.
+      if (alreadyRan === false){
+        var table_height = $(".table-responsive").height();
+        //Get the height of the last dropdown in the table.
+        var dropdown_height = $(".table-responsive").find(".dropdown-menu:last").height();
+        
+        //Add the height of the last table to .table-responsive
+        var added_table_height = table_height + dropdown_height;
+        console.log(dropdown_height);
+        $(".table-responsive").css("height", added_table_height);
+        alreadyRan = true;
+      }
+    }
+
+    $(".table-responsive").find(".dropdown-toggle:last").click(function(){
+      calcHeightOfTable();
+    });
   };
 
   // RESPONSIVE TABLE PLUGIN DEFINITION
