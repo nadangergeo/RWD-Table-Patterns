@@ -107,7 +107,7 @@
     addfocusbtn: false,  // should it have a focus button?
     fixednavbar: null,  // Is there a fixed navbar? The stickyTableHead needs to know about it!
     displayall: false,
-    copyClasses: false,
+    copyClasses: true,
     dropdownInTable: false //Are there dropdowns in the table? 
   };
     
