@@ -25,5 +25,9 @@
   "dependencies": {
     "jquery": ">=1.10.1",
     "bootstrap": ">=3.0.3"
-  }
+  },
+  "ignore": [
+    ".*",
+    "docs"
+  ],
 }
