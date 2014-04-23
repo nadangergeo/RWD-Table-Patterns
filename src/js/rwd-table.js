@@ -566,17 +566,17 @@
       if (alreadyRan === false){
         var table_height = $(".table-responsive").height();
         //Get the height of the last dropdown in the table.
-        var dropdown_height = $(".table-responsive").find(".dropdown-menu:last-child").height();
-        if (table_height < 150){
-          //Add the height of the last table to .table-responsive
-          var added_table_height = table_height + dropdown_height;
-          $(".table-responsive").css("height", added_table_height);
-          alreadyRan = true;
-        }
+        var dropdown_height = $(".table-responsive").find(".dropdown-menu:last").height();
+        
+        //Add the height of the last table to .table-responsive
+        var added_table_height = table_height + dropdown_height;
+        console.log(dropdown_height);
+        $(".table-responsive").css("height", added_table_height);
+        alreadyRan = true;
       }
     }
 
-    $(".table-responsive").find(".dropdown-toggle").click(function(){
+    $(".table-responsive").find(".dropdown-toggle:last").click(function(){
       calcHeightOfTable();
     });
   };
