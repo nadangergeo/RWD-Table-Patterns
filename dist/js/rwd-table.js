@@ -83,7 +83,7 @@
       //create sticky table head
       $.proxy(this.createStickyTableHead(), this);
 
-      if(that.options.btnInTable === true){
+      if(that.options.dropdownInTable){
         $.proxy(this.dropdownInTables(), this);
       }
       
@@ -114,8 +114,8 @@
     addfocusbtn: false,  // should it have a focus button?
     fixednavbar: null,  // Is there a fixed navbar? The stickyTableHead needs to know about it!
     displayall: false,
-    copiesClasses: false,
-    btnInTable: true
+    copyClasses: false,
+    dropdownInTable: false //Are there dropdowns in the table? 
   };
     
   // Wrap table
@@ -503,7 +503,7 @@
 
             // copy class attribute from column header
             var classes = $colHdr.attr("class");
-            if (that.options.copiesClasses === true) {
+            if (that.options.copyClasses) {
               $cell.addClass(classes);
             }
 
@@ -569,10 +569,13 @@
     var alreadyRan = false;
 
     function calcHeightOfTable(){
+      //Make sure this doesn't run more than once on page load.
       if (alreadyRan === false){
         var table_height = $(".table-responsive").height();
+        //Get the height of the last dropdown in the table.
         var dropdown_height = $(".table-responsive").find(".dropdown-menu:last-child").height();
         if (table_height < 150){
+          //Add the height of the last table to .table-responsive
           var added_table_height = table_height + dropdown_height;
           $(".table-responsive").css("height", added_table_height);
           alreadyRan = true;
