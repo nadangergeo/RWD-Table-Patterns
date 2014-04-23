@@ -22,12 +22,12 @@
     "dist/js/rwd-table.js",
     "dist/css/rwd-table.css"
   ],
-  "dependencies": {
-    "jquery": ">=1.10.1",
-    "bootstrap": ">=3.0.3"
-  },
-  "ignore": [
+    "ignore": [
     ".*",
     "docs"
   ],
+  "dependencies": {
+    "jquery": ">=1.10.1",
+    "bootstrap": ">=3.0.3"
+  }
 }
