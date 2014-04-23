@@ -22,7 +22,7 @@
     "dist/js/rwd-table.js",
     "dist/css/rwd-table.css"
   ],
-    "ignore": [
+  "ignore": [
     ".*",
     "docs"
   ],
