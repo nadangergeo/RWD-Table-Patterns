@@ -17,10 +17,10 @@
         this.$stickyTableHead = null; //defined farther down
 
         //good to have - for easy access
-        this.$thead = this.$table.find("thead");
-        this.$tbody = this.$table.find("tbody");
-        this.$hdrCells = this.$thead.find("th");
-        this.$bodyRows = this.$tbody.find("tr");
+        this.$thead = this.$table.find('thead');
+        this.$tbody = this.$table.find('tbody');
+        this.$hdrCells = this.$thead.find('th');
+        this.$bodyRows = this.$tbody.find('tr');
 
         //toolbar and buttons
         this.$btnToolbar = null; //defined farther down
@@ -76,7 +76,7 @@
         $.proxy(this.createStickyTableHead(), this);
 
         // hide toggle button if the list is empty
-        if(this.$dropdownContainer.is(":empty")){
+        if(this.$dropdownContainer.is(':empty')){
             this.$dropdownGroup.hide();
         }
 
@@ -85,10 +85,10 @@
         // -------------------------
 
         // on orientchange, resize and displayAllBtn-click
-        $(window).bind("orientationchange resize " + this.displayAllTrigger, function(){
+        $(window).bind('orientationchange resize ' + this.displayAllTrigger, function(){
 
             //update the inputs' checked status
-            that.$dropdownContainer.find("input").trigger("updateCheck");
+            that.$dropdownContainer.find('input').trigger('updateCheck');
 
             //update colspan and visibility of spanning cells
             $.proxy(that.updateSpanningCells(), that);
@@ -213,7 +213,7 @@
             displayProp = 'inline';
         }
 
-        $(that.$table).find("th, td").each(function(){
+        $(that.$table).find('th, td').each(function(){
             $(this).css('display', displayProp);
         });
     };
@@ -235,7 +235,7 @@
         that.$stickyTableHead = that.$tableClone.parent();
 
         // give the sticky table head same height as original
-        that.$stickyTableHead.css("height", that.$thead.height() + 2);
+        that.$stickyTableHead.css('height', that.$thead.height() + 2);
 
         //insert clone
         if($('html').hasClass('lt-ie10')){
@@ -247,11 +247,11 @@
         // var bodyRowsClone = $(tableClone).find('tbody').find('tr');
 
         // bind scroll and resize with updateStickyTableHead
-        $(window).bind("scroll resize", function(){
+        $(window).bind('scroll resize', function(){
             $.proxy(that.updateStickyTableHead(), that);
         });
 
-        $(that.$tableScrollWrapper).bind("scroll", function(){
+        $(that.$tableScrollWrapper).bind('scroll', function(){
             $.proxy(that.updateStickyTableHead(), that);
         });
     };
@@ -296,13 +296,13 @@
 
             if (shouldBeVisible) {
                 //show sticky table head and update top and width.
-                that.$stickyTableHead.css({ "visibility": "visible", "top": top + "px", "width": that.$tableScrollWrapper.innerWidth() + "px"});
+                that.$stickyTableHead.css({ 'visibility': 'visible', 'top': top + 'px', 'width': that.$tableScrollWrapper.innerWidth() + 'px'});
 
                 //no more stuff to do - return!
                 return;
             } else {
                 //hide sticky table head and reset width
-                that.$stickyTableHead.css({"visibility": "hidden", "width": "auto" });
+                that.$stickyTableHead.css({'visibility': 'hidden', 'width': 'auto' });
             }
 
         } else { // alternate method
@@ -329,20 +329,20 @@
 
             if (shouldBeVisible) {
                 //show sticky table head (the clone) (animate repositioning)
-                that.$stickyTableHead.css({ "visibility": "visible" });
-                that.$stickyTableHead.animate({ "top": top + "px" }, animationDuration);
+                that.$stickyTableHead.css({ 'visibility': 'visible' });
+                that.$stickyTableHead.animate({ 'top': top + 'px' }, animationDuration);
 
                 // hide original table head
-                that.$thead.css({ "visibility": "hidden" });
+                that.$thead.css({ 'visibility': 'hidden' });
 
             } else {
 
-                that.$stickyTableHead.animate({ "top": "0" }, animationDuration, function(){
+                that.$stickyTableHead.animate({ 'top': '0' }, animationDuration, function(){
                     // show original table head
-                    that.$thead.css({ "visibility": "visible" });
+                    that.$thead.css({ 'visibility': 'visible' });
 
                     // hide sticky table head (the clone)
-                    that.$stickyTableHead.css({ "visibility": "hidden" });
+                    that.$stickyTableHead.css({ 'visibility': 'hidden' });
                 });
             }
         }
@@ -355,44 +355,44 @@
         // for each header column
         that.$hdrCells.each(function(i){
             var $th = $(this),
-                id = $th.attr("id"),
+                id = $th.attr('id'),
                 thText = $th.text();
 
             // assign an id to each header, if none is in the markup
             if (!id) {
                 id = that.idPrefix + i;
-                $th.attr("id", id);
+                $th.attr('id', id);
             }
 
-            if(thText === ""){
-                thText = $th.attr("data-col-name");
+            if(thText === ''){
+                thText = $th.attr('data-col-name');
             }
 
             // create the hide/show toggle for the current column
-            if ( $th.is("[data-priority]") ) {
+            if ( $th.is('[data-priority]') ) {
                 var $toggle = $('<li class="checkbox-row"><input type="checkbox" name="toggle-'+id+'" id="toggle-'+id+'" value="'+id+'" /> <label for="toggle-'+id+'">'+ thText +'</label></li>');
-                var $checkbox = $toggle.find("input");
+                var $checkbox = $toggle.find('input');
 
                 that.$dropdownContainer.append($toggle);
 
                 $toggle.click(function(){
                     // console.log("cliiiick!");
-                    $checkbox.prop("checked", !$checkbox.prop("checked"));
-                    $checkbox.trigger("change");
+                    $checkbox.prop('checked', !$checkbox.prop('checked'));
+                    $checkbox.trigger('change');
                 });
 
                 //Freakin' IE fix
                 if ($('html').hasClass('lt-ie9')) {
                     $checkbox.click(function() {
-                        $(this).trigger("change");
+                        $(this).trigger('change');
                     });
                 }
 
-                $toggle.find("label").click(function(event){
+                $toggle.find('label').click(function(event){
                     event.stopPropagation();
                 });
 
-                $toggle.find("input")
+                $toggle.find('input')
                     .click(function(event){
                         event.stopPropagation();
                     })
@@ -402,7 +402,7 @@
                     var $checkbox = $(this),
                         val = $checkbox.val(),
                         //all cells under the column, including the header and its clone
-                        $cells = that.$tableScrollWrapper.find("#" + val + ", #" + val + "-clone, [data-columns~="+ val +"]");
+                        $cells = that.$tableScrollWrapper.find('#' + val + ', #' + val + '-clone, [data-columns~='+ val +']');
 
                     //if display-all is on - save state and carry on
                     if(that.$table.hasClass('display-all')){
@@ -420,7 +420,7 @@
                         var $cell = $(this);
 
                         // is the checkbox checked now?
-                        if ($checkbox.is(":checked")) {
+                        if ($checkbox.is(':checked')) {
 
                             // if the cell was already visible, it means its original colspan was >1
                             // so let's increment the colspan
@@ -445,15 +445,15 @@
                         }
                     });
                 })
-                .bind("updateCheck", function(){
+                .bind('updateCheck', function(){
                     if ( $th.css('display') !== 'none') {
-                        $(this).prop("checked", true);
+                        $(this).prop('checked', true);
                     }
                     else {
-                        $(this).prop("checked", false);
+                        $(this).prop('checked', false);
                     }
                 })
-                .trigger("updateCheck");
+                .trigger('updateCheck');
             } // end if
         }); // end hdrCells loop 
     };
@@ -468,11 +468,11 @@
             var idStart = 0;
 
             // for each cell
-            $(this).find("th, td").each(function(){
+            $(this).find('th, td').each(function(){
                 var $cell = $(this);
-                var columnsAttr = "";
+                var columnsAttr = '';
 
-                var colSpan = $cell.prop("colSpan");
+                var colSpan = $cell.prop('colSpan');
 
                 // if colSpan is more than 1, give it the class 'spn-cell';
                 if(colSpan > 1) {
@@ -483,20 +483,20 @@
                 // loop through columns that the cell spans over
                 for (var k = idStart; k < (idStart + colSpan); k++) {
                     // add column id
-                    columnsAttr = columnsAttr + " " + that.idPrefix + k;
+                    columnsAttr = columnsAttr + ' ' + that.idPrefix + k;
 
                     // get colulm header
                     var $colHdr = that.$tableScrollWrapper.find('#' + that.idPrefix + k);
 
                     // copy class attribute from column header
-                    var classes = $colHdr.attr("class");
+                    var classes = $colHdr.attr('class');
                     if (that.options.copyClasses) {
                         $cell.addClass(classes);
                     }
 
                     // copy data-priority attribute from column header
-                    var dataPriority = $colHdr.attr("data-priority");
-                    if (dataPriority) { $cell.attr("data-priority", dataPriority); }
+                    var dataPriority = $colHdr.attr('data-priority');
+                    if (dataPriority) { $cell.attr('data-priority', dataPriority); }
 
                     if($colHdr.css('display')==='none'){
                         numOfHidden++;
@@ -511,7 +511,7 @@
                 columnsAttr = columnsAttr.substring(1);
 
                 //set attribute to cell
-                $cell.attr("data-columns", columnsAttr);
+                $cell.attr('data-columns', columnsAttr);
 
                 //increment idStart with the current cells colSpan.
                 idStart = idStart + colSpan;
@@ -526,7 +526,7 @@
         // iterate through cells with class 'spn-cell'
         that.$table.find('.spn-cell').each( function(){
             var $cell = $(this);
-            var columnsAttr = $cell.attr("data-columns").split(" ");
+            var columnsAttr = $cell.attr('data-columns').split(' ');
 
             var colSpan = columnsAttr.length;
             var numOfHidden = 0;
@@ -610,7 +610,7 @@ $(document).on('click.dropdown.data-api', '.dropdown-menu .checkbox-row', functi
 
 // media queries
 function mediaQueriesSupported() {
-    return (typeof window.matchMedia !== "undefined" || typeof window.msMatchMedia !== "undefined" || typeof window.styleMedia !== "undefined");
+    return (typeof window.matchMedia !== 'undefined' || typeof window.msMatchMedia !== 'undefined' || typeof window.styleMedia !== 'undefined');
 }
 
 // touch
@@ -621,7 +621,7 @@ function hasTouch() {
 
 $(document).ready(function() {
     // Change `no-js` to `js`
-    document.documentElement.className = document.documentElement.className.replace("no-js","js");
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
 
     // Add mq/no-mq class to html
     if(mediaQueriesSupported()) {
