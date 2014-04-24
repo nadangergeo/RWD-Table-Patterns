@@ -594,54 +594,44 @@
     });
 
 
+    // DROPDOWN
+    // ==========================
+
+    // Prevent dropdown from closing when toggling checkbox
+    $(document).on('click.dropdown.data-api', '.dropdown-menu .checkbox-row', function (e) {
+        e.stopPropagation();
+    });
+
+    // FEATURE DETECTION (instead of Modernizr)
+    // ==========================
+
+    // media queries
+    function mediaQueriesSupported() {
+        return (typeof window.matchMedia !== 'undefined' || typeof window.msMatchMedia !== 'undefined' || typeof window.styleMedia !== 'undefined');
+    }
+
+    // touch
+    function hasTouch() {
+        return 'ontouchstart' in window;
+    }
+
+
+    $(document).ready(function() {
+        // Change `no-js` to `js`
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+        // Add mq/no-mq class to html
+        if(mediaQueriesSupported()) {
+            jQuery('html').addClass('mq');
+        } else {
+            jQuery('html').addClass('no-mq');
+        }
+
+        // Add touch/no-touch class to html
+        if(hasTouch()) {
+            jQuery('html').addClass('touch');
+        } else {
+            jQuery('html').addClass('no-touch');
+        }
+    });
 })(jQuery);
-
-
-// DROPDOWN
-// ==========================
-
-// Prevent dropdown from closing when toggling checkbox
-$(document).on('click.dropdown.data-api', '.dropdown-menu .checkbox-row', function (e) {
-    'use strict';
-    
-    e.stopPropagation();
-});
-
-// FEATURE DETECTION (instead of Modernizr)
-// ==========================
-
-// media queries
-function mediaQueriesSupported() {
-    'use strict';
-    
-    return (typeof window.matchMedia !== 'undefined' || typeof window.msMatchMedia !== 'undefined' || typeof window.styleMedia !== 'undefined');
-}
-
-// touch
-function hasTouch() {
-    'use strict';
-    
-    return 'ontouchstart' in window;
-}
-
-
-$(document).ready(function() {
-    'use strict';
-    
-    // Change `no-js` to `js`
-    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-
-    // Add mq/no-mq class to html
-    if(mediaQueriesSupported()) {
-        jQuery('html').addClass('mq');
-    } else {
-        jQuery('html').addClass('no-mq');
-    }
-
-    // Add touch/no-touch class to html
-    if(hasTouch()) {
-        jQuery('html').addClass('touch');
-    } else {
-        jQuery('html').addClass('no-touch');
-    }
-});
