@@ -602,6 +602,8 @@
 
 // Prevent dropdown from closing when toggling checkbox
 $(document).on('click.dropdown.data-api', '.dropdown-menu .checkbox-row', function (e) {
+    'use strict';
+    
     e.stopPropagation();
 });
 
@@ -610,16 +612,22 @@ $(document).on('click.dropdown.data-api', '.dropdown-menu .checkbox-row', functi
 
 // media queries
 function mediaQueriesSupported() {
+    'use strict';
+    
     return (typeof window.matchMedia !== 'undefined' || typeof window.msMatchMedia !== 'undefined' || typeof window.styleMedia !== 'undefined');
 }
 
 // touch
 function hasTouch() {
+    'use strict';
+    
     return 'ontouchstart' in window;
 }
 
 
 $(document).ready(function() {
+    'use strict';
+    
     // Change `no-js` to `js`
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
 

@@ -11,7 +11,10 @@ module.exports = function(grunt) {
             ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
             ' */',
       jshint: {
-        all: ['src/js/*.js']
+          options: {
+              jshintrc: true
+          },
+          all: ['src/js/*.js']
       },
       uglify: {
         build: {
@@ -120,7 +123,7 @@ module.exports = function(grunt) {
           }
       }
     });
-    
+
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -138,7 +141,7 @@ module.exports = function(grunt) {
         'usebanner',
         'copy:docs'
     ]);
-    
+
     // Default task(s).
     grunt.registerTask('default', ['build']);
 };
