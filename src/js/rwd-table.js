@@ -46,15 +46,7 @@
 
         // Check if iOS
         // property to save performance
-        this.iOS = false;
-        if(
-        (navigator.userAgent.match(/iPhone/i)) ||
-        (navigator.userAgent.match(/iPad/i)) ||
-        (navigator.userAgent.match(/iPod/i))
-        ) {
-            this.iOS = true;
-        }
-      
+        this.iOS = isIOS();
       
       // Setup table
       // -------------------------
@@ -663,6 +655,11 @@
     // touch
     function hasTouch() {
         return 'ontouchstart' in window;
+    }
+
+    // Checks if current browser is on IOS.
+    function isIOS() {
+        return !!(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i));
     }
 
 
