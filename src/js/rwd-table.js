@@ -181,7 +181,7 @@
 
             // bind click on display-all btn
             that.$displayAllBtn.click(function(){
-                $.proxy(that.displayAll('toggle', true), that);
+                $.proxy(that.displayAll(null, true), that);
             });
         }
 
@@ -232,6 +232,10 @@
         }
     };
 
+    /**
+     * @param activate Forces the displayAll to be active or not. If anything else than bool, it will not force the state so it will toggle as normal.
+     * @param trigger Bool to indicate if the displayAllTrigger should be triggered.
+     */
     ResponsiveTable.prototype.displayAll = function(activate, trigger) {
         var that = this;
 
