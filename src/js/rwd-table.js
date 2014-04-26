@@ -242,6 +242,10 @@
         $(this.$table).find('th, td').each(function(){
             $(this).css('display', displayProp);
         });
+
+        $(this.$tableClone).find('th, td').each(function(){
+            $(this).css('display', displayProp);
+        });
     };
 
     ResponsiveTable.prototype.createStickyTableHeader = function() {
