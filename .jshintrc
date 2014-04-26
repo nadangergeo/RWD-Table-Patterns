@@ -16,7 +16,6 @@
     "strict": true,
     "browser": true,
     "globals": {
-        "jQuery": false,
-        "console": false
+        "jQuery": false
     }
 }
