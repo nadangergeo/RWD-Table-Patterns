@@ -70,7 +70,7 @@
       <section id="features">
          <div class="container">
             <div class="page-header">
-                <h1>Features</h1>
+                <h2>Features</h2>
             </div>
 
             <div class="row">
@@ -79,8 +79,8 @@
                   <p>Designed to be used with <a href="http://getbootstrap.com">Bootstrap 3</a>. If you don't want to use bootstrap, just <a href="https://github.com/nadangergeo/RWD-Table-Patterns">fork the repo</a> and customize it to your needs!</p>
                </div>
                <div class="feature col-lg-3 col-md-6 col-sm-12">
-                  <h4><i class="fa fa-mobile-phone"></i>Mobile first</h4>
-                  <p>Built with mobile first in mind. As a bonus, the tables won't break on old browsers :)</p>
+                  <h4><i class="fa fa-mobile-phone"></i>Mobile first &amp; PE</h4>
+                  <p>Built with mobile first and progressive enhancement in mind. Browsers without media query support or JS will have access to all the table data, even if you specify column priority.</p>
                </div>
                <div class="feature col-lg-3 col-md-6 col-sm-12">
                   <h4><i class="fa fa-coffee"></i>Graceful JS fallback</h4>
@@ -88,7 +88,7 @@
                </div>
                <div class="feature col-lg-3 col-md-6 col-sm-12">
                   <h4><i class="fa fa-thumbs-o-up"></i>Easy to use</h4>
-                  <p>You only need to include one JS-file, one CSS-file and one line of JavaScript and your tables are responsive.</p>
+                  <p>You only need to add one JS-file, one CSS-file and some minimal setup to make the tables responsive.</p>
                   <p><b>Dependencies:</b> jQuery and Twitter Bootstrap 3.</p>
                </div>
             </div>
@@ -99,28 +99,22 @@
       <section id="how-to-use">
          <div class="container">
             <div class="page-header">
-                <h1>How to use</h1>
+                <h2>How to use</h2>
             </div>
 
-            <h3>0. Protip: Install using Bower</h3>
+            <h3>Protip: Install using Bower</h3>
             <pre><code>bower install RWD-Table-Patterns</code></pre>
              
-            <h3>1. Add CSS file <small>to the <code>&lt;head&gt;</code></small></h3>
-            <pre><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="ns">"stylesheet"</span> <span class="na">href=</span><span class="ns">"css/rwd-table.min.css"</span><span class="nt">&gt;</span></code></pre>
+            <h3>Add CSS file <small>to the <code>&lt;head&gt;</code></small></h3>
+            <pre><code>&lt;link rel="stylesheet" href="css/rwd-table.min.css"&gt;</code></pre>
 
-            <h3>2. Add JavaScript <small>either to the <code>&lt;head&gt;</code> or to the bottom of <code>&lt;body&gt;</code></small></h3>
-            <div class="highlight">
-<pre><code><span class="nt">&lt;script</span> <span class="na">type=</span><span class="ns">"text/javascript"</span> <span class="na">src=</span><span class="ns">"js/rwd-table.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code>
-<code><span class="nt">&lt;script&gt;</span>
-   <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">() {</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s1">'.table-complex'</span><span class="p">).</span><span class="nx">responsiveTable</span><span class="p">({</span>
-        <span class="nx">adddisplayallbtn</span><span class="o">:</span> <span class="kc">true</span>,
-        <span class="nx">addfocusbtn</span><span class="o">:</span> <span class="kc">true</span>,
-        <span class="nx">fixednavbar</span><span class="o">:</span> <span class="s1">'#navbar'</span><span class="nc">//In case you have a fixed navbar.</span>
-      <span class="p">})</span>
-   <span class="p">});</span>
-<span class="nt">&lt;/script&gt;</span></code></pre>
-            </div>
+            <h3>Add JavaScript <small>either to the <code>&lt;head&gt;</code> or to the bottom of <code>&lt;body&gt;</code></small></h3>
+<pre><code>&lt;script type="text/javascript" src="js/rwd-table.js"&gt;&lt;/script&gt;</code>
+<code>&lt;script&gt;
+   $(function() {
+      $('.table-complex').responsiveTable({<em>options</em>});
+   });
+&lt;/script&gt;</code></pre>
 
             <br>
             <h4>You also need to add the dependencies</h4>
@@ -128,18 +122,79 @@
                <li>jQuery (>=1.11.0)</li>
                <li>Twitter Bootstrap 3 (>=3.1.1)</li>
             </ul>
+            <br>
+            <h4>Twitter Bootstrap component dependencies:</h4>
+            <p><i>In case you don't want to include the whole Twitter Bootstrap framework</i></p>
+            <ul>
+               <li>buttons.less</li>
+               <li>dropdowns (.less &amp; .js)</li>
+               <li>button-groups.less</li>
+               <li>tables.less</li>
+               <li>glyphicons needed for default <em>focusBtnIcon</em> option.</li>
+            </ul>
+             
+            <h3>Options</h3>
+            <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code> with hyphens instead of camelCase, as in <code>data-add-focus-btn=""</code>.</p>
+             <div class="table-responsive">
+               <table class="table table-bordered table-striped">
+                 <thead>
+                  <tr>
+                    <th style="width: 125px;">Name</th>
+                    <th style="width: 100px;">type</th>
+                    <th style="width: 250px;">default</th>
+                    <th>description</th>
+                  </tr>
+                 </thead>
+                 <tbody>
+                  <tr>
+                    <td>stickyTableHeader</td>
+                    <td>boolean</td>
+                    <td>true</td>
+                    <td>Makes the table header persistent.</td>
+                  </tr>
+                  <tr>
+                    <td>fixedNavbar</td>
+                    <td>string</td>
+                    <td>'.navbar-fixed-top'</td>
+                    <td>
+                        <p>Is there a fixed navbar? The sticky table header needs to know about it!</p>
+                        <p>Example: <code>'#navbar'</code></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>addDisplayAllBtn</td>
+                    <td>boolean</td>
+                    <td>true</td>
+                    <td>Add 'Display all' button to the toolbar above the table.</td>
+                  </tr>
+                  <tr>
+                    <td>addFocusBtn</td>
+                    <td>boolean</td>
+                    <td>true</td>
+                    <td>Add 'Focus' toggle button to the toolbar above the table.</td>
+                  </tr>
+                  <tr>
+                    <td>focusBtnIcon</td>
+                    <td>string</td>
+                    <td>'glyphicon glyphicon-screenshot'</td>
+                    <td>
+                        Icon for the focus btn specified with classes.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>displayAll</td>
+                    <td>boolean</td>
+                    <td>false</td>
+                    <td>Show all columns in the table initially.</td>
+                  </tr>
 
-           <h3>3. HTML Classes</h3>
-           <p>For better IE support, you need to have IE classes. Replace <code>&lt;html&gt;</code> with:</p>
-           <pre><code>&lt;!--[if lt IE 7 ]&gt; &lt;html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"&gt; &lt;![endif]--&gt;
-&lt;!--[if IE 7 ]&gt;    &lt;html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"&gt; &lt;![endif]--&gt;
-&lt;!--[if IE 8 ]&gt;    &lt;html lang="en" class="no-js lt-ie10 lt-ie9"&gt; &lt;![endif]--&gt;
-&lt;!--[if IE 9 ]&gt;    &lt;html lang="en" class="no-js lt-ie10"&gt; &lt;![endif]--&gt;
-&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html lang="en" class="no-js"&gt; &lt;!--&lt;![endif]--&gt;</code></pre>
+                 </tbody>
+               </table>
+             </div>
 
-           <h3>4. Markup</h3>
+           <h3>Markup</h3>
            <p>Add the classes <code>.table</code>, <code>.table-complex</code> to the tables and wrap them in <code>.table-responsive</code><br>
-            You also need to give the table a unique <code>id</code>.</p>
+            You also need to give the table a unique <code>id</code> (if you don't, a randomized id will be assigned).</p>
             <p>The table is also compatible with Twitter Bootstrap's <code>.table-striped</code> and <code>.table-bordered</code> classes.</p>
 
                <pre><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="ns">"table-responsive"</span><span class="nt">&gt;</span>
@@ -148,47 +203,55 @@
    <span class="nt">&lt;/table&gt;</span>
 <span class="nt">&lt;/div&gt;</span></code></pre>
 
-               <h3>5. Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
-                 <div class="table-responsive">
-                     <table class="table table-bordered">
-                        <thead>
-                           <tr>
-                              <th style="width: 100px;">Attribute</th>
-                              <th>Description/Breakpoint</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td><code><span class="na">data-priority=</span><span class="ns">""</span></code></td>
-                              <td>Always visible and not hideable from dropdown</td>
-                           </tr>
-                           <tr>
-                              <td><code><span class="na">data-priority=</span><span class="ns">"1"</span></code></td>
-                              <td>Always visible (but hidable from dropdown)</td>
-                           </tr>
-                           <tr>
-                              <td><code><span class="na">data-priority=</span><span class="ns">"2"</span></code></td>
-                              <td>Visible when (min-width: 480px)</td>
-                           </tr>
-                           <tr>
-                              <td><code><span class="na">data-priority=</span><span class="ns">"3"</span></code></td>
-                              <td>(min-width: 640px)</td>
-                           </tr>
-                           <tr>
-                              <td><code><span class="na">data-priority=</span><span class="ns">"4"</span></code></td>
-                              <td>(min-width: 800px)</td>
-                           </tr>
-                           <tr>
-                              <td><code><span class="na">data-priority=</span><span class="ns">"5"</span></code></td>
-                              <td>(min-width: 960px)</td>
-                           </tr>
-                           <tr>
-                              <td><code><span class="na">data-priority=</span><span class="ns">"6"</span></code></td>
-                              <td>(min-width: 1120px)</td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
+           <h3>Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
+           <div class="table-responsive">
+              <table class="table table-bordered">
+                 <thead>
+                    <tr>
+                       <th style="width: 100px;">Attribute</th>
+                       <th>Description/Breakpoint</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr>
+                       <td><code><span class="na">data-priority=</span><span class="ns">""</span></code></td>
+                       <td>Always visible and not hideable from dropdown</td>
+                    </tr>
+                    <tr>
+                       <td><code><span class="na">data-priority=</span><span class="ns">"1"</span></code></td>
+                       <td>Always visible (but hidable from dropdown)</td>
+                    </tr>
+                    <tr>
+                       <td><code><span class="na">data-priority=</span><span class="ns">"2"</span></code></td>
+                       <td>Visible when (min-width: 480px)</td>
+                    </tr>
+                    <tr>
+                       <td><code><span class="na">data-priority=</span><span class="ns">"3"</span></code></td>
+                       <td>(min-width: 640px)</td>
+                    </tr>
+                    <tr>
+                       <td><code><span class="na">data-priority=</span><span class="ns">"4"</span></code></td>
+                       <td>(min-width: 800px)</td>
+                    </tr>
+                    <tr>
+                       <td><code><span class="na">data-priority=</span><span class="ns">"5"</span></code></td>
+                       <td>(min-width: 960px)</td>
+                    </tr>
+                    <tr>
+                       <td><code><span class="na">data-priority=</span><span class="ns">"6"</span></code></td>
+                       <td>(min-width: 1120px)</td>
+                    </tr>
+                 </tbody>
+              </table>
+           </div>
+                
+           <h3>HTML Classes</h3>
+           <p>For better IE support, you need to have IE classes. Replace <code>&lt;html&gt;</code> with:</p>
+           <pre><code>&lt;!--[if lt IE 7 ]&gt; &lt;html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7 ]&gt;    &lt;html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8 ]&gt;    &lt;html lang="en" class="no-js lt-ie10 lt-ie9"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 9 ]&gt;    &lt;html lang="en" class="no-js lt-ie10"&gt; &lt;![endif]--&gt;
+&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html lang="en" class="no-js"&gt; &lt;!--&lt;![endif]--&gt;</code></pre>
 
          </div>
       </section>
@@ -196,7 +259,7 @@
       <section id="demo">
           <div class="container">
               <div class="page-header">
-                  <h1>Demo</h1>
+                  <h2>Demo</h2>
               </div>
 
                 <div class="table-responsive"/>
@@ -1131,14 +1194,10 @@
       <!-- Latest compiled and minified JavaScript -->
       <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-      <script src="js/rwd-table.min.js"></script>
+      <script src="js/rwd-table.js"></script>
       <script>
        $(function() {
-          $(".table-complex").responsiveTable({
-            adddisplayallbtn: true,
-            addfocusbtn: true,
-            fixednavbar: '#navbar' //In case you have a fixed navbar.
-          });
+          $(".table-complex").responsiveTable();
       });
       </script>
 		
