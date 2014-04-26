@@ -129,97 +129,85 @@
 
     // Create toolbar with buttons
     ResponsiveTable.prototype.createButtonToolbar = function() {
-        var that = this;
+        this.$btnToolbar = $('<div class="btn-toolbar" />');
 
-        that.$btnToolbar = $('<div class="btn-toolbar" />');
-
-        that.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
-        that.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>');
-        that.$dropdownContainer = $('<ul class="dropdown-menu"/>');
+        this.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
+        this.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>');
+        this.$dropdownContainer = $('<ul class="dropdown-menu"/>');
 
         // Focus btn
-        if(that.options.addFocusBtn) {
+        if(this.options.addFocusBtn) {
             // Create focus btn group
-            that.$focusGroup = $('<div class="btn-group focus-btn-group" />');
+            this.$focusGroup = $('<div class="btn-group focus-btn-group" />');
 
             // Create focus btn
-            that.$focusBtn = $('<button class="btn btn-default">Focus</button>');
+            this.$focusBtn = $('<button class="btn btn-default">Focus</button>');
 
-            if(that.options.focusBtnIcon) {
-                that.$focusBtn.prepend('<span class="' + that.options.focusBtnIcon + '"></span> ');
+            if(this.options.focusBtnIcon) {
+                this.$focusBtn.prepend('<span class="' + this.options.focusBtnIcon + '"></span> ');
             }
 
             // Add btn to group
-            that.$focusGroup.append(that.$focusBtn);
+            this.$focusGroup.append(this.$focusBtn);
             // Add focus btn to toolbar
-            that.$btnToolbar.append(that.$focusGroup);
+            this.$btnToolbar.append(this.$focusGroup);
 
-            // bind click on focus btn
-            that.$focusBtn.click(function(){
-                $.proxy(that.activateFocus(), that);
-            });
+            // Bind focus btn to call activateFocus() with this context on click.
+            this.$focusBtn.click(this.activateFocus.bind(this));
         }
 
          // Display-all btn
-        if(that.options.addDisplayAllBtn) {
+        if(this.options.addDisplayAllBtn) {
             // Create display-all btn
-            that.$displayAllBtn = $('<button class="btn btn-default">Display all</button>');
+            this.$displayAllBtn = $('<button class="btn btn-default">Display all</button>');
             // Add display-all btn to dropdown-btn-group
-            that.$dropdownGroup.append(that.$displayAllBtn);
+            this.$dropdownGroup.append(this.$displayAllBtn);
 
-            if (that.$table.hasClass('display-all')) {
+            if (this.$table.hasClass('display-all')) {
                 // add 'btn-primary' class to btn to indicate that display all is activated
-                that.$displayAllBtn.addClass('btn-primary');
+                this.$displayAllBtn.addClass('btn-primary');
             }
 
-            // bind click on display-all btn
-            that.$displayAllBtn.click(function(){
-                $.proxy(that.displayAll(null, true), that);
-            });
+            // Bind display-all btn to call displayAll(null, true) with this context on click.
+            this.$displayAllBtn.click(this.displayAll.bind(this, null, true));
         }
 
         //add dropdown btn and menu to dropdown-btn-group
-        that.$dropdownGroup.append(that.$dropdownBtn).append(that.$dropdownContainer);
+        this.$dropdownGroup.append(this.$dropdownBtn).append(this.$dropdownContainer);
 
         //add dropdown group to toolbar
-        that.$btnToolbar.append(that.$dropdownGroup);
+        this.$btnToolbar.append(this.$dropdownGroup);
 
         // add toolbar above table
-        that.$tableScrollWrapper.before(that.$btnToolbar);
+        this.$tableScrollWrapper.before(this.$btnToolbar);
     };
 
     ResponsiveTable.prototype.clearAllFocus = function() {
-        var that = this;
-
-        that.$bodyRows.removeClass('unfocused');
-        that.$bodyRows.removeClass('focused');
+        this.$bodyRows.removeClass('unfocused');
+        this.$bodyRows.removeClass('focused');
     };
 
     ResponsiveTable.prototype.activateFocus = function() {
-        var that = this;
-
         // clear all
-        that.clearAllFocus();
+        this.clearAllFocus();
 
-        if(that.$focusBtn){
-            that.$focusBtn.toggleClass('btn-primary');
+        if(this.$focusBtn){
+            this.$focusBtn.toggleClass('btn-primary');
         }
 
-        that.$table.toggleClass('focus-on');
+        this.$table.toggleClass('focus-on');
     };
 
     ResponsiveTable.prototype.focusOnRow = function(row) {
-        var that = this;
-
         // only if activated (.i.e the table has the class focus-on)
-        if(that.$table.hasClass('focus-on')) {
+        if(this.$table.hasClass('focus-on')) {
             var alreadyFocused = $(row).hasClass('focused');
 
             // clear all
             this.clearAllFocus();
 
             if(!alreadyFocused) {
-                that.$bodyRows.addClass('unfocused');
+                this.$bodyRows.addClass('unfocused');
                 $(row).addClass('focused');
             }
         }
@@ -230,32 +218,28 @@
      * @param trigger Bool to indicate if the displayAllTrigger should be triggered.
      */
     ResponsiveTable.prototype.displayAll = function(activate, trigger) {
-        var that = this;
-
-        if(that.$displayAllBtn){
+        if(this.$displayAllBtn){
             // add 'btn-primary' class to btn to indicate that display all is activated
-            that.$displayAllBtn.toggleClass('btn-primary', activate);
+            this.$displayAllBtn.toggleClass('btn-primary', activate);
         }
 
-        that.$table.toggleClass('display-all', activate);
-        if(that.$tableClone){
-            that.$tableClone.toggleClass('display-all', activate);
+        this.$table.toggleClass('display-all', activate);
+        if(this.$tableClone){
+            this.$tableClone.toggleClass('display-all', activate);
         }
 
         if(trigger) {
-            $(window).trigger(that.displayAllTrigger);
+            $(window).trigger(this.displayAllTrigger);
         }
     };
 
     ResponsiveTable.prototype.preserveDisplayAll = function() {
-        var that = this;
-
         var displayProp = 'table-cell';
         if($('html').hasClass('lt-ie9')){
             displayProp = 'inline';
         }
 
-        $(that.$table).find('th, td').each(function(){
+        $(this.$table).find('th, td').each(function(){
             $(this).css('display', displayProp);
         });
     };
