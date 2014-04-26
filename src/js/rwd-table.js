@@ -180,7 +180,7 @@
 
             // bind click on display-all btn
             that.$displayAllBtn.click(function(){
-                $.proxy(that.displayAll(true, true), that);
+                $.proxy(that.displayAll('toggle', true), that);
             });
         }
 
