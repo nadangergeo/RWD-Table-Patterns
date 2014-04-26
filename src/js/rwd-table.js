@@ -77,6 +77,13 @@
             this.createStickyTableHeader();
         }
 
+        // bind click on row
+        if(this.options.addFocusBtn) {
+            this.$bodyRows.click(function(){
+                $.proxy(that.focusOnRow($(this)), that);
+            });
+        }
+
         // hide toggle button if the list is empty
         if(this.$dropdownContainer.is(':empty')){
             this.$dropdownGroup.hide();
@@ -96,12 +103,6 @@
             $.proxy(that.updateSpanningCells(), that);
 
         });
-
-        // bind click on row
-        this.$bodyRows.click(function(){
-            $.proxy(that.focusOnRow($(this)), that);
-        });
-      
     };
 
     ResponsiveTable.DEFAULTS = {
