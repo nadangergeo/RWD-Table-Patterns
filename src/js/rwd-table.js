@@ -60,14 +60,14 @@
       // -------------------------
       
         //wrap table
-        $.proxy(this.wrapTable(), this);
+        this.wrapTable();
 
         //create toolbar with buttons
-        $.proxy(this.createButtonToolbar(), this);
+        this.createButtonToolbar();
 
         if(this.options.displayAll){
             //display all columns
-            $.proxy(this.displayAll(true, false), this);
+            this.displayAll(true, false);
         }
 
 
@@ -75,14 +75,14 @@
         // -------------------------
 
         //setup header cells
-        $.proxy(this.setupHdrCells(), this);
+        this.setupHdrCells();
 
         //setup standard cells
-        $.proxy(this.setupStandardCells(), this);
+        this.setupStandardCells();
 
         //create sticky table head
         if(this.options.stickyTableHeader){
-            $.proxy(this.createStickyTableHeader(), this);
+            this.createStickyTableHeader();
         }
 
         // hide toggle button if the list is empty
