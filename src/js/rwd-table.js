@@ -10,6 +10,12 @@
         this.options = options;
         this.$table = $(element);
 
+        //if the table doesn't have a unique id, give it one.
+        if(!this.$table.attr('id')) {
+            var uid = 'id' + Math.random().toString(16).slice(2);
+            this.$table.attr('id', uid);
+        }
+
         this.$tableWrapper = null; //defined later in wrapTable
         this.$tableScrollWrapper = null; //defined later in wrapTable
 
