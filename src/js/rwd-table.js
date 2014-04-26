@@ -11,9 +11,9 @@
         this.$table = $(element);
 
         //if the table doesn't have a unique id, give it one.
-        if(!this.$table.attr('id')) {
+        if(!this.$table.prop('id')) {
             var uid = 'id' + Math.random().toString(16).slice(2);
-            this.$table.attr('id', uid);
+            this.$table.prop('id', uid);
         }
 
         this.$tableWrapper = null; //defined later in wrapTable
@@ -40,8 +40,8 @@
         this.$focusBtn = null; //defined farther down
 
         //misc
-        this.displayAllTrigger = 'display-all-' + this.$table.attr('id') + '.responsiveTable';
-        this.idPrefix = this.$table.attr('id') + '-col-';
+        this.displayAllTrigger = 'display-all-' + this.$table.prop('id') + '.responsiveTable';
+        this.idPrefix = this.$table.prop('id') + '-col-';
 
         // Check if iOS
         // property to save performance
@@ -269,9 +269,9 @@
         that.$tableClone = that.$table.clone();
 
         //replace ids
-        that.$tableClone.attr('id', that.$table.attr('id') + '-clone');
+        that.$tableClone.prop('id', that.$table.prop('id') + '-clone');
         that.$tableClone.find('[id]').each(function() {
-            $(this).attr('id', $(this).attr('id') + '-clone');
+            $(this).prop('id', $(this).prop('id') + '-clone');
         });
 
         // wrap table clone (this is our "sticky table header" now)
@@ -399,13 +399,13 @@
         // for each header column
         that.$hdrCells.each(function(i){
             var $th = $(this),
-                id = $th.attr('id'),
+                id = $th.prop('id'),
                 thText = $th.text();
 
             // assign an id to each header, if none is in the markup
             if (!id) {
                 id = that.idPrefix + i;
-                $th.attr('id', id);
+                $th.prop('id', id);
             }
 
             if(thText === ''){
