@@ -1,3 +1,7 @@
+```
+README AND DEMO NOT UP TO DATE WITH THIS BRANCH YET! CHECKOUT THE DOCS INSTEAD
+```
+
 RWD-Table-Patterns
 ==================
 
