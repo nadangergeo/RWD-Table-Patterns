@@ -14,7 +14,7 @@
         this.$tableScrollWrapper = null; //defined later in wrapTable
 
         this.$tableClone = null; //defined farther down
-        this.$stickyTableHead = null; //defined farther down
+        this.$stickyTableHeader = null; //defined farther down
 
         //good to have - for easy access
         this.$thead = this.$table.find('thead');
@@ -52,15 +52,16 @@
       // Setup table
       // -------------------------
       
-      //wrap table
+        //wrap table
         $.proxy(this.wrapTable(), this);
-
-        if(this.options.displayall){
-            this.$table.addClass('display-all');
-        }
 
         //create toolbar with buttons
         $.proxy(this.createButtonToolbar(), this);
+
+        if(this.options.displayAll){
+            //display all columns
+            $.proxy(this.displayAll(true, false), this);
+        }
 
 
         // Setup cells
@@ -73,7 +74,9 @@
         $.proxy(this.setupStandardCells(), this);
 
         //create sticky table head
-        $.proxy(this.createStickyTableHead(), this);
+        if(this.options.stickyTableHeader){
+            $.proxy(this.createStickyTableHeader(), this);
+        }
 
         // hide toggle button if the list is empty
         if(this.$dropdownContainer.is(':empty')){
@@ -81,7 +84,7 @@
         }
 
 
-        // Window event binding
+        // Event binding
         // -------------------------
 
         // on orientchange, resize and displayAllBtn-click
@@ -94,15 +97,21 @@
             $.proxy(that.updateSpanningCells(), that);
 
         });
+
+        // bind click on row
+        this.$bodyRows.click(function(){
+            $.proxy(that.focusOnRow($(this)), that);
+        });
       
     };
 
     ResponsiveTable.DEFAULTS = {
-        adddisplayallbtn: false, // should it have a display-all button?
-        addfocusbtn: false,  // should it have a focus button?
-        fixednavbar: null,  // Is there a fixed navbar? The stickyTableHead needs to know about it!
-        displayall: false,
-        copyClasses: true
+        stickyTableHeader: true,
+        fixedNavbar: '.navbar-fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
+        addDisplayAllBtn: true, // should it have a display-all button?
+        addFocusBtn: true,  // should it have a focus button?
+        focusBtnIcon: 'glyphicon glyphicon-screenshot',
+        displayAll: false
     };
 
     // Wrap table
@@ -128,24 +137,45 @@
         that.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>');
         that.$dropdownContainer = $('<ul class="dropdown-menu"/>');
 
-        that.$displayAllBtn = $('<button class="btn btn-default">Display all</button>');
+        // Focus btn
+        if(that.options.addFocusBtn) {
+            // Create focus btn group
+            that.$focusGroup = $('<div class="btn-group focus-btn-group" />');
 
-        if (that.$table.hasClass('display-all')) {
-            that.$displayAllBtn.addClass('btn-primary');
-        }
+            // Create focus btn
+            that.$focusBtn = $('<button class="btn btn-default">Focus</button>');
 
-        that.$focusGroup = $('<div class="btn-group focus-btn-group" />');
-        that.$focusBtn = $('<button class="btn btn-default"><span class="glyphicon glyphicon-screenshot"></span> Focus</button>');
+            if(that.options.focusBtnIcon) {
+                that.$focusBtn.prepend('<span class="' + that.options.focusBtnIcon + '"></span> ');
+            }
 
-        //add focus btn to toolbar
-        that.$focusGroup.append(that.$focusBtn);
-        if(that.options.addfocusbtn) {
+            // Add btn to group
+            that.$focusGroup.append(that.$focusBtn);
+            // Add focus btn to toolbar
             that.$btnToolbar.append(that.$focusGroup);
+
+            // bind click on focus btn
+            that.$focusBtn.click(function(){
+                $.proxy(that.activateFocus(), that);
+            });
         }
 
-        //add display-all btn to dropdown-btn-group
-        if(that.options.adddisplayallbtn) {
+         // Display-all btn
+        if(that.options.addDisplayAllBtn) {
+            // Create display-all btn
+            that.$displayAllBtn = $('<button class="btn btn-default">Display all</button>');
+            // Add display-all btn to dropdown-btn-group
             that.$dropdownGroup.append(that.$displayAllBtn);
+
+            if (that.$table.hasClass('display-all')) {
+                // add 'btn-primary' class to btn to indicate that display all is activated
+                that.$displayAllBtn.addClass('btn-primary');
+            }
+
+            // bind click on display-all btn
+            that.$displayAllBtn.click(function(){
+                $.proxy(that.displayAll(true, true), that);
+            });
         }
 
         //add dropdown btn and menu to dropdown-btn-group
@@ -156,56 +186,64 @@
 
         // add toolbar above table
         that.$tableScrollWrapper.before(that.$btnToolbar);
+    };
 
+    ResponsiveTable.prototype.clearAllFocus = function() {
+        var that = this;
 
-        // Bind events
-        // -----------------------------------------------
+        that.$bodyRows.removeClass('unfocused');
+        that.$bodyRows.removeClass('focused');
+    };
 
-        // Display all
-        // -------------------------
-        this.$displayAllBtn.click(function(){
-            that.$displayAllBtn.toggleClass('btn-primary');
-            that.$table.toggleClass('display-all');
-            that.$tableClone.toggleClass('display-all');
-            $(window).trigger(that.displayAllTrigger);
-        });
+    ResponsiveTable.prototype.activateFocus = function() {
+        var that = this;
 
-        // Focus on single row
-        // -------------------------
+        // clear all
+        that.clearAllFocus();
 
-        // Focus Activator
-        this.$focusBtn.click(function(){
+        if(that.$focusBtn){
+            that.$focusBtn.toggleClass('btn-primary');
+        }
+
+        that.$table.toggleClass('focus-on');
+    };
+
+    ResponsiveTable.prototype.focusOnRow = function(row) {
+        var that = this;
+
+        // only if activated (.i.e the table has the class focus-on)
+        if(that.$table.hasClass('focus-on')) {
+            var alreadyFocused = $(row).hasClass('focused');
+
             // clear all
-            clearAllFocus();
+            this.clearAllFocus();
 
-            $(this).toggleClass('btn-primary');
-            that.$table.toggleClass('focus-on');
-        });
-
-        // bind click
-        that.$bodyRows.click(function(){
-            // only if activated (.i.e the table has the class focus-on)
-            if(that.$table.hasClass('focus-on')) {
-                var alreadyFocused = $(this).hasClass('focused');
-
-                // clear all
-                clearAllFocus();
-
-                if(!alreadyFocused) {
-                    that.$bodyRows.addClass('unfocused');
-                    $(this).addClass('focused');
-                }
+            if(!alreadyFocused) {
+                that.$bodyRows.addClass('unfocused');
+                $(row).addClass('focused');
             }
-        });
-
-        // Clear all focus
-        function clearAllFocus(){
-            that.$bodyRows.removeClass('unfocused');
-            that.$bodyRows.removeClass('focused');
         }
     };
 
-    ResponsiveTable.prototype.preserveShowAll = function() {
+    ResponsiveTable.prototype.displayAll = function(activate, trigger) {
+        var that = this;
+
+        if(that.$displayAllBtn){
+            // add 'btn-primary' class to btn to indicate that display all is activated
+            that.$displayAllBtn.toggleClass('btn-primary', activate);
+        }
+
+        that.$table.toggleClass('display-all', activate);
+        if(that.$tableClone){
+            that.$tableClone.toggleClass('display-all', activate);
+        }
+
+        if(trigger) {
+            $(window).trigger(that.displayAllTrigger);
+        }
+    };
+
+    ResponsiveTable.prototype.preserveDisplayAll = function() {
         var that = this;
 
         var displayProp = 'table-cell';
@@ -218,7 +256,7 @@
         });
     };
 
-    ResponsiveTable.prototype.createStickyTableHead = function() {
+    ResponsiveTable.prototype.createStickyTableHeader = function() {
         var that = this;
 
         //clone table head
@@ -230,47 +268,47 @@
             $(this).attr('id', $(this).attr('id') + '-clone');
         });
 
-        // wrap table clone (this is our "sticky table head" now)
-        that.$tableClone.wrap('<div class="sticky-table-head"/>');
-        that.$stickyTableHead = that.$tableClone.parent();
+        // wrap table clone (this is our "sticky table header" now)
+        that.$tableClone.wrap('<div class="sticky-table-header"/>');
+        that.$stickyTableHeader = that.$tableClone.parent();
 
-        // give the sticky table head same height as original
-        that.$stickyTableHead.css('height', that.$thead.height() + 2);
+        // give the sticky table header same height as original
+        that.$stickyTableHeader.css('height', that.$thead.height() + 2);
 
-        //insert clone
+        //insert sticky table header
         if($('html').hasClass('lt-ie10')){
-            that.$tableScrollWrapper.closest('.container').prepend(that.$stickyTableHead);
+            that.$tableScrollWrapper.closest('.container').prepend(that.$stickyTableHeader);
         } else {
-            that.$table.before(that.$stickyTableHead);
+            that.$table.before(that.$stickyTableHeader);
         }
 
         // var bodyRowsClone = $(tableClone).find('tbody').find('tr');
 
-        // bind scroll and resize with updateStickyTableHead
+        // bind scroll and resize with updateStickyTableHeader
         $(window).bind('scroll resize', function(){
-            $.proxy(that.updateStickyTableHead(), that);
+            $.proxy(that.updateStickyTableHeader(), that);
         });
 
         $(that.$tableScrollWrapper).bind('scroll', function(){
-            $.proxy(that.updateStickyTableHead(), that);
+            $.proxy(that.updateStickyTableHeader(), that);
         });
     };
 
-    // Help function for sticky header
-    ResponsiveTable.prototype.updateStickyTableHead = function() {
+    // Help function for sticky table header
+    ResponsiveTable.prototype.updateStickyTableHeader = function() {
         var that              = this,
           top               = 0,
           offsetTop         = that.$table.offset().top,
           scrollTop         = $(window).scrollTop() -1, //-1 to accomodate for top border
-          maxTop            = that.$table.height() - that.$stickyTableHead.height(),
+          maxTop            = that.$table.height() - that.$stickyTableHeader.height(),
           rubberBandOffset  = (scrollTop + $(window).height()) - $(document).height(),
         //          useFixedSolution  = that.$table.parent().prop('scrollWidth') === that.$table.parent().width();
           useFixedSolution  = !that.iOS,
           navbarHeight      = 0;
 
         //Is there a fixed navbar?
-        if(that.options.fixednavbar) {
-            var $navbar = $(that.options.fixednavbar);
+        if($(that.options.fixedNavbar).length) {
+            var $navbar = $(that.options.fixedNavbar).first();
             navbarHeight = $navbar.height();
             scrollTop = scrollTop + navbarHeight;
         }
@@ -278,10 +316,10 @@
         var shouldBeVisible   = (scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height());
 
         if(useFixedSolution) {
-            that.$stickyTableHead.scrollLeft(that.$tableScrollWrapper.scrollLeft());
+            that.$stickyTableHeader.scrollLeft(that.$tableScrollWrapper.scrollLeft());
 
             //add fixedSolution class
-            that.$stickyTableHead.addClass('fixed-solution');
+            that.$stickyTableHeader.addClass('fixed-solution');
 
             // Calculate top property value (-1 to accomodate for top border)
             top = navbarHeight - 1;
@@ -289,25 +327,25 @@
             // When the about to scroll past the table, move sticky table head up
             if(((scrollTop - offsetTop) > maxTop)){
                 top -= ((scrollTop - offsetTop) - maxTop);
-                that.$stickyTableHead.addClass('border-radius-fix');
+                that.$stickyTableHeader.addClass('border-radius-fix');
             } else {
-                that.$stickyTableHead.removeClass('border-radius-fix');
+                that.$stickyTableHeader.removeClass('border-radius-fix');
             }
 
             if (shouldBeVisible) {
-                //show sticky table head and update top and width.
-                that.$stickyTableHead.css({ 'visibility': 'visible', 'top': top + 'px', 'width': that.$tableScrollWrapper.innerWidth() + 'px'});
+                //show sticky table header and update top and width.
+                that.$stickyTableHeader.css({ 'visibility': 'visible', 'top': top + 'px', 'width': that.$tableScrollWrapper.innerWidth() + 'px'});
 
                 //no more stuff to do - return!
                 return;
             } else {
-                //hide sticky table head and reset width
-                that.$stickyTableHead.css({'visibility': 'hidden', 'width': 'auto' });
+                //hide sticky table header and reset width
+                that.$stickyTableHeader.css({'visibility': 'hidden', 'width': 'auto' });
             }
 
         } else { // alternate method
             //remove fixedSolution class
-            that.$stickyTableHead.removeClass('fixed-solution');
+            that.$stickyTableHeader.removeClass('fixed-solution');
 
             //animation duration
             var animationDuration = 400;
@@ -315,7 +353,7 @@
             // Calculate top property value (-1 to accomodate for top border)
             top = scrollTop - offsetTop - 1;
 
-            // Make sure the sticky header doesn't slide up/down too far.
+            // Make sure the sticky table header doesn't slide up/down too far.
             if(top < 0) {
                 top = 0;
             } else if (top > maxTop) {
@@ -328,21 +366,21 @@
             }
 
             if (shouldBeVisible) {
-                //show sticky table head (the clone) (animate repositioning)
-                that.$stickyTableHead.css({ 'visibility': 'visible' });
-                that.$stickyTableHead.animate({ 'top': top + 'px' }, animationDuration);
+                //show sticky table header (animate repositioning)
+                that.$stickyTableHeader.css({ 'visibility': 'visible' });
+                that.$stickyTableHeader.animate({ 'top': top + 'px' }, animationDuration);
 
                 // hide original table head
                 that.$thead.css({ 'visibility': 'hidden' });
 
             } else {
 
-                that.$stickyTableHead.animate({ 'top': '0' }, animationDuration, function(){
+                that.$stickyTableHeader.animate({ 'top': '0' }, animationDuration, function(){
                     // show original table head
                     that.$thead.css({ 'visibility': 'visible' });
 
-                    // hide sticky table head (the clone)
-                    that.$stickyTableHead.css({ 'visibility': 'hidden' });
+                    // hide sticky table head
+                    that.$stickyTableHeader.css({ 'visibility': 'hidden' });
                 });
             }
         }
@@ -407,7 +445,7 @@
                     //if display-all is on - save state and carry on
                     if(that.$table.hasClass('display-all')){
                         //save state
-                        $.proxy(that.preserveShowAll(), that);
+                        $.proxy(that.preserveDisplayAll(), that);
                         //remove display all class
                         that.$table.removeClass('display-all');
                         that.$tableClone.removeClass('display-all');
@@ -485,14 +523,8 @@
                     // add column id
                     columnsAttr = columnsAttr + ' ' + that.idPrefix + k;
 
-                    // get colulm header
+                    // get column header
                     var $colHdr = that.$tableScrollWrapper.find('#' + that.idPrefix + k);
-
-                    // copy class attribute from column header
-                    var classes = $colHdr.attr('class');
-                    if (that.options.copyClasses) {
-                        $cell.addClass(classes);
-                    }
 
                     // copy data-priority attribute from column header
                     var dataPriority = $colHdr.attr('data-priority');
@@ -502,6 +534,13 @@
                         numOfHidden++;
                     }
 
+                }
+
+                // if one of the columns that the cell belongs to is visible then show the cell
+                if(numOfHidden !== colSpan){
+                    $cell.show();
+                } else {
+                    $cell.hide(); //just in case
                 }
 
                 //update colSpan to match number of visible columns that i belongs to
