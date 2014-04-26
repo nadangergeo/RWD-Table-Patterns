@@ -11,6 +11,7 @@
         this.$table = $(element);
 
         //if the table doesn't have a unique id, give it one.
+        //The id will be a random hexadecimal value, prefixed with id.
         if(!this.$table.prop('id')) {
             var uid = 'id' + Math.random().toString(16).slice(2);
             this.$table.prop('id', uid);
