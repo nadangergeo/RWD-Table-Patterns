@@ -19,6 +19,11 @@
 .dropdown-menu li.checkbox-row label {
   font-weight: normal;
 }
+.dropdown-menu li.checkbox-row:hover,
+.dropdown-menu li.checkbox-row input:hover,
+.dropdown-menu li.checkbox-row label:hover {
+  cursor: pointer;
+}
 .no-touch .dropdown-menu > .checkbox-row:hover,
 .no-touch .dropdown-menu > .checkbox-row:active {
   text-decoration: none;
