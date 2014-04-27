@@ -82,45 +82,26 @@
   font-size: 12px;
   -webkit-text-size-adjust: none;
   line-height: 1.5em;
-  width: 100%;
 }
 .table-complex.focus-on tbody tr:hover {
   cursor: pointer;
 }
-.table-complex tbody tr.unfocused th,
-.table-complex tbody tr.unfocused td {
+.table-complex.focus-on tbody tr.unfocused th,
+.table-complex.focus-on tbody tr.unfocused td {
   color: #999999;
   color: rgba(0, 0, 0, 0.4);
 }
-.table-complex tbody tr.focused th,
-.table-complex tbody tr.focused td {
+.table-complex.focus-on tbody tr.focused th,
+.table-complex.focus-on tbody tr.focused td {
   background-color: #5bc0de;
   color: #000;
 }
-.lt-ie9 .table-complex.display-all th,
-.lt-ie9 .table-complex.display-all td {
-  display: inline !important;
-}
-.table-complex.display-all th,
-.table-complex.display-all td {
-  display: table-cell !important;
-}
-.mq.js .table-complex th[data-priority="1"],
-.mq.js .table-complex td[data-priority="1"],
-.mq.js .table-complex th[data-priority="2"],
-.mq.js .table-complex td[data-priority="2"],
-.mq.js .table-complex th[data-priority="3"],
-.mq.js .table-complex td[data-priority="3"],
-.mq.js .table-complex th[data-priority="4"],
-.mq.js .table-complex td[data-priority="4"],
-.mq.js .table-complex th[data-priority="5"],
-.mq.js .table-complex td[data-priority="5"],
-.mq.js .table-complex th[data-priority="6"],
-.mq.js .table-complex td[data-priority="6"] {
+.mq.js .table-complex th[data-priority],
+.mq.js .table-complex td[data-priority] {
   display: none;
 }
-.mq.lt-ie9.js .table-complex th[data-priority="1"],
-.mq.lt-ie9.js .table-complex td[data-priority="1"] {
+.lt-ie9.mq.js .table-complex th[data-priority="1"],
+.lt-ie9.mq.js .table-complex td[data-priority="1"] {
   display: inline;
 }
 .mq.js .table-complex th[data-priority="1"],
@@ -128,8 +109,8 @@
   display: table-cell;
 }
 @media screen and (min-width: 480px) {
-  .mq.lt-ie9.js .table-complex th[data-priority="2"],
-  .mq.lt-ie9.js .table-complex td[data-priority="2"] {
+  .lt-ie9.mq.js .table-complex th[data-priority="2"],
+  .lt-ie9.mq.js .table-complex td[data-priority="2"] {
     display: inline;
   }
   .mq.js .table-complex th[data-priority="2"],
@@ -138,8 +119,8 @@
   }
 }
 @media screen and (min-width: 640px) {
-  .mq.lt-ie9.js .table-complex th[data-priority="3"],
-  .mq.lt-ie9.js .table-complex td[data-priority="3"] {
+  .lt-ie9.mq.js .table-complex th[data-priority="3"],
+  .lt-ie9.mq.js .table-complex td[data-priority="3"] {
     display: inline;
   }
   .mq.js .table-complex th[data-priority="3"],
@@ -148,8 +129,8 @@
   }
 }
 @media screen and (min-width: 800px) {
-  .mq.lt-ie9.js .table-complex th[data-priority="4"],
-  .mq.lt-ie9.js .table-complex td[data-priority="4"] {
+  .lt-ie9.mq.js .table-complex th[data-priority="4"],
+  .lt-ie9.mq.js .table-complex td[data-priority="4"] {
     display: inline;
   }
   .mq.js .table-complex th[data-priority="4"],
@@ -158,8 +139,8 @@
   }
 }
 @media screen and (min-width: 960px) {
-  .mq.lt-ie9.js .table-complex th[data-priority="5"],
-  .mq.lt-ie9.js .table-complex td[data-priority="5"] {
+  .lt-ie9.mq.js .table-complex th[data-priority="5"],
+  .lt-ie9.mq.js .table-complex td[data-priority="5"] {
     display: inline;
   }
   .mq.js .table-complex th[data-priority="5"],
@@ -168,14 +149,34 @@
   }
 }
 @media screen and (min-width: 1120px) {
-  .mq.lt-ie9.js .table-complex th[data-priority="6"],
-  .mq.lt-ie9.js .table-complex td[data-priority="6"] {
+  .lt-ie9.mq.js .table-complex th[data-priority="6"],
+  .lt-ie9.mq.js .table-complex td[data-priority="6"] {
     display: inline;
   }
   .mq.js .table-complex th[data-priority="6"],
   .mq.js .table-complex td[data-priority="6"] {
     display: table-cell;
   }
+}
+.table th.col-hide,
+.table td.col-hide {
+  display: none;
+}
+.table th.col-show,
+.table td.col-show {
+  display: inline;
+}
+.lt-ie9 .table th.col-show,
+.lt-ie9 .table td.col-show {
+  display: table-cell;
+}
+.lt-ie9 .table.display-all th,
+.lt-ie9 .table.display-all td {
+  display: inline !important;
+}
+.table.display-all th,
+.table.display-all td {
+  display: table-cell !important;
 }
 .sticky-table-header {
   background-color: #fff;

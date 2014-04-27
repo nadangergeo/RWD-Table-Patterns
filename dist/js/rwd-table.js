@@ -18,9 +18,10 @@
         this.$table = $(element);
 
         //if the table doesn't have a unique id, give it one.
-        if(!this.$table.attr('id')) {
+        //The id will be a random hexadecimal value, prefixed with id.
+        if(!this.$table.prop('id')) {
             var uid = 'id' + Math.random().toString(16).slice(2);
-            this.$table.attr('id', uid);
+            this.$table.prop('id', uid);
         }
 
         this.$tableWrapper = null; //defined later in wrapTable
@@ -47,33 +48,25 @@
         this.$focusBtn = null; //defined farther down
 
         //misc
-        this.displayAllTrigger = 'display-all-' + this.$table.attr('id') + '.responsiveTable';
-        this.idPrefix = this.$table.attr('id') + '-col-';
+        this.displayAllTrigger = 'display-all-' + this.$table.prop('id') + '.responsiveTable';
+        this.idPrefix = this.$table.prop('id') + '-col-';
 
         // Check if iOS
         // property to save performance
-        this.iOS = false;
-        if(
-        (navigator.userAgent.match(/iPhone/i)) ||
-        (navigator.userAgent.match(/iPad/i)) ||
-        (navigator.userAgent.match(/iPod/i))
-        ) {
-            this.iOS = true;
-        }
-      
+        this.iOS = isIOS();
       
       // Setup table
       // -------------------------
       
         //wrap table
-        $.proxy(this.wrapTable(), this);
+        this.wrapTable();
 
         //create toolbar with buttons
-        $.proxy(this.createButtonToolbar(), this);
+        this.createButtonToolbar();
 
         if(this.options.displayAll){
             //display all columns
-            $.proxy(this.displayAll(true, false), this);
+            this.displayAll(true, false);
         }
 
 
@@ -81,14 +74,21 @@
         // -------------------------
 
         //setup header cells
-        $.proxy(this.setupHdrCells(), this);
+        this.setupHdrCells();
 
         //setup standard cells
-        $.proxy(this.setupStandardCells(), this);
+        this.setupStandardCells();
 
         //create sticky table head
         if(this.options.stickyTableHeader){
-            $.proxy(this.createStickyTableHeader(), this);
+            this.createStickyTableHeader();
+        }
+
+        // bind click on row
+        if(this.options.addFocusBtn) {
+            this.$bodyRows.click(function(){
+                $.proxy(that.focusOnRow($(this)), that);
+            });
         }
 
         // hide toggle button if the list is empty
@@ -110,12 +110,6 @@
             $.proxy(that.updateSpanningCells(), that);
 
         });
-
-        // bind click on row
-        this.$bodyRows.click(function(){
-            $.proxy(that.focusOnRow($(this)), that);
-        });
-      
     };
 
     ResponsiveTable.DEFAULTS = {
@@ -137,136 +131,127 @@
             that.$table.wrap('<div class="table-responsive"/>');
         }
         that.$tableScrollWrapper = that.$table.parent();
+        
+        that.$tableScrollWrapper.wrap('<div class="table-wrapper"/>');
         that.$tableWrapper = that.$tableScrollWrapper.parent();
     };
 
     // Create toolbar with buttons
     ResponsiveTable.prototype.createButtonToolbar = function() {
-        var that = this;
+        this.$btnToolbar = $('<div class="btn-toolbar" />');
 
-        that.$btnToolbar = $('<div class="btn-toolbar" />');
-
-        that.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
-        that.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>');
-        that.$dropdownContainer = $('<ul class="dropdown-menu"/>');
+        this.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
+        this.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>');
+        this.$dropdownContainer = $('<ul class="dropdown-menu"/>');
 
         // Focus btn
-        if(that.options.addFocusBtn) {
+        if(this.options.addFocusBtn) {
             // Create focus btn group
-            that.$focusGroup = $('<div class="btn-group focus-btn-group" />');
+            this.$focusGroup = $('<div class="btn-group focus-btn-group" />');
 
             // Create focus btn
-            that.$focusBtn = $('<button class="btn btn-default">Focus</button>');
+            this.$focusBtn = $('<button class="btn btn-default">Focus</button>');
 
-            if(that.options.focusBtnIcon) {
-                that.$focusBtn.prepend('<span class="' + that.options.focusBtnIcon + '"></span> ');
+            if(this.options.focusBtnIcon) {
+                this.$focusBtn.prepend('<span class="' + this.options.focusBtnIcon + '"></span> ');
             }
 
             // Add btn to group
-            that.$focusGroup.append(that.$focusBtn);
+            this.$focusGroup.append(this.$focusBtn);
             // Add focus btn to toolbar
-            that.$btnToolbar.append(that.$focusGroup);
+            this.$btnToolbar.append(this.$focusGroup);
 
-            // bind click on focus btn
-            that.$focusBtn.click(function(){
-                $.proxy(that.activateFocus(), that);
-            });
+            // Bind focus btn to call activateFocus() with this context on click.
+            this.$focusBtn.click(this.activateFocus.bind(this));
         }
 
          // Display-all btn
-        if(that.options.addDisplayAllBtn) {
+        if(this.options.addDisplayAllBtn) {
             // Create display-all btn
-            that.$displayAllBtn = $('<button class="btn btn-default">Display all</button>');
+            this.$displayAllBtn = $('<button class="btn btn-default">Display all</button>');
             // Add display-all btn to dropdown-btn-group
-            that.$dropdownGroup.append(that.$displayAllBtn);
+            this.$dropdownGroup.append(this.$displayAllBtn);
 
-            if (that.$table.hasClass('display-all')) {
+            if (this.$table.hasClass('display-all')) {
                 // add 'btn-primary' class to btn to indicate that display all is activated
-                that.$displayAllBtn.addClass('btn-primary');
+                this.$displayAllBtn.addClass('btn-primary');
             }
 
-            // bind click on display-all btn
-            that.$displayAllBtn.click(function(){
-                $.proxy(that.displayAll('toggle', true), that);
-            });
+            // Bind display-all btn to call displayAll(null, true) with this context on click.
+            this.$displayAllBtn.click(this.displayAll.bind(this, null, true));
         }
 
         //add dropdown btn and menu to dropdown-btn-group
-        that.$dropdownGroup.append(that.$dropdownBtn).append(that.$dropdownContainer);
+        this.$dropdownGroup.append(this.$dropdownBtn).append(this.$dropdownContainer);
 
         //add dropdown group to toolbar
-        that.$btnToolbar.append(that.$dropdownGroup);
+        this.$btnToolbar.append(this.$dropdownGroup);
 
         // add toolbar above table
-        that.$tableScrollWrapper.before(that.$btnToolbar);
+        this.$tableScrollWrapper.before(this.$btnToolbar);
     };
 
     ResponsiveTable.prototype.clearAllFocus = function() {
-        var that = this;
-
-        that.$bodyRows.removeClass('unfocused');
-        that.$bodyRows.removeClass('focused');
+        this.$bodyRows.removeClass('unfocused');
+        this.$bodyRows.removeClass('focused');
     };
 
     ResponsiveTable.prototype.activateFocus = function() {
-        var that = this;
-
         // clear all
-        that.clearAllFocus();
+        this.clearAllFocus();
 
-        if(that.$focusBtn){
-            that.$focusBtn.toggleClass('btn-primary');
+        if(this.$focusBtn){
+            this.$focusBtn.toggleClass('btn-primary');
         }
 
-        that.$table.toggleClass('focus-on');
+        this.$table.toggleClass('focus-on');
     };
 
     ResponsiveTable.prototype.focusOnRow = function(row) {
-        var that = this;
-
         // only if activated (.i.e the table has the class focus-on)
-        if(that.$table.hasClass('focus-on')) {
+        if(this.$table.hasClass('focus-on')) {
             var alreadyFocused = $(row).hasClass('focused');
 
             // clear all
             this.clearAllFocus();
 
             if(!alreadyFocused) {
-                that.$bodyRows.addClass('unfocused');
+                this.$bodyRows.addClass('unfocused');
                 $(row).addClass('focused');
             }
         }
     };
 
+    /**
+     * @param activate Forces the displayAll to be active or not. If anything else than bool, it will not force the state so it will toggle as normal.
+     * @param trigger Bool to indicate if the displayAllTrigger should be triggered.
+     */
     ResponsiveTable.prototype.displayAll = function(activate, trigger) {
-        var that = this;
-
-        if(that.$displayAllBtn){
+        if(this.$displayAllBtn){
             // add 'btn-primary' class to btn to indicate that display all is activated
-            that.$displayAllBtn.toggleClass('btn-primary', activate);
+            this.$displayAllBtn.toggleClass('btn-primary', activate);
         }
 
-        that.$table.toggleClass('display-all', activate);
-        if(that.$tableClone){
-            that.$tableClone.toggleClass('display-all', activate);
+        this.$table.toggleClass('display-all', activate);
+        if(this.$tableClone){
+            this.$tableClone.toggleClass('display-all', activate);
         }
 
         if(trigger) {
-            $(window).trigger(that.displayAllTrigger);
+            $(window).trigger(this.displayAllTrigger);
         }
     };
 
     ResponsiveTable.prototype.preserveDisplayAll = function() {
-        var that = this;
-
         var displayProp = 'table-cell';
         if($('html').hasClass('lt-ie9')){
             displayProp = 'inline';
         }
 
-        $(that.$table).find('th, td').each(function(){
-            $(this).css('display', displayProp);
-        });
+        $(this.$table).find('th, td').css('display', displayProp);
+        if(this.$tableClone){
+            $(this.$tableClone).find('th, td').css('display', displayProp);
+        }
     };
 
     ResponsiveTable.prototype.createStickyTableHeader = function() {
@@ -276,9 +261,9 @@
         that.$tableClone = that.$table.clone();
 
         //replace ids
-        that.$tableClone.attr('id', that.$table.attr('id') + '-clone');
+        that.$tableClone.prop('id', that.$table.prop('id') + '-clone');
         that.$tableClone.find('[id]').each(function() {
-            $(this).attr('id', $(this).attr('id') + '-clone');
+            $(this).prop('id', $(this).prop('id') + '-clone');
         });
 
         // wrap table clone (this is our "sticky table header" now)
@@ -406,13 +391,13 @@
         // for each header column
         that.$hdrCells.each(function(i){
             var $th = $(this),
-                id = $th.attr('id'),
+                id = $th.prop('id'),
                 thText = $th.text();
 
             // assign an id to each header, if none is in the markup
             if (!id) {
                 id = that.idPrefix + i;
-                $th.attr('id', id);
+                $th.prop('id', id);
             }
 
             if(thText === ''){
@@ -461,7 +446,9 @@
                         $.proxy(that.preserveDisplayAll(), that);
                         //remove display all class
                         that.$table.removeClass('display-all');
-                        that.$tableClone.removeClass('display-all');
+                        if(this.$tableClone){
+                            that.$tableClone.removeClass('display-all');
+                        }
                         //switch off button
                         that.$displayAllBtn.removeClass('btn-primary');
                     }
@@ -665,6 +652,11 @@
     // touch
     function hasTouch() {
         return 'ontouchstart' in window;
+    }
+
+    // Checks if current browser is on IOS.
+    function isIOS() {
+        return !!(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i));
     }
 
 
