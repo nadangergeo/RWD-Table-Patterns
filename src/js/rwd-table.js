@@ -241,13 +241,8 @@
             displayProp = 'inline';
         }
 
-        $(this.$table).find('th, td').each(function(){
-            $(this).css('display', displayProp);
-        });
-
-        $(this.$tableClone).find('th, td').each(function(){
-            $(this).css('display', displayProp);
-        });
+        $(this.$table).find('th, td').css('display', displayProp);
+        $(this.$tableClone).find('th, td').css('display', displayProp);
     };
 
     ResponsiveTable.prototype.createStickyTableHeader = function() {
