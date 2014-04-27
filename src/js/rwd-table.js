@@ -242,7 +242,9 @@
         }
 
         $(this.$table).find('th, td').css('display', displayProp);
-        $(this.$tableClone).find('th, td').css('display', displayProp);
+        if(this.$tableClone){
+            $(this.$tableClone).find('th, td').css('display', displayProp);
+        }
     };
 
     ResponsiveTable.prototype.createStickyTableHeader = function() {
@@ -437,7 +439,9 @@
                         $.proxy(that.preserveDisplayAll(), that);
                         //remove display all class
                         that.$table.removeClass('display-all');
-                        that.$tableClone.removeClass('display-all');
+                        if(this.$tableClone){
+                            that.$tableClone.removeClass('display-all');
+                        }
                         //switch off button
                         that.$displayAllBtn.removeClass('btn-primary');
                     }
