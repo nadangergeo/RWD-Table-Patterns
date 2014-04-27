@@ -124,6 +124,8 @@
             that.$table.wrap('<div class="table-responsive"/>');
         }
         that.$tableScrollWrapper = that.$table.parent();
+        
+        that.$tableScrollWrapper.wrap('<div class="table-wrapper"/>');
         that.$tableWrapper = that.$tableScrollWrapper.parent();
     };
 
