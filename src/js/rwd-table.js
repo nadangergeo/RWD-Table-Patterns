@@ -131,6 +131,8 @@
 
     // Create toolbar with buttons
     ResponsiveTable.prototype.createButtonToolbar = function() {
+        var that = this;
+
         this.$btnToolbar = $('<div class="btn-toolbar" />');
 
         this.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
@@ -154,8 +156,10 @@
             // Add focus btn to toolbar
             this.$btnToolbar.append(this.$focusGroup);
 
-            // Bind focus btn to call activateFocus() with this context on click.
-            this.$focusBtn.click(this.activateFocus.bind(this));
+            // bind click on focus btn
+            this.$focusBtn.click(function(){
+                $.proxy(that.activateFocus(), that);
+            });
         }
 
          // Display-all btn
@@ -170,8 +174,10 @@
                 this.$displayAllBtn.addClass('btn-primary');
             }
 
-            // Bind display-all btn to call displayAll(null, true) with this context on click.
-            this.$displayAllBtn.click(this.displayAll.bind(this, null, true));
+            // bind click on display-all btn
+            this.$displayAllBtn.click(function(){
+                $.proxy(that.displayAll(null, true), that);
+            });
         }
 
         //add dropdown btn and menu to dropdown-btn-group
