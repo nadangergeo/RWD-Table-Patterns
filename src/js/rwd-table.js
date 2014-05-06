@@ -268,7 +268,7 @@
 
         //insert sticky table header
         if($('html').hasClass('lt-ie10')){
-            that.$tableScrollWrapper.closest('.container').prepend(that.$stickyTableHeader);
+            that.$tableWrapper.prepend(that.$stickyTableHeader);
         } else {
             that.$table.before(that.$stickyTableHeader);
         }
