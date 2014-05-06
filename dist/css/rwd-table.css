@@ -36,7 +36,7 @@
 .lt-ie8 .btn-toolbar {
   display: none;
 }
-.table-responsive {
+.table-responsive-awesome {
   position: relative;
   width: 100%;
   margin-bottom: 20px;
@@ -47,108 +47,108 @@
   border: 1px solid #dddddd;
   -webkit-overflow-scrolling: touch;
 }
-.table-responsive > .table {
+.table-responsive-awesome > .table {
   margin-bottom: 0;
 }
-.table-responsive > .table > thead > tr > th,
-.table-responsive > .table > tbody > tr > th,
-.table-responsive > .table > tfoot > tr > th,
-.table-responsive > .table > thead > tr > td,
-.table-responsive > .table > tbody > tr > td,
-.table-responsive > .table > tfoot > tr > td {
+.table-responsive-awesome > .table > thead > tr > th,
+.table-responsive-awesome > .table > tbody > tr > th,
+.table-responsive-awesome > .table > tfoot > tr > th,
+.table-responsive-awesome > .table > thead > tr > td,
+.table-responsive-awesome > .table > tbody > tr > td,
+.table-responsive-awesome > .table > tfoot > tr > td {
   white-space: nowrap;
 }
-.table-responsive > .table-bordered {
+.table-responsive-awesome > .table-bordered {
   border: 0;
 }
-.table-responsive > .table-bordered > thead > tr > th:first-child,
-.table-responsive > .table-bordered > tbody > tr > th:first-child,
-.table-responsive > .table-bordered > tfoot > tr > th:first-child,
-.table-responsive > .table-bordered > thead > tr > td:first-child,
-.table-responsive > .table-bordered > tbody > tr > td:first-child,
-.table-responsive > .table-bordered > tfoot > tr > td:first-child {
+.table-responsive-awesome > .table-bordered > thead > tr > th:first-child,
+.table-responsive-awesome > .table-bordered > tbody > tr > th:first-child,
+.table-responsive-awesome > .table-bordered > tfoot > tr > th:first-child,
+.table-responsive-awesome > .table-bordered > thead > tr > td:first-child,
+.table-responsive-awesome > .table-bordered > tbody > tr > td:first-child,
+.table-responsive-awesome > .table-bordered > tfoot > tr > td:first-child {
   border-left: 0;
 }
-.table-responsive > .table-bordered > thead > tr > th:last-child,
-.table-responsive > .table-bordered > tbody > tr > th:last-child,
-.table-responsive > .table-bordered > tfoot > tr > th:last-child,
-.table-responsive > .table-bordered > thead > tr > td:last-child,
-.table-responsive > .table-bordered > tbody > tr > td:last-child,
-.table-responsive > .table-bordered > tfoot > tr > td:last-child {
+.table-responsive-awesome > .table-bordered > thead > tr > th:last-child,
+.table-responsive-awesome > .table-bordered > tbody > tr > th:last-child,
+.table-responsive-awesome > .table-bordered > tfoot > tr > th:last-child,
+.table-responsive-awesome > .table-bordered > thead > tr > td:last-child,
+.table-responsive-awesome > .table-bordered > tbody > tr > td:last-child,
+.table-responsive-awesome > .table-bordered > tfoot > tr > td:last-child {
   border-right: 0;
 }
-.table-responsive > .table-bordered > tbody > tr:last-child > th,
-.table-responsive > .table-bordered > tfoot > tr:last-child > th,
-.table-responsive > .table-bordered > tbody > tr:last-child > td,
-.table-responsive > .table-bordered > tfoot > tr:last-child > td {
+.table-responsive-awesome > .table-bordered > tbody > tr:last-child > th,
+.table-responsive-awesome > .table-bordered > tfoot > tr:last-child > th,
+.table-responsive-awesome > .table-bordered > tbody > tr:last-child > td,
+.table-responsive-awesome > .table-bordered > tfoot > tr:last-child > td {
   border-bottom: 0;
 }
-.table-complex {
-  font-size: 12px;
-  -webkit-text-size-adjust: none;
-  line-height: 1.5em;
-}
-.mq.js .table-complex th[data-priority],
-.mq.js .table-complex td[data-priority] {
+.mq.js th[data-priority],
+.mq.js td[data-priority] {
   display: none;
 }
-.lt-ie9.mq.js .table-complex th[data-priority="1"],
-.lt-ie9.mq.js .table-complex td[data-priority="1"] {
+.lt-ie9.mq.js th[data-priority="1"],
+.lt-ie9.mq.js td[data-priority="1"] {
   display: inline;
 }
-.mq.js .table-complex th[data-priority="1"],
-.mq.js .table-complex td[data-priority="1"] {
+.mq.js th[data-priority="1"],
+.mq.js td[data-priority="1"] {
   display: table-cell;
 }
 @media screen and (min-width: 480px) {
-  .lt-ie9.mq.js .table-complex th[data-priority="2"],
-  .lt-ie9.mq.js .table-complex td[data-priority="2"] {
+  .lt-ie9.mq.js th[data-priority="2"],
+  .lt-ie9.mq.js td[data-priority="2"] {
     display: inline;
   }
-  .mq.js .table-complex th[data-priority="2"],
-  .mq.js .table-complex td[data-priority="2"] {
+  .mq.js th[data-priority="2"],
+  .mq.js td[data-priority="2"] {
     display: table-cell;
   }
 }
 @media screen and (min-width: 640px) {
-  .lt-ie9.mq.js .table-complex th[data-priority="3"],
-  .lt-ie9.mq.js .table-complex td[data-priority="3"] {
+  .lt-ie9.mq.js th[data-priority="3"],
+  .lt-ie9.mq.js td[data-priority="3"] {
     display: inline;
   }
-  .mq.js .table-complex th[data-priority="3"],
-  .mq.js .table-complex td[data-priority="3"] {
+  .mq.js th[data-priority="3"],
+  .mq.js td[data-priority="3"] {
     display: table-cell;
   }
 }
 @media screen and (min-width: 800px) {
-  .lt-ie9.mq.js .table-complex th[data-priority="4"],
-  .lt-ie9.mq.js .table-complex td[data-priority="4"] {
+  .lt-ie9.mq.js th[data-priority="4"],
+  .lt-ie9.mq.js td[data-priority="4"] {
     display: inline;
   }
-  .mq.js .table-complex th[data-priority="4"],
-  .mq.js .table-complex td[data-priority="4"] {
+  .mq.js th[data-priority="4"],
+  .mq.js td[data-priority="4"] {
     display: table-cell;
   }
 }
 @media screen and (min-width: 960px) {
-  .lt-ie9.mq.js .table-complex th[data-priority="5"],
-  .lt-ie9.mq.js .table-complex td[data-priority="5"] {
+  .lt-ie9.mq.js th[data-priority="5"],
+  .lt-ie9.mq.js td[data-priority="5"] {
     display: inline;
   }
-  .mq.js .table-complex th[data-priority="5"],
-  .mq.js .table-complex td[data-priority="5"] {
+  .mq.js th[data-priority="5"],
+  .mq.js td[data-priority="5"] {
     display: table-cell;
   }
 }
 @media screen and (min-width: 1120px) {
-  .lt-ie9.mq.js .table-complex th[data-priority="6"],
-  .lt-ie9.mq.js .table-complex td[data-priority="6"] {
+  .lt-ie9.mq.js th[data-priority="6"],
+  .lt-ie9.mq.js td[data-priority="6"] {
     display: inline;
   }
-  .mq.js .table-complex th[data-priority="6"],
-  .mq.js .table-complex td[data-priority="6"] {
+  .mq.js th[data-priority="6"],
+  .mq.js td[data-priority="6"] {
     display: table-cell;
   }
+}
+table.table-small-font {
+  font-size: 12px;
+  -webkit-text-size-adjust: none;
+  line-height: 1.5em;
 }
 table.focus-on tbody tr:hover {
   cursor: pointer;

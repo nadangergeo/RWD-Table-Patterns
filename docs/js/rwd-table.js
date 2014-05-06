@@ -15,7 +15,9 @@
         var that = this;
 
         this.options = options;
-        this.$table = $(element);
+        this.$tableWrapper = null; //defined later in wrapTable
+        this.$tableScrollWrapper = $(element); //defined later in wrapTable
+        this.$table = $(element).find('table');
 
         //if the table doesn't have a unique id, give it one.
         //The id will be a random hexadecimal value, prefixed with id.
@@ -23,9 +25,6 @@
             var uid = 'id' + Math.random().toString(16).slice(2);
             this.$table.prop('id', uid);
         }
-
-        this.$tableWrapper = null; //defined later in wrapTable
-        this.$tableScrollWrapper = null; //defined later in wrapTable
 
         this.$tableClone = null; //defined farther down
         this.$stickyTableHeader = null; //defined farther down
@@ -122,22 +121,15 @@
     };
 
     // Wrap table
-    ResponsiveTable.prototype.wrapTable = function() {
-        var that = this;
-
-        // wrap table in div for scrolling if needed
-        if(that.$table.parent().hasClass('table-responsive') === false){
-            // console.log('Wrapped table with scroll-wrapper');
-            that.$table.wrap('<div class="table-responsive"/>');
-        }
-        that.$tableScrollWrapper = that.$table.parent();
-        
-        that.$tableScrollWrapper.wrap('<div class="table-wrapper"/>');
-        that.$tableWrapper = that.$tableScrollWrapper.parent();
+    ResponsiveTable.prototype.wrapTable = function() {        
+        this.$tableScrollWrapper.wrap('<div class="table-wrapper"/>');
+        this.$tableWrapper = this.$tableScrollWrapper.parent();
     };
 
     // Create toolbar with buttons
     ResponsiveTable.prototype.createButtonToolbar = function() {
+        var that = this;
+
         this.$btnToolbar = $('<div class="btn-toolbar" />');
 
         this.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
@@ -161,8 +153,10 @@
             // Add focus btn to toolbar
             this.$btnToolbar.append(this.$focusGroup);
 
-            // Bind focus btn to call activateFocus() with this context on click.
-            this.$focusBtn.click(this.activateFocus.bind(this));
+            // bind click on focus btn
+            this.$focusBtn.click(function(){
+                $.proxy(that.activateFocus(), that);
+            });
         }
 
          // Display-all btn
@@ -177,8 +171,10 @@
                 this.$displayAllBtn.addClass('btn-primary');
             }
 
-            // Bind display-all btn to call displayAll(null, true) with this context on click.
-            this.$displayAllBtn.click(this.displayAll.bind(this, null, true));
+            // bind click on display-all btn
+            this.$displayAllBtn.click(function(){
+                $.proxy(that.displayAll(null, true), that);
+            });
         }
 
         //add dropdown btn and menu to dropdown-btn-group
@@ -275,7 +271,7 @@
 
         //insert sticky table header
         if($('html').hasClass('lt-ie10')){
-            that.$tableScrollWrapper.closest('.container').prepend(that.$stickyTableHeader);
+            that.$tableWrapper.prepend(that.$stickyTableHeader);
         } else {
             that.$table.before(that.$stickyTableHeader);
         }
@@ -625,10 +621,9 @@
     // ==================
 
     $(window).on('load.responsiveTable.data-api', function () {
-        $('table[data-complex="true"]').each(function () {
-            var $table = $(this);
-            $table.addClass('table-complex');
-            $table.responsiveTable($table.data());
+        $('[data-awesome-init]').each(function () {
+            var $tableScrollWrapper = $(this);
+            $tableScrollWrapper.responsiveTable($tableScrollWrapper.data());
         });
     });
 

@@ -8,7 +8,9 @@
         var that = this;
 
         this.options = options;
-        this.$table = $(element);
+        this.$tableWrapper = null; //defined later in wrapTable
+        this.$tableScrollWrapper = $(element); //defined later in wrapTable
+        this.$table = $(element).find('table');
 
         //if the table doesn't have a unique id, give it one.
         //The id will be a random hexadecimal value, prefixed with id.
@@ -16,9 +18,6 @@
             var uid = 'id' + Math.random().toString(16).slice(2);
             this.$table.prop('id', uid);
         }
-
-        this.$tableWrapper = null; //defined later in wrapTable
-        this.$tableScrollWrapper = null; //defined later in wrapTable
 
         this.$tableClone = null; //defined farther down
         this.$stickyTableHeader = null; //defined farther down
@@ -115,18 +114,9 @@
     };
 
     // Wrap table
-    ResponsiveTable.prototype.wrapTable = function() {
-        var that = this;
-
-        // wrap table in div for scrolling if needed
-        if(that.$table.parent().hasClass('table-responsive') === false){
-            // console.log('Wrapped table with scroll-wrapper');
-            that.$table.wrap('<div class="table-responsive"/>');
-        }
-        that.$tableScrollWrapper = that.$table.parent();
-        
-        that.$tableScrollWrapper.wrap('<div class="table-wrapper"/>');
-        that.$tableWrapper = that.$tableScrollWrapper.parent();
+    ResponsiveTable.prototype.wrapTable = function() {        
+        this.$tableScrollWrapper.wrap('<div class="table-wrapper"/>');
+        this.$tableWrapper = this.$tableScrollWrapper.parent();
     };
 
     // Create toolbar with buttons
@@ -624,10 +614,9 @@
     // ==================
 
     $(window).on('load.responsiveTable.data-api', function () {
-        $('table[data-complex="true"]').each(function () {
-            var $table = $(this);
-            $table.addClass('table-complex');
-            $table.responsiveTable($table.data());
+        $('[data-awesome-init]').each(function () {
+            var $tableScrollWrapper = $(this);
+            $tableScrollWrapper.responsiveTable($tableScrollWrapper.data());
         });
     });
 

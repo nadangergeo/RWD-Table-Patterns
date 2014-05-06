@@ -62,7 +62,7 @@
    } 
 }
 
-.table-responsive {
+.table-responsive-awesome {
     position: relative;
     width: 100%;
     margin-bottom: @line-height-computed;
@@ -125,15 +125,9 @@
 
     }
 }
-
-.table-complex {
-    font-size: @font-size-small;
-    -webkit-text-size-adjust:none;
-    line-height: 1.5em;
-}
     
 // Column priority
-.mq.js .table-complex {
+.mq.js {
     
     th[data-priority],
     td[data-priority] {
@@ -207,6 +201,12 @@
 
 //table utility classes
 table {
+
+    &.table-small-font {
+        font-size: @font-size-small;
+        -webkit-text-size-adjust:none;
+        line-height: 1.5em;
+    }
 
     // focus
     &.focus-on tbody {
