@@ -130,28 +130,6 @@
     font-size: @font-size-small;
     -webkit-text-size-adjust:none;
     line-height: 1.5em;
-    
-    // focus
-    &.focus-on tbody {
-        tr:hover {
-            cursor: pointer;
-        }
-
-        tr {
-            &.unfocused {
-                th, td { 
-                    color: @gray-light;
-                    color: rgba(0,0,0,0.4);
-                }
-            }
-            &.focused {
-                th, td { 
-                    background-color: @brand-info; 
-                    color: #000;
-                }
-            }
-        }
-    }
 }
     
 // Column priority
@@ -228,7 +206,30 @@
 }
 
 //table utility classes
-.table {
+table {
+
+    // focus
+    &.focus-on tbody {
+        tr:hover {
+            cursor: pointer;
+        }
+
+        tr {
+            &.unfocused {
+                th, td { 
+                    color: @gray-light;
+                    color: rgba(0,0,0,0.4);
+                }
+            }
+            &.focused {
+                th, td { 
+                    background-color: @brand-info; 
+                    color: #000;
+                }
+            }
+        }
+    }
+
     //hide cell
     th.col-hide,
     td.col-hide {

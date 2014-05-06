@@ -88,19 +88,6 @@
   -webkit-text-size-adjust: none;
   line-height: 1.5em;
 }
-.table-complex.focus-on tbody tr:hover {
-  cursor: pointer;
-}
-.table-complex.focus-on tbody tr.unfocused th,
-.table-complex.focus-on tbody tr.unfocused td {
-  color: #999999;
-  color: rgba(0, 0, 0, 0.4);
-}
-.table-complex.focus-on tbody tr.focused th,
-.table-complex.focus-on tbody tr.focused td {
-  background-color: #5bc0de;
-  color: #000;
-}
 .mq.js .table-complex th[data-priority],
 .mq.js .table-complex td[data-priority] {
   display: none;
@@ -163,24 +150,37 @@
     display: table-cell;
   }
 }
-.table th.col-hide,
-.table td.col-hide {
+table.focus-on tbody tr:hover {
+  cursor: pointer;
+}
+table.focus-on tbody tr.unfocused th,
+table.focus-on tbody tr.unfocused td {
+  color: #999999;
+  color: rgba(0, 0, 0, 0.4);
+}
+table.focus-on tbody tr.focused th,
+table.focus-on tbody tr.focused td {
+  background-color: #5bc0de;
+  color: #000;
+}
+table th.col-hide,
+table td.col-hide {
   display: none;
 }
-.table th.col-show,
-.table td.col-show {
+table th.col-show,
+table td.col-show {
   display: inline;
 }
-.lt-ie9 .table th.col-show,
-.lt-ie9 .table td.col-show {
+.lt-ie9 table th.col-show,
+.lt-ie9 table td.col-show {
   display: table-cell;
 }
-.lt-ie9 .table.display-all th,
-.lt-ie9 .table.display-all td {
+.lt-ie9 table.display-all th,
+.lt-ie9 table.display-all td {
   display: inline !important;
 }
-.table.display-all th,
-.table.display-all td {
+table.display-all th,
+table.display-all td {
   display: table-cell !important;
 }
 .sticky-table-header {
