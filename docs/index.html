@@ -1062,7 +1062,6 @@
            <h3>Markup</h3>
            <ol>
              <li>Add the classes <code>.table</code> to the tables and wrap them in <code>.table-responsive</code>, as usual when using Bootstrap.</li>
-             <li>Add <code>data-pattern="priority-columns"</code> to the <code>.table-responsive</code> div (<i>more patterns might be added in the future</i>).</li>
              <li>If the table has complex data and many columns you can give it the class <code>.table-small-font</code> (highly recommended).</li>
              <li>The table can also utilize Twitter Bootstrap's table classes, such as <code>.table-striped</code> and <code>.table-bordered</code>.</li>
              <li>You need to give the table a unique <code>id</code> (if you don't, a randomized id will be assigned).</li>
@@ -1075,7 +1074,10 @@
 &lt;/div&gt;</code></pre>
 
             <h3>Initalize via data attributes</h3>
-            <p>If you don't want to initialize with JavaScript, you don't have to do anything really (just make sure you've added the <code>data-pattern</code> attribute (See step 2 in markup).</p>
+            <p>You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute <code>data-pattern="priority-columns"</code> to the <code>.table-responsive</code> div.</p>
+            <pre><code>&lt;div class="table-responsive" data-pattern="priority-columns"&gt;
+      ...
+&lt;/div&gt;</code></pre>
 
             <h3>Initalize via JavaScript</h3>
             <pre><code>&lt;script&gt;
@@ -1086,7 +1088,7 @@
              
             <h3>Options</h3>
             <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code> with hyphens instead of camelCase, as in <code>data-add-focus-btn=""</code>.</p>
-             <div class="table-responsive">
+             <div class="table-responsive" data-pattern="">
                <table class="table table-bordered table-striped">
                  <thead>
                   <tr>
@@ -1097,15 +1099,15 @@
                   </tr>
                  </thead>
                  <tbody>
-<!--                   <tr>
+                  <tr>
                     <td>pattern</td>
                     <td>string</td>
-                    <td>''</td>
+                    <td>'priority-columns'</td>
                     <td>
                       <p>What responsive table pattern to use. For now, <code>'priority-columns'</code> is the only pattern available.</p>
-                      <p><strong>Note:</strong> This option needs to be added via a data-attribute.</p>
+                      <p><strong>Tips:</strong> When initalizing via JavaScript, add <code>data-priority=""</code> to responsive tables you wan't to exclude.</p>
                     </td>
-                  </tr> -->
+                  </tr>
                   <tr>
                     <td>stickyTableHeader</td>
                     <td>boolean</td>
@@ -1148,7 +1150,7 @@
              </div>
 
            <h3>Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
-           <div class="table-responsive">
+           <div class="table-responsive" data-pattern="">
               <table class="table table-bordered">
                  <thead>
                     <tr>
@@ -1207,9 +1209,9 @@
 
       <script src="js/rwd-table.min.js"></script>
       <script>
-       $(function() {
-          $('.table-responsive').responsiveTable();
-      });
+      //  $(function() {
+      //     $('.table-responsive').responsiveTable();
+      // });
       </script>
 		
 	</body>

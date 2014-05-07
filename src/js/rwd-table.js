@@ -12,6 +12,9 @@
         this.$tableScrollWrapper = $(element); //defined later in wrapTable
         this.$table = $(element).find('table');
 
+        //apply pattern option as data-attribute, in case it was set via js
+        this.$tableScrollWrapper.attr('data-pattern', this.options.pattern);
+
         //if the table doesn't have a unique id, give it one.
         //The id will be a random hexadecimal value, prefixed with id.
         if(!this.$table.prop('id')) {
@@ -40,7 +43,7 @@
         this.$focusBtn = null; //defined farther down
 
         //misc
-        this.displayAllTrigger = 'display-all-' + this.$table.prop('id') + '.responsiveTable';
+        this.displayAllTrigger = 'display-all-' + this.$table.prop('id') + '.responsive-table';
         this.idPrefix = this.$table.prop('id') + '-col-';
 
         // Check if iOS
@@ -99,6 +102,7 @@
     };
 
     ResponsiveTable.DEFAULTS = {
+        pattern: 'priority-columns',
         stickyTableHeader: true,
         fixedNavbar: '.navbar-fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
         addDisplayAllBtn: true, // should it have a display-all button?
@@ -580,13 +584,13 @@
 
     $.fn.responsiveTable = function (option) {
         return this.each(function () {
-            if(typeof $(this).data('pattern') === 'undefined') {
-                return;
-            }
-
             var $this   = $(this);
             var data    = $this.data('responsiveTable');
             var options = $.extend({}, ResponsiveTable.DEFAULTS, $this.data(), typeof option === 'object' && option);
+
+            if(options.pattern === '') {
+                return;
+            }
 
             if (!data) {
                 $this.data('responsiveTable', (data = new ResponsiveTable(this, options)));
@@ -611,7 +615,7 @@
     // RESPONSIVE TABLE DATA-API
     // ==================
 
-    $(window).on('load.responsiveTable.data-api', function () {
+    $(document).on('ready.responsive-table.data-api', function () {
         $('[data-pattern]').each(function () {
             var $tableScrollWrapper = $(this);
             $tableScrollWrapper.responsiveTable($tableScrollWrapper.data());
