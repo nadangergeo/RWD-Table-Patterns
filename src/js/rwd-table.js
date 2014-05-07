@@ -47,8 +47,8 @@
         // property to save performance
         this.iOS = isIOS();
       
-      // Setup table
-      // -------------------------
+        // Setup table
+        // -------------------------
       
         //wrap table
         this.wrapTable();
