@@ -106,7 +106,6 @@
     };
 
     ResponsiveTable.DEFAULTS = {
-        pattern: '',
         stickyTableHeader: true,
         fixedNavbar: '.navbar-fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
         addDisplayAllBtn: true, // should it have a display-all button?
@@ -587,21 +586,21 @@
 
     $.fn.responsiveTable = function (option) {
         return this.each(function () {
-                var $this   = $(this);
-                var data    = $this.data('responsiveTable');
-                var options = $.extend({}, ResponsiveTable.DEFAULTS, $this.data(), typeof option === 'object' && option);
+            if(typeof $(this).data('pattern') === 'undefined') {
+                return;
+            }
 
-                if(options.pattern === '') {
-                    return;
-                }
+            var $this   = $(this);
+            var data    = $this.data('responsiveTable');
+            var options = $.extend({}, ResponsiveTable.DEFAULTS, $this.data(), typeof option === 'object' && option);
 
-                if (!data) {
-                    $this.data('responsiveTable', (data = new ResponsiveTable(this, options)));
-                }
-                if (typeof option === 'string') {
-                    data[option]();
-                }
-            });
+            if (!data) {
+                $this.data('responsiveTable', (data = new ResponsiveTable(this, options)));
+            }
+            if (typeof option === 'string') {
+                data[option]();
+            }
+        });
     };
 
     $.fn.responsiveTable.Constructor = ResponsiveTable;
