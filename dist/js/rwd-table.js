@@ -621,7 +621,7 @@
     // ==================
 
     $(window).on('load.responsiveTable.data-api', function () {
-        $('[data-awesome-init]').each(function () {
+        $('[data-priority-columns="true"]').each(function () {
             var $tableScrollWrapper = $(this);
             $tableScrollWrapper.responsiveTable($tableScrollWrapper.data());
         });

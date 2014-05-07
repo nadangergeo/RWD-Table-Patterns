@@ -105,14 +105,14 @@
                   <h2>Demo</h2>
               </div>
 
-               <div class="table-responsive-awesome" data-awesome-init>
+               <div class="table-responsive" data-priority-columns="true">
                    <table cellspacing="0" id="tech-companies-1" class="table table-small-font table-bordered table-striped">
                       <thead>
                          <tr>
                             <th>Company</th>
-                            <th data-priority="1" >Last Trade</th>
+                            <th data-priority="1">Last Trade</th>
                             <th data-priority="3">Trade Time</th>
-                            <th data-priority="1" >Change</th>
+                            <th data-priority="1">Change</th>
                             <th data-priority="3">Prev Close</th>
                             <th data-priority="3">Open</th>
                             <th data-priority="6">Bid</th>
@@ -568,14 +568,14 @@
 
                <div style="height:50px;"></div>
 
-<!--                <div class="table-responsive-awesome">
+<!--                <div class="table-responsive" data-complex="true">
                    <table cellspacing="0" id="tech-companies-2" class="table table-small-font table-striped">
                       <thead>
                          <tr>
                             <th>Company</th>
-                            <th data-priority="1" >Last Trade</th>
+                            <th data-priority="1">Last Trade</th>
                             <th data-priority="3">Trade Time</th>
-                            <th data-priority="1" >Change</th>
+                            <th data-priority="1">Change</th>
                             <th data-priority="3">Prev Close</th>
                             <th data-priority="3">Open</th>
                             <th data-priority="6">Bid</th>
@@ -1060,28 +1060,28 @@
             </ul>
 
            <h3>Markup</h3>
-           <p>Add the classes <code>.table</code> to the tables and wrap them in <code>.table-responsive-awesome</code>.</p>
+           <p>Add the classes <code>.table</code> to the tables and wrap them in <code>.table-responsive</code>.</p>
            <p>If the table has complex data and many columns you can give it the class <code>.table-small-font</code> (highly recommended).</p>
            <p>The table can also utilize Twitter Bootstrap's table classes, such as <code>.table-striped</code> and <code>.table-bordered</code>.</p>
            <p>You need to give the table a unique <code>id</code> (if you don't, a randomized id will be assigned).</p>
 
-           <pre><code>&lt;div class="table-responsive-awesome"&gt;
+           <pre><code>&lt;div class="table-responsive"&gt;
    &lt;table id="example-table" class="table table-small-font table-bordered table-striped"&gt;
       ...
    &lt;/table&gt;
 &lt;/div&gt;</code></pre>
 
             <h3>Initalize via data attributes</h3>
-            <p>You can initalize the table withouth writing any JavaScript, just like Bootstrap. Just add the attribute <code>data-awesome-init</code> to the <code>.table-responsive-awesome</code> div.</p>
+            <p>You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute <code>data-init-table</code> to the <code>.table-responsive</code> div.</p>
 
-            <pre><code>&lt;div class="table-responsive-awesome" data-awesome-init&gt;
+            <pre><code>&lt;div class="table-responsive" data-priority-columns="true"&gt;
       ...
 &lt;/div&gt;</code></pre>
 
             <h3>Initalize via JavaScript</h3>
             <pre><code>&lt;script&gt;
    $(function() {
-      $('.table-responsive-awesome').responsiveTable({<em>options</em>});
+      $('.table-responsive').responsiveTable({<em>options</em>});
    });
 &lt;/script&gt;</code></pre>
              
@@ -1205,7 +1205,7 @@
       <script src="js/rwd-table.js"></script>
       <script>
        $(function() {
-          // $(".table-responsive-awesome").responsiveTable();
+          // $(".table-responsive").responsiveTable();
       });
       </script>
 		
