@@ -105,7 +105,7 @@
                   <h2>Demo</h2>
               </div>
 
-               <div class="table-responsive" data-priority-columns="true">
+               <div class="table-responsive" data-pattern="priority-columns">
                    <table cellspacing="0" id="tech-companies-1" class="table table-small-font table-bordered table-striped">
                       <thead>
                          <tr>
@@ -1072,9 +1072,9 @@
 &lt;/div&gt;</code></pre>
 
             <h3>Initalize via data attributes</h3>
-            <p>You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute <code>data-init-table</code> to the <code>.table-responsive</code> div.</p>
+            <p>You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute <code>data-pattern="priority-columns"</code> to the <code>.table-responsive</code> div.</p>
 
-            <pre><code>&lt;div class="table-responsive" data-priority-columns="true"&gt;
+            <pre><code>&lt;div class="table-responsive" data-pattern="priority-columns"&gt;
       ...
 &lt;/div&gt;</code></pre>
 
@@ -1098,6 +1098,12 @@
                   </tr>
                  </thead>
                  <tbody>
+<!--                   <tr>
+                    <td>pattern</td>
+                    <td>string</td>
+                    <td>'priority-columns'</td>
+                    <td>What responsive table pattern to use. For now, <code>'priority-columns'</code> is the only pattern available.</td>
+                  </tr> -->
                   <tr>
                     <td>stickyTableHeader</td>
                     <td>boolean</td>

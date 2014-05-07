@@ -614,7 +614,7 @@
     // ==================
 
     $(window).on('load.responsiveTable.data-api', function () {
-        $('[data-priority-columns="true"]').each(function () {
+        $('[data-pattern="priority-columns"]').each(function () {
             var $tableScrollWrapper = $(this);
             $tableScrollWrapper.responsiveTable($tableScrollWrapper.data());
         });
