@@ -49,6 +49,9 @@
         this.$focusGroup = null; //defined farther down
         this.$focusBtn = null; //defined farther down
 
+        this.$fullScreenGroup = null; //defined farther down
+        this.$fullScreenBtn = null; //defined farther down
+
         //misc
         this.displayAllTrigger = 'display-all-' + this.$table.prop('id') + '.responsive-table';
         this.idPrefix = this.$table.prop('id') + '-col-';
@@ -114,7 +117,9 @@
         fixedNavbar: '.navbar-fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
         addDisplayAllBtn: true, // should it have a display-all button?
         addFocusBtn: true,  // should it have a focus button?
-        focusBtnIcon: 'glyphicon glyphicon-screenshot'
+        addFullScreenBtn: true,  // should it have a full screen button?
+        focusBtnIcon: 'glyphicon glyphicon-screenshot',
+        fullScreenBtnIcon: 'glyphicon glyphicon-resize-full'
     };
 
     // Wrap table
@@ -139,7 +144,7 @@
             this.$focusGroup = $('<div class="btn-group focus-btn-group" />');
 
             // Create focus btn
-            this.$focusBtn = $('<button class="btn btn-default">Focus</button>');
+            this.$focusBtn = $('<button class="btn btn-default"></button>');
 
             if(this.options.focusBtnIcon) {
                 this.$focusBtn.prepend('<span class="' + this.options.focusBtnIcon + '"></span> ');
@@ -153,6 +158,31 @@
             // bind click on focus btn
             this.$focusBtn.click(function(){
                 $.proxy(that.activateFocus(), that);
+            });
+        }
+
+        // Full screen btn
+        if(this.options.addFullScreenBtn) {
+            // Create focus btn group
+            this.$fullScreenGroup = $('<div class="btn-group full-screen-btn-group" />');
+
+            // Create focus btn
+            this.$fullScreenBtn = $('<button class="btn btn-default"></button>');
+
+            if(this.options.fullScreenBtnIcon) {
+                this.$fullScreenBtn.prepend('<span class="' + this.options.fullScreenBtnIcon + '"></span> ');
+            }
+
+            // Add btn to group
+            this.$fullScreenGroup.append(this.$fullScreenBtn);
+            // Add focus btn to toolbar
+            this.$btnToolbar.append(this.$fullScreenGroup);
+
+            // bind click on focus btn
+            this.$fullScreenBtn.click(function(){
+                that.$fullScreenBtn.toggleClass('btn-primary');
+                $('body').toggleClass('full-screen-active');
+                that.$tableWrapper.toggleClass('full-screen');
             });
         }
 
@@ -323,7 +353,7 @@
                 that.$stickyTableHeader.removeClass('border-radius-fix');
             }
 
-            if (shouldBeVisible) {
+            if (shouldBeVisible || that.$tableWrapper.hasClass('full-screen')) {
                 //show sticky table header and update top and width.
                 that.$stickyTableHeader.css({ 'visibility': 'visible', 'top': top + 'px', 'width': that.$tableScrollWrapper.innerWidth() + 'px'});
 
@@ -356,7 +386,7 @@
                 top = top - rubberBandOffset;
             }
 
-            if (shouldBeVisible) {
+            if (shouldBeVisible || that.$tableWrapper.hasClass('full-screen')) {
                 //show sticky table header (animate repositioning)
                 that.$stickyTableHeader.css({ 'visibility': 'visible' });
                 that.$stickyTableHeader.animate({ 'top': top + 'px' }, animationDuration);
