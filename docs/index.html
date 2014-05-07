@@ -83,7 +83,7 @@
                </div>
                <div class="feature col-lg-3 col-md-6 col-sm-12">
                   <h4><i class="fa fa-mobile-phone"></i>Mobile first &amp; PE</h4>
-                  <p>Built with mobile first and progressive enhancement in mind.</p>
+                  <p>Built with mobile first, progressive enhancement in mind. Basically: the better the browser, the greater the experience.</p>
                </div>
                <div class="feature col-lg-3 col-md-6 col-sm-12">
                   <h4><i class="fa fa-coffee"></i>Graceful JS fallback</h4>
@@ -568,7 +568,7 @@
 
                <div style="height:50px;"></div>
 
-<!--                <div class="table-responsive" data-complex="true">
+<!--                <div class="table-responsive">
                    <table cellspacing="0" id="tech-companies-2" class="table table-small-font table-striped">
                       <thead>
                          <tr>
@@ -1060,23 +1060,22 @@
             </ul>
 
            <h3>Markup</h3>
-           <p>Add the classes <code>.table</code> to the tables and wrap them in <code>.table-responsive</code>.</p>
-           <p>If the table has complex data and many columns you can give it the class <code>.table-small-font</code> (highly recommended).</p>
-           <p>The table can also utilize Twitter Bootstrap's table classes, such as <code>.table-striped</code> and <code>.table-bordered</code>.</p>
-           <p>You need to give the table a unique <code>id</code> (if you don't, a randomized id will be assigned).</p>
+           <ol>
+             <li>Add the classes <code>.table</code> to the tables and wrap them in <code>.table-responsive</code>, as usual when using Bootstrap.</li>
+             <li>Add <code>data-pattern="priority-columns"</code> to the <code>.table-responsive</code> div (<i>more patterns might be added in the future</i>).</li>
+             <li>If the table has complex data and many columns you can give it the class <code>.table-small-font</code> (highly recommended).</li>
+             <li>The table can also utilize Twitter Bootstrap's table classes, such as <code>.table-striped</code> and <code>.table-bordered</code>.</li>
+             <li>You need to give the table a unique <code>id</code> (if you don't, a randomized id will be assigned).</li>
+           </ol>
 
-           <pre><code>&lt;div class="table-responsive"&gt;
+           <pre><code>&lt;div class="table-responsive" data-pattern="priority-columns"&gt;
    &lt;table id="example-table" class="table table-small-font table-bordered table-striped"&gt;
       ...
    &lt;/table&gt;
 &lt;/div&gt;</code></pre>
 
             <h3>Initalize via data attributes</h3>
-            <p>You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute <code>data-pattern="priority-columns"</code> to the <code>.table-responsive</code> div.</p>
-
-            <pre><code>&lt;div class="table-responsive" data-pattern="priority-columns"&gt;
-      ...
-&lt;/div&gt;</code></pre>
+            <p>If you don't want to initialize with JavaScript, you don't have to do anything really (just make sure you've added the <code>data-pattern</code> attribute (See step 2 in markup).</p>
 
             <h3>Initalize via JavaScript</h3>
             <pre><code>&lt;script&gt;
@@ -1101,8 +1100,11 @@
 <!--                   <tr>
                     <td>pattern</td>
                     <td>string</td>
-                    <td>'priority-columns'</td>
-                    <td>What responsive table pattern to use. For now, <code>'priority-columns'</code> is the only pattern available.</td>
+                    <td>''</td>
+                    <td>
+                      <p>What responsive table pattern to use. For now, <code>'priority-columns'</code> is the only pattern available.</p>
+                      <p><strong>Note:</strong> This option needs to be added via a data-attribute.</p>
+                    </td>
                   </tr> -->
                   <tr>
                     <td>stickyTableHeader</td>
@@ -1115,8 +1117,10 @@
                     <td>string</td>
                     <td>'.navbar-fixed-top'</td>
                     <td>
-                        <p>Is there a fixed navbar? The sticky table header needs to know about it!</p>
-                        <p>Example: <code>'#navbar'</code></p>
+                        <p>Is there a fixed navbar? The sticky table header needs to know about it!
+                          The option is the selector used to find the navbar. 
+                          Don't worry about the default value if you don't have a fixed navbar.</p>
+                        <p><strong>Example:</strong> <code>'#navbar'</code></p>
                     </td>
                   </tr>
                   <tr>
@@ -1204,7 +1208,7 @@
       <script src="js/rwd-table.js"></script>
       <script>
        $(function() {
-          // $(".table-responsive").responsiveTable();
+          $('.table-responsive').responsiveTable();
       });
       </script>
 		
