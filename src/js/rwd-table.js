@@ -56,12 +56,6 @@
         //create toolbar with buttons
         this.createButtonToolbar();
 
-        if(this.options.displayAll){
-            //display all columns
-            this.displayAll(true, false);
-        }
-
-
         // Setup cells
         // -------------------------
 
@@ -109,8 +103,7 @@
         fixedNavbar: '.navbar-fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
         addDisplayAllBtn: true, // should it have a display-all button?
         addFocusBtn: true,  // should it have a focus button?
-        focusBtnIcon: 'glyphicon glyphicon-screenshot',
-        displayAll: false
+        focusBtnIcon: 'glyphicon glyphicon-screenshot'
     };
 
     // Wrap table
