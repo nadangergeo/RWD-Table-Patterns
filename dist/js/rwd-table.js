@@ -501,11 +501,6 @@
 
                 var colSpan = $cell.prop('colSpan');
 
-                // if colSpan is more than 1, give it the class 'spn-cell';
-                if(colSpan > 1) {
-                    $cell.addClass('spn-cell');
-                }
-
                 var numOfHidden = 0;
                 // loop through columns that the cell spans over
                 for (var k = idStart; k < (idStart + colSpan); k++) {
@@ -525,11 +520,17 @@
 
                 }
 
-                // if one of the columns that the cell belongs to is visible then show the cell
-                if(numOfHidden !== colSpan){
-                    $cell.show();
-                } else {
-                    $cell.hide(); //just in case
+                // if colSpan is more than 1
+                if(colSpan > 1) {
+                    //give it the class 'spn-cell';
+                    $cell.addClass('spn-cell');
+
+                    // if one of the columns that the cell belongs to is visible then show the cell
+                    if(numOfHidden !== colSpan){
+                        $cell.show();
+                    } else {
+                        $cell.hide(); //just in case
+                    }
                 }
 
                 //update colSpan to match number of visible columns that i belongs to
