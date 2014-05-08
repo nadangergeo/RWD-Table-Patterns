@@ -82,18 +82,10 @@
             this.createStickyTableHeader();
         }
 
-        // bind click on row
-        if(this.options.addFocusBtn) {
-            this.$bodyRows.click(function(){
-                $.proxy(that.focusOnRow($(this)), that);
-            });
-        }
-
         // hide toggle button if the list is empty
         if(this.$dropdownContainer.is(':empty')){
             this.$dropdownGroup.hide();
         }
-
 
         // Event binding
         // -------------------------
@@ -155,6 +147,11 @@
             // bind click on focus btn
             this.$focusBtn.click(function(){
                 $.proxy(that.activateFocus(), that);
+            });
+
+            // bind click on rows
+            this.$bodyRows.click(function(){
+                $.proxy(that.focusOnRow($(this)), that);
             });
         }
 
@@ -439,7 +436,7 @@
                         $.proxy(that.preserveDisplayAll(), that);
                         //remove display all class
                         that.$table.removeClass('display-all');
-                        if(this.$tableClone){
+                        if(that.$tableClone){
                             that.$tableClone.removeClass('display-all');
                         }
                         //switch off button
