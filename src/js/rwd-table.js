@@ -12,7 +12,7 @@
         this.$tableScrollWrapper = $(element); //defined later in wrapTable
         this.$table = $(element).find('table');
 
-        if(this.$table.length !== 0) {
+        if(this.$table.length !== 1) {
             throw new Error('Exactly one table is expected in a .table-responsive div.');
         }
 
