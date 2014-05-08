@@ -21,10 +21,8 @@
 
         //if the table doesn't have a unique id, give it one.
         //The id will be a random hexadecimal value, prefixed with id.
-        if(!this.$table.prop('id')) {
-            var uid = 'id' + Math.random().toString(16).slice(2);
-            this.$table.prop('id', uid);
-        }
+        //Used for triggers with displayAll button.
+        this.id = this.$table.prop('id') || this.$tableScrollWrapper.prop('id') || 'id' + Math.random().toString(16).slice(2);
 
         this.$tableClone = null; //defined farther down
         this.$stickyTableHeader = null; //defined farther down
@@ -47,8 +45,8 @@
         this.$focusBtn = null; //defined farther down
 
         //misc
-        this.displayAllTrigger = 'display-all-' + this.$table.prop('id') + '.responsive-table';
-        this.idPrefix = this.$table.prop('id') + '-col-';
+        this.displayAllTrigger = 'display-all-' + this.id + '.responsive-table';
+        this.idPrefix = this.id + '-col-';
 
         // Check if iOS
         // property to save performance
@@ -251,7 +249,7 @@
         that.$tableClone = that.$table.clone();
 
         //replace ids
-        that.$tableClone.prop('id', that.$table.prop('id') + '-clone');
+        that.$tableClone.prop('id', this.id + '-clone');
         that.$tableClone.find('[id]').each(function() {
             $(this).prop('id', $(this).prop('id') + '-clone');
         });
