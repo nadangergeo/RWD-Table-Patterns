@@ -142,6 +142,24 @@ module.exports = function(grunt) {
         'copy:docs'
     ]);
 
+    grunt.registerTask('patch', [
+        'bump-only:patch',
+        'build',
+        'bump-commit'
+    ]);
+
+    grunt.registerTask('minor', [
+        'bump-only:minor',
+        'build',
+        'bump-commit'
+    ]);
+
+    grunt.registerTask('major', [
+        'bump-only:major',
+        'build',
+        'bump-commit'
+    ]);
+
     // Default task(s).
     grunt.registerTask('default', ['build']);
 };
