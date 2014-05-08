@@ -119,7 +119,7 @@
         addFocusBtn: true,  // should it have a focus button?
         addFullScreenBtn: true,  // should it have a full screen button?
         focusBtnIcon: 'glyphicon glyphicon-screenshot',
-        fullScreenBtnIcon: 'glyphicon glyphicon-resize-full'
+        fullScreenBtnIcon: ['glyphicon', 'glyphicon-resize-full', 'glyphicon-resize-small']
     };
 
     // Wrap table
@@ -137,6 +137,43 @@
         this.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
         this.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>');
         this.$dropdownContainer = $('<ul class="dropdown-menu"/>');
+
+        // Full screen btn
+        if(this.options.addFullScreenBtn) {
+            // Create focus btn group
+            this.$fullScreenGroup = $('<div class="btn-group full-screen-btn-group" />');
+
+            // Create focus btn
+            this.$fullScreenBtn = $('<button class="btn btn-default"></button>');
+
+            if(this.options.fullScreenBtnIcon) {
+                this.$fullScreenBtn.prepend('<span class="' + this.options.fullScreenBtnIcon[0] + ' ' + this.options.fullScreenBtnIcon[1] + '"></span> ');
+            }
+
+            // Add btn to group
+            this.$fullScreenGroup.append(this.$fullScreenBtn);
+            // Add focus btn to toolbar
+            this.$btnToolbar.append(this.$fullScreenGroup);
+
+            // bind click on focus btn
+            this.$fullScreenBtn.click(function(){
+                $('body').toggleClass('full-screen-active');
+                that.$tableWrapper.toggleClass('full-screen');
+
+                if(that.$tableWrapper.hasClass('full-screen')){
+                    that.$tableScrollWrapper.css('max-height', $(window).height() - that.$btnToolbar.outerHeight());
+                } else {
+                    that.$tableScrollWrapper.css('max-height', 'none');
+                }
+
+                // toggle 'btn-primary' class on btn
+                that.$fullScreenBtn.toggleClass('btn-primary');
+
+                //toggle icon
+                that.$fullScreenBtn.find('span').toggleClass(that.options.fullScreenBtnIcon[1]);
+                that.$fullScreenBtn.find('span').toggleClass(that.options.fullScreenBtnIcon[2]);
+            });
+        }
 
         // Focus btn
         if(this.options.addFocusBtn) {
@@ -158,31 +195,6 @@
             // bind click on focus btn
             this.$focusBtn.click(function(){
                 $.proxy(that.activateFocus(), that);
-            });
-        }
-
-        // Full screen btn
-        if(this.options.addFullScreenBtn) {
-            // Create focus btn group
-            this.$fullScreenGroup = $('<div class="btn-group full-screen-btn-group" />');
-
-            // Create focus btn
-            this.$fullScreenBtn = $('<button class="btn btn-default"></button>');
-
-            if(this.options.fullScreenBtnIcon) {
-                this.$fullScreenBtn.prepend('<span class="' + this.options.fullScreenBtnIcon + '"></span> ');
-            }
-
-            // Add btn to group
-            this.$fullScreenGroup.append(this.$fullScreenBtn);
-            // Add focus btn to toolbar
-            this.$btnToolbar.append(this.$fullScreenGroup);
-
-            // bind click on focus btn
-            this.$fullScreenBtn.click(function(){
-                that.$fullScreenBtn.toggleClass('btn-primary');
-                $('body').toggleClass('full-screen-active');
-                that.$tableWrapper.toggleClass('full-screen');
             });
         }
 
@@ -336,7 +348,16 @@
 
         var shouldBeVisible   = (scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height());
 
-        if(useFixedSolution) {
+        if(that.$tableWrapper.hasClass('full-screen')){
+            // that.$stickyTableHeader.scrollLeft(that.$tableScrollWrapper.scrollLeft());
+
+            //add fixedSolution class
+            that.$stickyTableHeader.removeClass('fixed-solution');
+
+            top = that.$tableScrollWrapper.scrollTop();
+
+            that.$stickyTableHeader.css({ 'visibility': 'visible', 'top': top + 'px'});
+        } else if(useFixedSolution) {
             that.$stickyTableHeader.scrollLeft(that.$tableScrollWrapper.scrollLeft());
 
             //add fixedSolution class
@@ -353,7 +374,7 @@
                 that.$stickyTableHeader.removeClass('border-radius-fix');
             }
 
-            if (shouldBeVisible || that.$tableWrapper.hasClass('full-screen')) {
+            if (shouldBeVisible) {
                 //show sticky table header and update top and width.
                 that.$stickyTableHeader.css({ 'visibility': 'visible', 'top': top + 'px', 'width': that.$tableScrollWrapper.innerWidth() + 'px'});
 
@@ -386,7 +407,7 @@
                 top = top - rubberBandOffset;
             }
 
-            if (shouldBeVisible || that.$tableWrapper.hasClass('full-screen')) {
+            if (shouldBeVisible) {
                 //show sticky table header (animate repositioning)
                 that.$stickyTableHeader.css({ 'visibility': 'visible' });
                 that.$stickyTableHeader.animate({ 'top': top + 'px' }, animationDuration);

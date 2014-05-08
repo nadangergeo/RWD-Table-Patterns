@@ -296,6 +296,10 @@ body.full-screen-active {
   padding: 8px;
 }
 .table-wrapper.full-screen .table-responsive[data-pattern="priority-columns"] {
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+  position: static;
   height: 100%;
   position: relative;
   overflow-y: scroll;
@@ -303,4 +307,7 @@ body.full-screen-active {
 }
 .table-wrapper.full-screen .table-responsive[data-pattern="priority-columns"] .table {
   position: static;
+}
+.table-wrapper.full-screen .sticky-table-header {
+  border: none;
 }

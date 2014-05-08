@@ -424,16 +424,21 @@ body.full-screen-active {
   }
 
   .table-responsive[data-pattern="priority-columns"] {
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+    position: static;
     height: 100%;
-    // width: auto;
-    // min-width: 100%;
     position: relative;
     overflow-y: scroll;
     overflow-x: scroll;
 
     .table {
       position: static;
-      // min-width: 100%;
     }
+  }
+
+  .sticky-table-header {
+    border: none;
   }
 }
