@@ -19,15 +19,17 @@
         this.$tableScrollWrapper = $(element); //defined later in wrapTable
         this.$table = $(element).find('table');
 
+        if(this.$table.length !== 1) {
+            throw new Error('Exactly one table is expected in a .table-responsive div.');
+        }
+
         //apply pattern option as data-attribute, in case it was set via js
         this.$tableScrollWrapper.attr('data-pattern', this.options.pattern);
 
         //if the table doesn't have a unique id, give it one.
         //The id will be a random hexadecimal value, prefixed with id.
-        if(!this.$table.prop('id')) {
-            var uid = 'id' + Math.random().toString(16).slice(2);
-            this.$table.prop('id', uid);
-        }
+        //Used for triggers with displayAll button.
+        this.id = this.$table.prop('id') || this.$tableScrollWrapper.prop('id') || 'id' + Math.random().toString(16).slice(2);
 
         this.$tableClone = null; //defined farther down
         this.$stickyTableHeader = null; //defined farther down
@@ -50,8 +52,8 @@
         this.$focusBtn = null; //defined farther down
 
         //misc
-        this.displayAllTrigger = 'display-all-' + this.$table.prop('id') + '.responsive-table';
-        this.idPrefix = this.$table.prop('id') + '-col-';
+        this.displayAllTrigger = 'display-all-' + this.id + '.responsive-table';
+        this.idPrefix = this.id + '-col-';
 
         // Check if iOS
         // property to save performance
@@ -80,18 +82,10 @@
             this.createStickyTableHeader();
         }
 
-        // bind click on row
-        if(this.options.addFocusBtn) {
-            this.$bodyRows.click(function(){
-                $.proxy(that.focusOnRow($(this)), that);
-            });
-        }
-
         // hide toggle button if the list is empty
         if(this.$dropdownContainer.is(':empty')){
             this.$dropdownGroup.hide();
         }
-
 
         // Event binding
         // -------------------------
@@ -153,6 +147,11 @@
             // bind click on focus btn
             this.$focusBtn.click(function(){
                 $.proxy(that.activateFocus(), that);
+            });
+
+            // bind click on rows
+            this.$bodyRows.click(function(){
+                $.proxy(that.focusOnRow($(this)), that);
             });
         }
 
@@ -254,7 +253,7 @@
         that.$tableClone = that.$table.clone();
 
         //replace ids
-        that.$tableClone.prop('id', that.$table.prop('id') + '-clone');
+        that.$tableClone.prop('id', this.id + '-clone');
         that.$tableClone.find('[id]').each(function() {
             $(this).prop('id', $(this).prop('id') + '-clone');
         });
@@ -426,8 +425,6 @@
                         event.stopPropagation();
                     })
                 .change(function(){ // bind change event on checkbox
-            //                console.log('cccchange');
-
                     var $checkbox = $(this),
                         val = $checkbox.val(),
                         //all cells under the column, including the header and its clone
@@ -439,7 +436,7 @@
                         $.proxy(that.preserveDisplayAll(), that);
                         //remove display all class
                         that.$table.removeClass('display-all');
-                        if(this.$tableClone){
+                        if(that.$tableClone){
                             that.$tableClone.removeClass('display-all');
                         }
                         //switch off button

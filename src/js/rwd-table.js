@@ -429,7 +429,7 @@
                         $.proxy(that.preserveDisplayAll(), that);
                         //remove display all class
                         that.$table.removeClass('display-all');
-                        if(this.$tableClone){
+                        if(that.$tableClone){
                             that.$tableClone.removeClass('display-all');
                         }
                         //switch off button
