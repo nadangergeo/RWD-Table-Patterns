@@ -12,6 +12,10 @@
         this.$tableScrollWrapper = $(element); //defined later in wrapTable
         this.$table = $(element).find('table');
 
+        if(this.$table.length !== 0) {
+            throw new Error('Exactly one table is expected in a .table-responsive div.');
+        }
+
         //apply pattern option as data-attribute, in case it was set via js
         this.$tableScrollWrapper.attr('data-pattern', this.options.pattern);
 
