@@ -419,8 +419,6 @@
                         event.stopPropagation();
                     })
                 .change(function(){ // bind change event on checkbox
-            //                console.log('cccchange');
-
                     var $checkbox = $(this),
                         val = $checkbox.val(),
                         //all cells under the column, including the header and its clone
