@@ -6,7 +6,6 @@ module.exports = function(grunt) {
       banner: '/*!\n' +
             ' * Responsive Tables v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
             ' * <%= pkg.description %>\n' +
-            ' * Copyright 2011-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             ' * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)\n' +
             ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
             ' */',
