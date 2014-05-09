@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v5.0.0 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v5.0.1 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
@@ -655,20 +655,20 @@
 
     $(document).ready(function() {
         // Change `no-js` to `js`
-        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        $('html').removeClass('no-js').addClass('js');
 
         // Add mq/no-mq class to html
         if(mediaQueriesSupported()) {
-            jQuery('html').addClass('mq');
+            $('html').addClass('mq');
         } else {
-            jQuery('html').addClass('no-mq');
+            $('html').addClass('no-mq');
         }
 
         // Add touch/no-touch class to html
         if(hasTouch()) {
-            jQuery('html').addClass('touch');
+            $('html').addClass('touch');
         } else {
-            jQuery('html').addClass('no-touch');
+            $('html').addClass('no-touch');
         }
     });
 })(jQuery);
