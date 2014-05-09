@@ -170,3 +170,5 @@ For better IE support, you need to have IE classes. Replace ```<html>``` with:
 <!--[if IE 9 ]>    <html lang="en" class="no-js lt-ie10"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 ```
+#####no-js class
+The ```.no-js``` class is used to determine if the browser does not have JavaScript support or if JavaScript is disabled. The class is not used right now, but you should consider adding it anyway in case a future release has a patch that depends on it.
