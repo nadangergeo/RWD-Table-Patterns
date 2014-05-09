@@ -6,7 +6,7 @@ This is an experimental awesome solution for responsive tables with complex data
 Demo:
 --------
 
-For demo: http://gergeo.se/RWD-Table-Patterns/
+http://gergeo.se/RWD-Table-Patterns/
 
 Features:
 --------
