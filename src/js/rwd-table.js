@@ -649,20 +649,20 @@
 
     $(document).ready(function() {
         // Change `no-js` to `js`
-        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        $('html').removeClass('no-js').addClass('js');
 
         // Add mq/no-mq class to html
         if(mediaQueriesSupported()) {
-            jQuery('html').addClass('mq');
+            $('html').addClass('mq');
         } else {
-            jQuery('html').addClass('no-mq');
+            $('html').addClass('no-mq');
         }
 
         // Add touch/no-touch class to html
         if(hasTouch()) {
-            jQuery('html').addClass('touch');
+            $('html').addClass('touch');
         } else {
-            jQuery('html').addClass('no-touch');
+            $('html').addClass('no-touch');
         }
     });
 })(jQuery);
