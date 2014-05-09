@@ -1,4 +1,7 @@
 module.exports = function(grunt) {
+    // load all grunt tasks matching the `grunt-*` pattern
+    require('load-grunt-tasks')(grunt);
+
     // Project configuration.
     grunt.initConfig({
       pkg: grunt.file.readJSON('package.json'),
@@ -120,17 +123,17 @@ module.exports = function(grunt) {
             pushTo: 'upstream',
             gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d' // options to use with '$ git describe'
           }
+      },
+      connect: {
+        server: {
+          options: {
+            port: 8000,
+            keepalive: true,
+            base: 'docs'
+          }
+        }
       }
     });
-
-    // Load the plugin that provides the "uglify" task.
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-banner');
-    grunt.loadNpmTasks('grunt-bump');
 
     grunt.registerTask('build', [
         'jshint',
@@ -139,6 +142,10 @@ module.exports = function(grunt) {
         'copy:dist',
         'usebanner',
         'copy:docs'
+    ]);
+
+    grunt.registerTask('serve', [
+        'connect'
     ]);
 
     grunt.registerTask('patch', [
