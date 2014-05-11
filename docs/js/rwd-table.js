@@ -1,9 +1,3 @@
-/*!
- * Responsive Tables v5.0.1 (http://gergeo.se/RWD-Table-Patterns)
- * This is an awesome solution for responsive tables with complex data.
- * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)
- * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
- */
 (function ($) {
     'use strict';
 
@@ -32,6 +26,7 @@
 
         this.$tableClone = null; //defined farther down
         this.$stickyTableHeader = null; //defined farther down
+        this.$stickyLeftTableHeader = null; //defined farther down
 
         //good to have - for easy access
         this.$thead = this.$table.find('thead');
@@ -57,10 +52,10 @@
         // Check if iOS
         // property to save performance
         this.iOS = isIOS();
-      
+
         // Setup table
         // -------------------------
-      
+
         //wrap table
         this.wrapTable();
 
@@ -79,6 +74,11 @@
         //create sticky table head
         if(this.options.stickyTableHeader){
             this.createStickyTableHeader();
+        }
+
+        //create sticky left table head
+        if(this.options.stickyLeftTableHeader){
+            this.createStickyLeftTableHeader();
         }
 
         // hide toggle button if the list is empty
@@ -104,6 +104,7 @@
     ResponsiveTable.DEFAULTS = {
         pattern: 'priority-columns',
         stickyTableHeader: true,
+        stickyLeftTableHeader: false,
         fixedNavbar: '.navbar-fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
         addDisplayAllBtn: true, // should it have a display-all button?
         addFocusBtn: true,  // should it have a focus button?
@@ -111,7 +112,7 @@
     };
 
     // Wrap table
-    ResponsiveTable.prototype.wrapTable = function() {        
+    ResponsiveTable.prototype.wrapTable = function() {
         this.$tableScrollWrapper.wrap('<div class="table-wrapper"/>');
         this.$tableWrapper = this.$tableScrollWrapper.parent();
     };
@@ -282,6 +283,21 @@
             $.proxy(that.updateStickyTableHeader(), that);
         });
     };
+
+    ResponsiveTable.prototype.createStickyLeftTableHeader = function() {
+      var $pinnedTable = this.$tableWrapper.clone().find('table');
+
+      // add sticky class to main table
+      this.$table.addClass('sticky-left-header')
+
+      $pinnedTable.find("td:not(:first-child), th:not(:first-child)").remove();
+      // $pinnedTable.removeClass("sticky-left-header");
+
+      this.$tableWrapper.append($pinnedTable);
+      $pinnedTable.wrap("<div class='pinned' />");
+
+      this.$table.wrap('<div class="scrollable" />');
+    }
 
     // Help function for sticky table header
     ResponsiveTable.prototype.updateStickyTableHeader = function() {
@@ -482,7 +498,7 @@
                 })
                 .trigger('updateCheck');
             } // end if
-        }); // end hdrCells loop 
+        }); // end hdrCells loop
     };
 
     // Setup standard cells
