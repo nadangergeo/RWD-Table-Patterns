@@ -1,3 +1,9 @@
+/*!
+ * Responsive Tables v5.0.1 (http://gergeo.se/RWD-Table-Patterns)
+ * This is an awesome solution for responsive tables with complex data.
+ * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)
+ * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
+ */
 (function ($) {
     'use strict';
 
