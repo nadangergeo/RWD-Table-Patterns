@@ -1,0 +1,54 @@
+/* Foundation v2.1.4 http://foundation.zurb.com */
+/* Artfully masterminded by ZURB  */
+.table-wrapper {
+  position: relative;
+  border-right: 1px solid #ccc;
+
+  table.sticky-left-header {
+    margin-bottom: 0;
+
+    th, td {
+      position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+
+      &:first-child {
+        display: none !important; /* ensure pinned header do not show up upon display all event */
+      }
+    }
+  }
+
+  .scrollable {
+    overflow: scroll;
+    overflow-y: hidden;
+
+    table {
+      margin-left: 200px;
+      margin-bottom: 0;
+    }
+
+  }
+
+  .pinned {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+    width: 200px;
+    overflow: hidden;
+    overflow-x: scroll;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+
+    table {
+      border-right: 0;
+      border-left: 0;
+      width: 100%;
+      margin-bottom: 0;
+
+      th, td {
+        white-space: nowrap;
+      }
+    }
+  }
+}
