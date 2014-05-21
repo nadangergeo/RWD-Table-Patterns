@@ -12,15 +12,17 @@
         this.$tableScrollWrapper = $(element); //defined later in wrapTable
         this.$table = $(element).find('table');
 
+        if(this.$table.length !== 1) {
+            throw new Error('Exactly one table is expected in a .table-responsive div.');
+        }
+
         //apply pattern option as data-attribute, in case it was set via js
         this.$tableScrollWrapper.attr('data-pattern', this.options.pattern);
 
         //if the table doesn't have a unique id, give it one.
         //The id will be a random hexadecimal value, prefixed with id.
-        if(!this.$table.prop('id')) {
-            var uid = 'id' + Math.random().toString(16).slice(2);
-            this.$table.prop('id', uid);
-        }
+        //Used for triggers with displayAll button.
+        this.id = this.$table.prop('id') || this.$tableScrollWrapper.prop('id') || 'id' + Math.random().toString(16).slice(2);
 
         this.$tableClone = null; //defined farther down
         this.$stickyTableHeader = null; //defined farther down
@@ -46,8 +48,8 @@
         this.$fullScreenBtn = null; //defined farther down
 
         //misc
-        this.displayAllTrigger = 'display-all-' + this.$table.prop('id') + '.responsive-table';
-        this.idPrefix = this.$table.prop('id') + '-col-';
+        this.displayAllTrigger = 'display-all-' + this.id + '.responsive-table';
+        this.idPrefix = this.id + '-col-';
 
         // Check if iOS
         // property to save performance
@@ -76,18 +78,10 @@
             this.createStickyTableHeader();
         }
 
-        // bind click on row
-        if(this.options.addFocusBtn) {
-            this.$bodyRows.click(function(){
-                $.proxy(that.focusOnRow($(this)), that);
-            });
-        }
-
         // hide toggle button if the list is empty
         if(this.$dropdownContainer.is(':empty')){
             this.$dropdownGroup.hide();
         }
-
 
         // Event binding
         // -------------------------
@@ -189,6 +183,11 @@
             this.$focusBtn.click(function(){
                 $.proxy(that.activateFocus(), that);
             });
+
+            // bind click on rows
+            this.$bodyRows.click(function(){
+                $.proxy(that.focusOnRow($(this)), that);
+            });
         }
 
          // Display-all btn
@@ -289,7 +288,7 @@
         that.$tableClone = that.$table.clone();
 
         //replace ids
-        that.$tableClone.prop('id', that.$table.prop('id') + '-clone');
+        that.$tableClone.prop('id', this.id + '-clone');
         that.$tableClone.find('[id]').each(function() {
             $(this).prop('id', $(this).prop('id') + '-clone');
         });
@@ -470,8 +469,6 @@
                         event.stopPropagation();
                     })
                 .change(function(){ // bind change event on checkbox
-            //                console.log('cccchange');
-
                     var $checkbox = $(this),
                         val = $checkbox.val(),
                         //all cells under the column, including the header and its clone
@@ -483,7 +480,7 @@
                         $.proxy(that.preserveDisplayAll(), that);
                         //remove display all class
                         that.$table.removeClass('display-all');
-                        if(this.$tableClone){
+                        if(that.$tableClone){
                             that.$tableClone.removeClass('display-all');
                         }
                         //switch off button
@@ -703,20 +700,20 @@
 
     $(document).ready(function() {
         // Change `no-js` to `js`
-        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        $('html').removeClass('no-js').addClass('js');
 
         // Add mq/no-mq class to html
         if(mediaQueriesSupported()) {
-            jQuery('html').addClass('mq');
+            $('html').addClass('mq');
         } else {
-            jQuery('html').addClass('no-mq');
+            $('html').addClass('no-mq');
         }
 
         // Add touch/no-touch class to html
         if(hasTouch()) {
-            jQuery('html').addClass('touch');
+            $('html').addClass('touch');
         } else {
-            jQuery('html').addClass('no-touch');
+            $('html').addClass('no-touch');
         }
     });
 })(jQuery);

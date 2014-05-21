@@ -1,4 +1,7 @@
 module.exports = function(grunt) {
+    // load all grunt tasks matching the `grunt-*` pattern
+    require('load-grunt-tasks')(grunt);
+
     // Project configuration.
     grunt.initConfig({
       pkg: grunt.file.readJSON('package.json'),
@@ -6,7 +9,6 @@ module.exports = function(grunt) {
       banner: '/*!\n' +
             ' * Responsive Tables v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
             ' * <%= pkg.description %>\n' +
-            ' * Copyright 2011-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             ' * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)\n' +
             ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
             ' */',
@@ -110,7 +112,7 @@ module.exports = function(grunt) {
       bump: {
           options: {
             files: ['package.json', 'bower.json'],
-            updateConfigs: [],
+            updateConfigs: ['pkg','banner'],
             commit: true,
             commitMessage: 'Release v%VERSION%',
             commitFiles: ['-a'], // '-a' for all files
@@ -121,17 +123,17 @@ module.exports = function(grunt) {
             pushTo: 'upstream',
             gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d' // options to use with '$ git describe'
           }
+      },
+      connect: {
+        server: {
+          options: {
+            port: 8000,
+            keepalive: true,
+            base: 'docs'
+          }
+        }
       }
     });
-
-    // Load the plugin that provides the "uglify" task.
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-banner');
-    grunt.loadNpmTasks('grunt-bump');
 
     grunt.registerTask('build', [
         'jshint',
@@ -140,6 +142,28 @@ module.exports = function(grunt) {
         'copy:dist',
         'usebanner',
         'copy:docs'
+    ]);
+
+    grunt.registerTask('serve', [
+        'connect'
+    ]);
+
+    grunt.registerTask('patch', [
+        'bump-only:patch',
+        'build',
+        'bump-commit'
+    ]);
+
+    grunt.registerTask('minor', [
+        'bump-only:minor',
+        'build',
+        'bump-commit'
+    ]);
+
+    grunt.registerTask('major', [
+        'bump-only:major',
+        'build',
+        'bump-commit'
     ]);
 
     // Default task(s).

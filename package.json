@@ -1,7 +1,7 @@
 {
   "name": "RWD-Table-Patterns",
   "description": "This is an awesome solution for responsive tables with complex data.",
-  "version": "4.3.2",
+  "version": "5.0.1",
   "keywords": [
     "RWD",
     "responsive",
@@ -32,7 +32,9 @@
     "grunt-banner": "~0.2.2",
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-jshint": "~0.10.0",
-    "grunt-bump": "0.0.13"
+    "grunt-bump": "0.0.13",
+    "load-grunt-tasks": "~0.4.0",
+    "grunt-contrib-connect": "~0.7.1"
   },
   "scripts": {
     "postinstall": "bower install"

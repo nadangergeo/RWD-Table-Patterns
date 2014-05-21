@@ -18,8 +18,8 @@
 		  <!-- Latest compiled and minified Bootstrap CSS -->
       <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-      <link rel="stylesheet" href="css/rwd-table.min.css">
-		  <link rel="stylesheet" href="css/docs.min.css">
+      <link rel="stylesheet" href="css/rwd-table.min.css?v=5.0.1">
+		  <link rel="stylesheet" href="css/docs.min.css?v=5.0.1">
 		
       <script type="text/javascript">
 
@@ -63,7 +63,7 @@
         <h3>by <a href="https://twitter.com/nadangergeo">@nadangergeo</a> & <a href="https://twitter.com/filamentgroup">@filamentgroup</a></h3>
         <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
         <p>
-         <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/master.zip" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
+         <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v5.0.1.zip" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
          <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="fork-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> Fork on GitHub</a>
         </p>
 
@@ -566,9 +566,9 @@
                    </table>
                 </div>  
 
-               <div style="height:50px;"></div>
+<!--                <div style="height:50px;"></div>
 
-<!--                <div class="table-responsive">
+               <div class="table-responsive">
                    <table cellspacing="0" id="tech-companies-2" class="table table-small-font table-striped">
                       <thead>
                          <tr>
@@ -1039,7 +1039,7 @@
             <h3>Add CSS file <small>to the <code>&lt;head&gt;</code></small></h3>
             <pre><code>&lt;link rel="stylesheet" href="css/rwd-table.min.css"&gt;</code></pre>
 
-            <h3>Add JavaScript <small>either to the <code>&lt;head&gt;</code> or to the bottom of <code>&lt;body&gt;</code></small></h3>
+            <h3>Add JavaScript file <small>either to the <code>&lt;head&gt;</code> or to the bottom of <code>&lt;body&gt;</code></small></h3>
             <pre><code>&lt;script type="text/javascript" src="js/rwd-table.js"&gt;&lt;/script&gt;</code></pre>
 
             <br>
@@ -1047,12 +1047,12 @@
             <ul>
                <li>jQuery (>=1.11.0)</li>
                <li>
-                Twitter Bootstrap 3 (>=3.1.1) <button class="btn btn-default btn-sm" data-toggle="collapse" data-target="#bootstrap-deps"><span class="fa fa-chevron-down"></span></button>
-                <ul id="bootstrap-deps" class="collapse">
+                Twitter Bootstrap 3 (>=3.1.1)
+                <ul>
                    <li>normalize.less</li>
                    <li>buttons.less</li>
-                   <li>dropdowns (.less &amp; .js)</li>
                    <li>button-groups.less</li>
+                   <li>dropdowns (.less &amp; .js)</li>
                    <li>tables.less</li>
                    <li>glyphicons needed for default <em>focusBtnIcon</em> option.</li>
                 </ul>
@@ -1064,11 +1064,10 @@
              <li>Add the classes <code>.table</code> to the tables and wrap them in <code>.table-responsive</code>, as usual when using Bootstrap.</li>
              <li>If the table has complex data and many columns you can give it the class <code>.table-small-font</code> (highly recommended).</li>
              <li>The table can also utilize Twitter Bootstrap's table classes, such as <code>.table-striped</code> and <code>.table-bordered</code>.</li>
-             <li>You need to give the table a unique <code>id</code> (if you don't, a randomized id will be assigned).</li>
            </ol>
 
-           <pre><code>&lt;div class="table-responsive" data-pattern="priority-columns"&gt;
-   &lt;table id="example-table" class="table table-small-font table-bordered table-striped"&gt;
+           <pre><code>&lt;div class="table-responsive"&gt;
+   &lt;table class="table table-small-font table-bordered table-striped"&gt;
       ...
    &lt;/table&gt;
 &lt;/div&gt;</code></pre>
@@ -1199,6 +1198,10 @@
 &lt;!--[if IE 9 ]&gt;    &lt;html lang="en" class="no-js lt-ie10"&gt; &lt;![endif]--&gt;
 &lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html lang="en" class="no-js"&gt; &lt;!--&lt;![endif]--&gt;</code></pre>
 
+            <div class="callout callout-warning">
+              <h4>no-js class</h4>
+              <p>The <code>.no-js</code> class is used to determine if the browser does not have JavaScript support or if JavaScript is disabled. The class is not used right now, but you should consider adding it anyway in case a future release has a patch that depends on it.</p>
+            </div>
          </div>
       </section>
 
@@ -1207,7 +1210,7 @@
       <!-- Latest compiled and minified Bootstrap JavaScript -->
       <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-      <script src="js/rwd-table.min.js"></script>
+      <script src="js/rwd-table.min.js?v=5.0.1"></script>
       <script>
       //  $(function() {
       //     $('.table-responsive').responsiveTable();
