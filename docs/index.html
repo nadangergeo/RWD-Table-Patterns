@@ -1047,15 +1047,15 @@
             <ul>
                <li>jQuery (>=1.11.0)</li>
                <li>
-                Twitter Bootstrap 3 (>=3.1.1)
-                <ul>
-                   <li>normalize.less</li>
-                   <li>buttons.less</li>
-                   <li>button-groups.less</li>
-                   <li>dropdowns (.less &amp; .js)</li>
-                   <li>tables.less</li>
-                   <li>glyphicons needed for default <em>focusBtnIcon</em> option.</li>
-                </ul>
+                  Twitter Bootstrap 3 (>=3.1.1) <button class="btn btn-default btn-sm" data-toggle="collapse" data-target="#bs-deps" id="bs-deps-toggle"><span class="fa fa-chevron-down"></span></button>
+                  <ul id="bs-deps" class="collapse">
+                     <li>normalize.less</li>
+                     <li>buttons.less</li>
+                     <li>button-groups.less</li>
+                     <li>dropdowns (.less &amp; .js)</li>
+                     <li>tables.less</li>
+                     <li>glyphicons needed for default <em>focusBtnIcon</em> option.</li>
+                  </ul>
                </li>
             </ul>
 
@@ -1212,9 +1212,11 @@
 
       <script src="js/rwd-table.min.js?v=5.0.1"></script>
       <script>
-      //  $(function() {
-      //     $('.table-responsive').responsiveTable();
-      // });
+      $(function() {
+          $('#bs-deps').on('hide.bs.collapse show.bs.collapse', function () {
+              $('#bs-deps-toggle').children('span').toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
+          })
+      });
       </script>
 		
 	</body>
