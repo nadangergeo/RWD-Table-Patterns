@@ -53,8 +53,8 @@ bower install RWD-Table-Patterns
 - Twitter Bootstrap 3 (>=3.1.1)
    - normalize.less
    - buttons.less
-   - dropdowns (.less &amp; .js)
    - button-groups.less
+   - dropdowns (.less &amp; .js)
    - tables.less
    - glyphicons needed for default *focusBtnIcon* option.
 
