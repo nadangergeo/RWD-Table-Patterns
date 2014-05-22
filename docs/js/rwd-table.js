@@ -11,16 +11,20 @@
     // ==========================
 
     var ResponsiveTable = function(element, options) {
+        console.time('init');
+
         var that = this;
 
         this.options = options;
         this.$tableWrapper = null; //defined later in wrapTable
         this.$tableScrollWrapper = $(element); //defined later in wrapTable
-        this.$table = $(element).find('table');
 
-        if(this.$table.length !== 1) {
+        if($(element).find('table').length !== 1) {
             throw new Error('Exactly one table is expected in a .table-responsive div.');
         }
+
+        // this.$table = $(element).find('table').clone();
+        this.$table = $(element).find('table');
 
         //apply pattern option as data-attribute, in case it was set via js
         this.$tableScrollWrapper.attr('data-pattern', this.options.pattern);
@@ -76,6 +80,10 @@
         //setup standard cells
         this.setupStandardCells();
 
+        //replace original table with cloned copy
+        // $(element).find('table').replaceWith(this.$table);
+        // this.$table = $(element).find('table');
+
         //create sticky table head
         if(this.options.stickyTableHeader){
             this.createStickyTableHeader();
@@ -98,7 +106,9 @@
             //update colspan and visibility of spanning cells
             $.proxy(that.updateSpanningCells(), that);
 
-        });
+        }).trigger('resize');
+
+        console.timeEnd('init');
     };
 
     ResponsiveTable.DEFAULTS = {
@@ -484,8 +494,7 @@
                     else {
                         $(this).prop('checked', false);
                     }
-                })
-                .trigger('updateCheck');
+                });
             } // end if
         }); // end hdrCells loop 
     };
@@ -506,40 +515,24 @@
 
                 var colSpan = $cell.prop('colSpan');
 
-                var numOfHidden = 0;
+                // if colSpan is more than 1
+                if(colSpan > 1) {
+                    //give it the class 'spn-cell';
+                    $cell.addClass('spn-cell');
+                }
+                
                 // loop through columns that the cell spans over
                 for (var k = idStart; k < (idStart + colSpan); k++) {
                     // add column id
                     columnsAttr = columnsAttr + ' ' + that.idPrefix + k;
 
                     // get column header
-                    var $colHdr = that.$tableScrollWrapper.find('#' + that.idPrefix + k);
+                    var $colHdr = that.$table.find('#' + that.idPrefix + k);
 
                     // copy data-priority attribute from column header
                     var dataPriority = $colHdr.attr('data-priority');
                     if (dataPriority) { $cell.attr('data-priority', dataPriority); }
-
-                    if($colHdr.css('display')==='none'){
-                        numOfHidden++;
-                    }
-
                 }
-
-                // if colSpan is more than 1
-                if(colSpan > 1) {
-                    //give it the class 'spn-cell';
-                    $cell.addClass('spn-cell');
-
-                    // if one of the columns that the cell belongs to is visible then show the cell
-                    if(numOfHidden !== colSpan){
-                        $cell.show();
-                    } else {
-                        $cell.hide(); //just in case
-                    }
-                }
-
-                //update colSpan to match number of visible columns that i belongs to
-                $cell.prop('colSpan',Math.max((colSpan - numOfHidden),1));
 
                 //remove whitespace in begining of string.
                 columnsAttr = columnsAttr.substring(1);

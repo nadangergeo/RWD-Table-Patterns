@@ -203,6 +203,36 @@
     display: table-cell;
   }
 }
+.mq.js .table-responsive[data-pattern="priority-columns"] th.cell-hide,
+.mq.js.lt-ie10 .sticky-table-header th.cell-hide,
+.mq.js .table-responsive[data-pattern="priority-columns"] td.cell-hide,
+.mq.js.lt-ie10 .sticky-table-header td.cell-hide {
+  display: none;
+}
+.mq.js .table-responsive[data-pattern="priority-columns"] th.cell-show,
+.mq.js.lt-ie10 .sticky-table-header th.cell-show,
+.mq.js .table-responsive[data-pattern="priority-columns"] td.cell-show,
+.mq.js.lt-ie10 .sticky-table-header td.cell-show {
+  display: table-cell;
+}
+.lt-ie9 .mq.js .table-responsive[data-pattern="priority-columns"] th.cell-show,
+.lt-ie9 .mq.js.lt-ie10 .sticky-table-header th.cell-show,
+.lt-ie9 .mq.js .table-responsive[data-pattern="priority-columns"] td.cell-show,
+.lt-ie9 .mq.js.lt-ie10 .sticky-table-header td.cell-show {
+  display: inline;
+}
+.lt-ie9 .mq.js .table-responsive[data-pattern="priority-columns"].display-all th,
+.lt-ie9 .mq.js.lt-ie10 .sticky-table-header.display-all th,
+.lt-ie9 .mq.js .table-responsive[data-pattern="priority-columns"].display-all td,
+.lt-ie9 .mq.js.lt-ie10 .sticky-table-header.display-all td {
+  display: inline !important;
+}
+.mq.js .table-responsive[data-pattern="priority-columns"] table.display-all th,
+.mq.js.lt-ie10 .sticky-table-header table.display-all th,
+.mq.js .table-responsive[data-pattern="priority-columns"] table.display-all td,
+.mq.js.lt-ie10 .sticky-table-header table.display-all td {
+  display: table-cell !important;
+}
 table.table-small-font {
   font-size: 12px;
   -webkit-text-size-adjust: none;
@@ -220,26 +250,6 @@ table.focus-on tbody tr.focused th,
 table.focus-on tbody tr.focused td {
   background-color: #5bc0de;
   color: #000;
-}
-table th.col-hide,
-table td.col-hide {
-  display: none;
-}
-table th.col-show,
-table td.col-show {
-  display: inline;
-}
-.lt-ie9 table th.col-show,
-.lt-ie9 table td.col-show {
-  display: table-cell;
-}
-.lt-ie9 table.display-all th,
-.lt-ie9 table.display-all td {
-  display: inline !important;
-}
-table.display-all th,
-table.display-all td {
-  display: table-cell !important;
 }
 .sticky-table-header {
   background-color: #fff;
