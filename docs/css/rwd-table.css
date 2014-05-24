@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v5.0.2 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v5.0.3 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
@@ -116,64 +116,90 @@
   border-bottom: 0;
 }
 .mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority],
-.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority] {
+.mq.js.lt-ie10 .sticky-table-header th[data-priority],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority] {
   display: none;
 }
 .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="1"],
-.lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="1"] {
+.lt-ie9.mq.js.lt-ie10 .sticky-table-header th[data-priority="1"],
+.lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="1"],
+.lt-ie9.mq.js.lt-ie10 .sticky-table-header td[data-priority="1"] {
   display: inline;
 }
 .mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="1"],
-.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="1"] {
+.mq.js.lt-ie10 .sticky-table-header th[data-priority="1"],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="1"],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority="1"] {
   display: table-cell;
 }
 @media screen and (min-width: 480px) {
   .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="2"],
-  .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="2"] {
+  .lt-ie9.mq.js.lt-ie10 .sticky-table-header th[data-priority="2"],
+  .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="2"],
+  .lt-ie9.mq.js.lt-ie10 .sticky-table-header td[data-priority="2"] {
     display: inline;
   }
   .mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="2"],
-  .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="2"] {
+  .mq.js.lt-ie10 .sticky-table-header th[data-priority="2"],
+  .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="2"],
+  .mq.js.lt-ie10 .sticky-table-header td[data-priority="2"] {
     display: table-cell;
   }
 }
 @media screen and (min-width: 640px) {
   .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="3"],
-  .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="3"] {
+  .lt-ie9.mq.js.lt-ie10 .sticky-table-header th[data-priority="3"],
+  .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="3"],
+  .lt-ie9.mq.js.lt-ie10 .sticky-table-header td[data-priority="3"] {
     display: inline;
   }
   .mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="3"],
-  .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="3"] {
+  .mq.js.lt-ie10 .sticky-table-header th[data-priority="3"],
+  .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="3"],
+  .mq.js.lt-ie10 .sticky-table-header td[data-priority="3"] {
     display: table-cell;
   }
 }
 @media screen and (min-width: 800px) {
   .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="4"],
-  .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="4"] {
+  .lt-ie9.mq.js.lt-ie10 .sticky-table-header th[data-priority="4"],
+  .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="4"],
+  .lt-ie9.mq.js.lt-ie10 .sticky-table-header td[data-priority="4"] {
     display: inline;
   }
   .mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="4"],
-  .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="4"] {
+  .mq.js.lt-ie10 .sticky-table-header th[data-priority="4"],
+  .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="4"],
+  .mq.js.lt-ie10 .sticky-table-header td[data-priority="4"] {
     display: table-cell;
   }
 }
 @media screen and (min-width: 960px) {
   .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="5"],
-  .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="5"] {
+  .lt-ie9.mq.js.lt-ie10 .sticky-table-header th[data-priority="5"],
+  .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="5"],
+  .lt-ie9.mq.js.lt-ie10 .sticky-table-header td[data-priority="5"] {
     display: inline;
   }
   .mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="5"],
-  .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="5"] {
+  .mq.js.lt-ie10 .sticky-table-header th[data-priority="5"],
+  .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="5"],
+  .mq.js.lt-ie10 .sticky-table-header td[data-priority="5"] {
     display: table-cell;
   }
 }
 @media screen and (min-width: 1120px) {
   .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="6"],
-  .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="6"] {
+  .lt-ie9.mq.js.lt-ie10 .sticky-table-header th[data-priority="6"],
+  .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="6"],
+  .lt-ie9.mq.js.lt-ie10 .sticky-table-header td[data-priority="6"] {
     display: inline;
   }
   .mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="6"],
-  .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="6"] {
+  .mq.js.lt-ie10 .sticky-table-header th[data-priority="6"],
+  .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="6"],
+  .mq.js.lt-ie10 .sticky-table-header td[data-priority="6"] {
     display: table-cell;
   }
 }
