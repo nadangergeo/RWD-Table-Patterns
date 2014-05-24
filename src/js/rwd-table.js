@@ -421,7 +421,7 @@
                     var $checkbox = $(this),
                         val = $checkbox.val(),
                         //all cells under the column, including the header and its clone
-                        $cells = that.$tableScrollWrapper.find('#' + val + ', #' + val + '-clone, [data-columns~='+ val +']');
+                        $cells = that.$tableWrapper.find('#' + val + ', #' + val + '-clone, [data-columns~='+ val +']');
 
                     //if display-all is on - save state and carry on
                     if(that.$table.hasClass('display-all')){
