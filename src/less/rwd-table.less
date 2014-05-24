@@ -180,7 +180,8 @@
 }
     
 // Column priority
-.mq.js .table-responsive[data-pattern="priority-columns"] {
+.mq.js .table-responsive[data-pattern="priority-columns"],
+.mq.js.lt-ie10 .sticky-table-header {
     
     th[data-priority],
     td[data-priority] {
@@ -337,7 +338,7 @@ table {
           border-left: 1px solid @table-border-color;
           border-right: 1px solid @table-border-color;
           box-sizing: content-box;
-          border-bottom: none
+          border-bottom: none;
       }
   }
     
