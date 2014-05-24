@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v5.0.3 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v5.0.4 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
@@ -427,7 +427,7 @@
                     var $checkbox = $(this),
                         val = $checkbox.val(),
                         //all cells under the column, including the header and its clone
-                        $cells = that.$tableScrollWrapper.find('#' + val + ', #' + val + '-clone, [data-columns~='+ val +']');
+                        $cells = that.$tableWrapper.find('#' + val + ', #' + val + '-clone, [data-columns~='+ val +']');
 
                     //if display-all is on - save state and carry on
                     if(that.$table.hasClass('display-all')){
