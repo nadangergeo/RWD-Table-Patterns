@@ -11,7 +11,7 @@ http://gergeo.se/RWD-Table-Patterns/
 Features:
 --------
 
-#### :bird: Made for Twitter Bootstrap
+#### :bird: Made for Bootstrap
 
 Designed to be used with Bootstrap 3. If you don't want to use bootstrap, just fork the repo and customize it to your needs!
 
@@ -27,7 +27,7 @@ In browsers without JavaScript, the tables will still be scrollable. I.e. there'
 
 You only need to add one JS-file, one CSS-file and some minimal setup to make the tables responsive.
 
-Dependencies: jQuery and Twitter Bootstrap 3.
+Dependencies: jQuery and Bootstrap 3.
 
 
 How to use:
@@ -50,7 +50,7 @@ bower install RWD-Table-Patterns
 
 #####You also need to add the dependencies
 - jQuery (>=1.11.0)
-- Twitter Bootstrap 3 (>=3.1.1)
+- Bootstrap 3 (>=3.1.1)
    - normalize.less
    - buttons.less
    - button-groups.less
@@ -61,7 +61,7 @@ bower install RWD-Table-Patterns
 ####Markup
 1. Add the classes ```.table``` to the tables and wrap them in ```.table-responsive```, as usual when using Bootstrap.
 2. If the table has complex data and many columns you can give it the class ```.table-small-font``` (highly recommended).
-3. The table can also utilize Twitter Bootstrap's table classes, such as ```.table-striped``` and ```.table-bordered```.
+3. The table can also utilize Bootstrap's table classes, such as ```.table-striped``` and ```.table-bordered```.
 ```html
 <div class="table-responsive">
    <table id="example-table" class="table table-small-font table-bordered table-striped">
