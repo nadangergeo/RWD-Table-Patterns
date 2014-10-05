@@ -11,7 +11,7 @@
     // ==========================
 
     var ResponsiveTable = function(element, options) {
-        console.time('init');
+        // console.time('init');
 
         var that = this;
 
@@ -23,7 +23,6 @@
             throw new Error('Exactly one table is expected in a .table-responsive div.');
         }
 
-        // this.$table = $(element).find('table').clone();
         this.$table = $(element).find('table');
 
         //apply pattern option as data-attribute, in case it was set via js
@@ -41,7 +40,6 @@
         this.$thead = this.$table.find('thead');
         this.$tbody = this.$table.find('tbody');
         this.$hdrCells = this.$thead.find('th');
-        this.$bodyRows = this.$tbody.find('tr');
 
         //toolbar and buttons
         this.$btnToolbar = null; //defined farther down
@@ -74,15 +72,11 @@
         // Setup cells
         // -------------------------
 
-        //setup header cells
-        this.setupHdrCells();
+        //setup header
+        this.setupTableHeader();
 
         //setup standard cells
-        this.setupStandardCells();
-
-        //replace original table with cloned copy
-        // $(element).find('table').replaceWith(this.$table);
-        // this.$table = $(element).find('table');
+        this.setupBodyRows();
 
         //create sticky table head
         if(this.options.stickyTableHeader){
@@ -106,9 +100,11 @@
             //update colspan and visibility of spanning cells
             $.proxy(that.updateSpanningCells(), that);
 
+            $.proxy(that.adjustWidthsInStickyTableHeader(), that);
+
         }).trigger('resize');
 
-        console.timeEnd('init');
+        // console.timeEnd('init');
     };
 
     ResponsiveTable.DEFAULTS = {
@@ -164,7 +160,7 @@
             });
 
             // bind click on rows
-            this.$bodyRows.click(function(){
+            this.$tbody.find('tr').click(function(){
                 $.proxy(that.focusOnRow($(this)), that);
             });
         }
@@ -198,8 +194,8 @@
     };
 
     ResponsiveTable.prototype.clearAllFocus = function() {
-        this.$bodyRows.removeClass('unfocused');
-        this.$bodyRows.removeClass('focused');
+        this.$tbody.find('tr').removeClass('unfocused');
+        this.$tbody.find('tr').removeClass('focused');
     };
 
     ResponsiveTable.prototype.activateFocus = function() {
@@ -222,7 +218,7 @@
             this.clearAllFocus();
 
             if(!alreadyFocused) {
-                this.$bodyRows.addClass('unfocused');
+                this.$tbody.find('tr').addClass('unfocused');
                 $(row).addClass('focused');
             }
         }
@@ -242,6 +238,7 @@
         if(this.$tableClone){
             this.$tableClone.toggleClass('display-all', activate);
         }
+        this.adjustWidthsInStickyTableHeader();
 
         if(trigger) {
             $(window).trigger(this.displayAllTrigger);
@@ -265,6 +262,8 @@
 
         //clone table head
         that.$tableClone = that.$table.clone();
+        that.$tableClone.find('tbody').remove();
+        that.$tableClone.find('tfoot').remove();
 
         //replace ids
         that.$tableClone.prop('id', this.id + '-clone');
@@ -295,6 +294,28 @@
 
         $(that.$tableScrollWrapper).bind('scroll', function(){
             $.proxy(that.updateStickyTableHeader(), that);
+        });
+    };
+
+    // Adjusts the width's of the columns in sticky table header so that
+    // they have the same width as the columns in tbody.
+    ResponsiveTable.prototype.adjustWidthsInStickyTableHeader = function() {
+        if(!this.$tableClone){
+            return;
+        }
+
+        this.$tableClone.find('thead th').each(function(){
+            var $th = $(this);
+
+            // Get original ID
+            var orgID = $th.prop('id').replace('-clone', '');
+
+            // Get original width
+            var orgWidth = $('#' + orgID).css('width');
+
+            // Adjust width of th-clone to same as the original
+            $th.css({width: orgWidth, 'max-width': orgWidth, 'min-width': orgWidth});
+
         });
     };
 
@@ -391,7 +412,7 @@
     };
 
     // Setup header cells
-    ResponsiveTable.prototype.setupHdrCells = function() {
+    ResponsiveTable.prototype.setupTableHeader = function() {
         var that = this;
 
         // for each header column
@@ -486,6 +507,8 @@
                             }
                         }
                     });
+                    
+                    this.adjustWidthsInStickyTableHeader();
                 })
                 .bind('updateCheck', function(){
                     if ( $th.css('display') !== 'none') {
@@ -499,13 +522,22 @@
         }); // end hdrCells loop 
     };
 
-    // Setup standard cells
+    // Setup body rows
     // assign matching "data-columns" attributes to the associated cells "(cells with colspan>1 has multiple columns).
-    ResponsiveTable.prototype.setupStandardCells = function() {
+    ResponsiveTable.prototype.setupBodyRows = function() {
         var that = this;
 
         // for each body rows
-        that.$bodyRows.each(function(){
+        that.$tbody.find('tr').each(function(){
+
+            //check if it's already set up
+            if($(this).data('setup')){
+                // don't do anything
+                return;
+            } else {
+                $(this).data('setup', true);
+            }
+
             var idStart = 0;
 
             // for each cell
@@ -544,6 +576,12 @@
                 idStart = idStart + colSpan;
             });
         });
+    };
+
+    // Run this after the content in tbody has changed
+    ResponsiveTable.prototype.update = function() {
+        this.setupBodyRows();
+        this.adjustWidthsInStickyTableHeader();
     };
 
     // Update colspan and visibility of spanning cells
