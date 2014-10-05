@@ -38,7 +38,6 @@
 
         //good to have - for easy access
         this.$thead = this.$table.find('thead');
-        this.$tbody = this.$table.find('tbody');
         this.$hdrCells = this.$thead.find('th');
 
         //toolbar and buttons
@@ -100,8 +99,6 @@
             //update colspan and visibility of spanning cells
             $.proxy(that.updateSpanningCells(), that);
 
-            $.proxy(that.adjustWidthsInStickyTableHeader(), that);
-
         }).trigger('resize');
 
         // console.timeEnd('init');
@@ -160,7 +157,7 @@
             });
 
             // bind click on rows
-            this.$tbody.find('tr').click(function(){
+            this.$table.find('tbody').find('tr').click(function(){
                 $.proxy(that.focusOnRow($(this)), that);
             });
         }
@@ -194,8 +191,8 @@
     };
 
     ResponsiveTable.prototype.clearAllFocus = function() {
-        this.$tbody.find('tr').removeClass('unfocused');
-        this.$tbody.find('tr').removeClass('focused');
+        this.$table.find('tbody').find('tr').removeClass('unfocused');
+        this.$table.find('tbody').find('tr').removeClass('focused');
     };
 
     ResponsiveTable.prototype.activateFocus = function() {
@@ -218,7 +215,7 @@
             this.clearAllFocus();
 
             if(!alreadyFocused) {
-                this.$tbody.find('tr').addClass('unfocused');
+                this.$table.find('tbody').find('tr').addClass('unfocused');
                 $(row).addClass('focused');
             }
         }
@@ -238,7 +235,6 @@
         if(this.$tableClone){
             this.$tableClone.toggleClass('display-all', activate);
         }
-        this.adjustWidthsInStickyTableHeader();
 
         if(trigger) {
             $(window).trigger(this.displayAllTrigger);
@@ -262,8 +258,8 @@
 
         //clone table head
         that.$tableClone = that.$table.clone();
-        that.$tableClone.find('tbody').remove();
-        that.$tableClone.find('tfoot').remove();
+        // that.$tableClone.find('tbody').remove();
+        // that.$tableClone.find('tfoot').remove();
 
         //replace ids
         that.$tableClone.prop('id', this.id + '-clone');
@@ -294,28 +290,6 @@
 
         $(that.$tableScrollWrapper).bind('scroll', function(){
             $.proxy(that.updateStickyTableHeader(), that);
-        });
-    };
-
-    // Adjusts the width's of the columns in sticky table header so that
-    // they have the same width as the columns in tbody.
-    ResponsiveTable.prototype.adjustWidthsInStickyTableHeader = function() {
-        if(!this.$tableClone){
-            return;
-        }
-
-        this.$tableClone.find('thead th').each(function(){
-            var $th = $(this);
-
-            // Get original ID
-            var orgID = $th.prop('id').replace('-clone', '');
-
-            // Get original width
-            var orgWidth = $('#' + orgID).css('width');
-
-            // Adjust width of th-clone to same as the original
-            $th.css({width: orgWidth, 'max-width': orgWidth, 'min-width': orgWidth});
-
         });
     };
 
@@ -507,8 +481,6 @@
                             }
                         }
                     });
-                    
-                    this.adjustWidthsInStickyTableHeader();
                 })
                 .bind('updateCheck', function(){
                     if ( $th.css('display') !== 'none') {
@@ -528,7 +500,7 @@
         var that = this;
 
         // for each body rows
-        that.$tbody.find('tr').each(function(){
+        that.$table.find('tbody').find('tr').each(function(){
 
             //check if it's already set up
             if($(this).data('setup')){
@@ -581,7 +553,15 @@
     // Run this after the content in tbody has changed
     ResponsiveTable.prototype.update = function() {
         this.setupBodyRows();
-        this.adjustWidthsInStickyTableHeader();
+
+        // Remove old tbody clone from Tableclone
+        this.$tableClone.find('tbody').remove();
+
+        // Make new clone of tbody
+        var $tbodyClone = this.$table.find('tbody').clone();
+
+        // Append new clone to tableClone
+        $tbodyClone.appendTo(this.$tableClone);
     };
 
     // Update colspan and visibility of spanning cells
