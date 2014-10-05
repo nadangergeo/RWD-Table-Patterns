@@ -137,7 +137,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', [
-        'jshint',
         'uglify',
         'less',
         'copy:dist',
