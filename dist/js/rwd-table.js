@@ -38,7 +38,6 @@
 
         //good to have - for easy access
         this.$thead = this.$table.find('thead');
-        this.$hdrCells = this.$thead.find('th');
 
         //toolbar and buttons
         this.$btnToolbar = null; //defined farther down
@@ -55,6 +54,9 @@
         this.displayAllTrigger = 'display-all-' + this.id + '.responsive-table';
         this.idPrefix = this.id + '-col-';
 
+        this.headerColIndices = {};
+        this.headerRowIndices = {};
+
         // Check if iOS
         // property to save performance
         this.iOS = isIOS();
@@ -67,6 +69,9 @@
 
         //create toolbar with buttons
         this.createButtonToolbar();
+
+        //Build header indices mapping (for colspans in header)
+        this.buildHeaderCellIndices();
 
         // Setup cells
         // -------------------------
@@ -390,7 +395,7 @@
         var that = this;
 
         // for each header column
-        that.$hdrCells.each(function(i){
+        that.$thead.find("tr").first().find('th').each(function(i){
             var $th = $(this),
                 id = $th.prop('id'),
                 thText = $th.text();
@@ -491,7 +496,11 @@
                     }
                 });
             } // end if
-        }); // end hdrCells loop 
+        }); // end hdrCells loop
+
+        if(!$.isEmptyObject(this.headerRowIndices)) {
+            that.setupRow(this.$thead.find("tr:eq(1)"), this.headerRowIndices);
+        }
     };
 
     // Setup body rows
@@ -501,54 +510,101 @@
 
         // for each body rows
         that.$table.find('tbody').find('tr').each(function(){
-
-            //check if it's already set up
-            if($(this).data('setup')){
-                // don't do anything
-                return;
-            } else {
-                $(this).data('setup', true);
-            }
-
-            var idStart = 0;
-
-            // for each cell
-            $(this).find('th, td').each(function(){
-                var $cell = $(this);
-                var columnsAttr = '';
-
-                var colSpan = $cell.prop('colSpan');
-
-                // if colSpan is more than 1
-                if(colSpan > 1) {
-                    //give it the class 'spn-cell';
-                    $cell.addClass('spn-cell');
-                }
-                
-                // loop through columns that the cell spans over
-                for (var k = idStart; k < (idStart + colSpan); k++) {
-                    // add column id
-                    columnsAttr = columnsAttr + ' ' + that.idPrefix + k;
-
-                    // get column header
-                    var $colHdr = that.$table.find('#' + that.idPrefix + k);
-
-                    // copy data-priority attribute from column header
-                    var dataPriority = $colHdr.attr('data-priority');
-                    if (dataPriority) { $cell.attr('data-priority', dataPriority); }
-                }
-
-                //remove whitespace in begining of string.
-                columnsAttr = columnsAttr.substring(1);
-
-                //set attribute to cell
-                $cell.attr('data-columns', columnsAttr);
-
-                //increment idStart with the current cells colSpan.
-                idStart = idStart + colSpan;
-            });
+            that.setupRow($(this), that.headerColIndices);
         });
     };
+
+    ResponsiveTable.prototype.setupRow = function($row, indices) {
+        var that = this;
+
+        //check if it's already set up
+        if($row.data('setup')){
+            // don't do anything
+            return;
+        } else {
+            $row.data('setup', true);
+        }
+
+        var idStart = 0;
+
+        // for each cell
+        $row.find('th, td').each(function(){
+            var $cell = $(this);
+            var columnsAttr = '';
+
+            var colSpan = $cell.prop('colSpan');
+
+            // if colSpan is more than 1
+            if(colSpan > 1) {
+                //give it the class 'spn-cell';
+                $cell.addClass('spn-cell');
+            }
+            
+            // loop through columns that the cell spans over
+            for (var k = idStart; k < (idStart + colSpan); k++) {
+                // add column id
+                columnsAttr = columnsAttr + ' ' + that.idPrefix + indices[k];
+
+                // get column header
+                var $colHdr = that.$table.find('#' + that.idPrefix + indices[k]);
+
+                // copy data-priority attribute from column header
+                var dataPriority = $colHdr.attr('data-priority');
+                if (dataPriority) { $cell.attr('data-priority', dataPriority); }
+            }
+
+            //remove whitespace in begining of string.
+            columnsAttr = columnsAttr.substring(1);
+
+            //set attribute to cell
+            $cell.attr('data-columns', columnsAttr);
+
+            //increment idStart with the current cells colSpan.
+            idStart = idStart + colSpan;
+        });
+    };
+
+    ResponsiveTable.prototype.buildHeaderCellIndices = function() {
+        var that = this;
+
+        var rowspansBeforeIndex = {};
+
+        this.headerColIndices = {};
+        this.headerRowIndices = {};
+        var colPadding = 0;
+        var rowPadding = 0;
+
+        this.$thead.find("tr").first().find('th').each(function(i){
+            var $th = $(this);
+            var colSpan = $th.prop('colSpan');
+            var rowSpan = $th.prop("rowSpan");
+
+            for(var index = 0; index < colSpan; index++) {
+                that.headerColIndices[colPadding + i + index] = i;
+
+                if(colPadding + i + index >= 0) {
+                    rowspansBeforeIndex[colPadding + i + index - rowPadding] = rowPadding;
+                }
+            }
+
+            if(rowSpan > 1) {
+                rowPadding++;
+            }
+
+            colPadding += colSpan - 1;
+        });
+
+        if(this.$thead.find("tr").length > 2) {
+            throw new Error("This plugin doesnt support more than two rows in thead.");
+        }
+
+        if(this.$thead.find("tr").length === 2) {
+            var $row = $(this.$thead.find("tr")[1]);
+            $row.find("th").each(function(cellIndex) {
+                that.headerRowIndices[cellIndex] = that.headerColIndices[rowspansBeforeIndex[cellIndex] + cellIndex];
+            });
+        }
+    }
 
     // Run this after the content in tbody has changed
     ResponsiveTable.prototype.update = function() {

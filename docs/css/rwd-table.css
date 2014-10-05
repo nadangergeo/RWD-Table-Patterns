@@ -115,10 +115,30 @@
 .table-responsive[data-pattern="priority-columns"] > .table-bordered > tfoot > tr:last-child > td {
   border-bottom: 0;
 }
-.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority],
-.mq.js.lt-ie10 .sticky-table-header th[data-priority],
-.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority],
-.mq.js.lt-ie10 .sticky-table-header td[data-priority] {
+.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="1"],
+.mq.js.lt-ie10 .sticky-table-header th[data-priority="1"],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="1"],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority="1"],
+.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="2"],
+.mq.js.lt-ie10 .sticky-table-header th[data-priority="2"],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="2"],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority="2"],
+.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="3"],
+.mq.js.lt-ie10 .sticky-table-header th[data-priority="3"],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="3"],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority="3"],
+.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="4"],
+.mq.js.lt-ie10 .sticky-table-header th[data-priority="4"],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="4"],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority="4"],
+.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="5"],
+.mq.js.lt-ie10 .sticky-table-header th[data-priority="5"],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="5"],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority="5"],
+.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="6"],
+.mq.js.lt-ie10 .sticky-table-header th[data-priority="6"],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="6"],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority="6"] {
   display: none;
 }
 .lt-ie9.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="1"],
