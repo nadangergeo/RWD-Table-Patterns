@@ -460,7 +460,8 @@
 
                             // if the cell was already visible, it means its original colspan was >1
                             // so let's increment the colspan
-                            if($cell.css('display') !== 'none'){
+                            // This should not be done for th's in thead.
+                            if(!$cell.closest("thead").length && $cell.css('display') !== 'none'){
                                 $cell.prop('colSpan', parseInt($cell.prop('colSpan')) + 1);
                             }
 
@@ -471,7 +472,8 @@
                       // checkbox has been unchecked
                       else {
                             // decrement colSpan if it's not 1 (because colSpan should not be 0)
-                            if(parseInt($cell.prop('colSpan'))>1){
+                            // This should not be done for th's in thead.
+                            if(!$cell.closest("thead").length && parseInt($cell.prop('colSpan'))>1){
                                 $cell.prop('colSpan', parseInt($cell.prop('colSpan')) - 1);
                             }
                             // otherwise, hide the cell
