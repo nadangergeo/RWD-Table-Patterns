@@ -110,6 +110,7 @@
         addDisplayAllBtn: true, // should it have a display-all button?
         addFocusBtn: true,  // should it have a focus button?
         focusBtnIcon: 'glyphicon glyphicon-screenshot',
+        mainContainer: window,
         i18n: {
             focus     : 'Focus',
             display   : 'Display',
@@ -279,7 +280,12 @@
         }
 
         // bind scroll and resize with updateStickyTableHeader
-        $(window).bind('scroll resize', function(){
+        $(this.options.mainContainer).bind('scroll', function(){
+            $.proxy(that.updateStickyTableHeader(), that);
+        });
+
+        // bind resize on window with updateStickyTableHeader
+        $(window).bind('resize', function(e){
             $.proxy(that.updateStickyTableHeader(), that);
         });
 
@@ -293,9 +299,9 @@
         var that              = this,
           top               = 0,
           offsetTop         = that.$table.offset().top,
-          scrollTop         = $(window).scrollTop() -1, //-1 to accomodate for top border
+          scrollTop         = $(this.options.mainContainer).scrollTop() -1, //-1 to accomodate for top border
           maxTop            = that.$table.height() - that.$stickyTableHeader.height(),
-          rubberBandOffset  = (scrollTop + $(window).height()) - $(document).height(),
+          rubberBandOffset  = (scrollTop + $(this.options.mainContainer).height()) - $(document).height(),
         //          useFixedSolution  = that.$table.parent().prop('scrollWidth') === that.$table.parent().width();
           useFixedSolution  = !that.iOS,
           navbarHeight      = 0;
@@ -307,7 +313,18 @@
             scrollTop = scrollTop + navbarHeight;
         }
 
-        var shouldBeVisible   = (scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height());
+        var shouldBeVisible;
+
+        if(this.options.mainContainer === window) {
+            shouldBeVisible   = (scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height());
+        } else {
+            shouldBeVisible   = (offsetTop <= 0) && (-offsetTop < that.$table.height());
+        }
+
+        // console.log('offsetTop:' + offsetTop);
+        // console.log('scrollTop:' + scrollTop);
+        // console.log('tableHeight:' + that.$table.height());
+        // console.log('shouldBeVisible:' + shouldBeVisible);
 
         if(useFixedSolution) {
             that.$stickyTableHeader.scrollLeft(that.$tableScrollWrapper.scrollLeft());
@@ -319,11 +336,20 @@
             top = navbarHeight - 1;
 
             // When the about to scroll past the table, move sticky table head up
-            if(((scrollTop - offsetTop) > maxTop)){
+            if(this.options.mainContainer === window && ((scrollTop - offsetTop) > maxTop)){
+
                 top -= ((scrollTop - offsetTop) - maxTop);
                 that.$stickyTableHeader.addClass('border-radius-fix');
+
+            } else if(this.options.mainContainer !== window && ((- offsetTop) > maxTop)){
+
+                top -= ((- offsetTop) - maxTop);
+                that.$stickyTableHeader.addClass('border-radius-fix');
+
             } else {
+
                 that.$stickyTableHeader.removeClass('border-radius-fix');
+
             }
 
             if (shouldBeVisible) {
@@ -345,7 +371,12 @@
             var animationDuration = 400;
 
             // Calculate top property value (-1 to accomodate for top border)
-            top = scrollTop - offsetTop - 1;
+            if(this.options.mainContainer === window) {
+                top = scrollTop - offsetTop - 1;
+            } else {
+                top = -offsetTop - 1;
+                console.log('top:' + top);
+            }
 
             // Make sure the sticky table header doesn't slide up/down too far.
             if(top < 0) {
@@ -355,8 +386,10 @@
             }
 
             // Accomandate for rubber band effect
-            if(rubberBandOffset > 0) {
-                top = top - rubberBandOffset;
+            if(this.options.mainContainer === window) {
+                if(rubberBandOffset > 0) {
+                    top = top - rubberBandOffset;
+                }
             }
 
             if (shouldBeVisible) {
