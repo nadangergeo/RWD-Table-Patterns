@@ -162,7 +162,7 @@
             });
 
             // bind click on rows
-            this.$table.find('tbody').find('tr').click(function(){
+            this.$table.find('tbody, tfoot').find('tr').click(function(){
                 $.proxy(that.focusOnRow($(this)), that);
             });
         }
@@ -196,8 +196,8 @@
     };
 
     ResponsiveTable.prototype.clearAllFocus = function() {
-        this.$table.find('tbody').find('tr').removeClass('unfocused');
-        this.$table.find('tbody').find('tr').removeClass('focused');
+        this.$table.find('tbody, tfoot').find('tr').removeClass('unfocused');
+        this.$table.find('tbody, tfoot').find('tr').removeClass('focused');
     };
 
     ResponsiveTable.prototype.activateFocus = function() {
@@ -220,7 +220,7 @@
             this.clearAllFocus();
 
             if(!alreadyFocused) {
-                this.$table.find('tbody').find('tr').addClass('unfocused');
+                this.$table.find('tbody, tfoot').find('tr').addClass('unfocused');
                 $(row).addClass('focused');
             }
         }
@@ -263,8 +263,6 @@
 
         //clone table head
         that.$tableClone = that.$table.clone();
-        // that.$tableClone.find('tbody').remove();
-        // that.$tableClone.find('tfoot').remove();
 
         //replace ids
         that.$tableClone.prop('id', this.id + '-clone');
@@ -285,8 +283,6 @@
         } else {
             that.$table.before(that.$stickyTableHeader);
         }
-
-        // var bodyRowsClone = $(tableClone).find('tbody').find('tr');
 
         // bind scroll and resize with updateStickyTableHeader
         $(window).bind('scroll resize', function(){
@@ -511,7 +507,7 @@
         var that = this;
 
         // for each body rows
-        that.$table.find('tbody').find('tr').each(function(){
+        that.$table.find('tbody, tfoot').find('tr').each(function(){
             that.setupRow($(this), that.headerColIndices);
         });
     };
@@ -613,10 +609,10 @@
         this.setupBodyRows();
 
         // Remove old tbody clone from Tableclone
-        this.$tableClone.find('tbody').remove();
+        this.$tableClone.find('tbody, tfoot').remove();
 
         // Make new clone of tbody
-        var $tbodyClone = this.$table.find('tbody').clone();
+        var $tbodyClone = this.$table.find('tbody, tfoot').clone();
 
         // Append new clone to tableClone
         $tbodyClone.appendTo(this.$tableClone);
