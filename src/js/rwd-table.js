@@ -102,7 +102,7 @@
         addDisplayAllBtn: true, // should it have a display-all button?
         addFocusBtn: true,  // should it have a focus button?
         focusBtnIcon: 'glyphicon glyphicon-screenshot',
-        saveColumnVisibility: false
+        saveColumnVisibility: true
     };
 
     // Wrap table
@@ -500,7 +500,7 @@
                         }
                     });
                 })
-                ..bind('updateCheck', function () {
+                .bind('updateCheck', function () {
                     // Read the 'persistedState', if it's present (just at page loading, after reading the cookie)
                     if ($(this).attr('persistedState')) {
                         var persistedState = $(this).attr('persistedState');
