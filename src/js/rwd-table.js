@@ -375,8 +375,8 @@
     ResponsiveTable.prototype.getColumnCookie = function (id) {
         var jsonObject = {};
 
-        if ($.cookie('columnVisibility-' + id) !== undefined) {
-            jsonObject = JSON.parse($.cookie('columnVisibility-' + id));
+        if (Cookies.get('columnVisibility-' + id) !== undefined) {
+            jsonObject = JSON.parse(Cookies.get('columnVisibility-' + id));
         }
 
         return jsonObject !== null ? jsonObject : {};
@@ -387,7 +387,7 @@
         var jsonObject = this.getColumnCookie(cookieId);
 
         jsonObject[jsonObjectId] = isChecked;
-        $.cookie('columnVisibility-' + cookieId, JSON.stringify(jsonObject));
+        Cookies.set('columnVisibility-' + cookieId, JSON.stringify(jsonObject));
     };
 
     // Setup header cells
