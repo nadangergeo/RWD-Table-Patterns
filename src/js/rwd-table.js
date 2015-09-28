@@ -101,7 +101,8 @@
         fixedNavbar: '.navbar-fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
         addDisplayAllBtn: true, // should it have a display-all button?
         addFocusBtn: true,  // should it have a focus button?
-        focusBtnIcon: 'glyphicon glyphicon-screenshot'
+        focusBtnIcon: 'glyphicon glyphicon-screenshot',
+        saveColumnVisibility: true
     };
 
     // Wrap table
@@ -368,6 +369,26 @@
             }
         }
     };
+    
+    // Gets the cookie containing the last column visibility configuration
+    // Converts it from a string to a JSON object
+    ResponsiveTable.prototype.getColumnCookie = function (id) {
+        var jsonObject = {};
+
+        if (Cookies.get('columnVisibility-' + id) !== undefined) {
+            jsonObject = JSON.parse(Cookies.get('columnVisibility-' + id));
+        }
+
+        return jsonObject !== null ? jsonObject : {};
+    };
+
+    // Updates the specific property of the JSON object, and then updates the cookie
+    ResponsiveTable.prototype.saveCookies = function (jsonObjectId, cookieId, isChecked) {
+        var jsonObject = this.getColumnCookie(cookieId);
+
+        jsonObject[jsonObjectId] = isChecked;
+        Cookies.set('columnVisibility-' + cookieId, JSON.stringify(jsonObject));
+    };
 
     // Setup header cells
     ResponsiveTable.prototype.setupHdrCells = function() {
@@ -391,7 +412,14 @@
 
             // create the hide/show toggle for the current column
             if ( $th.is('[data-priority]') ) {
-                var $toggle = $('<li class="checkbox-row"><input type="checkbox" name="toggle-'+id+'" id="toggle-'+id+'" value="'+id+'" /> <label for="toggle-'+id+'">'+ thText +'</label></li>');
+                // Get the cookie for the current grid
+                var jsonObjectId = "#" + id, jsonObject = {};
+
+                if (that.options.saveColumnVisibility) {
+                    jsonObject = that.getColumnCookie($(that).attr('id'));
+                }
+                
+                var $toggle = $('<li class="checkbox-row"><input type="checkbox" persistedState="' + (jsonObject[jsonObjectId] !== undefined ? jsonObject[jsonObjectId] : true) + '" name="toggle-' + id + '" id="toggle-' + id + '" value="' + id + '" /> <label for="toggle-' + id + '">' + thText + '</label></li>');
                 var $checkbox = $toggle.find('input');
 
                 that.$dropdownContainer.append($toggle);
@@ -435,6 +463,12 @@
                         //switch off button
                         that.$displayAllBtn.removeClass('btn-primary');
                     }
+                    
+                    // Save/Update cookie
+                    if (that.options.saveColumnVisibility) {
+                        var jsonObjectId = "#" + val;
+                        that.saveCookies(jsonObjectId, $(that).attr('id'), $checkbox.is(':checked'));
+                    }
 
                     // loop through the cells
                     $cells.each(function(){
@@ -466,12 +500,20 @@
                         }
                     });
                 })
-                .bind('updateCheck', function(){
-                    if ( $th.css('display') !== 'none') {
-                        $(this).prop('checked', true);
-                    }
-                    else {
-                        $(this).prop('checked', false);
+                .bind('updateCheck', function () {
+                    // Read the 'persistedState', if it's present (just at page loading, after reading the cookie)
+                    if ($(this).attr('persistedState')) {
+                        var persistedState = $(this).attr('persistedState');
+                        $th.css('display', persistedState === 'true' ? 'table-cell' : 'none');
+                        $(this).prop('checked', persistedState === 'true' ? true : false);
+                        $(this).removeAttr('persistedState');
+                    } else {
+                        if ($th.css('display') !== 'none') {
+                            $(this).prop('checked', true);
+                        }
+                        else {
+                            $(this).prop('checked', false);
+                        }
                     }
                 })
                 .trigger('updateCheck');
