@@ -79,7 +79,6 @@ You can initalize the table without writing any JavaScript, just like Bootstrap.
 ```
 
 ####Initialize via JavaScript
-You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute ```data-pattern="priority-columns"``` to the ```.table-responsive``` div.
 ```html
 <script>
    $(function() {
