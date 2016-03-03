@@ -60,6 +60,7 @@
         // Check if iOS
         // property to save performance
         this.iOS = isIOS();
+        this.iOSVersion = getIOSVersion();
       
         // Setup table
         // -------------------------
@@ -303,7 +304,7 @@
           maxTop            = that.$table.height() - that.$stickyTableHeader.height(),
           rubberBandOffset  = (scrollTop + $(window).height()) - $(document).height(),
         //          useFixedSolution  = that.$table.parent().prop('scrollWidth') === that.$table.parent().width();
-          useFixedSolution  = !that.iOS,
+          useFixedSolution  = !that.iOS || (that.iOSVersion >= 8),
           navbarHeight      = 0;
 
         //Is there a fixed navbar?
@@ -722,6 +723,17 @@
         return !!(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i));
     }
 
+    // Gets iOS version number. If the user is not on iOS, the function returns 0.
+    function getIOSVersion() {
+        if(isIOS()){
+            var iphone_version= parseFloat(String(window.navigator.userAgent.match(/[0-9]_[0-9]/)).split('_')[0]+'.'+String(window.navigator.userAgent.match(/[0-9]_[0-9]/)).split('_')[1]);
+            // iPhone CPU iPhone OS 8_4 like Mac OS X
+
+            return iphone_version;
+        } else {
+            return 0;
+        }
+    }
 
     $(document).ready(function() {
         // Change `no-js` to `js`
