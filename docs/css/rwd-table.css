@@ -69,7 +69,6 @@
   border-bottom: 0;
 }
 .table-responsive[data-pattern="priority-columns"] {
-  position: relative;
   width: 100%;
   margin-bottom: 20px;
   overflow-y: hidden;
@@ -114,6 +113,9 @@
 .table-responsive[data-pattern="priority-columns"] > .table-bordered > tbody > tr:last-child > td,
 .table-responsive[data-pattern="priority-columns"] > .table-bordered > tfoot > tr:last-child > td {
   border-bottom: 0;
+}
+.table-responsive.absolute-solution {
+  position: relative;
 }
 .mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="1"],
 .mq.js.lt-ie10 .sticky-table-header th[data-priority="1"],
@@ -277,22 +279,18 @@ table.focus-on tbody tr.focused td {
   border-radius: 0;
   border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
-  position: absolute;
-  top: 0;
   visibility: hidden;
   z-index: 990;
   overflow: hidden;
-  min-width: 100%;
 }
-.sticky-table-header.fixed-solution {
-  min-width: 0;
+.fixed-solution .sticky-table-header {
   position: fixed;
+  min-width: 0;
 }
-.lt-ie10 .sticky-table-header.fixed-solution {
-  border-left: 1px solid #dddddd;
-  border-right: 1px solid #dddddd;
-  box-sizing: content-box;
-  border-bottom: none;
+.absolute-solution .sticky-table-header {
+  position: absolute;
+  min-width: 100%;
+  top: 0;
 }
 .sticky-table-header.border-radius-fix {
   border-bottom-left-radius: 3px;

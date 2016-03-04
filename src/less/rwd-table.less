@@ -113,10 +113,8 @@
 // Unlike Bootstrap's original .table-responsive, this is applied for all widths. (i.e. NOT only applied <768px)
 // Other diffs:
 // - Small border radius
-// - Position: relative;
 // - Bigger bottom margin
 .table-responsive[data-pattern="priority-columns"] {
-    position: relative;
     width: 100%;
     margin-bottom: @line-height-computed;
     overflow-y: hidden;
@@ -177,6 +175,11 @@
       }
 
     }
+}
+
+// for when the sticky table header is using the postition:absolute solution.
+.table-responsive.absolute-solution {
+  position: relative;
 }
     
 // Column priority
@@ -333,23 +336,19 @@ table {
   border-radius: 0;
   border-top: 1px solid @table-border-color;
   border-bottom: 1px solid @table-border-color;
-  position: absolute;
-  top: 0;
   visibility: hidden;
   z-index: @zindex-stickyHeader;
   overflow: hidden;
-  min-width: 100%;
 
-  &.fixed-solution {
-      min-width: 0;
+  .fixed-solution & {
       position: fixed;
-      
-      .lt-ie10 & {
-          border-left: 1px solid @table-border-color;
-          border-right: 1px solid @table-border-color;
-          box-sizing: content-box;
-          border-bottom: none;
-      }
+      min-width: 0;
+  }
+
+  .absolute-solution & {
+    position: absolute;
+    min-width: 100%;
+    top: 0;
   }
     
   &.border-radius-fix {
