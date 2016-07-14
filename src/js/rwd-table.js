@@ -103,9 +103,9 @@
         addFocusBtn: true,  // should it have a focus button?
         focusBtnIcon: 'glyphicon glyphicon-screenshot',
         i18n: {
-            focus     : "Focus",
-            display   : "Display",
-            displayAll: "Display all"
+            focus     : 'Focus',
+            display   : 'Display',
+            displayAll: 'Display all'
         }
     };
 
