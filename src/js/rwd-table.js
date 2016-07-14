@@ -101,7 +101,12 @@
         fixedNavbar: '.navbar-fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
         addDisplayAllBtn: true, // should it have a display-all button?
         addFocusBtn: true,  // should it have a focus button?
-        focusBtnIcon: 'glyphicon glyphicon-screenshot'
+        focusBtnIcon: 'glyphicon glyphicon-screenshot',
+        i18n: {
+            focus     : "Focus",
+            display   : "Display",
+            displayAll: "Display all"
+        }
     };
 
     // Wrap table
@@ -117,7 +122,7 @@
         this.$btnToolbar = $('<div class="btn-toolbar" />');
 
         this.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
-        this.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Display <span class="caret"></span></button>');
+        this.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">' + this.options.i18n.display + ' <span class="caret"></span></button>');
         this.$dropdownContainer = $('<ul class="dropdown-menu"/>');
 
         // Focus btn
@@ -126,7 +131,7 @@
             this.$focusGroup = $('<div class="btn-group focus-btn-group" />');
 
             // Create focus btn
-            this.$focusBtn = $('<button class="btn btn-default">Focus</button>');
+            this.$focusBtn = $('<button class="btn btn-default">' + this.options.i18n.focus + '</button>');
 
             if(this.options.focusBtnIcon) {
                 this.$focusBtn.prepend('<span class="' + this.options.focusBtnIcon + '"></span> ');
@@ -151,7 +156,7 @@
          // Display-all btn
         if(this.options.addDisplayAllBtn) {
             // Create display-all btn
-            this.$displayAllBtn = $('<button class="btn btn-default">Display all</button>');
+            this.$displayAllBtn = $('<button class="btn btn-default">' + this.options.i18n.displayAll + '</button>');
             // Add display-all btn to dropdown-btn-group
             this.$dropdownGroup.append(this.$displayAllBtn);
 
