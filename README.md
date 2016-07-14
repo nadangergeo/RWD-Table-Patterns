@@ -147,6 +147,19 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
          Icon for the focus btn specified with classes.
      </td>
    </tr>
+   <tr>
+     <td>i18n</td>
+     <td>object</td>
+     <td>{
+           focus     : 'Focus',
+           display   : 'Display',
+           displayAll: 'Display all'
+         }
+     </td>
+     <td>
+         Used to translate the buttons (only works if you initialize via JavaScript).
+     </td>
+   </tr>
   </tbody>
 </table>
 
