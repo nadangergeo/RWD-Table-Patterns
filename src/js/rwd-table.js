@@ -12,12 +12,11 @@
         this.options = options;
         this.$tableWrapper = null; //defined later in wrapTable
         this.$tableScrollWrapper = $(element); //defined later in wrapTable
+        this.$table = $(element).find('table');
 
-        if($(element).find('table').length !== 1) {
+        if(this.$table.length !== 1) {
             throw new Error('Exactly one table is expected in a .table-responsive div.');
         }
-
-        this.$table = $(element).find('table');
 
         //apply pattern option as data-attribute, in case it was set via js
         this.$tableScrollWrapper.attr('data-pattern', this.options.pattern);
@@ -32,6 +31,8 @@
 
         //good to have - for easy access
         this.$thead = this.$table.find('thead');
+        this.$hdrCells = this.$thead.find("tr").first().find('th');
+        this.$bodyRows = this.$table.find('tbody, tfoot').find('tr');
 
         //toolbar and buttons
         this.$btnToolbar = null; //defined farther down
@@ -153,7 +154,7 @@
             });
 
             // bind click on rows
-            this.$table.find('tbody, tfoot').find('tr').click(function(){
+            this.$bodyRows.click(function(){
                 $.proxy(that.focusOnRow($(this)), that);
             });
         }
@@ -187,8 +188,8 @@
     };
 
     ResponsiveTable.prototype.clearAllFocus = function() {
-        this.$table.find('tbody, tfoot').find('tr').removeClass('unfocused');
-        this.$table.find('tbody, tfoot').find('tr').removeClass('focused');
+        this.$bodyRows.removeClass('unfocused');
+        this.$bodyRows.removeClass('focused');
     };
 
     ResponsiveTable.prototype.activateFocus = function() {
@@ -211,7 +212,7 @@
             this.clearAllFocus();
 
             if(!alreadyFocused) {
-                this.$table.find('tbody, tfoot').find('tr').addClass('unfocused');
+                this.$bodyRows.addClass('unfocused');
                 $(row).addClass('focused');
             }
         }
@@ -271,7 +272,7 @@
         //insert sticky table header
         that.$table.before(that.$stickyTableHeader);
 
-        // bind scroll and resize with updateStickyTableHeader
+        // bind scroll on mainContainer with updateStickyTableHeader
         $(this.options.mainContainer).bind('scroll', function(){
             $.proxy(that.updateStickyTableHeader(), that);
         });
@@ -284,7 +285,6 @@
         $(that.$tableScrollWrapper).bind('scroll', function(){
             $.proxy(that.updateStickyTableHeader(), that);
         });
-
 
         // determine what solution to use for rendereing  sticky table head (aboslute/fixed).
         that.useFixedSolution  = !isIOS() || (that.getIOSVersion() >= 8);
@@ -332,7 +332,7 @@
             // Calculate top property value (-1 to accomodate for top border)
             top = navbarHeight - 1;
 
-            // When the about to scroll past the table, move sticky table head up
+            // When the user is about to scroll past the table, move sticky table head up
             if(this.options.mainContainer === window && ((scrollTop - offsetTop) > maxTop)){
 
                 top -= ((scrollTop - offsetTop) - maxTop);
@@ -369,7 +369,7 @@
                 top = scrollTop - offsetTop - 1;
             } else {
                 top = -offsetTop - 1;
-                console.log('top:' + top);
+                // console.log('top:' + top);
             }
 
             // Make sure the sticky table header doesn't slide up/down too far.
@@ -412,7 +412,7 @@
         var that = this;
 
         // for each header column
-        that.$thead.find("tr").first().find('th').each(function(i){
+        that.$hdrCells.each(function(i){
             var $th = $(this),
                 id = $th.prop('id'),
                 thText = $th.text();
@@ -528,7 +528,7 @@
         var that = this;
 
         // for each body rows
-        that.$table.find('tbody, tfoot').find('tr').each(function(){
+        that.$bodyRows.each(function(){
             that.setupRow($(this), that.headerColIndices);
         });
     };
