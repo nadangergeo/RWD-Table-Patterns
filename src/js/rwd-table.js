@@ -287,12 +287,12 @@
         });
 
         // determine what solution to use for rendereing  sticky table head (aboslute/fixed).
-        that.useFixedSolution  = !isIOS() || (that.getIOSVersion() >= 8);
+        that.useFixedSolution  = !isIOS() || (getIOSVersion() >= 8);
         //add class for rendering solution
         if(that.useFixedSolution) {
             that.$tableScrollWrapper.addClass('fixed-solution');
         } else {
-            that.$tableScrollWrapper.removeClass('absolute-solution');
+            that.$tableScrollWrapper.addClass('absolute-solution');
         }
     };
 
