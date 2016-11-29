@@ -428,7 +428,7 @@
             }
 
             // create the hide/show toggle for the current column
-            if ( $th.is('[data-priority]') ) {
+            if ( $th.is('[data-priority]') && $th.data('priority') !== -1 ) {
                 var $toggle = $('<li class="checkbox-row"><input type="checkbox" name="toggle-'+id+'" id="toggle-'+id+'" value="'+id+'" /> <label for="toggle-'+id+'">'+ thText +'</label></li>');
                 var $checkbox = $toggle.find('input');
 
