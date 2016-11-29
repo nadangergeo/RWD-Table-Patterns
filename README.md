@@ -1,7 +1,7 @@
 RWD-Table-Patterns
 ==================
 
-This is an experimental awesome solution for responsive tables with complex data. It's a fork based on Filament Group's repo with a more complete solution and some new features.
+This is an experimental awesome solution for responsive tables with complex data. It was *originally* based on Filament Group's experimental repo, but has during the years grown up to be a more complete solution with new features.
 
 **Note:** The [dev branch](https://github.com/nadangergeo/RWD-Table-Patterns/tree/dev) contains a bunch of bug-fixes and the code is prettier... Although, we cannot guarantee its stability yet. Any contributions and testing is welcomed :)
 
