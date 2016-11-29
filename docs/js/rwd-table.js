@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v5.2.0 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v5.2.1 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se) & Lucas Wiener <lucas@blimp.se>
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
@@ -752,9 +752,7 @@
     // Gets iOS version number. If the user is not on iOS, the function returns 0.
     function getIOSVersion() {
         if(isIOS()){
-            var iphone_version= parseFloat(String(window.navigator.userAgent.match(/[0-9]_[0-9]/)).split('_')[0]+'.'+String(window.navigator.userAgent.match(/[0-9]_[0-9]/)).split('_')[1]);
-            // iPhone CPU iPhone OS 8_4 like Mac OS X
-
+            var iphone_version = parseFloat(('' + (/CPU.*OS ([0-9_]{1,5})|(CPU like).*AppleWebKit.*Mobile/i.exec(navigator.userAgent) || [0,''])[1]).replace('undefined', '3_2').replace('_', '.').replace('_', ''));
             return iphone_version;
         } else {
             return 0;
