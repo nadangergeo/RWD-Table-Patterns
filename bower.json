@@ -1,7 +1,7 @@
 {
   "name": "RWD-Table-Patterns",
   "description": "This is an awesome solution for responsive tables with complex data.",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "keywords": [
     "RWD",
     "responsive",
@@ -10,8 +10,8 @@
   ],
   "homepage": "http://gergeo.se/RWD-Table-Patterns",
   "authors": [
-    "Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se)",
-    "Maggie Wachs (www.filamentgroup.com)"
+    "Nadan Gergeo <nadan@blimp.se> (www.blimp.se)",
+    "Lucas Wiener <lucas@blimp.se> (www.blimp.se)"
   ],
   "repository": {
     "type": "git",
