@@ -1,7 +1,7 @@
 /*!
  * Responsive Tables v5.1.0 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
- * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)
+ * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se) & Lucas Wiener <lucas@blimp.se>
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
  */
 (function ($) {
@@ -18,12 +18,11 @@
         this.options = options;
         this.$tableWrapper = null; //defined later in wrapTable
         this.$tableScrollWrapper = $(element); //defined later in wrapTable
+        this.$table = $(element).find('table');
 
-        if($(element).find('table').length !== 1) {
+        if(this.$table.length !== 1) {
             throw new Error('Exactly one table is expected in a .table-responsive div.');
         }
-
-        this.$table = $(element).find('table');
 
         //apply pattern option as data-attribute, in case it was set via js
         this.$tableScrollWrapper.attr('data-pattern', this.options.pattern);
@@ -38,6 +37,8 @@
 
         //good to have - for easy access
         this.$thead = this.$table.find('thead');
+        this.$hdrCells = this.$thead.find("tr").first().find('th');
+        this.$bodyRows = this.$table.find('tbody, tfoot').find('tr');
 
         //toolbar and buttons
         this.$btnToolbar = null; //defined farther down
@@ -56,11 +57,6 @@
 
         this.headerColIndices = {};
         this.headerRowIndices = {};
-
-        // Check if iOS
-        // property to save performance
-        this.iOS = isIOS();
-        this.iOSVersion = getIOSVersion();
       
         // Setup table
         // -------------------------
@@ -117,6 +113,7 @@
         addDisplayAllBtn: true, // should it have a display-all button?
         addFocusBtn: true,  // should it have a focus button?
         focusBtnIcon: 'glyphicon glyphicon-screenshot',
+        mainContainer: window,
         i18n: {
             focus     : 'Focus',
             display   : 'Display',
@@ -163,7 +160,7 @@
             });
 
             // bind click on rows
-            this.$table.find('tbody, tfoot').find('tr').click(function(){
+            this.$bodyRows.click(function(){
                 $.proxy(that.focusOnRow($(this)), that);
             });
         }
@@ -197,8 +194,8 @@
     };
 
     ResponsiveTable.prototype.clearAllFocus = function() {
-        this.$table.find('tbody, tfoot').find('tr').removeClass('unfocused');
-        this.$table.find('tbody, tfoot').find('tr').removeClass('focused');
+        this.$bodyRows.removeClass('unfocused');
+        this.$bodyRows.removeClass('focused');
     };
 
     ResponsiveTable.prototype.activateFocus = function() {
@@ -221,7 +218,7 @@
             this.clearAllFocus();
 
             if(!alreadyFocused) {
-                this.$table.find('tbody, tfoot').find('tr').addClass('unfocused');
+                this.$bodyRows.addClass('unfocused');
                 $(row).addClass('focused');
             }
         }
@@ -279,20 +276,30 @@
         that.$stickyTableHeader.css('height', that.$thead.height() + 2);
 
         //insert sticky table header
-        if($('html').hasClass('lt-ie10')){
-            that.$tableWrapper.prepend(that.$stickyTableHeader);
-        } else {
-            that.$table.before(that.$stickyTableHeader);
-        }
+        that.$table.before(that.$stickyTableHeader);
 
-        // bind scroll and resize with updateStickyTableHeader
-        $(window).bind('scroll resize', function(){
+        // bind scroll on mainContainer with updateStickyTableHeader
+        $(this.options.mainContainer).bind('scroll', function(){
+            $.proxy(that.updateStickyTableHeader(), that);
+        });
+
+        // bind resize on window with updateStickyTableHeader
+        $(window).bind('resize', function(e){
             $.proxy(that.updateStickyTableHeader(), that);
         });
 
         $(that.$tableScrollWrapper).bind('scroll', function(){
             $.proxy(that.updateStickyTableHeader(), that);
         });
+
+        // determine what solution to use for rendereing  sticky table head (aboslute/fixed).
+        that.useFixedSolution  = !isIOS() || (getIOSVersion() >= 8);
+        //add class for rendering solution
+        if(that.useFixedSolution) {
+            that.$tableScrollWrapper.addClass('fixed-solution');
+        } else {
+            that.$tableScrollWrapper.addClass('absolute-solution');
+        }
     };
 
     // Help function for sticky table header
@@ -300,11 +307,9 @@
         var that              = this,
           top               = 0,
           offsetTop         = that.$table.offset().top,
-          scrollTop         = $(window).scrollTop() -1, //-1 to accomodate for top border
+          scrollTop         = $(this.options.mainContainer).scrollTop() -1, //-1 to accomodate for top border
           maxTop            = that.$table.height() - that.$stickyTableHeader.height(),
-          rubberBandOffset  = (scrollTop + $(window).height()) - $(document).height(),
-        //          useFixedSolution  = that.$table.parent().prop('scrollWidth') === that.$table.parent().width();
-          useFixedSolution  = !that.iOS || (that.iOSVersion >= 8),
+          rubberBandOffset  = (scrollTop + $(this.options.mainContainer).height()) - $(document).height(),
           navbarHeight      = 0;
 
         //Is there a fixed navbar?
@@ -314,23 +319,40 @@
             scrollTop = scrollTop + navbarHeight;
         }
 
-        var shouldBeVisible   = (scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height());
+        var shouldBeVisible;
 
-        if(useFixedSolution) {
+        if(this.options.mainContainer === window) {
+            shouldBeVisible   = (scrollTop > offsetTop) && (scrollTop < offsetTop + that.$table.height());
+        } else {
+            shouldBeVisible   = (offsetTop <= 0) && (-offsetTop < that.$table.height());
+        }
+
+        // console.log('offsetTop:' + offsetTop);
+        // console.log('scrollTop:' + scrollTop);
+        // console.log('tableHeight:' + that.$table.height());
+        // console.log('shouldBeVisible:' + shouldBeVisible);
+
+        if(that.useFixedSolution) { //fixed solution
             that.$stickyTableHeader.scrollLeft(that.$tableScrollWrapper.scrollLeft());
-
-            //add fixedSolution class
-            that.$stickyTableHeader.addClass('fixed-solution');
 
             // Calculate top property value (-1 to accomodate for top border)
             top = navbarHeight - 1;
 
-            // When the about to scroll past the table, move sticky table head up
-            if(((scrollTop - offsetTop) > maxTop)){
+            // When the user is about to scroll past the table, move sticky table head up
+            if(this.options.mainContainer === window && ((scrollTop - offsetTop) > maxTop)){
+
                 top -= ((scrollTop - offsetTop) - maxTop);
                 that.$stickyTableHeader.addClass('border-radius-fix');
+
+            } else if(this.options.mainContainer !== window && ((- offsetTop) > maxTop)){
+
+                top -= ((- offsetTop) - maxTop);
+                that.$stickyTableHeader.addClass('border-radius-fix');
+
             } else {
+
                 that.$stickyTableHeader.removeClass('border-radius-fix');
+
             }
 
             if (shouldBeVisible) {
@@ -345,14 +367,16 @@
             }
 
         } else { // alternate method
-            //remove fixedSolution class
-            that.$stickyTableHeader.removeClass('fixed-solution');
-
             //animation duration
             var animationDuration = 400;
 
             // Calculate top property value (-1 to accomodate for top border)
-            top = scrollTop - offsetTop - 1;
+            if(this.options.mainContainer === window) {
+                top = scrollTop - offsetTop - 1;
+            } else {
+                top = -offsetTop - 1;
+                // console.log('top:' + top);
+            }
 
             // Make sure the sticky table header doesn't slide up/down too far.
             if(top < 0) {
@@ -362,8 +386,10 @@
             }
 
             // Accomandate for rubber band effect
-            if(rubberBandOffset > 0) {
-                top = top - rubberBandOffset;
+            if(this.options.mainContainer === window) {
+                if(rubberBandOffset > 0) {
+                    top = top - rubberBandOffset;
+                }
             }
 
             if (shouldBeVisible) {
@@ -392,7 +418,7 @@
         var that = this;
 
         // for each header column
-        that.$thead.find("tr").first().find('th').each(function(i){
+        that.$hdrCells.each(function(i){
             var $th = $(this),
                 id = $th.prop('id'),
                 thText = $th.text();
@@ -408,7 +434,7 @@
             }
 
             // create the hide/show toggle for the current column
-            if ( $th.is('[data-priority]') ) {
+            if ( $th.is('[data-priority]') && $th.data('priority') !== -1 ) {
                 var $toggle = $('<li class="checkbox-row"><input type="checkbox" name="toggle-'+id+'" id="toggle-'+id+'" value="'+id+'" /> <label for="toggle-'+id+'">'+ thText +'</label></li>');
                 var $checkbox = $toggle.find('input');
 
@@ -508,7 +534,7 @@
         var that = this;
 
         // for each body rows
-        that.$table.find('tbody, tfoot').find('tr').each(function(){
+        that.$bodyRows.each(function(){
             that.setupRow($(this), that.headerColIndices);
         });
     };

@@ -1,7 +1,7 @@
 /*!
  * Responsive Tables v5.1.0 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
- * Authors: Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se) & Maggie Wachs (www.filamentgroup.com)
+ * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se) & Lucas Wiener <lucas@blimp.se>
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
  */
 .dropdown-menu > li.checkbox-row {
@@ -117,8 +117,16 @@
 .table-responsive.absolute-solution {
   position: relative;
 }
-.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="1"],
-.mq.js.lt-ie10 .sticky-table-header th[data-priority="1"],
+.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="-1"],
+.mq.js.lt-ie10 .sticky-table-header th[data-priority="-1"],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="-1"],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority="-1"],
+.mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="0"],
+.mq.js.lt-ie10 .sticky-table-header th[data-priority="0"],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="0"],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority="0"],
+.mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="1"],
+.mq.js.lt-ie10 .sticky-table-header td[data-priority="1"],
 .mq.js .table-responsive[data-pattern="priority-columns"] td[data-priority="1"],
 .mq.js.lt-ie10 .sticky-table-header td[data-priority="1"],
 .mq.js .table-responsive[data-pattern="priority-columns"] th[data-priority="2"],
@@ -260,16 +268,21 @@ table.table-small-font {
   -webkit-text-size-adjust: none;
   line-height: 1.5em;
 }
-table.focus-on tbody tr:hover {
+table.focus-on tbody tr:hover,
+table.focus-on tfoot tr:hover {
   cursor: pointer;
 }
 table.focus-on tbody tr.unfocused th,
-table.focus-on tbody tr.unfocused td {
+table.focus-on tfoot tr.unfocused th,
+table.focus-on tbody tr.unfocused td,
+table.focus-on tfoot tr.unfocused td {
   color: #777777;
   color: rgba(0, 0, 0, 0.4);
 }
 table.focus-on tbody tr.focused th,
-table.focus-on tbody tr.focused td {
+table.focus-on tfoot tr.focused th,
+table.focus-on tbody tr.focused td,
+table.focus-on tfoot tr.focused td {
   background-color: #5bc0de;
   color: #000;
 }
