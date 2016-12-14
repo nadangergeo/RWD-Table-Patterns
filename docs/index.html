@@ -18,8 +18,8 @@
 		  <!-- Latest compiled and minified Bootstrap CSS -->
       <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-      <link rel="stylesheet" href="css/rwd-table.min.css?v=5.2.1">
-		  <link rel="stylesheet" href="css/docs.min.css?v=5.2.1">
+      <link rel="stylesheet" href="css/rwd-table.min.css?v=5.2.2">
+		  <link rel="stylesheet" href="css/docs.min.css?v=5.2.2">
 		
       <script type="text/javascript">
 
@@ -63,7 +63,7 @@
         <h3>by <a href="https://twitter.com/nadangergeo">@nadangergeo</a> & <a href="https://github.com/wnr">@wnr</a></h3>
         <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
         <p>
-         <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v5.2.1.zip" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
+         <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v5.2.2.zip" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
          <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="fork-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> Fork on GitHub</a>
         </p>
 
@@ -987,7 +987,7 @@
                 <h2>How to use</h2>
             </div>
 
-            <h3>Protip: Install using Bower</h3>
+            <h3>Install using Bower</h3>
             <pre><code>bower install RWD-Table-Patterns</code></pre>
              
             <h3>Add CSS file <small>to the <code>&lt;head&gt;</code></small></h3>
@@ -1126,6 +1126,14 @@
                  </thead>
                  <tbody>
                     <tr>
+                       <td><code>data-priority="-1"</code></td>
+                       <td>Hidden and and not togglable from dropdown</td>
+                    </tr>
+                    <tr>
+                       <td><code>data-priority="0"</code></td>
+                       <td>Hidden per default (but togglable from dropdown)</td>
+                    </tr>
+                    <tr>
                        <td><code>data-priority=""</code></td>
                        <td>Always visible and not hideable from dropdown</td>
                     </tr>
@@ -1177,7 +1185,7 @@
       <!-- Latest compiled and minified Bootstrap JavaScript -->
       <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-      <script src="js/rwd-table.js?v=5.2.1"></script>
+      <script src="js/rwd-table.js?v=5.2.2"></script>
       <script>
       $(function() {
           $('#bs-deps').on('hide.bs.collapse show.bs.collapse', function () {

@@ -33,7 +33,7 @@ Dependencies: jQuery and Bootstrap 3.
 How to use:
 --------
 
-####Protip: Install using Bower
+####Install using Bower
 ```shell
 bower install RWD-Table-Patterns
 ```
@@ -165,6 +165,8 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 
 Attribute          |  Description/Breakpoint
 ------------------ |  ------------------
+data-priority="-1" |  Hidden and and not togglable from dropdown
+data-priority="0"  |  Hidden per default (but togglable from dropdown)
 data-priority=""   |  Always visible and not hideable from dropdown
 data-priority="1"  |  Always visible (but hidable from dropdown)
 data-priority="2"  |  Visible when (min-width: 480px)
