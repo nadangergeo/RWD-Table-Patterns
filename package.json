@@ -6,7 +6,8 @@
     "RWD",
     "responsive",
     "tables",
-    "mobile-first"
+    "mobile-first",
+    "bootstrap"
   ],
   "homepage": "http://gergeo.se/RWD-Table-Patterns",
   "authors": [

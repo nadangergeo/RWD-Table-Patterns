@@ -40,7 +40,7 @@
       <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <span class="navbar-brand"><span class="fa fa-table"></span> Responsive tables</span>
+                <span class="navbar-brand"><span class="fa fa-table"></span> Responsive Tables</span>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
@@ -59,12 +59,12 @@
 
     <div class="jumbotron">
       <div class="container">
-        <h1>Responsive tables</h1>
+        <h1>Responsive Tables</h1>
         <h3>by <a href="https://twitter.com/nadangergeo">@nadangergeo</a> & <a href="https://github.com/wnr">@wnr</a></h3>
         <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
         <p>
          <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v5.2.2.zip" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
-         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="fork-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> Fork on GitHub</a>
+         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="fork-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> GitHub Repo</a>
         </p>
 
       </div>
@@ -1164,14 +1164,28 @@
                  </tbody>
               </table>
            </div>
+
+           <h3>Dynamic content? Call Update()!</h3>
+
+           <p>There is an update method which you can call when the content in tbody/tfoot has changed. <i>The method will in turn call the private method setupBodyRows() which sets up rows that has not been setup, as well as update the sticky table header (to accommodate for any changes in columns widths).</i></p>
+
+           <p><b>You can call the method like this:</b></p>
+
+           <pre><code>$('.table-responsive').responsiveTable('update');</code></pre>
+           
+           <p><b>or perhaps like this, if you want to select by id:</b></p>
+
+           <pre><code>$('#the_id_to_the_table_responsive_wrapper').responsiveTable('update');</code></pre>
+           
+           <p>The API is inspired by Bootstrap's programmatic API. If you are curious about how the hell the method call is being done, see the following lines of code: <a href="https://github.com/nadangergeo/RWD-Table-Patterns/blob/3066664fc406a19a1a8aa00dc69f2369406b5dd0/src/js/rwd-table.js#L692-L694">rwd-table.js#L692-L694</a></p>
                 
            <h3>HTML Classes</h3>
            <p>For better IE support, you need to have IE classes. Replace <code>&lt;html&gt;</code> with:</p>
-           <pre><code>&lt;!--[if lt IE 7 ]&gt; &lt;html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"&gt; &lt;![endif]--&gt;
-&lt;!--[if IE 7 ]&gt;    &lt;html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"&gt; &lt;![endif]--&gt;
-&lt;!--[if IE 8 ]&gt;    &lt;html lang="en" class="no-js lt-ie10 lt-ie9"&gt; &lt;![endif]--&gt;
-&lt;!--[if IE 9 ]&gt;    &lt;html lang="en" class="no-js lt-ie10"&gt; &lt;![endif]--&gt;
-&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html lang="en" class="no-js"&gt; &lt;!--&lt;![endif]--&gt;</code></pre>
+           <pre><code>&lt;!--[if lt IE 7 ]&gt; &lt;html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7 ]&gt;    &lt;html class="no-js lt-ie10 lt-ie9 lt-ie8"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8 ]&gt;    &lt;html class="no-js lt-ie10 lt-ie9"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 9 ]&gt;    &lt;html class="no-js lt-ie10"&gt; &lt;![endif]--&gt;
+&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html class="no-js"&gt; &lt;!--&lt;![endif]--&gt;</code></pre>
 
             <div class="callout callout-warning">
               <h4>no-js class</h4>

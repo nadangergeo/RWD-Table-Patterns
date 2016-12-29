@@ -1,7 +1,7 @@
 RWD-Table-Patterns
 ==================
 
-This is an experimental awesome solution for responsive tables with complex data. It was *originally* based on Filament Group's experimental repo, but has during the years grown up to be a more complete solution with new features.
+This is an ~~experimental~~ awesome solution for responsive tables with complex data. It was *originally* based on Filament Group's experimental repo, but has during the years grown up to be a more complete solution with new features.
 
 Demo:
 --------
@@ -175,14 +175,32 @@ data-priority="4"  |  (min-width: 800px)
 data-priority="5"  |  (min-width: 960px)
 data-priority="6"  |  (min-width: 1120px)
 
+####Dynamic content? Call Update()!
+
+There is an update method which you can call when the content in tbody/tfoot has changed. *The method will in turn call the private method setupBodyRows() which sets up rows that has not been setup, as well as update the sticky table header (to accommodate for any changes in columns widths).*
+
+**You can call the method like this:**
+
+```js
+$('.table-responsive').responsiveTable('update');
+```
+
+**or perhaps like this, if you want to select by id:**
+
+```js
+$('#the_id_to_the_table_responsive_wrapper').responsiveTable('update');
+```
+
+The API is inspired by Bootstrap's programmatic API. If you are curious about how the hell the method call is being done, see the following lines of code: [rwd-table.js#L692-L694](https://github.com/nadangergeo/RWD-Table-Patterns/blob/3066664fc406a19a1a8aa00dc69f2369406b5dd0/src/js/rwd-table.js#L692-L694)
+
 ####HTML Classes
 For better IE support, you need to have IE classes. Replace ```<html>``` with:
 ```html
-<!--[if lt IE 7 ]> <html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js lt-ie10 lt-ie9"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js lt-ie10"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7 ]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9 ]>    <html class="no-js lt-ie10"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
 ```
 #####no-js class
 The ```.no-js``` class is used to determine if the browser does not have JavaScript support or if JavaScript is disabled. The class is not used right now, but you should consider adding it anyway in case a future release has a patch that depends on it.

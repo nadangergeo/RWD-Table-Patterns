@@ -14,11 +14,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-a, a:hover {
-    color: #666;
-}
-a:active {
-    color: #000;
+a {
+    // font-weight: 500;
 }
 
 #wrapper {
@@ -78,7 +75,7 @@ section {
     h1 {
         font-size: 80px;
         font-weight: bold;
-        letter-spacing: -0.04em;
+        letter-spacing: -0.06em;
     }
     h3 {
         font-size: 30px;
@@ -105,6 +102,12 @@ section {
 }
 
  /* Buttons */
+
+.btn {
+    .fa {
+        margin-right: 2px;
+    }
+}
 
 .btn-default:hover, 
 .btn-default:focus, 
@@ -149,7 +152,11 @@ section {
 /* Features */
 
 .feature {
-  margin-bottom: 20px;
+    margin-bottom: 30px;
+
+    &:last-child {
+    margin-bottom: 0;
+    }
 
     h4 .fa:before {
         vertical-align: -10%;
@@ -163,27 +170,40 @@ section {
 
 /* How to use */
 #how-to-use {
-  h3 {
-    margin-top: 40px;
-  }
+    h3 {
+        margin-top: 40px;
+        line-height: 1.5;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+
+    ol,ul {
+        margin-bottom: 20px;
+
+        li {
+            margin-bottom: 0.5em;
+        }
+    }
 }
 
 
  /* Tables */
 
 table.table-striped {
-  > tbody > tr:nth-child(odd) {
-    > td,
-    > th {
-      background-color: @doc-warm-gray;
+    > tbody > tr:nth-child(odd) {
+        > td,
+        > th {
+            background-color: @doc-warm-gray;
+        }
     }
-  }
 }
 
 table.table-bordered {
-  tr:nth-child(odd) td {
-      background-color: @doc-warm-gray;
-  }
+    tr:nth-child(odd) td {
+        background-color: @doc-warm-gray;
+    }
 }
 
 table.focus-on  {
@@ -201,18 +221,18 @@ table.focus-on  {
 
 // Hover/Focus state for checkbox-rows
 .no-touch .dropdown-menu > .checkbox-row {
-  &:hover,
-  &:active {
-    text-decoration: none;
-    color: @dropdown-link-hover-color;
-    background-color: @doc-warm-gray;
-  }
+    &:hover,
+    &:active {
+        text-decoration: none;
+        color: @dropdown-link-hover-color;
+        background-color: @doc-warm-gray;
+    }
 }
 
 
  /* Media queries */
 
-@media only screen and (max-width:767px) {
+@media screen and (max-width:767px) {
     .page-header h1 {
         font-size: 32px;
     }
@@ -242,7 +262,27 @@ table.focus-on  {
     }
 }
 
+@media screen and (max-width: 320px) {
+    .jumbotron {
+      h3 {
+            font-size: 23px;
+      }
+
+      .desc {
+            font-size: 15px;
+      }
+    }
+
+    #download-btn, #fork-btn {
+        width: 100%;
+    }
+}
+
 /* Code highlighting */
+
+pre {
+    margin-bottom: 20px;
+}
 
 pre, code {
   color: @doc-yellow;
