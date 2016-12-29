@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v5.2.2 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v5.2.3 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se) & Lucas Wiener <lucas@blimp.se>
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
