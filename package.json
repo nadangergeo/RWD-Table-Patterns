@@ -12,7 +12,8 @@
   "homepage": "http://gergeo.se/RWD-Table-Patterns",
   "authors": [
     "Nadan Gergeo <nadan@blimp.se> (www.blimp.se)",
-    "Lucas Wiener <lucas@blimp.se> (www.blimp.se)"
+    "Lucas Wiener <lucas@blimp.se> (www.blimp.se)",
+    "Maggie Wachs (www.filamentgroup.com)"
   ],
   "repository": {
     "type": "git",
