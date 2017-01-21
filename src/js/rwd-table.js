@@ -627,6 +627,7 @@
 
     // Run this after the content in tbody has changed
     ResponsiveTable.prototype.update = function() {
+        this.$bodyRows = this.$table.find('tbody, tfoot').find('tr');
         this.setupBodyRows();
 
         // Remove old tbody clone from Tableclone
