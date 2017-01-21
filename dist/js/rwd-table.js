@@ -1,7 +1,7 @@
 /*!
- * Responsive Tables v5.2.3 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v5.2.4 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
- * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se) & Lucas Wiener <lucas@blimp.se>
+ * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se), Lucas Wiener <lucas@blimp.se> & "Maggie Wachs (www.filamentgroup.com)"
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
  */
 (function ($) {
@@ -633,6 +633,7 @@
 
     // Run this after the content in tbody has changed
     ResponsiveTable.prototype.update = function() {
+        this.$bodyRows = this.$table.find('tbody, tfoot').find('tr');
         this.setupBodyRows();
 
         // Remove old tbody clone from Tableclone

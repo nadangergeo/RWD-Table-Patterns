@@ -9,7 +9,7 @@ module.exports = function(grunt) {
       banner: '/*!\n' +
             ' * Responsive Tables v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
             ' * <%= pkg.description %>\n' +
-            ' * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se) & Lucas Wiener <lucas@blimp.se>\n' +
+            ' * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se), Lucas Wiener <lucas@blimp.se> & "Maggie Wachs (www.filamentgroup.com)"\n' +
             ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
             ' */',
       jshint: {
