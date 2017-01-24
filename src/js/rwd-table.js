@@ -485,7 +485,10 @@
                             // so let's increment the colspan
                             // This should not be done for th's in thead.
                             if(!$cell.closest("thead").length && $cell.css('display') !== 'none'){
-                                $cell.prop('colSpan', parseInt($cell.prop('colSpan')) + 1);
+                                // make sure new colspan value does not exceed original colspan value
+                                var newColSpan = Math.min(parseInt($cell.prop('colSpan')) + 1, $cell.attr('data-org-colspan'));
+                                // update colspan
+                                $cell.prop('colSpan', newColSpan);
                             }
 
                             // show cell
@@ -552,6 +555,7 @@
             var columnsAttr = '';
 
             var colSpan = $cell.prop('colSpan');
+            $cell.attr('data-org-colspan', colSpan);
 
             // if colSpan is more than 1
             if(colSpan > 1) {
@@ -638,6 +642,13 @@
 
         // Append new clone to tableClone
         $tbodyClone.appendTo(this.$tableClone);
+
+        // Make sure columns visibility is in sync,
+        // by triggering a (non-changing) change event on all checkboxes
+        this.$dropdownContainer.find('input').trigger('change');
+
+        // ¯\(°_o)/¯ I dunno if this is needed
+        // this.updateSpanningCells();
     };
 
     // Update colspan and visibility of spanning cells
