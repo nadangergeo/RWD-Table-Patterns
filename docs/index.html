@@ -4,573 +4,569 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js lt-ie10 lt-ie9"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js lt-ie10"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
-	<head>
-      <meta charset="utf-8" />
-		 
-      <title>Responsive tables</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, minimal-ui">
-      <meta name="format-detection" content="telephone=no">
-      <meta name="description" content="An awesome solution for responsive tables with complex data.">
-		
-      <!-- Font Awesome -->
-      <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <head>
+        <meta charset="utf-8" />
+        
+        <title>Responsive tables</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, minimal-ui">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="description" content="An awesome solution for responsive tables with complex data.">
+        
+        <!-- Font Awesome -->
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-		  <!-- Latest compiled and minified Bootstrap CSS -->
-      <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-      <link rel="stylesheet" href="css/rwd-table.min.css?v=5.2.6">
-		  <link rel="stylesheet" href="css/docs.min.css?v=5.2.6">
-		
-      <script type="text/javascript">
-
+        <!-- Responsive Tables -->
+        <link rel="stylesheet" href="css/rwd-table.min.css?v=5.2.6">
+        <link rel="stylesheet" href="css/docs.min.css?v=5.2.6">
+        
+        <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-19870163-1']);
         _gaq.push(['_trackPageview']);
 
         (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
+        </script>
+    </head>
 
-      </script>
-	</head>
-
-   <body data-spy="scroll" data-target="#navbar" data-offset="50">
-      <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <span class="navbar-brand"><span class="fa fa-table"></span> Responsive Tables</span>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
+    <body data-spy="scroll" data-target="#navbar" data-offset="50">
+        <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <span class="navbar-brand"><span class="fa fa-table"></span> Responsive Tables</span>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                        <li><a href="#how-to-use">How to use</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li><a href="#features">Features</a></li>
-              <li><a href="#demo">Demo</a></li>
-              <li><a href="#how-to-use">How to use</a></li>
-            </ul>
-          </div>
         </div>
-    </div>
 
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Responsive Tables</h1>
-        <h3>by <a href="https://twitter.com/nadangergeo">@nadangergeo</a> & <a href="https://github.com/wnr">@wnr</a></h3>
-        <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
-        <p>
-         <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v5.2.6.zip" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
-         <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="fork-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> GitHub Repo</a>
-        </p>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Responsive Tables</h1>
+                <h3>by <a href="https://twitter.com/nadangergeo">@nadangergeo</a> & <a href="https://github.com/wnr">@wnr</a></h3>
 
-      </div>
-    </div>
-
-      <section id="features">
-         <div class="container">
-            <div class="page-header">
-                <h2>Features</h2>
+                <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
+                <p>
+                    <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v5.2.6.zip" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
+                    <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="fork-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> GitHub Repo</a>
+                </p>
             </div>
+        </div>
 
-            <div class="row">
-               <div class="feature col-lg-3 col-md-6 col-sm-12">
-                  <h4><i class="fa fa-twitter"></i>Made for Bootstrap</h4>
-                  <p>Designed to be used with <a href="http://getbootstrap.com">Bootstrap 3</a>. If you don't want to use bootstrap, just <a href="https://github.com/nadangergeo/RWD-Table-Patterns">fork the repo</a> and customize it to your needs!</p>
-               </div>
-               <div class="feature col-lg-3 col-md-6 col-sm-12">
-                  <h4><i class="fa fa-mobile-phone"></i>Mobile first &amp; PE</h4>
-                  <p>Built with mobile first and progressive enhancement in mind. Also built with love and with the help of a fair amount of coffee.</p>
-               </div>
-               <div class="feature col-lg-3 col-md-6 col-sm-12">
-                  <h4><i class="fa fa-coffee"></i>Graceful JS fallback</h4>
-                  In browsers without JavaScript, the tables will still be scrollable. I.e. there's still some responsiveness.
-               </div>
-               <div class="feature col-lg-3 col-md-6 col-sm-12">
-                  <h4><i class="fa fa-thumbs-o-up"></i>Easy to use</h4>
-                  <p>You only need to add one JS-file, one CSS-file and some minimal setup to make the tables responsive.</p>
-                  <p><b>Dependencies:</b> jQuery and Bootstrap 3.</p>
-               </div>
-            </div>
-
-         </div>
-      </section>
-
-      <section id="demo">
-          <div class="container">
-              <div class="page-header">
-                  <h2>Demo</h2>
-              </div>
-
-               <div class="table-responsive" data-pattern="priority-columns">
-                   <table cellspacing="0" id="tech-companies-1" class="table table-small-font table-bordered table-striped">
-                      <thead>
-                         <tr>
-                            <th>Company</th>
-                            <th data-priority="1">Last Trade</th>
-                            <th data-priority="3">Trade Time</th>
-                            <th data-priority="1">Change</th>
-                            <th data-priority="3">Prev Close</th>
-                            <th data-priority="3">Open</th>
-                            <th data-priority="6">Bid</th>
-                            <th data-priority="6">Ask</th>
-                            <th data-priority="6">1y Target Est</th>
-                            <th data-priority="6">Lorem</th>
-                            <th data-priority="6">Ipsum</th>
-                         </tr>
-                      </thead>
-                      <tbody>
-                         <tr>
-                            <th>GOOG <span class="co-name">Google Inc.</span></th>
-                            <td>597.74</td>
-                            <td>12:12PM</td>
-                            <td>14.81 (2.54%)</td>
-                            <td>582.93</td>
-                            <td>597.95</td>
-                            <td>597.73 x 100</td>
-                            <td>597.91 x 300</td>
-                            <td>731.10</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
-                            <td>378.94</td>
-                            <td>12:22PM</td>
-                            <td>5.74 (1.54%)</td>
-                            <td>373.20</td>
-                            <td>381.02</td>
-                            <td>378.92 x 300</td>
-                            <td>378.99 x 100</td>
-                            <td>505.94</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
-                            <td>191.55</td>
-                            <td>12:23PM</td>
-                            <td>3.16 (1.68%)</td>
-                            <td>188.39</td>
-                            <td>194.99</td>
-                            <td>191.52 x 300</td>
-                            <td>191.58 x 100</td>
-                            <td>240.32</td>
-                            <td colspan="2">Spanning cell</td>  
-                         </tr>       
-                         <tr>
-                            <th>ORCL <span class="co-name">Oracle Corporation</span></th>
-                            <td>31.15</td>
-                            <td>12:44PM</td>
-                            <td>1.41 (4.72%)</td>
-                            <td>29.74</td>
-                            <td>30.67</td>
-                            <td>31.14 x 6500</td>
-                            <td>31.15 x 3200</td>
-                            <td>36.11</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
-                            <td>25.50</td>
-                            <td>12:27PM</td>
-                            <td>0.66 (2.67%)</td>
-                            <td>24.84</td>
-                            <td>25.37</td>
-                            <td>25.50 x 71100</td>
-                            <td>25.51 x 17800</td>
-                            <td>31.50</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>  
-                         </tr>
-                         <tr>
-                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
-                            <td>18.65</td>
-                            <td>12:45PM</td>
-                            <td>0.97 (5.49%)</td>
-                            <td>17.68</td>
-                            <td>18.23</td>
-                            <td>18.65 x 10300</td>
-                            <td>18.66 x 24000</td>
-                            <td>21.12</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>  
-                         </tr>      
-                         <tr>
-                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
-                            <td>15.81</td>
-                            <td>12:25PM</td>
-                            <td>0.11 (0.67%)</td>
-                            <td>15.70</td>
-                            <td>15.94</td>
-                            <td>15.79 x 6100</td>
-                            <td>15.80 x 17000</td>
-                            <td>18.16</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>         
-                         </tr>
-                         <!-- Repeat -->
-                         <tr>
-                            <th>GOOG <span class="co-name">Google Inc.</span></th>
-                            <td>597.74</td>
-                            <td>12:12PM</td>
-                            <td>14.81 (2.54%)</td>
-                            <td>582.93</td>
-                            <td>597.95</td>
-                            <td>597.73 x 100</td>
-                            <td>597.91 x 300</td>
-                            <td>731.10</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
-                            <td>378.94</td>
-                            <td>12:22PM</td>
-                            <td>5.74 (1.54%)</td>
-                            <td>373.20</td>
-                            <td>381.02</td>
-                            <td>378.92 x 300</td>
-                            <td>378.99 x 100</td>
-                            <td>505.94</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
-                            <td>191.55</td>
-                            <td>12:23PM</td>
-                            <td>3.16 (1.68%)</td>
-                            <td>188.39</td>
-                            <td>194.99</td>
-                            <td>191.52 x 300</td>
-                            <td>191.58 x 100</td>
-                            <td>240.32</td>
-                            <td colspan="2">Spanning cell</td>  
-                         </tr>       
-                         <tr>
-                            <th>ORCL <span class="co-name">Oracle Corporation</span></th>
-                            <td>31.15</td>
-                            <td>12:44PM</td>
-                            <td>1.41 (4.72%)</td>
-                            <td>29.74</td>
-                            <td>30.67</td>
-                            <td>31.14 x 6500</td>
-                            <td>31.15 x 3200</td>
-                            <td>36.11</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
-                            <td>25.50</td>
-                            <td>12:27PM</td>
-                            <td>0.66 (2.67%)</td>
-                            <td>24.84</td>
-                            <td>25.37</td>
-                            <td>25.50 x 71100</td>
-                            <td>25.51 x 17800</td>
-                            <td>31.50</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>  
-                         </tr>
-                         <tr>
-                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
-                            <td>18.65</td>
-                            <td>12:45PM</td>
-                            <td>0.97 (5.49%)</td>
-                            <td>17.68</td>
-                            <td>18.23</td>
-                            <td>18.65 x 10300</td>
-                            <td>18.66 x 24000</td>
-                            <td>21.12</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>  
-                         </tr>      
-                         <tr>
-                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
-                            <td>15.81</td>
-                            <td>12:25PM</td>
-                            <td>0.11 (0.67%)</td>
-                            <td>15.70</td>
-                            <td>15.94</td>
-                            <td>15.79 x 6100</td>
-                            <td>15.80 x 17000</td>
-                            <td>18.16</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>         
-                         </tr>
-                         <!-- Repeat -->
-                         <tr>
-                            <th>GOOG <span class="co-name">Google Inc.</span></th>
-                            <td>597.74</td>
-                            <td>12:12PM</td>
-                            <td>14.81 (2.54%)</td>
-                            <td>582.93</td>
-                            <td>597.95</td>
-                            <td>597.73 x 100</td>
-                            <td>597.91 x 300</td>
-                            <td>731.10</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
-                            <td>378.94</td>
-                            <td>12:22PM</td>
-                            <td>5.74 (1.54%)</td>
-                            <td>373.20</td>
-                            <td>381.02</td>
-                            <td>378.92 x 300</td>
-                            <td>378.99 x 100</td>
-                            <td>505.94</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
-                            <td>191.55</td>
-                            <td>12:23PM</td>
-                            <td>3.16 (1.68%)</td>
-                            <td>188.39</td>
-                            <td>194.99</td>
-                            <td>191.52 x 300</td>
-                            <td>191.58 x 100</td>
-                            <td>240.32</td>
-                            <td colspan="2">Spanning cell</td>  
-                         </tr>       
-                         <tr>
-                            <th>ORCL <span class="co-name">Oracle Corporation</span></th>
-                            <td>31.15</td>
-                            <td>12:44PM</td>
-                            <td>1.41 (4.72%)</td>
-                            <td>29.74</td>
-                            <td>30.67</td>
-                            <td>31.14 x 6500</td>
-                            <td>31.15 x 3200</td>
-                            <td>36.11</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
-                            <td>25.50</td>
-                            <td>12:27PM</td>
-                            <td>0.66 (2.67%)</td>
-                            <td>24.84</td>
-                            <td>25.37</td>
-                            <td>25.50 x 71100</td>
-                            <td>25.51 x 17800</td>
-                            <td>31.50</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>  
-                         </tr>
-                         <tr>
-                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
-                            <td>18.65</td>
-                            <td>12:45PM</td>
-                            <td>0.97 (5.49%)</td>
-                            <td>17.68</td>
-                            <td>18.23</td>
-                            <td>18.65 x 10300</td>
-                            <td>18.66 x 24000</td>
-                            <td>21.12</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>  
-                         </tr>      
-                         <tr>
-                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
-                            <td>15.81</td>
-                            <td>12:25PM</td>
-                            <td>0.11 (0.67%)</td>
-                            <td>15.70</td>
-                            <td>15.94</td>
-                            <td>15.79 x 6100</td>
-                            <td>15.80 x 17000</td>
-                            <td>18.16</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>         
-                         </tr>
-                         <!-- Repeat -->
-                         <tr>
-                            <th>GOOG <span class="co-name">Google Inc.</span></th>
-                            <td>597.74</td>
-                            <td>12:12PM</td>
-                            <td>14.81 (2.54%)</td>
-                            <td>582.93</td>
-                            <td>597.95</td>
-                            <td>597.73 x 100</td>
-                            <td>597.91 x 300</td>
-                            <td>731.10</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
-                            <td>378.94</td>
-                            <td>12:22PM</td>
-                            <td>5.74 (1.54%)</td>
-                            <td>373.20</td>
-                            <td>381.02</td>
-                            <td>378.92 x 300</td>
-                            <td>378.99 x 100</td>
-                            <td>505.94</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
-                            <td>191.55</td>
-                            <td>12:23PM</td>
-                            <td>3.16 (1.68%)</td>
-                            <td>188.39</td>
-                            <td>194.99</td>
-                            <td>191.52 x 300</td>
-                            <td>191.58 x 100</td>
-                            <td>240.32</td>
-                            <td colspan="2">Spanning cell</td>  
-                         </tr>       
-                         <tr>
-                            <th>ORCL <span class="co-name">Oracle Corporation</span></th>
-                            <td>31.15</td>
-                            <td>12:44PM</td>
-                            <td>1.41 (4.72%)</td>
-                            <td>29.74</td>
-                            <td>30.67</td>
-                            <td>31.14 x 6500</td>
-                            <td>31.15 x 3200</td>
-                            <td>36.11</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
-                            <td>25.50</td>
-                            <td>12:27PM</td>
-                            <td>0.66 (2.67%)</td>
-                            <td>24.84</td>
-                            <td>25.37</td>
-                            <td>25.50 x 71100</td>
-                            <td>25.51 x 17800</td>
-                            <td>31.50</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>  
-                         </tr>
-                         <tr>
-                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
-                            <td>18.65</td>
-                            <td>12:45PM</td>
-                            <td>0.97 (5.49%)</td>
-                            <td>17.68</td>
-                            <td>18.23</td>
-                            <td>18.65 x 10300</td>
-                            <td>18.66 x 24000</td>
-                            <td>21.12</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>  
-                         </tr>      
-                         <tr>
-                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
-                            <td>15.81</td>
-                            <td>12:25PM</td>
-                            <td>0.11 (0.67%)</td>
-                            <td>15.70</td>
-                            <td>15.94</td>
-                            <td>15.79 x 6100</td>
-                            <td>15.80 x 17000</td>
-                            <td>18.16</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>         
-                         </tr>
-                         <!-- Repeat -->
-                         <tr>
-                            <th>GOOG <span class="co-name">Google Inc.</span></th>
-                            <td>597.74</td>
-                            <td>12:12PM</td>
-                            <td>14.81 (2.54%)</td>
-                            <td>582.93</td>
-                            <td>597.95</td>
-                            <td>597.73 x 100</td>
-                            <td>597.91 x 300</td>
-                            <td>731.10</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
-                            <td>378.94</td>
-                            <td>12:22PM</td>
-                            <td>5.74 (1.54%)</td>
-                            <td>373.20</td>
-                            <td>381.02</td>
-                            <td>378.92 x 300</td>
-                            <td>378.99 x 100</td>
-                            <td>505.94</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
-                            <td>191.55</td>
-                            <td>12:23PM</td>
-                            <td>3.16 (1.68%)</td>
-                            <td>188.39</td>
-                            <td>194.99</td>
-                            <td>191.52 x 300</td>
-                            <td>191.58 x 100</td>
-                            <td>240.32</td>
-                            <td colspan="2">Spanning cell</td>  
-                         </tr>       
-                         <tr>
-                            <th>ORCL <span class="co-name">Oracle Corporation</span></th>
-                            <td>31.15</td>
-                            <td>12:44PM</td>
-                            <td>1.41 (4.72%)</td>
-                            <td>29.74</td>
-                            <td>30.67</td>
-                            <td>31.14 x 6500</td>
-                            <td>31.15 x 3200</td>
-                            <td>36.11</td>
-                            <td colspan="2">Spanning cell</td>
-                         </tr>      
-                         <tr>
-                            <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
-                            <td>25.50</td>
-                            <td>12:27PM</td>
-                            <td>0.66 (2.67%)</td>
-                            <td>24.84</td>
-                            <td>25.37</td>
-                            <td>25.50 x 71100</td>
-                            <td>25.51 x 17800</td>
-                            <td>31.50</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>  
-                         </tr>
-                         <tr>
-                            <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
-                            <td>18.65</td>
-                            <td>12:45PM</td>
-                            <td>0.97 (5.49%)</td>
-                            <td>17.68</td>
-                            <td>18.23</td>
-                            <td>18.65 x 10300</td>
-                            <td>18.66 x 24000</td>
-                            <td>21.12</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>  
-                         </tr>      
-                         <tr>
-                            <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
-                            <td>15.81</td>
-                            <td>12:25PM</td>
-                            <td>0.11 (0.67%)</td>
-                            <td>15.70</td>
-                            <td>15.94</td>
-                            <td>15.79 x 6100</td>
-                            <td>15.80 x 17000</td>
-                            <td>18.16</td>
-                            <td>Non-spanning</td>
-                            <td>Non-spanning</td>         
-                         </tr>
-                      </tbody>
-                   </table>
+        <section id="features">
+            <div class="container">
+                <div class="page-header">
+                    <h2>Features</h2>
                 </div>
 
-                <br>
-                <br>
+                <div class="row">
+                    <div class="feature col-lg-3 col-md-6 col-sm-12">
+                        <h4><i class="fa fa-twitter"></i>Made for Bootstrap</h4>
+                        <p>Designed to be used with <a href="http://getbootstrap.com">Bootstrap 3</a>. If you don't want to use bootstrap, just <a href="https://github.com/nadangergeo/RWD-Table-Patterns">fork the repo</a> and customize it to your needs!</p>
+                    </div>
+                    <div class="feature col-lg-3 col-md-6 col-sm-12">
+                        <h4><i class="fa fa-mobile-phone"></i>Mobile first &amp; PE</h4>
+                        <p>Built with mobile first and progressive enhancement in mind. Also built with love and with the help of a fair amount of coffee.</p>
+                    </div>
+                    <div class="feature col-lg-3 col-md-6 col-sm-12">
+                        <h4><i class="fa fa-coffee"></i>Graceful JS fallback</h4>
+                        In browsers without JavaScript, the tables will still be scrollable. I.e. there's still some responsiveness.
+                    </div>
+                    <div class="feature col-lg-3 col-md-6 col-sm-12">
+                        <h4><i class="fa fa-thumbs-o-up"></i>Easy to use</h4>
+                        <p>You only need to add one JS-file, one CSS-file and some minimal setup to make the tables responsive.</p>
+                        <p><b>Dependencies:</b> jQuery and Bootstrap 3.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo">
+            <div class="container">
+                <div class="page-header">
+                    <h2>Demo</h2>
+                </div>
 
                 <div class="table-responsive" data-pattern="priority-columns">
-                     <table cellspacing="0" id="ledger" class="table table-small-font table-bordered table-striped">
+                    <table cellspacing="0" id="tech-companies-1" class="table table-small-font table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th data-priority="1">Last Trade</th>
+                                <th data-priority="3">Trade Time</th>
+                                <th data-priority="1">Change</th>
+                                <th data-priority="3">Prev Close</th>
+                                <th data-priority="3">Open</th>
+                                <th data-priority="6">Bid</th>
+                                <th data-priority="6">Ask</th>
+                                <th data-priority="6">1y Target Est</th>
+                                <th data-priority="6">Lorem</th>
+                                <th data-priority="6">Ipsum</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>GOOG <span class="co-name">Google Inc.</span></th>
+                                <td>597.74</td>
+                                <td>12:12PM</td>
+                                <td>14.81 (2.54%)</td>
+                                <td>582.93</td>
+                                <td>597.95</td>
+                                <td>597.73 x 100</td>
+                                <td>597.91 x 300</td>
+                                <td>731.10</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                                <td>378.94</td>
+                                <td>12:22PM</td>
+                                <td>5.74 (1.54%)</td>
+                                <td>373.20</td>
+                                <td>381.02</td>
+                                <td>378.92 x 300</td>
+                                <td>378.99 x 100</td>
+                                <td>505.94</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                                <td>191.55</td>
+                                <td>12:23PM</td>
+                                <td>3.16 (1.68%)</td>
+                                <td>188.39</td>
+                                <td>194.99</td>
+                                <td>191.52 x 300</td>
+                                <td>191.58 x 100</td>
+                                <td>240.32</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                                <td>31.15</td>
+                                <td>12:44PM</td>
+                                <td>1.41 (4.72%)</td>
+                                <td>29.74</td>
+                                <td>30.67</td>
+                                <td>31.14 x 6500</td>
+                                <td>31.15 x 3200</td>
+                                <td>36.11</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                                <td>25.50</td>
+                                <td>12:27PM</td>
+                                <td>0.66 (2.67%)</td>
+                                <td>24.84</td>
+                                <td>25.37</td>
+                                <td>25.50 x 71100</td>
+                                <td>25.51 x 17800</td>
+                                <td>31.50</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <tr>
+                                <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                                <td>18.65</td>
+                                <td>12:45PM</td>
+                                <td>0.97 (5.49%)</td>
+                                <td>17.68</td>
+                                <td>18.23</td>
+                                <td>18.65 x 10300</td>
+                                <td>18.66 x 24000</td>
+                                <td>21.12</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <tr>
+                                <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                                <td>15.81</td>
+                                <td>12:25PM</td>
+                                <td>0.11 (0.67%)</td>
+                                <td>15.70</td>
+                                <td>15.94</td>
+                                <td>15.79 x 6100</td>
+                                <td>15.80 x 17000</td>
+                                <td>18.16</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <!-- Repeat -->
+                            <tr>
+                                <th>GOOG <span class="co-name">Google Inc.</span></th>
+                                <td>597.74</td>
+                                <td>12:12PM</td>
+                                <td>14.81 (2.54%)</td>
+                                <td>582.93</td>
+                                <td>597.95</td>
+                                <td>597.73 x 100</td>
+                                <td>597.91 x 300</td>
+                                <td>731.10</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                                <td>378.94</td>
+                                <td>12:22PM</td>
+                                <td>5.74 (1.54%)</td>
+                                <td>373.20</td>
+                                <td>381.02</td>
+                                <td>378.92 x 300</td>
+                                <td>378.99 x 100</td>
+                                <td>505.94</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                                <td>191.55</td>
+                                <td>12:23PM</td>
+                                <td>3.16 (1.68%)</td>
+                                <td>188.39</td>
+                                <td>194.99</td>
+                                <td>191.52 x 300</td>
+                                <td>191.58 x 100</td>
+                                <td>240.32</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                                <td>31.15</td>
+                                <td>12:44PM</td>
+                                <td>1.41 (4.72%)</td>
+                                <td>29.74</td>
+                                <td>30.67</td>
+                                <td>31.14 x 6500</td>
+                                <td>31.15 x 3200</td>
+                                <td>36.11</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                                <td>25.50</td>
+                                <td>12:27PM</td>
+                                <td>0.66 (2.67%)</td>
+                                <td>24.84</td>
+                                <td>25.37</td>
+                                <td>25.50 x 71100</td>
+                                <td>25.51 x 17800</td>
+                                <td>31.50</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <tr>
+                                <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                                <td>18.65</td>
+                                <td>12:45PM</td>
+                                <td>0.97 (5.49%)</td>
+                                <td>17.68</td>
+                                <td>18.23</td>
+                                <td>18.65 x 10300</td>
+                                <td>18.66 x 24000</td>
+                                <td>21.12</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <tr>
+                                <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                                <td>15.81</td>
+                                <td>12:25PM</td>
+                                <td>0.11 (0.67%)</td>
+                                <td>15.70</td>
+                                <td>15.94</td>
+                                <td>15.79 x 6100</td>
+                                <td>15.80 x 17000</td>
+                                <td>18.16</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <!-- Repeat -->
+                            <tr>
+                                <th>GOOG <span class="co-name">Google Inc.</span></th>
+                                <td>597.74</td>
+                                <td>12:12PM</td>
+                                <td>14.81 (2.54%)</td>
+                                <td>582.93</td>
+                                <td>597.95</td>
+                                <td>597.73 x 100</td>
+                                <td>597.91 x 300</td>
+                                <td>731.10</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                                <td>378.94</td>
+                                <td>12:22PM</td>
+                                <td>5.74 (1.54%)</td>
+                                <td>373.20</td>
+                                <td>381.02</td>
+                                <td>378.92 x 300</td>
+                                <td>378.99 x 100</td>
+                                <td>505.94</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                                <td>191.55</td>
+                                <td>12:23PM</td>
+                                <td>3.16 (1.68%)</td>
+                                <td>188.39</td>
+                                <td>194.99</td>
+                                <td>191.52 x 300</td>
+                                <td>191.58 x 100</td>
+                                <td>240.32</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                                <td>31.15</td>
+                                <td>12:44PM</td>
+                                <td>1.41 (4.72%)</td>
+                                <td>29.74</td>
+                                <td>30.67</td>
+                                <td>31.14 x 6500</td>
+                                <td>31.15 x 3200</td>
+                                <td>36.11</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                                <td>25.50</td>
+                                <td>12:27PM</td>
+                                <td>0.66 (2.67%)</td>
+                                <td>24.84</td>
+                                <td>25.37</td>
+                                <td>25.50 x 71100</td>
+                                <td>25.51 x 17800</td>
+                                <td>31.50</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <tr>
+                                <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                                <td>18.65</td>
+                                <td>12:45PM</td>
+                                <td>0.97 (5.49%)</td>
+                                <td>17.68</td>
+                                <td>18.23</td>
+                                <td>18.65 x 10300</td>
+                                <td>18.66 x 24000</td>
+                                <td>21.12</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <tr>
+                                <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                                <td>15.81</td>
+                                <td>12:25PM</td>
+                                <td>0.11 (0.67%)</td>
+                                <td>15.70</td>
+                                <td>15.94</td>
+                                <td>15.79 x 6100</td>
+                                <td>15.80 x 17000</td>
+                                <td>18.16</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <!-- Repeat -->
+                            <tr>
+                                <th>GOOG <span class="co-name">Google Inc.</span></th>
+                                <td>597.74</td>
+                                <td>12:12PM</td>
+                                <td>14.81 (2.54%)</td>
+                                <td>582.93</td>
+                                <td>597.95</td>
+                                <td>597.73 x 100</td>
+                                <td>597.91 x 300</td>
+                                <td>731.10</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                                <td>378.94</td>
+                                <td>12:22PM</td>
+                                <td>5.74 (1.54%)</td>
+                                <td>373.20</td>
+                                <td>381.02</td>
+                                <td>378.92 x 300</td>
+                                <td>378.99 x 100</td>
+                                <td>505.94</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                                <td>191.55</td>
+                                <td>12:23PM</td>
+                                <td>3.16 (1.68%)</td>
+                                <td>188.39</td>
+                                <td>194.99</td>
+                                <td>191.52 x 300</td>
+                                <td>191.58 x 100</td>
+                                <td>240.32</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                                <td>31.15</td>
+                                <td>12:44PM</td>
+                                <td>1.41 (4.72%)</td>
+                                <td>29.74</td>
+                                <td>30.67</td>
+                                <td>31.14 x 6500</td>
+                                <td>31.15 x 3200</td>
+                                <td>36.11</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                                <td>25.50</td>
+                                <td>12:27PM</td>
+                                <td>0.66 (2.67%)</td>
+                                <td>24.84</td>
+                                <td>25.37</td>
+                                <td>25.50 x 71100</td>
+                                <td>25.51 x 17800</td>
+                                <td>31.50</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <tr>
+                                <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                                <td>18.65</td>
+                                <td>12:45PM</td>
+                                <td>0.97 (5.49%)</td>
+                                <td>17.68</td>
+                                <td>18.23</td>
+                                <td>18.65 x 10300</td>
+                                <td>18.66 x 24000</td>
+                                <td>21.12</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <tr>
+                                <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                                <td>15.81</td>
+                                <td>12:25PM</td>
+                                <td>0.11 (0.67%)</td>
+                                <td>15.70</td>
+                                <td>15.94</td>
+                                <td>15.79 x 6100</td>
+                                <td>15.80 x 17000</td>
+                                <td>18.16</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <!-- Repeat -->
+                            <tr>
+                                <th>GOOG <span class="co-name">Google Inc.</span></th>
+                                <td>597.74</td>
+                                <td>12:12PM</td>
+                                <td>14.81 (2.54%)</td>
+                                <td>582.93</td>
+                                <td>597.95</td>
+                                <td>597.73 x 100</td>
+                                <td>597.91 x 300</td>
+                                <td>731.10</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                                <td>378.94</td>
+                                <td>12:22PM</td>
+                                <td>5.74 (1.54%)</td>
+                                <td>373.20</td>
+                                <td>381.02</td>
+                                <td>378.92 x 300</td>
+                                <td>378.99 x 100</td>
+                                <td>505.94</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                                <td>191.55</td>
+                                <td>12:23PM</td>
+                                <td>3.16 (1.68%)</td>
+                                <td>188.39</td>
+                                <td>194.99</td>
+                                <td>191.52 x 300</td>
+                                <td>191.58 x 100</td>
+                                <td>240.32</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                                <td>31.15</td>
+                                <td>12:44PM</td>
+                                <td>1.41 (4.72%)</td>
+                                <td>29.74</td>
+                                <td>30.67</td>
+                                <td>31.14 x 6500</td>
+                                <td>31.15 x 3200</td>
+                                <td>36.11</td>
+                                <td colspan="2">Spanning cell</td>
+                            </tr>
+                            <tr>
+                                <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                                <td>25.50</td>
+                                <td>12:27PM</td>
+                                <td>0.66 (2.67%)</td>
+                                <td>24.84</td>
+                                <td>25.37</td>
+                                <td>25.50 x 71100</td>
+                                <td>25.51 x 17800</td>
+                                <td>31.50</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <tr>
+                                <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                                <td>18.65</td>
+                                <td>12:45PM</td>
+                                <td>0.97 (5.49%)</td>
+                                <td>17.68</td>
+                                <td>18.23</td>
+                                <td>18.65 x 10300</td>
+                                <td>18.66 x 24000</td>
+                                <td>21.12</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                            <tr>
+                                <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                                <td>15.81</td>
+                                <td>12:25PM</td>
+                                <td>0.11 (0.67%)</td>
+                                <td>15.70</td>
+                                <td>15.94</td>
+                                <td>15.79 x 6100</td>
+                                <td>15.80 x 17000</td>
+                                <td>18.16</td>
+                                <td>Non-spanning</td>
+                                <td>Non-spanning</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <br>
+                <div class="table-responsive" data-pattern="priority-columns">
+                    <table cellspacing="0" id="ledger" class="table table-small-font table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th rowspan="2">#</th>
@@ -625,7 +621,6 @@
                                 <th>Debit</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <tr>
                                 <th>1</th>
@@ -769,50 +764,48 @@
                             </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>12 200 SEK</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>3050 SEK</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>8000 SEK</th>
-                                <th></th>
-                                <th>150 SEK</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>12 200 SEK</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>3050 SEK</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>8000 SEK</th>
+                            <th></th>
+                            <th>150 SEK</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
                         </tfoot>
                     </table>
                 </div>
-
                 <br>
                 <br>
-
                 <div class="table-responsive" data-pattern="priority-columns">
-                     <table cellspacing="0" id="group-test" class="table table-small-font table-bordered table-striped">
+                    <table cellspacing="0" id="group-test" class="table table-small-font table-bordered table-striped">
                         <thead>
                             <tr class="hide">
                                 <th>#</th>
@@ -826,7 +819,6 @@
                                 <th colspan="2" data-priority="6">Group H</th>
                                 <th colspan="2" data-priority="6">Group I</th>
                             </tr>
-
                             <tr>
                                 <th>#</th>
                                 <th data-priority="1">Column A.1</th>
@@ -848,365 +840,324 @@
                                 <th data-priority="6">Column I.1</th>
                                 <th data-priority="6">Column I.2</th>
                             </tr>
-
                         </thead>
-
                         <tbody>
                             <tr>
                                 <td>1</td>
-
                                 <td>Column A.1</td>
                                 <td>Column A.2</td>
-
                                 <td>Column B.1</td>
                                 <td>Column B.1</td>
-
                                 <td>Column C.1</td>
                                 <td>Column C.2</td>
-
                                 <td>Column D.1</td>
                                 <td>Column D.2</td>
-
                                 <td>Column E.1</td>
                                 <td>Column E.2</td>
-
                                 <td>Column F.1</td>
                                 <td>Column F.2</td>
-
                                 <td>Column G.1</td>
                                 <td>Column G.2</td>
-
                                 <td>Column H.1</td>
                                 <td>Column H.2</td>
-
                                 <td>Column I.1</td>
                                 <td>Column I.2</td>
                             </tr>
-
                             <tr>
                                 <td>2</td>
-
                                 <td>Column A</td>
                                 <td>Column A</td>
-
                                 <td>Column B</td>
                                 <td>Column B</td>
-
                                 <td>Column C</td>
                                 <td>Column C</td>
-
                                 <td>Column D</td>
                                 <td>Column D</td>
-
                                 <td>Column E</td>
                                 <td>Column E</td>
-
                                 <td>Column F</td>
                                 <td>Column F</td>
-
                                 <td>Column G</td>
                                 <td>Column G</td>
-
                                 <td>Column H</td>
                                 <td>Column H</td>
-
                                 <td>Column I</td>
                                 <td>Column I</td>
                             </tr>
-
                             <tr>
                                 <td>3</td>
-
                                 <td>Column A</td>
                                 <td>Column A</td>
-
                                 <td>Column B</td>
                                 <td>Column B</td>
-
                                 <td>Column C</td>
                                 <td>Column C</td>
-
                                 <td>Column D</td>
                                 <td>Column D</td>
-
                                 <td>Column E</td>
                                 <td>Column E</td>
-
                                 <td>Column F</td>
                                 <td>Column F</td>
-
                                 <td>Column G</td>
                                 <td>Column G</td>
-
                                 <td>Column H</td>
                                 <td>Column H</td>
-
                                 <td>Column I</td>
                                 <td>Column I</td>
                             </tr>
-
                             <tr>
                                 <td>4</td>
-
                                 <td>Column A</td>
                                 <td>Column A</td>
-
                                 <td>Column B</td>
                                 <td>Column B</td>
-
                                 <td>Column C</td>
                                 <td>Column C</td>
-
                                 <td>Column D</td>
                                 <td>Column D</td>
-
                                 <td>Column E</td>
                                 <td>Column E</td>
-
                                 <td>Column F</td>
                                 <td>Column F</td>
-
                                 <td>Column G</td>
                                 <td>Column G</td>
-
                                 <td>Column H</td>
                                 <td>Column H</td>
-
                                 <td>Column I</td>
                                 <td>Column I</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-          </div> <!-- end container -->
-      </section> <!-- end section -->
+            </div> <!-- end container -->
+        </section> <!-- end section -->
 
-      <section id="how-to-use">
-         <div class="container">
-            <div class="page-header">
-                <h2>How to use</h2>
-            </div>
+        <section id="how-to-use">
+            <div class="container">
+                <div class="page-header">
+                    <h2>How to use</h2>
+                </div>
 
-            <h3>Install using Bower</h3>
-            <pre><code>bower install RWD-Table-Patterns</code></pre>
-             
-            <h3>Add CSS file <small>to the <code>&lt;head&gt;</code></small></h3>
-            <pre><code>&lt;link rel="stylesheet" href="css/rwd-table.min.css"&gt;</code></pre>
+                <h3>Install using Bower</h3>
+                <pre><code>bower install RWD-Table-Patterns</code></pre>
+            
+                <h3>Add CSS file <small>to the <code>&lt;head&gt;</code></small></h3>
+                <pre><code>&lt;link rel="stylesheet" href="css/rwd-table.min.css"&gt;</code></pre>
 
-            <h3>Add JavaScript file <small>either to the <code>&lt;head&gt;</code> or to the bottom of <code>&lt;body&gt;</code></small></h3>
-            <pre><code>&lt;script type="text/javascript" src="js/rwd-table.js"&gt;&lt;/script&gt;</code></pre>
+                <h3>Add JavaScript file <small>either to the <code>&lt;head&gt;</code> or to the bottom of <code>&lt;body&gt;</code></small></h3>
+                <pre><code>&lt;script type="text/javascript" src="js/rwd-table.js"&gt;&lt;/script&gt;</code></pre>
+                <br>
 
-            <br>
-            <h4>You also need to add the dependencies</h4>
-            <ul>
-               <li>jQuery (>=1.11.0)</li>
-               <li>
-                  Bootstrap 3 (>=3.1.1) <button class="btn btn-default btn-sm" data-toggle="collapse" data-target="#bs-deps" id="bs-deps-toggle"><span class="fa fa-chevron-down"></span></button>
-                  <ul id="bs-deps" class="collapse">
-                     <li>normalize.less</li>
-                     <li>buttons.less</li>
-                     <li>button-groups.less</li>
-                     <li>dropdowns (.less &amp; .js)</li>
-                     <li>tables.less</li>
-                     <li>glyphicons needed for default <em>focusBtnIcon</em> option.</li>
-                  </ul>
-               </li>
-            </ul>
+                <h4>You also need to add the dependencies</h4>
+                <ul>
+                    <li>jQuery (>=1.11.0)</li>
+                    <li>
+                        Bootstrap 3 (>=3.1.1) <button class="btn btn-default btn-sm" data-toggle="collapse" data-target="#bs-deps" id="bs-deps-toggle"><span class="fa fa-chevron-down"></span></button>
+                        <ul id="bs-deps" class="collapse">
+                            <li>normalize.less</li>
+                            <li>buttons.less</li>
+                            <li>button-groups.less</li>
+                            <li>dropdowns (.less &amp; .js)</li>
+                            <li>tables.less</li>
+                            <li>glyphicons needed for default <em>focusBtnIcon</em> option.</li>
+                        </ul>
+                    </li>
+                </ul>
 
-           <h3>Markup</h3>
-           <ol>
-             <li>Add the classes <code>.table</code> to the tables and wrap them in <code>.table-responsive</code>, as usual when using Bootstrap.</li>
-             <li>If the table has complex data and many columns you can give it the class <code>.table-small-font</code> (highly recommended).</li>
-             <li>The table can also utilize Bootstrap's table classes, such as <code>.table-striped</code> and <code>.table-bordered</code>.</li>
-           </ol>
+                <h3>Markup</h3>
+                <ol>
+                    <li>Add the classes <code>.table</code> to the tables and wrap them in <code>.table-responsive</code>, as usual when using Bootstrap.</li>
+                    <li>If the table has complex data and many columns you can give it the class <code>.table-small-font</code> (highly recommended).</li>
+                    <li>The table can also utilize Bootstrap's table classes, such as <code>.table-striped</code> and <code>.table-bordered</code>.</li>
+                </ol>
 
-           <pre><code>&lt;div class="table-responsive"&gt;
+                <pre><code>&lt;div class="table-responsive"&gt;
    &lt;table class="table table-small-font table-bordered table-striped"&gt;
       ...
    &lt;/table&gt;
 &lt;/div&gt;</code></pre>
 
-            <h3>Initialize via data attributes</h3>
-            <p>You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute <code>data-pattern="priority-columns"</code> to the <code>.table-responsive</code> div.</p>
-            <pre><code>&lt;div class="table-responsive" data-pattern="priority-columns"&gt;
+                <h3>Initialize via data attributes</h3>
+                <p>You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute <code>data-pattern="priority-columns"</code> to the <code>.table-responsive</code> div.</p>
+                <pre><code>&lt;div class="table-responsive" data-pattern="priority-columns"&gt;
       ...
 &lt;/div&gt;</code></pre>
 
-            <h3>Initialize via JavaScript</h3>
-            <pre><code>&lt;script&gt;
+                <h3>Initialize via JavaScript</h3>
+                <pre><code>&lt;script&gt;
    $(function() {
       $('.table-responsive').responsiveTable({<em>options</em>});
    });
 &lt;/script&gt;</code></pre>
              
-            <h3>Options</h3>
-            <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code> with hyphens instead of camelCase, as in <code>data-add-focus-btn=""</code>.</p>
-             <div class="table-responsive" data-pattern="">
-               <table class="table table-bordered table-striped">
-                 <thead>
-                  <tr>
-                    <th style="width: 125px;">Name</th>
-                    <th style="width: 100px;">type</th>
-                    <th style="width: 250px;">default</th>
-                    <th>description</th>
-                  </tr>
-                 </thead>
-                 <tbody>
-                  <tr>
-                    <td>pattern</td>
-                    <td>string</td>
-                    <td>'priority-columns'</td>
-                    <td>
-                      <p>What responsive table pattern to use. For now, <code>'priority-columns'</code> is the only pattern available.</p>
-                      <p><strong>Tips:</strong> When initalizing via JavaScript, add <code>data-pattern=""</code> to responsive tables you wan't to exclude.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>stickyTableHeader</td>
-                    <td>boolean</td>
-                    <td>true</td>
-                    <td>Makes the table header persistent.</td>
-                  </tr>
-                  <tr>
-                    <td>fixedNavbar</td>
-                    <td>string</td>
-                    <td>'.navbar-fixed-top'</td>
-                    <td>
-                        <p>Is there a fixed navbar? The sticky table header needs to know about it!
-                          The option is the selector used to find the navbar. 
-                          Don't worry about the default value if you don't have a fixed navbar.</p>
-                        <p><strong>Example:</strong> <code>'#navbar'</code></p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>addDisplayAllBtn</td>
-                    <td>boolean</td>
-                    <td>true</td>
-                    <td>Add 'Display all' button to the toolbar above the table.</td>
-                  </tr>
-                  <tr>
-                    <td>addFocusBtn</td>
-                    <td>boolean</td>
-                    <td>true</td>
-                    <td>Add 'Focus' toggle button to the toolbar above the table.</td>
-                  </tr>
-                  <tr>
-                    <td>focusBtnIcon</td>
-                    <td>string</td>
-                    <td>'glyphicon glyphicon-screenshot'</td>
-                    <td>
-                        Icon for the focus button specified with classes.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>i18n</td>
-                    <td>object</td>
-                    <td>{
-                          focus     : 'Focus',
-                          display   : 'Display',
-                          displayAll: 'Display all'
-                        }
-                    </td>
-                    <td>
-                        Used to translate the buttons (only works if you initialize via JavaScript).
-                    </td>
-                  </tr>
-                 </tbody>
-               </table>
-             </div>
+                <h3>Options</h3>
+                <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code> with hyphens instead of camelCase, as in <code>data-add-focus-btn=""</code>.</p>
 
-           <h3>Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
-           <div class="table-responsive" data-pattern="">
-              <table class="table table-bordered">
-                 <thead>
-                    <tr>
-                       <th style="width: 100px;">Attribute</th>
-                       <th>Description/Breakpoint</th>
-                    </tr>
-                 </thead>
-                 <tbody>
-                    <tr>
-                       <td><code>data-priority="-1"</code></td>
-                       <td>Hidden and and not togglable from dropdown</td>
-                    </tr>
-                    <tr>
-                       <td><code>data-priority="0"</code></td>
-                       <td>Hidden per default (but togglable from dropdown)</td>
-                    </tr>
-                    <tr>
-                       <td><code>data-priority=""</code></td>
-                       <td>Always visible and not hideable from dropdown</td>
-                    </tr>
-                    <tr>
-                       <td><code>data-priority="1"</code></td>
-                       <td>Always visible (but hidable from dropdown)</td>
-                    </tr>
-                    <tr>
-                       <td><code>data-priority="2"</code></td>
-                       <td>Visible when (min-width: 480px)</td>
-                    </tr>
-                    <tr>
-                       <td><code>data-priority="3"</code></td>
-                       <td>(min-width: 640px)</td>
-                    </tr>
-                    <tr>
-                       <td><code>data-priority="4"</code></td>
-                       <td>(min-width: 800px)</td>
-                    </tr>
-                    <tr>
-                       <td><code>data-priority="5"</code></td>
-                       <td>(min-width: 960px)</td>
-                    </tr>
-                    <tr>
-                       <td><code>data-priority="6"</code></td>
-                       <td>(min-width: 1120px)</td>
-                    </tr>
-                 </tbody>
-              </table>
-           </div>
+                <div class="table-responsive" data-pattern="">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 125px;">Name</th>
+                                <th style="width: 100px;">type</th>
+                                <th style="width: 250px;">default</th>
+                                <th>description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>pattern</td>
+                                <td>string</td>
+                                <td>'priority-columns'</td>
+                                <td>
+                                    <p>What responsive table pattern to use. For now, <code>'priority-columns'</code> is the only pattern available.</p>
+                                    <p><strong>Tips:</strong> When initalizing via JavaScript, add <code>data-pattern=""</code> to responsive tables you wan't to exclude.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>stickyTableHeader</td>
+                                <td>boolean</td>
+                                <td>true</td>
+                                <td>Makes the table header persistent.</td>
+                            </tr>
+                            <tr>
+                                <td>fixedNavbar</td>
+                                <td>string</td>
+                                <td>'.navbar-fixed-top'</td>
+                                <td>
+                                    <p>Is there a fixed navbar? The sticky table header needs to know about it!
+                                        The option is the selector used to find the navbar.
+                                    Don't worry about the default value if you don't have a fixed navbar.</p>
+                                    <p><strong>Example:</strong> <code>'#navbar'</code></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>addDisplayAllBtn</td>
+                                <td>boolean</td>
+                                <td>true</td>
+                                <td>Add 'Display all' button to the toolbar above the table.</td>
+                            </tr>
+                            <tr>
+                                <td>addFocusBtn</td>
+                                <td>boolean</td>
+                                <td>true</td>
+                                <td>Add 'Focus' toggle button to the toolbar above the table.</td>
+                            </tr>
+                            <tr>
+                                <td>focusBtnIcon</td>
+                                <td>string</td>
+                                <td>'glyphicon glyphicon-screenshot'</td>
+                                <td>
+                                    Icon for the focus button specified with classes.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>i18n</td>
+                                <td>object</td>
+                                <td>{
+                                    focus     : 'Focus',
+                                    display   : 'Display',
+                                    displayAll: 'Display all'
+                                    }
+                                </td>
+                                <td>
+                                    Used to translate the buttons (only works if you initialize via JavaScript).
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-           <h3>Dynamic content? Call Update()!</h3>
+                <h3>Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
+                <div class="table-responsive" data-pattern="">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 100px;">Attribute</th>
+                                <th>Description/Breakpoint</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>data-priority="-1"</code></td>
+                                <td>Hidden and and not togglable from dropdown</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-priority="0"</code></td>
+                                <td>Hidden per default (but togglable from dropdown)</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-priority=""</code></td>
+                                <td>Always visible and not hideable from dropdown</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-priority="1"</code></td>
+                                <td>Always visible (but hidable from dropdown)</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-priority="2"</code></td>
+                                <td>Visible when (min-width: 480px)</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-priority="3"</code></td>
+                                <td>(min-width: 640px)</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-priority="4"</code></td>
+                                <td>(min-width: 800px)</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-priority="5"</code></td>
+                                <td>(min-width: 960px)</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-priority="6"</code></td>
+                                <td>(min-width: 1120px)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-           <p>There is an update method which you can call when the content in tbody/tfoot has changed. <i>The method will in turn call the private method setupBodyRows() which sets up rows that has not been setup, as well as update the sticky table header (to accommodate for any changes in columns widths).</i></p>
+                <h3>Dynamic content? Call Update()!</h3>
 
-           <p><b>You can call the method like this:</b></p>
+                <p>There is an update method which you can call when the content in tbody/tfoot has changed. <i>The method will in turn call the private method setupBodyRows() which sets up rows that has not been setup, as well as update the sticky table header (to accommodate for any changes in columns widths).</i></p>
 
-           <pre><code>$('.table-responsive').responsiveTable('update');</code></pre>
-           
-           <p><b>or perhaps like this, if you want to select by id:</b></p>
+                <p><b>You can call the method like this:</b></p>
 
-           <pre><code>$('#the_id_to_the_table_responsive_wrapper').responsiveTable('update');</code></pre>
-           
-           <p>The API is inspired by Bootstrap's programmatic API. If you are curious about how the hell the method call is being done, see the following lines of code: <a href="https://github.com/nadangergeo/RWD-Table-Patterns/blob/3066664fc406a19a1a8aa00dc69f2369406b5dd0/src/js/rwd-table.js#L692-L694">rwd-table.js#L692-L694</a></p>
+                <pre><code>$('.table-responsive').responsiveTable('update');</code></pre>
+               
+                <p><b>or perhaps like this, if you want to select by id:</b></p>
+
+                <pre><code>$('#the_id_to_the_table_responsive_wrapper').responsiveTable('update');</code></pre>
+               
+                <p>The API is inspired by Bootstrap's programmatic API. If you are curious about how the hell the method call is being done, see the following lines of code: <a href="https://github.com/nadangergeo/RWD-Table-Patterns/blob/3066664fc406a19a1a8aa00dc69f2369406b5dd0/src/js/rwd-table.js#L692-L694">rwd-table.js#L692-L694</a></p>
                 
-           <h3>HTML Classes</h3>
-           <p>For better IE support, you need to have IE classes. Replace <code>&lt;html&gt;</code> with:</p>
-           <pre><code>&lt;!--[if lt IE 7 ]&gt; &lt;html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"&gt; &lt;![endif]--&gt;
+                <h3>HTML Classes</h3>
+                <p>For better IE support, you need to have IE classes. Replace <code>&lt;html&gt;</code> with:</p>
+                <pre><code>&lt;!--[if lt IE 7 ]&gt; &lt;html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"&gt; &lt;![endif]--&gt;
 &lt;!--[if IE 7 ]&gt;    &lt;html class="no-js lt-ie10 lt-ie9 lt-ie8"&gt; &lt;![endif]--&gt;
 &lt;!--[if IE 8 ]&gt;    &lt;html class="no-js lt-ie10 lt-ie9"&gt; &lt;![endif]--&gt;
 &lt;!--[if IE 9 ]&gt;    &lt;html class="no-js lt-ie10"&gt; &lt;![endif]--&gt;
 &lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html class="no-js"&gt; &lt;!--&lt;![endif]--&gt;</code></pre>
 
-            <div class="callout callout-warning">
-              <h4>no-js class</h4>
-              <p>The <code>.no-js</code> class is used to determine if the browser does not have JavaScript support or if JavaScript is disabled. The class is not used right now, but you should consider adding it anyway in case a future release has a patch that depends on it.</p>
+                <div class="callout callout-warning">
+                    <h4>no-js class</h4>
+                    <p>The <code>.no-js</code> class is used to determine if the browser does not have JavaScript support or if JavaScript is disabled. The class is not used right now, but you should consider adding it anyway in case a future release has a patch that depends on it.</p>
+                </div>
             </div>
-         </div>
-      </section>
+        </section>
 
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-      <!-- Latest compiled and minified Bootstrap JavaScript -->
-      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <!-- Latest compiled and minified Bootstrap JavaScript -->
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-      <script src="js/rwd-table.js?v=5.2.6"></script>
-      <script>
-      $(function() {
-          $('#bs-deps').on('hide.bs.collapse show.bs.collapse', function () {
-              $('#bs-deps-toggle').children('span').toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
-          })
-      });
-      </script>
-		
-	</body>
+        <script src="js/rwd-table.js?v=5.2.6"></script>
+        <script>
+            $(function() {
+                $('#bs-deps').on('hide.bs.collapse show.bs.collapse', function () {
+                    $('#bs-deps-toggle').children('span').toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
+                })
+            });
+        </script>
+    </body>
 </html>
