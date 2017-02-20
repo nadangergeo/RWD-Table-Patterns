@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v5.2.5 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v5.2.6 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se), Lucas Wiener <lucas@blimp.se> & "Maggie Wachs (www.filamentgroup.com)"
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
@@ -645,6 +645,11 @@
 
         // Make new clone of tbody
         var $tbodyClone = this.$table.find('tbody, tfoot').clone();
+
+        //replace ids
+        $tbodyClone.find('[id]').each(function() {
+            $(this).prop('id', $(this).prop('id') + '-clone');
+        });
 
         // Append new clone to tableClone
         $tbodyClone.appendTo(this.$tableClone);
