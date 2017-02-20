@@ -640,6 +640,11 @@
         // Make new clone of tbody
         var $tbodyClone = this.$table.find('tbody, tfoot').clone();
 
+        //replace ids
+        $tbodyClone.find('[id]').each(function() {
+            $(this).prop('id', $(this).prop('id') + '-clone');
+        });
+
         // Append new clone to tableClone
         $tbodyClone.appendTo(this.$tableClone);
 
