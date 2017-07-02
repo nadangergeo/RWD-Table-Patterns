@@ -26,6 +26,7 @@
     "type": "MIT",
     "url": "https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT"
   },
+  "main": "dist/js/rwd-table",
   "devDependencies": {
     "grunt": "~0.4.4",
     "grunt-banner": "^0.2.3",
