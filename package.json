@@ -15,6 +15,12 @@
     "Lucas Wiener <lucas@blimp.se> (www.blimp.se)",
     "Maggie Wachs (www.filamentgroup.com)"
   ],
+  "contributors": [
+    {
+      "name": "Ryan Hafer",
+      "email": "hafer.ryan@gmail.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/nadangergeo/RWD-Table-Patterns.git"

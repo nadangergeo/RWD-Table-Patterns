@@ -6,14 +6,14 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
-        
+
         <title>Responsive tables</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, minimal-ui">
         <meta name="format-detection" content="telephone=no">
         <meta name="description" content="An awesome solution for responsive tables with complex data.">
-        
+
         <!-- Font Awesome -->
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link async href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
         <!-- Latest compiled and minified Bootstrap CSS -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -21,7 +21,7 @@
         <!-- Responsive Tables -->
         <link rel="stylesheet" href="css/rwd-table.min.css?v=5.2.6">
         <link rel="stylesheet" href="css/docs.min.css?v=5.2.6">
-        
+
         <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-19870163-1']);
@@ -102,7 +102,7 @@
                 <div class="page-header">
                     <h2>Demo</h2>
                 </div>
-
+                <div data-responsive-table-toolbar="tech-companies-1"></div>
                 <div class="table-responsive" data-pattern="priority-columns">
                     <table cellspacing="0" id="tech-companies-1" class="table table-small-font table-bordered table-striped">
                         <thead>
@@ -940,7 +940,7 @@
 
                 <h3>Install using Bower</h3>
                 <pre><code>bower install RWD-Table-Patterns</code></pre>
-            
+
                 <h3>Add CSS file <small>to the <code>&lt;head&gt;</code></small></h3>
                 <pre><code>&lt;link rel="stylesheet" href="css/rwd-table.min.css"&gt;</code></pre>
 
@@ -989,7 +989,7 @@
       $('.table-responsive').responsiveTable({<em>options</em>});
    });
 &lt;/script&gt;</code></pre>
-             
+
                 <h3>Options</h3>
                 <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code> with hyphens instead of camelCase, as in <code>data-add-focus-btn=""</code>.</p>
 
@@ -1117,6 +1117,31 @@
                     </table>
                 </div>
 
+                <h3>Setup your table toolbar <small>with <code>data-responsive-table-toolbar</code> attribute</small></h3>
+                <div class="table-responsive" data-pattern="">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 100px;">Attribute</th>
+                                <th>Description/Usage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>data-responsive-table-toolbar="table-id"</code></td>
+                                <td>
+                                    <p>
+                                        Designates DOM element as toolbar for table with id of <code>table-id</code>
+                                    </p>
+                                    <p>
+                                        <b>Default:</b>
+                                        A new <code>&lt;div&gt;</code> toolbar element is appended to element with table wrapper class <code>responsive-table</code>.
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <h3>Dynamic content? Call Update()!</h3>
 
                 <p>There is an update method which you can call when the content in tbody/tfoot has changed. <i>The method will in turn call the private method setupBodyRows() which sets up rows that has not been setup, as well as update the sticky table header (to accommodate for any changes in columns widths).</i></p>
@@ -1124,13 +1149,13 @@
                 <p><b>You can call the method like this:</b></p>
 
                 <pre><code>$('.table-responsive').responsiveTable('update');</code></pre>
-               
+
                 <p><b>or perhaps like this, if you want to select by id:</b></p>
 
                 <pre><code>$('#the_id_to_the_table_responsive_wrapper').responsiveTable('update');</code></pre>
-               
+
                 <p>The API is inspired by Bootstrap's programmatic API. If you are curious about how the hell the method call is being done, see the following lines of code: <a href="https://github.com/nadangergeo/RWD-Table-Patterns/blob/3066664fc406a19a1a8aa00dc69f2369406b5dd0/src/js/rwd-table.js#L692-L694">rwd-table.js#L692-L694</a></p>
-                
+
                 <h3>HTML Classes</h3>
                 <p>For better IE support, you need to have IE classes. Replace <code>&lt;html&gt;</code> with:</p>
                 <pre><code>&lt;!--[if lt IE 7 ]&gt; &lt;html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"&gt; &lt;![endif]--&gt;

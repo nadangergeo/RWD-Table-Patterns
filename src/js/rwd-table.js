@@ -51,10 +51,10 @@
 
         this.headerColIndices = {};
         this.headerRowIndices = {};
-      
+
         // Setup table
         // -------------------------
-      
+
         //wrap table
         this.wrapTable();
 
@@ -116,7 +116,7 @@
     };
 
     // Wrap table
-    ResponsiveTable.prototype.wrapTable = function() {        
+    ResponsiveTable.prototype.wrapTable = function() {
         this.$tableScrollWrapper.wrap('<div class="table-wrapper"/>');
         this.$tableWrapper = this.$tableScrollWrapper.parent();
     };
@@ -125,7 +125,10 @@
     ResponsiveTable.prototype.createButtonToolbar = function() {
         var that = this;
 
-        this.$btnToolbar = $('<div class="btn-toolbar" />');
+        this.$btnToolbar = $('[data-responsive-table-toolbar="' + this.id + '"]').addClass('btn-toolbar');
+        if(this.$btnToolbar.length === 0) {
+          this.$btnToolbar = $('<div class="btn-toolbar" />');
+        }
 
         this.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
         this.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">' + this.options.i18n.display + ' <span class="caret"></span></button>');
@@ -562,7 +565,7 @@
                 //give it the class 'spn-cell';
                 $cell.addClass('spn-cell');
             }
-            
+
             // loop through columns that the cell spans over
             for (var k = idStart; k < (idStart + colSpan); k++) {
                 // add column id
