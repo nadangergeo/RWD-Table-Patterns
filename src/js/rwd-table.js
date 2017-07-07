@@ -131,7 +131,7 @@
         }
 
         this.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
-        this.$dropdownBtn = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">' + this.options.i18n.display + ' <span class="caret"></span></button>');
+        this.$dropdownBtn = $('<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' + this.options.i18n.display + ' <span class="caret"></span></button>');
         this.$dropdownContainer = $('<ul class="dropdown-menu"/>');
 
         // Focus btn
@@ -140,7 +140,7 @@
             this.$focusGroup = $('<div class="btn-group focus-btn-group" />');
 
             // Create focus btn
-            this.$focusBtn = $('<button class="btn btn-default">' + this.options.i18n.focus + '</button>');
+            this.$focusBtn = $('<button type="button" class="btn btn-default">' + this.options.i18n.focus + '</button>');
 
             if(this.options.focusBtnIcon) {
                 this.$focusBtn.prepend('<span class="' + this.options.focusBtnIcon + '"></span> ');
@@ -165,7 +165,7 @@
          // Display-all btn
         if(this.options.addDisplayAllBtn) {
             // Create display-all btn
-            this.$displayAllBtn = $('<button class="btn btn-default">' + this.options.i18n.displayAll + '</button>');
+            this.$displayAllBtn = $('<button type="button" class="btn btn-default">' + this.options.i18n.displayAll + '</button>');
             // Add display-all btn to dropdown-btn-group
             this.$dropdownGroup.append(this.$displayAllBtn);
 
