@@ -730,7 +730,7 @@
     // ==================
 
     $(document).on('ready.responsive-table.data-api', function () {
-        $('[data-pattern]').each(function () {
+        $('.table-responsive[data-pattern]').each(function () {
             var $tableScrollWrapper = $(this);
             $tableScrollWrapper.responsiveTable($tableScrollWrapper.data());
         });
