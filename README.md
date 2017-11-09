@@ -70,7 +70,7 @@ bower install RWD-Table-Patterns
 </div>
 ```
 
-#### Initialize via data attributes
+#### Alternative 1: Initialize via data attributes
 You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute ```data-pattern="priority-columns"``` to the ```.table-responsive``` div.
 ```html
 <div class="table-responsive" data-pattern="priority-columns">
@@ -78,7 +78,7 @@ You can initalize the table without writing any JavaScript, just like Bootstrap.
 </div>
 ```
 
-#### Initialize via JavaScript
+#### Alternative 2: Initialize via JavaScript
 ```html
 <script>
    $(function() {
