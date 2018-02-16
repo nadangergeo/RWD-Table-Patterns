@@ -8,6 +8,16 @@ Demo:
 
 http://gergeo.se/RWD-Table-Patterns/
 
+Support:
+--------
+
+Donations are welcome and will go towards maintenance and further development of this project, as well as other open source projects (= mostly :coffee: + Swedish snus). You can use the wallet addresses below to donate. 
+
+	BTC: 1LXw8sj2w457frhvbMCP9p6xWSZBT1VZpi
+	LTC: LfDGfpMBHz2DaVi6d67hVShXnBPKcHhckE
+
+*Thank you for your support and generosity! :pray:*
+
 Features:
 --------
 
