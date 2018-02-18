@@ -8,16 +8,6 @@ Demo:
 
 http://gergeo.se/RWD-Table-Patterns/
 
-Support:
---------
-
-Donations are welcome and will go towards maintenance and further development of this project, as well as other open source projects (= mostly :coffee: + Swedish snus). You can use the wallet addresses below to donate. 
-
-	BTC: 1LXw8sj2w457frhvbMCP9p6xWSZBT1VZpi
-	LTC: LfDGfpMBHz2DaVi6d67hVShXnBPKcHhckE
-
-*Thank you for your support and generosity! :pray:*
-
 Features:
 --------
 
@@ -239,3 +229,13 @@ For better IE support, you need to have IE classes. Replace ```<html>``` with:
 ```
 ##### no-js class
 The ```.no-js``` class is used to determine if the browser does not have JavaScript support or if JavaScript is disabled. The class is not used right now, but you should consider adding it anyway in case a future release has a patch that depends on it.
+
+Support:
+--------
+
+Donations are welcome and will go towards maintenance and further development of this project, as well as other open source projects (= mostly :coffee: + Swedish snus). You can use the wallet addresses below to donate. 
+
+	BTC: 1LXw8sj2w457frhvbMCP9p6xWSZBT1VZpi
+	LTC: LfDGfpMBHz2DaVi6d67hVShXnBPKcHhckE
+
+*Thank you for your support and generosity! :pray:*
