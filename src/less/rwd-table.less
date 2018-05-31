@@ -292,11 +292,21 @@
         th, td {
             display: inline !important;
         }
+
+        th[data-priority="-1"],
+        td[data-priority="-1"] {
+          display: none !important;
+        }
     }
 
     table.display-all {
         th, td {
             display: table-cell !important;
+        }
+
+        th[data-priority="-1"],
+        td[data-priority="-1"] {
+          display: none !important;
         }
     }
 }
