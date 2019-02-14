@@ -312,7 +312,7 @@
         //Is there a fixed navbar?
         if($(that.options.fixedNavbar).length) {
             var $navbar = $(that.options.fixedNavbar).first();
-            navbarHeight = $navbar.height();
+            navbarHeight = $navbar.outerHeight();
             scrollTop = scrollTop + navbarHeight;
         }
 
