@@ -33,9 +33,9 @@ Dependencies: jQuery and Bootstrap 3.
 How to use:
 --------
 
-#### Install using Bower
+#### Install using NPM
 ```shell
-bower install RWD-Table-Patterns
+npm i RWD-Table-Patterns@5.3.3
 ```
 
 #### Add CSS file to the ```<head>```
