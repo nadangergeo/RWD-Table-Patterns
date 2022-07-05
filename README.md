@@ -55,11 +55,11 @@ npm i RWD-Table-Patterns@5.3.3
 
 ### 2. Markup
 1. Add the classes ```table``` to the tables and wrap them in ```table-responsive```, as usual when using Bootstrap.
-2. If the table has complex data and many columns you can give it the class ```table-small-font``` (highly recommended).
+2. If the table has complex data and many columns you can give it the class ```table-small-font``` and ```table-tighten``` (highly recommended).
 3. The table can also utilize Bootstrap's table classes, such as ```table-striped``` and ```table-bordered```.
 ```html
 <div class="table-responsive">
-   <table id="example-table" class="table table-small-font table-bordered table-striped">
+   <table id="example-table" class="table table-small-font table-tighten table-bordered table-striped">
       ...
    </table>
 </div>

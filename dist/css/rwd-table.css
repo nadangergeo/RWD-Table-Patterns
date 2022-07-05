@@ -109,12 +109,12 @@
 .table-responsive[data-pattern="priority-columns"] > .table {
   margin-bottom: 0;
 }
-.table-responsive[data-pattern="priority-columns"] > .table > thead > tr > th,
-.table-responsive[data-pattern="priority-columns"] > .table > tbody > tr > th,
-.table-responsive[data-pattern="priority-columns"] > .table > tfoot > tr > th,
-.table-responsive[data-pattern="priority-columns"] > .table > thead > tr > td,
-.table-responsive[data-pattern="priority-columns"] > .table > tbody > tr > td,
-.table-responsive[data-pattern="priority-columns"] > .table > tfoot > tr > td {
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > thead > tr > th,
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > tbody > tr > th,
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > tfoot > tr > th,
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > thead > tr > td,
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > tbody > tr > td,
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > tfoot > tr > td {
   white-space: nowrap;
 }
 .table-responsive[data-pattern="priority-columns"] > .table-bordered {
@@ -377,8 +377,15 @@ table.focus-on tfoot tr.focused td {
 .sticky-table-header > .table > thead > tr > td,
 .sticky-table-header > .table > tbody > tr > td,
 .sticky-table-header > .table > tfoot > tr > td {
-  white-space: nowrap;
   border-color: var(--bs-border-color);
+}
+.sticky-table-header > .table-tighten > thead > tr > th,
+.sticky-table-header > .table-tighten > tbody > tr > th,
+.sticky-table-header > .table-tighten > tfoot > tr > th,
+.sticky-table-header > .table-tighten > thead > tr > td,
+.sticky-table-header > .table-tighten > tbody > tr > td,
+.sticky-table-header > .table-tighten > tfoot > tr > td {
+  white-space: nowrap;
 }
 .sticky-table-header > .table-bordered {
   border: 0;

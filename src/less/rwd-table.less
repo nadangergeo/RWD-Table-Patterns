@@ -83,7 +83,7 @@
   border-radius: var(--bs-border-radius);
   border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
 
-  // Tighten up spacing
+  // Remove bottom margin
   > .table {
     margin-bottom: 0;
   }
@@ -148,11 +148,12 @@
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
     -webkit-overflow-scrolling: touch;
 
-    // Tighten up spacing
+    // Remove bottom margin
     > .table {
       margin-bottom: 0;
-
-      // Ensure the content doesn't wrap
+    }
+    // Ensure the content doesn't wrap
+    > .table-tighten {
       > thead,
       > tbody,
       > tfoot {
@@ -402,11 +403,9 @@ table {
       border-bottom-right-radius: 3px;
   }
     
-  // Tighten up spacing
   > .table {
     margin-bottom: 0;
 
-    // Ensure the content doesn't wrap
     > thead,
     > tbody,
     > tfoot {
@@ -415,8 +414,21 @@ table {
         
         > th,
         > td {
-          white-space: nowrap;
           border-color: var(--bs-border-color);
+        }
+      }
+    }
+  }
+  
+  // Ensure the content doesn't wrap
+  > .table-tighten {
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr {
+        > th,
+        > td {
+          white-space: nowrap;
         }
       }
     }
