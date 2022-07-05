@@ -13,7 +13,7 @@ Features:
 
 #### :bird: Made for Bootstrap
 
-Designed to be used with Bootstrap 3. If you don't want to use bootstrap, just fork the repo and customize it to your needs!
+Designed to be used with Bootstrap 5. If you don't want to use bootstrap, just fork the repo and customize it to your needs!
 
 #### :iphone: Mobile first & PE
 
