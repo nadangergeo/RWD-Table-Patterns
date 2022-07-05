@@ -1,8 +1,11 @@
 @import "../../bower_components/bootstrap/less/variables.less";
 
-//Variables
+// Variables
 @doc-yellow:        #ffea00;
 @doc-warm-gray:     #f7f5ed;
+// Colors from Bootstrap 5, for linking to v6
+@doc-newBlue:       #0d6efd;
+@doc-newRed:        #dc3545;
 
 /* ONLY STYLES FOR DEMO PAGE! */
 
@@ -48,8 +51,21 @@ section {
             font-weight: normal;
         }
     }
+
+    .nav {
+        width: calc(100% - 183px);
+    }
+    
     .nav li.active a, .nav li.active a:hover, .nav li a:hover {
         color: @doc-yellow;
+    }
+
+    .nav li a.new-version-link {
+        font-weight: bold;
+        
+        &:hover {
+            color: @doc-newBlue !important;
+        }        
     }
 }
 .navbar-header {
@@ -299,4 +315,8 @@ pre, code {
 .callout-warning {
     background-color: #f7f5ed;
     border-color: #ffea00;
+}
+
+.text-newRed {
+    color: @doc-newRed;
 }
