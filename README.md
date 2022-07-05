@@ -32,6 +32,7 @@ Dependencies: jQuery and Bootstrap 3.
 
 How to use:
 --------
+### 1. Installation
 
 #### Install using NPM
 ```shell
@@ -50,18 +51,12 @@ npm i RWD-Table-Patterns@5.3.3
 
 ##### You also need to add the dependencies
 - jQuery (>=1.11.0)
-- Bootstrap 3 (>=3.1.1)
-   - normalize.less
-   - buttons.less
-   - button-groups.less
-   - dropdowns (.less &amp; .js)
-   - tables.less
-   - glyphicons needed for default *focusBtnIcon* option.
+- Bootstrap 5 (>=5.2)
 
-#### Markup
-1. Add the classes ```.table``` to the tables and wrap them in ```.table-responsive```, as usual when using Bootstrap.
-2. If the table has complex data and many columns you can give it the class ```.table-small-font``` (highly recommended).
-3. The table can also utilize Bootstrap's table classes, such as ```.table-striped``` and ```.table-bordered```.
+### 2. Markup
+1. Add the classes ```table``` to the tables and wrap them in ```table-responsive```, as usual when using Bootstrap.
+2. If the table has complex data and many columns you can give it the class ```table-small-font``` (highly recommended).
+3. The table can also utilize Bootstrap's table classes, such as ```table-striped``` and ```table-bordered```.
 ```html
 <div class="table-responsive">
    <table id="example-table" class="table table-small-font table-bordered table-striped">
@@ -70,15 +65,17 @@ npm i RWD-Table-Patterns@5.3.3
 </div>
 ```
 
+
+### 3. Initialize
 #### Alternative 1: Initialize via data attributes
-You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute ```data-pattern="priority-columns"``` to the ```.table-responsive``` div.
+You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute ```data-pattern="priority-columns"``` to the ```table-responsive``` div.
 ```html
 <div class="table-responsive" data-pattern="priority-columns">
       ...
 </div>
 ```
 
-#### Alternative 2: Initialize via JavaScript
+#### Alternative 2: Initialize via JavaScript *instead*
 ```html
 <script>
    $(function() {
@@ -87,7 +84,16 @@ You can initalize the table without writing any JavaScript, just like Bootstrap.
 </script>
 ```
 
-#### Options
+#### Alternative 3: Initialize via JavaScript (selecting with ID)
+```html
+<script>
+   $(function() {
+      $('#myTableWrapper').responsiveTable({options});
+   });
+</script>
+```
+
+### 4. Options
 Options can be passed via data attributes or JavaScript. For data attributes, append the option name to ```data-``` with hyphens instead of camelCase, as in ```data-add-focus-btn=""```.
 <table>
   <thead>
@@ -140,7 +146,7 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
    <tr>
      <td>focusBtnIcon</td>
      <td>string</td>
-     <td>'glyphicon glyphicon-screenshot'</td>
+     <td>'fa fa-crosshairs'</td>
      <td>
          Icon for the focus btn specified with classes.
      </td>
@@ -149,9 +155,9 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
      <td>i18n</td>
      <td>object</td>
      <td>{
-           focus     : 'Focus',
-           display   : 'Display',
-           displayAll: 'Display all'
+           focus : 'Focus',
+           display : 'Display',
+           displayAll : 'Display all'
          }
      </td>
      <td>
@@ -161,7 +167,7 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
   </tbody>
 </table>
 
-#### Setup your table with ```data-priority``` attributes for each ```<th>```
+### 5. Setup your table with ```data-priority``` attributes for each ```<th>```
 
 Attribute          |  Description/Breakpoint
 ------------------ |  ------------------
@@ -175,7 +181,7 @@ data-priority="4"  |  (min-width: 800px)
 data-priority="5"  |  (min-width: 960px)
 data-priority="6"  |  (min-width: 1120px)
 
-#### Setup your table toolbar with `data-responsive-table-toolbar` attribute
+### 6. Setup your table toolbar with `data-responsive-table-toolbar` attribute
 
 <table>
     <thead>
@@ -200,7 +206,7 @@ data-priority="6"  |  (min-width: 1120px)
     </tbody>
 </table>
 
-#### Dynamic content? Call Update()!
+### 7. Dynamic content? Call Update()!
 
 There is an update method which you can call when the content in tbody/tfoot has changed. *The method will in turn call the private method setupBodyRows() which sets up rows that has not been setup, as well as update the sticky table header (to accommodate for any changes in columns widths).*
 
@@ -218,7 +224,7 @@ $('#the_id_to_the_table_responsive_wrapper').responsiveTable('update');
 
 The API is inspired by Bootstrap's programmatic API. If you are curious about how the hell the method call is being done, see the following lines of code: [rwd-table.js#L692-L694](https://github.com/nadangergeo/RWD-Table-Patterns/blob/3066664fc406a19a1a8aa00dc69f2369406b5dd0/src/js/rwd-table.js#L692-L694)
 
-#### HTML Classes
+### 8. HTML Classes
 For better IE support, you need to have IE classes. Replace ```<html>``` with:
 ```html
 <!--[if lt IE 7 ]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -228,4 +234,4 @@ For better IE support, you need to have IE classes. Replace ```<html>``` with:
 <!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
 ```
 ##### no-js class
-The ```.no-js``` class is used to determine if the browser does not have JavaScript support or if JavaScript is disabled. The class is not used right now, but you should consider adding it anyway in case a future release has a patch that depends on it.
+The ```no-js``` class is used to determine if the browser does not have JavaScript support or if JavaScript is disabled. The class is not used right now, but you should consider adding it anyway in case a future release has a patch that depends on it.

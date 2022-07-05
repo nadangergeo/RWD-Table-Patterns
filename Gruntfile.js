@@ -23,6 +23,10 @@ module.exports = function(grunt) {
         build: {
           src: 'src/js/<%= filename %>.js',
           dest: 'dist/js/<%= filename %>.min.js'
+        },
+        docs: {
+          src: 'docs/js/docs.js',
+          dest: 'docs/js/docs.min.js'
         }
       },
       less: {
@@ -91,7 +95,7 @@ module.exports = function(grunt) {
       watch: {
           src: {
             // rebuild if files in src changes
-            files: ['src/**'],
+            files: ['src/**', 'docs/**'],
             tasks: ['build'],
             options: {
               livereload: {
@@ -137,7 +141,8 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', [
-        'uglify',
+        'uglify:build',
+        'uglify:docs',
         'less',
         'copy:dist',
         'usebanner',

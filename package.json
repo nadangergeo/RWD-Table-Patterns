@@ -34,6 +34,7 @@
   },
   "main": "dist/js/rwd-table",
   "devDependencies": {
+    "bootstrap": "^5.2.0-beta1",
     "grunt": "^1.0.2",
     "grunt-banner": "^0.6.0",
     "grunt-bump": "^0.8.0",
@@ -44,8 +45,5 @@
     "grunt-contrib-uglify": "^3.3.0",
     "grunt-contrib-watch": "^1.1.0",
     "load-grunt-tasks": "^4.0.0"
-  },
-  "scripts": {
-    "postinstall": "bower install"
   }
 }

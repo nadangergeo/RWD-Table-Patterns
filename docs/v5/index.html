@@ -1,172 +1,108 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en-US" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en-US" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en-US" class="no-js lt-ie10 lt-ie9"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en-US" class="no-js lt-ie10"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-US" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7 ]> <html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js lt-ie10"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
 
         <title>Responsive tables</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, minimal-ui">
         <meta name="format-detection" content="telephone=no">
-
-        <meta name="description" content="An awesome solution for responsive tables with complex data, designed to be used with Bootstrap 5.">
-        <meta name="keywords" content="responsive tables,complex data,bootstrap 5,column selection,sticky table header, sticky thead, progressive enhancement,mobile first,responsive,rwd,table,plugin">
-        <meta name="theme-color" content="#0d6efd"/>
-        <meta name="twitter:card" content="summary_large_image">
-
-        <meta property="og:title" content="Responsive tables, for Bootstrap 5">
-        <meta property="og:description" content="Bootstrap 5 plugin for responsive tables with complex data.">
-        <meta property="og:site_name" content="Responsive tables">
-
-        <meta property="og:url" content="https://gergeo.se/RWD-Table-Patterns/">
-        <meta property="og:type" content="website">
-        <meta property="og:image" content="https://gergeo.se/RWD-Table-Patterns/img/responsive_tables.png">
-        <meta property="og:image:width" content="1024">
-        <meta property="og:image:height" content="768">
-        <meta property="og:image:alt" content="Screenshot of site hero.">
-
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
+        <meta name="description" content="An awesome solution for responsive tables with complex data.">
 
         <!-- Font Awesome -->
-        <link async href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer">
-        <link async href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/solid.min.css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer">
-        <link async href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/brands.min.css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link async href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
         <!-- Latest compiled and minified Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
         <!-- Responsive Tables -->
-        <link rel="stylesheet" href="css/rwd-table.min.css?v=6.0.0">
-        <link rel="stylesheet" href="css/docs.min.css?v=6.0.0">
+        <link rel="stylesheet" href="css/rwd-table.min.css?v=5.3.3">
+        <link rel="stylesheet" href="css/docs.min.css?v=5.3.3">
 
         <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-19870163-1']);
-            _gaq.push(['_trackPageview']);
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19870163-1']);
+        _gaq.push(['_trackPageview']);
 
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
         </script>
     </head>
 
-    <body id="home" data-bs-spy="scroll" data-bs-target="#navbar">
-        <navbar id="navbar" class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" role="navigation">
-            <div class="container-fluid">
-                <a class="nav-link" href="#home">
-                    <span class="navbar-brand"><i class="fa fa-table"></i> Responsive Tables</span>
-                </a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
+    <body data-spy="scroll" data-target="#navbar" data-offset="50">
+        <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <span class="navbar-brand"><span class="fa fa-table"></span> Responsive Tables</span>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#features">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"" href="#demo">Demo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#how-to-use">How to use</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link hover-text-yellow" href="/v5" title="Goto the old version (v5), for Bootstrap 3.">
-                                <i class="fa-solid fa-clock-rotate-left"></i> 
-                                V.5 (BS3)
-                            </a>
-                        </li>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                        <li><a href="#how-to-use">How to use</a></li>
+                        <li class="pull-right"><a href="/" class="new-version-link" title="Goto latest version (v6), for Bootstrap 5."><span class="text-newRed"><i class="fa fa-fast-forward"></i> Newer version:</span> V.6 (Bootstrap 5)</a></li>
                     </ul>
                 </div>
             </div>
-        </navbar>
-
-        <div class="jumbotron d-flex flex-column justify-content-between">
-            <div class="jumbotron__top container-fluid text-dark">
-                <h1>Responsive Tables</h1>
-                <h2>
-                    By <a href="https://blimp.se" title="Blimp - Creative Bureau based in Stockholm, Sweden.">Blimp.</a>&nbsp;
-
-                    <a href="https://blimp.se" title="Blimp - Creative Bureau based in Stockholm, Sweden." class="position-absolute block animate-bounce-slow select-none" style="margin-left: -8px;">
-                        <div class="transition-transform transform hover:scale-105 text-orange" style="width: 20px">
-                            <svg class="animate-wiggle-slow" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                            viewBox="0 0 250 161.2">
-                            <path id="Blimp_1_" d="M249.4,55.5c-6.2-39.1-60.2-62.9-120.8-53.4C96.3,7.2,68.6,20.9,50.8,38.6L27.4,26.5L0.1,30.8L31.4,70
-                            c-1.5,5.7-2,11.4-1.5,17.2L0,92l10.8,6l20.5-3.3c1.2,4.6,3.1,9.1,5.7,13.2l-3.3,50l27.8-4.4L76,137.4c11.8,4.4,25.2,7.2,39.7,8
-                            l2.5,15.8l63.8-10.1l-2.3-14.7C224.8,120.9,254.6,88.1,249.4,55.5z" fill="currentColor"/>
-                            </svg>
-                        </div>
-                    </a>&nbsp;&nbsp;
-
-                    <small class="authors text-muted">[<a href="https://github.com/nadangergeo" title="Nadan Gergeo's GitHub profile">@nadangergeo</a> & <a href="https://github.com/wnr" title="Lucas Wiener's GitHub profile">@wnr</a>]</small>
-                </h2>
-
-                <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
-
-                <div class="d-flex flex-column flex-sm-row">
-                    <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v6.0.0.zip" class="btn btn-link btn-outline-dark position-relative float-start" role="button">
-                        <i class="fa fa-download"></i> Download
-                        <small class="text-muted position-absolute bottom-0 start-50 translate-middle-x pb-1">v.6.0.0</small>
-                    </a>
-
-                    <a href="https://github.com/nadangergeo/RWD-Table-Patterns" class="btn btn-link btn-outline-dark position-relative float-start" role="button">
-                        <i class="fa fa-brands fa-github-alt"></i> GitHub Repo
-                        <small class="text-muted position-absolute bottom-0 start-50 translate-middle-x pb-1">Fork me <i class="fa fa-code-fork"></i></small>
-                    </a>
-
-                    <a href="#demo" class="btn btn-link btn-outline-dark position-relative float-start" role="button">
-                        <i class="fa fa-eye"></i> Demonstration
-                        <small class="text-muted position-absolute bottom-0 start-50 translate-middle-x pb-1">Show me!</span></small>
-                    </a>
-                </div>
-            </div>
-
-            <section id="features" class="features text-dark">
-                <div class="container-fluid">
-                    <div class="page-header">
-                        <h2>Features</h2>
-                        <hr/>
-                    </div>
-
-                    <div class="row g-4">
-                        <div class="feature col-lg-3 col-md-6 col-12">
-                            <h3><i class="fa fa-brands fa-twitter"></i>Made for Bootstrap</h3>
-                            <p>Designed to be used with <a href="https://getbootstrap.com">Bootstrap 5</a>. If you don't want to use bootstrap, just <a href="https://github.com/nadangergeo/RWD-Table-Patterns">fork the repo</a> and customize it to your needs!</p>
-                        </div>
-                        <div class="feature col-lg-3 col-md-6 col-12">
-                            <h3><i class="fa fa-mobile-phone"></i>Mobile first &amp; PE</h3>
-                            <p>Built with mobile first and progressive enhancement in mind. Also built with love and with the help of a fair amount of coffee.</p>
-                        </div>
-                        <div class="feature col-lg-3 col-md-6 col-12">
-                            <h3><i class="fa fa-coffee"></i>Graceful JS fallback</h3>
-                            <p>In browsers without JavaScript, the tables will still be scrollable. I.e. there's still some responsiveness.</p>
-                        </div>
-                        <div class="feature col-lg-3 col-md-6 col-12">
-                            <h3><i class="fa fa-thumbs-up"></i>Easy to use</h3>
-                            <p>You only need to add one JS-file, one CSS-file and some minimal setup to make the tables responsive.</p>
-                            <p class="small text-muted"><b>Dependencies:</b> jQuery & Bootstrap 5 (v5.2)</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
 
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Responsive Tables</h1>
+                <h3>by <a href="https://github.com/nadangergeo" title="Nadan Gergeo's GitHub profile">@nadangergeo</a> & <a href="https://github.com/wnr" title="Lucas Wiener's GitHub profile">@wnr</a></h3>
+
+                <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
+                <p>
+                    <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v5.3.3.zip" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
+                    <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="fork-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> GitHub Repo</a>
+                </p>
+            </div>
+        </div>
+
+        <section id="features">
+            <div class="container">
+                <div class="page-header">
+                    <h2>Features</h2>
+                </div>
+
+                <div class="row">
+                    <div class="feature col-lg-3 col-md-6 col-sm-12">
+                        <h4><i class="fa fa-twitter"></i>Made for Bootstrap</h4>
+                        <p>Designed to be used with <a href="https://getbootstrap.com">Bootstrap 3</a>. If you don't want to use bootstrap, just <a href="https://github.com/nadangergeo/RWD-Table-Patterns">fork the repo</a> and customize it to your needs!</p>
+                    </div>
+                    <div class="feature col-lg-3 col-md-6 col-sm-12">
+                        <h4><i class="fa fa-mobile-phone"></i>Mobile first &amp; PE</h4>
+                        <p>Built with mobile first and progressive enhancement in mind. Also built with love and with the help of a fair amount of coffee.</p>
+                    </div>
+                    <div class="feature col-lg-3 col-md-6 col-sm-12">
+                        <h4><i class="fa fa-coffee"></i>Graceful JS fallback</h4>
+                        In browsers without JavaScript, the tables will still be scrollable. I.e. there's still some responsiveness.
+                    </div>
+                    <div class="feature col-lg-3 col-md-6 col-sm-12">
+                        <h4><i class="fa fa-thumbs-o-up"></i>Easy to use</h4>
+                        <p>You only need to add one JS-file, one CSS-file and some minimal setup to make the tables responsive.</p>
+                        <p><b>Dependencies:</b> jQuery and Bootstrap 3.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="demo">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="page-header">
                     <h2>Demo</h2>
-                    <hr/>
                 </div>
- 
                 <div data-responsive-table-toolbar="tech-companies-1"></div>
                 <div class="table-responsive" data-pattern="priority-columns">
                     <table cellspacing="0" id="tech-companies-1" class="table table-small-font table-bordered table-striped">
@@ -998,68 +934,65 @@
         </section> <!-- end section -->
 
         <section id="how-to-use">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="page-header">
                     <h2>How to use</h2>
-                    <hr/>
                 </div>
 
-                <h3>1. Installation</h3>
+                <h3>Install using NPM</h3>
+                <pre><code>npm i RWD-Table-Patterns@5.3.3</code></pre>
 
-                <h4>Install using NPM</h4>
-                <pre><code class="text-code-green">npm install RWD-Table-Patterns</code></pre>
+                <h3>Add CSS file <small>to the <code>&lt;head&gt;</code></small></h3>
+                <pre><code>&lt;link rel="stylesheet" href="css/rwd-table.min.css"&gt;</code></pre>
 
-                <h4>Add CSS file <small>to the <code>&lt;<span class="text-danger">head</span>&gt;</code></small></h4>
-                <pre><code>&lt;<span class="text-danger">link</span> <span class="text-info">rel</span>=<span class="text-warning">"stylesheet"</span> <span class="text-info">href</span>=<span class="text-warning">"css/rwd-table.min.css"</span>&gt;</code></pre>
-
-                <h4>Add JavaScript file <small>either to the <code>&lt;<span class="text-danger">head</span>&gt;</code> or to the bottom of <code>&lt;<span class="text-danger">body</span>&gt;</code></small></h4>
-                <pre><code>&lt;<span class="text-danger">script</span> <span class="text-info">type</span>=<span class="text-warning">"text/javascript"</span> <span class="text-info">src</span>=<span class="text-warning">"js/rwd-table.js"</span>&gt;&lt;/<span class="text-danger">script</span>&gt;</code></pre>
+                <h3>Add JavaScript file <small>either to the <code>&lt;head&gt;</code> or to the bottom of <code>&lt;body&gt;</code></small></h3>
+                <pre><code>&lt;script type="text/javascript" src="js/rwd-table.js"&gt;&lt;/script&gt;</code></pre>
+                <br>
 
                 <h4>You also need to add the dependencies</h4>
                 <ul>
                     <li>jQuery (>=1.11.0)</li>
                     <li>
-                        Bootstrap 5 (>=5.2)
+                        Bootstrap 3 (>=3.1.1) <button class="btn btn-default btn-sm" data-toggle="collapse" data-target="#bs-deps" id="bs-deps-toggle"><span class="fa fa-chevron-down"></span></button>
+                        <ul id="bs-deps" class="collapse">
+                            <li>normalize.less</li>
+                            <li>buttons.less</li>
+                            <li>button-groups.less</li>
+                            <li>dropdowns (.less &amp; .js)</li>
+                            <li>tables.less</li>
+                            <li>glyphicons needed for default <em>focusBtnIcon</em> option.</li>
+                        </ul>
                     </li>
                 </ul>
 
-                <h3>2. Markup</h3>
+                <h3>Markup</h3>
                 <ol>
-                    <li>Add the classes <code class="text-warning">table</code> to the tables and wrap them in <code class="text-warning">table-responsive</code>, as usual when using Bootstrap.</li>
-                    <li>If the table has complex data and many columns you can give it the class <code class="text-warning">table-small-font</code> (highly recommended).</li>
-                    <li>The table can also utilize Bootstrap's table classes, such as <code class="text-warning">table-striped</code> and <code class="text-warning">table-bordered</code>.</li>
+                    <li>Add the classes <code>.table</code> to the tables and wrap them in <code>.table-responsive</code>, as usual when using Bootstrap.</li>
+                    <li>If the table has complex data and many columns you can give it the class <code>.table-small-font</code> (highly recommended).</li>
+                    <li>The table can also utilize Bootstrap's table classes, such as <code>.table-striped</code> and <code>.table-bordered</code>.</li>
                 </ol>
 
-                <pre><code>&lt;<span class="text-danger">div</span> <span class="text-info">class</span>=<span class="text-warning">"table-responsive"</span>&gt;
-   &lt;<span class="text-danger">table</span> <span class="text-info">class</span>=<span class="text-warning">"table table-small-font table-bordered table-striped"</span>&gt;
+                <pre><code>&lt;div class="table-responsive"&gt;
+   &lt;table class="table table-small-font table-bordered table-striped"&gt;
       ...
-   &lt;/<span class="text-danger">table</span>&gt;
-&lt;/<span class="text-danger">div</span>&gt;</code></pre>
+   &lt;/table&gt;
+&lt;/div&gt;</code></pre>
 
-                <h3>3. Initialize</h3>
-
-                <h4>Alternative 1: Initialize via data attributes</h4>
-                <p>You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute <code><span class="text-info">data-pattern</span>=<span class="text-warning">"priority-columns"</span></code> to the <code class="text-warning">table-responsive</code> div.</p>
-                <pre><code>&lt;<span class="text-danger">div</span> <span class="text-info">class</span>=<span class="text-warning">"table-responsive"</span> <span class="text-info">data-pattern</span>=<span class="text-warning">"priority-columns"</span>&gt;
+                <h3>Alternative 1: Initialize via data attributes</h3>
+                <p>You can initalize the table without writing any JavaScript, just like Bootstrap. Just add the attribute <code>data-pattern="priority-columns"</code> to the <code>.table-responsive</code> div.</p>
+                <pre><code>&lt;div class="table-responsive" data-pattern="priority-columns"&gt;
       ...
-&lt;/<span class="text-danger">div</span>&gt;</code></pre>
+&lt;/div&gt;</code></pre>
 
-                <h4>Alternative 2: Initialize via JavaScript *instead*</h4>
-                <pre><code>&lt;<span class="text-danger">script</span>&gt;
-   $(<span class="text-info">function</span>() {
-      $(<span class="text-warning">'.table-responsive'</span>).<span class="text-code-green">responsiveTable</span>({<em>options</em>});
+                <h3>Alternative 2: Initialize via JavaScript</h3>
+                <pre><code>&lt;script&gt;
+   $(function() {
+      $('.table-responsive').responsiveTable({<em>options</em>});
    });
-&lt;/<span class="text-danger">script</span>&gt;</code></pre>
+&lt;/script&gt;</code></pre>
 
-                <h4>Alternative 3: Initialize via JavaScript (selecting with ID)</h4>
-                <pre><code>&lt;<span class="text-danger">script</span>&gt;
-   $(<span class="text-info">function</span>() {
-      $(<span class="text-warning">'#myTableWrapper'</span>).<span class="text-code-green">responsiveTable</span>({<em>options</em>});
-   });
-&lt;/<span class="text-danger">script</span>&gt;</code></pre>
-
-                <h3>4. Options</h3>
-                <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code><span class="text-info">data-</span></code> with hyphens instead of camelCase, as in <code><span class="text-info">data-add-focus-btn</span>=""</code>.</p>
+                <h3>Options</h3>
+                <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code> with hyphens instead of camelCase, as in <code>data-add-focus-btn=""</code>.</p>
 
                 <div class="table-responsive" data-pattern="">
                     <table class="table table-bordered table-striped">
@@ -1067,7 +1000,7 @@
                             <tr>
                                 <th style="width: 125px;">Name</th>
                                 <th style="width: 100px;">type</th>
-                                <th style="width: 280px;">default</th>
+                                <th style="width: 250px;">default</th>
                                 <th>description</th>
                             </tr>
                         </thead>
@@ -1075,45 +1008,45 @@
                             <tr>
                                 <td>pattern</td>
                                 <td>string</td>
-                                <td><code class="text-warning">'priority-columns'</code></td>
+                                <td>'priority-columns'</td>
                                 <td>
-                                    <p>What responsive table pattern to use. For now, <code><span class="text-warning">'priority-columns'</span></code> is the only pattern available.</p>
-                                    <p><strong>Tip:</strong> When initalizing via JavaScript, add <code><span class="text-info">data-pattern</span>=""</code> to responsive tables you wan't to exclude.</p>
+                                    <p>What responsive table pattern to use. For now, <code>'priority-columns'</code> is the only pattern available.</p>
+                                    <p><strong>Tips:</strong> When initalizing via JavaScript, add <code>data-pattern=""</code> to responsive tables you wan't to exclude.</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>stickyTableHeader</td>
                                 <td>boolean</td>
-                                <td><code class="text-code-green">true</code></td>
+                                <td>true</td>
                                 <td>Makes the table header persistent.</td>
                             </tr>
                             <tr>
                                 <td>fixedNavbar</td>
                                 <td>string</td>
-                                <td><code class="text-warning">'.navbar-fixed-top'</code></td>
+                                <td>'.navbar-fixed-top'</td>
                                 <td>
                                     <p>Is there a fixed navbar? The sticky table header needs to know about it!
                                         The option is the selector used to find the navbar.
                                     Don't worry about the default value if you don't have a fixed navbar.</p>
-                                    <p><strong>Example:</strong> <code class="text-warning">'#navbar'</code></p>
+                                    <p><strong>Example:</strong> <code>'#navbar'</code></p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>addDisplayAllBtn</td>
                                 <td>boolean</td>
-                                <td><code class="text-code-green">true</code></td>
+                                <td>true</td>
                                 <td>Add 'Display all' button to the toolbar above the table.</td>
                             </tr>
                             <tr>
                                 <td>addFocusBtn</td>
                                 <td>boolean</td>
-                                <td><code class="text-code-green">true</code></td>
+                                <td>true</td>
                                 <td>Add 'Focus' toggle button to the toolbar above the table.</td>
                             </tr>
                             <tr>
                                 <td>focusBtnIcon</td>
                                 <td>string</td>
-                                <td><code class="text-warning">'fa fa-crosshairs'</code></td>
+                                <td>'glyphicon glyphicon-screenshot'</td>
                                 <td>
                                     Icon for the focus button specified with classes.
                                 </td>
@@ -1121,7 +1054,11 @@
                             <tr>
                                 <td>i18n</td>
                                 <td>object</td>
-                                <td><pre><code class="">{<br>&nbsp;&nbsp;focus <span class="text-purple">:</span> <span class="text-warning">'Focus'</span>,<br>&nbsp;&nbsp;display <span class="text-purple">:</span> <span class="text-warning">'Display'</span>,<br>&nbsp;&nbsp;displayAll <span class="text-purple">:</span> <span class="text-warning">'Display all'</span><br>}</code></pre>
+                                <td>{
+                                    focus     : 'Focus',
+                                    display   : 'Display',
+                                    displayAll: 'Display all'
+                                    }
                                 </td>
                                 <td>
                                     Used to translate the buttons (only works if you initialize via JavaScript).
@@ -1131,7 +1068,7 @@
                     </table>
                 </div>
 
-                <h3>5. Setup your table <small>with <code class="text-info">data-priority</code> attributes for each <code>&lt;<span class="text-danger">th</span>&gt;</code></small></h3>
+                <h3>Setup your table <small>with <code>data-priority</code> attributes for each <code>&lt;th&gt;</code></small></h3>
                 <div class="table-responsive" data-pattern="">
                     <table class="table table-bordered">
                         <thead>
@@ -1142,46 +1079,46 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><code><code class="text-info">data-priority</code>=<span class="text-warning">"-1"</span></code></td>
+                                <td><code>data-priority="-1"</code></td>
                                 <td>Hidden and and not togglable from dropdown</td>
                             </tr>
                             <tr>
-                                <td><code><code class="text-info">data-priority</code>=<span class="text-warning">"0"</span></code></td>
+                                <td><code>data-priority="0"</code></td>
                                 <td>Hidden per default (but togglable from dropdown)</td>
                             </tr>
                             <tr>
-                                <td><code><code class="text-info">data-priority</code>=<span class="text-warning">""</span></code></td>
+                                <td><code>data-priority=""</code></td>
                                 <td>Always visible and not hideable from dropdown</td>
                             </tr>
                             <tr>
-                                <td><code><code class="text-info">data-priority</code>=<span class="text-warning">"1"</span></code></td>
+                                <td><code>data-priority="1"</code></td>
                                 <td>Always visible (but hidable from dropdown)</td>
                             </tr>
                             <tr>
-                                <td><code><code class="text-info">data-priority</code>=<span class="text-warning">"2"</span></code></td>
+                                <td><code>data-priority="2"</code></td>
                                 <td>Visible when (min-width: 480px)</td>
                             </tr>
                             <tr>
-                                <td><code><code class="text-info">data-priority</code>=<span class="text-warning">"3"</span></code></td>
+                                <td><code>data-priority="3"</code></td>
                                 <td>(min-width: 640px)</td>
                             </tr>
                             <tr>
-                                <td><code><code class="text-info">data-priority</code>=<span class="text-warning">"4"</span></code></td>
+                                <td><code>data-priority="4"</code></td>
                                 <td>(min-width: 800px)</td>
                             </tr>
                             <tr>
-                                <td><code><code class="text-info">data-priority</code>=<span class="text-warning">"5"</span></code></td>
+                                <td><code>data-priority="5"</code></td>
                                 <td>(min-width: 960px)</td>
                             </tr>
                             <tr>
-                                <td><code><code class="text-info">data-priority</code>=<span class="text-warning">"6"</span></code></td>
+                                <td><code>data-priority="6"</code></td>
                                 <td>(min-width: 1120px)</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <h3>6. Setup your table toolbar <small>with <code class="text-warning">data-responsive-table-toolbar</code> attribute</small></h3>
+                <h3>Setup your table toolbar <small>with <code>data-responsive-table-toolbar</code> attribute</small></h3>
                 <div class="table-responsive" data-pattern="">
                     <table class="table table-bordered">
                         <thead>
@@ -1192,37 +1129,36 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><code><span class="text-info">data-responsive-table-toolbar</span>=<span class="text-warning">"table-id"</span></code></td>
+                                <td><code>data-responsive-table-toolbar="table-id"</code></td>
                                 <td>
                                     <p>
-                                        Designates DOM element as toolbar for table with id of <code class="text-warning">table-id</code>
+                                        Designates DOM element as toolbar for table with id of <code>table-id</code>
                                     </p>
                                     <p>
                                         <b>Default:</b>
-                                        A new <code>&lt;<span class="text-danger">div</span>&gt;</code> toolbar element is appended to element with table wrapper class <code class="text-warning">responsive-table</code>.
+                                        A new <code>&lt;div&gt;</code> toolbar element is appended to element with table wrapper class <code>responsive-table</code>.
                                     </p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
-                <h3>7. Dynamic content? Call Update()!</h3>
+                <h3>Dynamic content? Call Update()!</h3>
 
                 <p>There is an update method which you can call when the content in tbody/tfoot has changed. <i>The method will in turn call the private method setupBodyRows() which sets up rows that has not been setup, as well as update the sticky table header (to accommodate for any changes in columns widths).</i></p>
 
                 <p><b>You can call the method like this:</b></p>
 
-                <pre><code>$(<span class="text-warning">'.table-responsive'</span>).<span class="text-code-green">responsiveTable</span>(<span class="text-warning">'update'</span>);</code></pre>
+                <pre><code>$('.table-responsive').responsiveTable('update');</code></pre>
 
                 <p><b>or perhaps like this, if you want to select by id:</b></p>
 
-                <pre><code>$(<span class="text-warning">'#the_id_to_the_table_responsive_wrapper'</span>).<span class="text-code-green">responsiveTable</span>(<span class="text-warning">'update'</span>);</code></pre>
+                <pre><code>$('#the_id_to_the_table_responsive_wrapper').responsiveTable('update');</code></pre>
 
                 <p>The API is inspired by Bootstrap's programmatic API. If you are curious about how the hell the method call is being done, see the following lines of code: <a href="https://github.com/nadangergeo/RWD-Table-Patterns/blob/3066664fc406a19a1a8aa00dc69f2369406b5dd0/src/js/rwd-table.js#L692-L694">rwd-table.js#L692-L694</a></p>
 
-                <h3>8. HTML Classes</h3>
-                <p>For better IE support, you need to have IE classes. Replace <code>&lt;<span class="text-danger">html</span>&gt;</code> with:</p>
+                <h3>HTML Classes</h3>
+                <p>For better IE support, you need to have IE classes. Replace <code>&lt;html&gt;</code> with:</p>
                 <pre><code>&lt;!--[if lt IE 7 ]&gt; &lt;html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"&gt; &lt;![endif]--&gt;
 &lt;!--[if IE 7 ]&gt;    &lt;html class="no-js lt-ie10 lt-ie9 lt-ie8"&gt; &lt;![endif]--&gt;
 &lt;!--[if IE 8 ]&gt;    &lt;html class="no-js lt-ie10 lt-ie9"&gt; &lt;![endif]--&gt;
@@ -1231,7 +1167,7 @@
 
                 <div class="callout callout-warning">
                     <h4>no-js class</h4>
-                    <p>The <code>no-js</code> class is used to determine if the browser does not have JavaScript support or if JavaScript is disabled. The class is not used right now, but you should consider adding it anyway in case a future release has a patch that depends on it.</p>
+                    <p>The <code>.no-js</code> class is used to determine if the browser does not have JavaScript support or if JavaScript is disabled. The class is not used right now, but you should consider adding it anyway in case a future release has a patch that depends on it.</p>
                 </div>
             </div>
         </section>
@@ -1239,9 +1175,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
         <!-- Latest compiled and minified Bootstrap JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-        <script src="js/rwd-table.js?v=6.0.0"></script>
-        <script src="js/docs.min.js"></script>
+        <script src="js/rwd-table.js?v=5.3.3"></script>
+        <script>
+            $(function() {
+                $('#bs-deps').on('hide.bs.collapse show.bs.collapse', function () {
+                    $('#bs-deps-toggle').children('span').toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
+                })
+            });
+        </script>
     </body>
 </html>

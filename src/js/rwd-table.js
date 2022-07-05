@@ -103,10 +103,10 @@
     ResponsiveTable.DEFAULTS = {
         pattern: 'priority-columns',
         stickyTableHeader: true,
-        fixedNavbar: '.navbar-fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
+        fixedNavbar: '.navbar.fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
         addDisplayAllBtn: true, // should it have a display-all button?
         addFocusBtn: true,  // should it have a focus button?
-        focusBtnIcon: 'glyphicon glyphicon-screenshot',
+        focusBtnIcon: 'fa fa-crosshairs',
         mainContainer: window,
         i18n: {
             focus     : 'Focus',
@@ -125,14 +125,14 @@
     ResponsiveTable.prototype.createButtonToolbar = function() {
         var that = this;
 
-        this.$btnToolbar = $('[data-responsive-table-toolbar="' + this.id + '"]').addClass('btn-toolbar');
+        this.$btnToolbar = $('[data-responsive-table-toolbar="' + this.id + '"]').addClass('btn-toolbar justify-content-between');
         if(this.$btnToolbar.length === 0) {
-          this.$btnToolbar = $('<div class="btn-toolbar" />');
+          this.$btnToolbar = $('<div class="btn-toolbar justify-content-between" />');
         }
 
-        this.$dropdownGroup = $('<div class="btn-group dropdown-btn-group pull-right" />');
-        this.$dropdownBtn = $('<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' + this.options.i18n.display + ' <span class="caret"></span></button>');
-        this.$dropdownContainer = $('<ul class="dropdown-menu"/>');
+        this.$dropdownGroup = $('<div class="btn-group dropdown-btn-group dropdown" />');
+        this.$dropdownBtn = $('<button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle" id="displayMenu' + this.id + '" data-bs-toggle="dropdown" aria-expanded="false">' + this.options.i18n.display + ' <span class="caret"></span></button>');
+        this.$dropdownContainer = $('<ul class="dropdown-menu" aria-labelledby="displayMenu' + this.id + '"/>');
 
         // Focus btn
         if(this.options.addFocusBtn) {
@@ -140,7 +140,7 @@
             this.$focusGroup = $('<div class="btn-group focus-btn-group" />');
 
             // Create focus btn
-            this.$focusBtn = $('<button type="button" class="btn btn-default">' + this.options.i18n.focus + '</button>');
+            this.$focusBtn = $('<button type="button" class="btn btn-sm btn-outline-primary">' + this.options.i18n.focus + '</button>');
 
             if(this.options.focusBtnIcon) {
                 this.$focusBtn.prepend('<span class="' + this.options.focusBtnIcon + '"></span> ');
@@ -160,12 +160,14 @@
             this.$bodyRows.click(function(){
                 $.proxy(that.focusOnRow($(this)), that);
             });
+        } else {
+            this.$btnToolbar.append($('<div />')); //add empty div instead, keeping same layout
         }
 
          // Display-all btn
         if(this.options.addDisplayAllBtn) {
             // Create display-all btn
-            this.$displayAllBtn = $('<button type="button" class="btn btn-default">' + this.options.i18n.displayAll + '</button>');
+            this.$displayAllBtn = $('<button type="button" class="btn btn-sm btn-outline-primary">' + this.options.i18n.displayAll + '</button>');
             // Add display-all btn to dropdown-btn-group
             this.$dropdownGroup.append(this.$displayAllBtn);
 
@@ -276,16 +278,16 @@
         that.$table.before(that.$stickyTableHeader);
 
         // bind scroll on mainContainer with updateStickyTableHeader
-        $(this.options.mainContainer).bind('scroll', function(){
+        $(this.options.mainContainer).on('scroll', function(event){
             $.proxy(that.updateStickyTableHeader(), that);
         });
 
         // bind resize on window with updateStickyTableHeader
-        $(window).bind('resize', function(e){
+        $(window).on('resize', function(e){
             $.proxy(that.updateStickyTableHeader(), that);
         });
 
-        $(that.$tableScrollWrapper).bind('scroll', function(){
+        $(that.$tableScrollWrapper).on('scroll', function(event){
             $.proxy(that.updateStickyTableHeader(), that);
         });
 
@@ -312,7 +314,7 @@
         //Is there a fixed navbar?
         if($(that.options.fixedNavbar).length) {
             var $navbar = $(that.options.fixedNavbar).first();
-            navbarHeight = $navbar.height();
+            navbarHeight = $navbar.outerHeight();
             scrollTop = scrollTop + navbarHeight;
         }
 
@@ -437,8 +439,8 @@
 
                 that.$dropdownContainer.append($toggle);
 
-                $toggle.click(function(){
-                    // console.log("cliiiick!");
+                $toggle.click(function(event){
+                    event.stopPropagation();
                     $checkbox.prop('checked', !$checkbox.prop('checked'));
                     $checkbox.trigger('change');
                 });

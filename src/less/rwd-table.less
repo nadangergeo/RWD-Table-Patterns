@@ -1,5 +1,3 @@
-@import "../../bower_components/bootstrap/less/variables.less";
-
 // Z-index master list
 // -------------------------
 // Used for a bird's eye view of components dependent on the z-axis
@@ -7,26 +5,40 @@
 
 @zindex-stickyHeader:      990;
 
+:root {
+  --responsive-table-dropdown-hover-bg: #f2f2f2;
+}
+
 
 // The dropdown menu (ul)
 // ----------------------
 .dropdown-menu {
     // Checkbox-rows within the dropdown menu
     > li.checkbox-row {
-      padding: 5px 20px;
+      padding: 8px 16px;
     }
 
     // links and checkbox-rows within the dropdown menu
     li.checkbox-row {
       display: block;
+      display: flex;
+      align-items: center;
       clear: both;
       font-weight: normal;
-      line-height: @line-height-computed;
-      color: @dropdown-link-color;
+      line-height: calc(var(--bs-body-line-height) * 1rem);
+      color: var(--bs-link-color);
       white-space: nowrap;
 
       label {
-        font-weight: normal;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-left: 0.5em;
+        color: var(--bs-dark);
+
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
       }
         
       &, input, label {
@@ -41,8 +53,7 @@
       &:hover,
       &:active {
         text-decoration: none;
-        color: @dropdown-link-hover-color;
-        background-color: @dropdown-link-hover-bg;
+        background-color: var(--responsive-table-dropdown-hover-bg);
       }
     }
 }
@@ -53,7 +64,11 @@
 
 
 .btn-toolbar {
-    margin-bottom: @line-height-computed;
+    margin-bottom: calc(var(--bs-body-line-height) * 1rem);
+
+    .btn-outline-primary.btn-primary {
+      color: var(--bs-white)
+    }
 }
 
 .lt-ie8 {
@@ -65,9 +80,8 @@
 
 // Customize Bootstrap's .table-responsive to give it a border-radius and bigger bottom margin.
 .table-responsive {
-  border-radius: @border-radius-small;
-  border: 1px solid @table-border-color;
-  margin-bottom: @line-height-computed;
+  border-radius: var(--bs-border-radius);
+  border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
 
   // Tighten up spacing
   > .table {
@@ -78,10 +92,21 @@
   > .table-bordered {
     border: 0;
 
+    thead tr:last-child {
+      border-bottom-width: 2px;
+    }
+
     // Nuke the appropriate borders so that the parent can handle them
     > thead,
     > tbody,
     > tfoot {
+      border-color: var(--bs-border-color);
+
+      > th,
+      > td {
+        border-color: var(--bs-border-color);
+      }
+
       > tr {
         > th:first-child,
         > td:first-child {
@@ -116,12 +141,11 @@
 // - Bigger bottom margin
 .table-responsive[data-pattern="priority-columns"] {
     width: 100%;
-    margin-bottom: @line-height-computed;
     overflow-y: hidden;
     overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    border-radius: @border-radius-small;
-    border: 1px solid @table-border-color;
+    border-radius: var(--bs-border-radius);
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
     -webkit-overflow-scrolling: touch;
 
     // Tighten up spacing
@@ -150,6 +174,12 @@
       > tbody,
       > tfoot {
         > tr {
+          border-color: var(--bs-border-color);
+
+          th, td {
+            border-color: var(--bs-border-color);
+          }
+
           > th:first-child,
           > td:first-child {
             border-left: 0;
@@ -315,9 +345,9 @@
 table {
 
     &.table-small-font {
-        font-size: @font-size-small;
-        -webkit-text-size-adjust:none;
-        line-height: 1.5em;
+        font-size: 0.85rem;
+        -webkit-text-size-adjust: none;
+        line-height: var(--bs-body-line-height);
     }
 
     // focus
@@ -330,14 +360,15 @@ table {
         tr {
             &.unfocused {
                 th, td { 
-                    color: @gray-light;
-                    color: rgba(0,0,0,0.4);
+                    color: var(--bs-gray);
+                    opacity: 0.75;
                 }
             }
             &.focused {
                 th, td { 
-                    background-color: @brand-info; 
-                    color: #000;
+                    background-color: var(--bs-primary); 
+                    color: var(--bs-white);
+                    opacity: 1 !important;
                 }
             }
         }
@@ -349,8 +380,8 @@ table {
   background-color: #fff;
   border: none;
   border-radius: 0;
-  border-top: 1px solid @table-border-color;
-  border-bottom: 1px solid @table-border-color;
+  border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+  border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
   visibility: hidden;
   z-index: @zindex-stickyHeader;
   overflow: hidden;
@@ -380,9 +411,12 @@ table {
     > tbody,
     > tfoot {
       > tr {
+        border-color: var(--bs-border-color);
+        
         > th,
         > td {
           white-space: nowrap;
+          border-color: var(--bs-border-color);
         }
       }
     }

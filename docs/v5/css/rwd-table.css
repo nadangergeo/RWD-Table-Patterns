@@ -4,31 +4,19 @@
  * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se), Lucas Wiener <lucas@blimp.se> & "Maggie Wachs (www.filamentgroup.com)"
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
  */
-:root {
-  --responsive-table-dropdown-hover-bg: #f2f2f2;
-}
 .dropdown-menu > li.checkbox-row {
-  padding: 8px 16px;
+  padding: 5px 20px;
 }
 .dropdown-menu li.checkbox-row {
   display: block;
-  display: flex;
-  align-items: center;
   clear: both;
   font-weight: normal;
-  line-height: calc(var(--bs-body-line-height) * 1rem);
-  color: var(--bs-link-color);
+  line-height: 20px;
+  color: #333333;
   white-space: nowrap;
 }
 .dropdown-menu li.checkbox-row label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  margin-left: 0.5em;
-  color: var(--bs-dark);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  font-weight: normal;
 }
 .dropdown-menu li.checkbox-row:hover,
 .dropdown-menu li.checkbox-row input:hover,
@@ -38,42 +26,25 @@
 .no-touch .dropdown-menu > .checkbox-row:hover,
 .no-touch .dropdown-menu > .checkbox-row:active {
   text-decoration: none;
-  background-color: var(--responsive-table-dropdown-hover-bg);
+  color: #262626;
+  background-color: #f5f5f5;
 }
 .btn-toolbar {
-  margin-bottom: calc(var(--bs-body-line-height) * 1rem);
-}
-.btn-toolbar .btn-outline-primary.btn-primary {
-  color: var(--bs-white);
+  margin-bottom: 20px;
 }
 .lt-ie8 .btn-toolbar {
   display: none;
 }
 .table-responsive {
-  border-radius: var(--bs-border-radius);
-  border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
 }
 .table-responsive > .table {
   margin-bottom: 0;
 }
 .table-responsive > .table-bordered {
   border: 0;
-}
-.table-responsive > .table-bordered thead tr:last-child {
-  border-bottom-width: 2px;
-}
-.table-responsive > .table-bordered > thead,
-.table-responsive > .table-bordered > tbody,
-.table-responsive > .table-bordered > tfoot {
-  border-color: var(--bs-border-color);
-}
-.table-responsive > .table-bordered > thead > th,
-.table-responsive > .table-bordered > tbody > th,
-.table-responsive > .table-bordered > tfoot > th,
-.table-responsive > .table-bordered > thead > td,
-.table-responsive > .table-bordered > tbody > td,
-.table-responsive > .table-bordered > tfoot > td {
-  border-color: var(--bs-border-color);
 }
 .table-responsive > .table-bordered > thead > tr > th:first-child,
 .table-responsive > .table-bordered > tbody > tr > th:first-child,
@@ -99,11 +70,12 @@
 }
 .table-responsive[data-pattern="priority-columns"] {
   width: 100%;
+  margin-bottom: 20px;
   overflow-y: hidden;
   overflow-x: auto;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  border-radius: var(--bs-border-radius);
-  border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+  border-radius: 3px;
+  border: 1px solid #ddd;
   -webkit-overflow-scrolling: touch;
 }
 .table-responsive[data-pattern="priority-columns"] > .table {
@@ -119,19 +91,6 @@
 }
 .table-responsive[data-pattern="priority-columns"] > .table-bordered {
   border: 0;
-}
-.table-responsive[data-pattern="priority-columns"] > .table-bordered > thead > tr,
-.table-responsive[data-pattern="priority-columns"] > .table-bordered > tbody > tr,
-.table-responsive[data-pattern="priority-columns"] > .table-bordered > tfoot > tr {
-  border-color: var(--bs-border-color);
-}
-.table-responsive[data-pattern="priority-columns"] > .table-bordered > thead > tr th,
-.table-responsive[data-pattern="priority-columns"] > .table-bordered > tbody > tr th,
-.table-responsive[data-pattern="priority-columns"] > .table-bordered > tfoot > tr th,
-.table-responsive[data-pattern="priority-columns"] > .table-bordered > thead > tr td,
-.table-responsive[data-pattern="priority-columns"] > .table-bordered > tbody > tr td,
-.table-responsive[data-pattern="priority-columns"] > .table-bordered > tfoot > tr td {
-  border-color: var(--bs-border-color);
 }
 .table-responsive[data-pattern="priority-columns"] > .table-bordered > thead > tr > th:first-child,
 .table-responsive[data-pattern="priority-columns"] > .table-bordered > tbody > tr > th:first-child,
@@ -317,9 +276,9 @@
   display: none !important;
 }
 table.table-small-font {
-  font-size: 0.85rem;
+  font-size: 12px;
   -webkit-text-size-adjust: none;
-  line-height: var(--bs-body-line-height);
+  line-height: 1.5em;
 }
 table.focus-on tbody tr:hover,
 table.focus-on tfoot tr:hover {
@@ -329,23 +288,22 @@ table.focus-on tbody tr.unfocused th,
 table.focus-on tfoot tr.unfocused th,
 table.focus-on tbody tr.unfocused td,
 table.focus-on tfoot tr.unfocused td {
-  color: var(--bs-gray);
-  opacity: 0.75;
+  color: #777777;
+  color: rgba(0, 0, 0, 0.4);
 }
 table.focus-on tbody tr.focused th,
 table.focus-on tfoot tr.focused th,
 table.focus-on tbody tr.focused td,
 table.focus-on tfoot tr.focused td {
-  background-color: var(--bs-primary);
-  color: var(--bs-white);
-  opacity: 1 !important;
+  background-color: #5bc0de;
+  color: #000;
 }
 .sticky-table-header {
   background-color: #fff;
   border: none;
   border-radius: 0;
-  border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
-  border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   visibility: hidden;
   z-index: 990;
   overflow: hidden;
@@ -366,11 +324,6 @@ table.focus-on tfoot tr.focused td {
 .sticky-table-header > .table {
   margin-bottom: 0;
 }
-.sticky-table-header > .table > thead > tr,
-.sticky-table-header > .table > tbody > tr,
-.sticky-table-header > .table > tfoot > tr {
-  border-color: var(--bs-border-color);
-}
 .sticky-table-header > .table > thead > tr > th,
 .sticky-table-header > .table > tbody > tr > th,
 .sticky-table-header > .table > tfoot > tr > th,
@@ -378,7 +331,6 @@ table.focus-on tfoot tr.focused td {
 .sticky-table-header > .table > tbody > tr > td,
 .sticky-table-header > .table > tfoot > tr > td {
   white-space: nowrap;
-  border-color: var(--bs-border-color);
 }
 .sticky-table-header > .table-bordered {
   border: 0;
