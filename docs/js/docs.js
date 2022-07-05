@@ -18,8 +18,9 @@ ready(function() {
             event.preventDefault();
             event.stopPropagation();
 
-
+            $('.navbar-collapse').collapse('hide');
             var elem = document.querySelector(targetHash);
+            
             if(!elem) {
                 return;
             }
