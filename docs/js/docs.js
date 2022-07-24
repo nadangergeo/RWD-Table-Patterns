@@ -1,14 +1,14 @@
 function ready(fn) {
-  if (document.readyState != 'loading'){
+  if (document.readyState != "loading"){
     fn();
   } else {
-    document.addEventListener('DOMContentLoaded', fn);
+    document.addEventListener("DOMContentLoaded", fn);
   }
 }
 
 ready(function() {
     // Fixes anchor scrolling
-    document.querySelectorAll('.nav-link', '.btn-link').forEach(function(link) {
+    document.querySelectorAll([".nav-link", ".btn-link"]).forEach(function(link) {
         link.addEventListener('click', function(event) {
             var targetHash = event.currentTarget.getAttribute("href");
             if(targetHash[0] !== "#") {
@@ -18,7 +18,7 @@ ready(function() {
             event.preventDefault();
             event.stopPropagation();
 
-            $('.navbar-collapse').collapse('hide');
+            $(".navbar-collapse").collapse("hide");
             var elem = document.querySelector(targetHash);
             
             if(!elem) {
