@@ -27,7 +27,7 @@ In browsers without JavaScript, the tables will still be scrollable. I.e. there'
 
 You only need to add one JS-file, one CSS-file and some minimal setup to make the tables responsive.
 
-Dependencies: jQuery and Bootstrap 3.
+Dependencies: jQuery and Bootstrap 5.
 
 
 How to use:
