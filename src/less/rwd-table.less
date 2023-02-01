@@ -139,6 +139,7 @@
 // Other diffs:
 // - Small border radius
 // - Bigger bottom margin
+// - Position relative on cells
 .table-responsive[data-pattern="priority-columns"] {
     width: 100%;
     overflow-y: hidden;
@@ -151,6 +152,17 @@
     // Remove bottom margin
     > .table {
       margin-bottom: 0;
+
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th,
+          > td {
+            position: relative;
+          }
+        }
+      }
     }
     // Ensure the content doesn't wrap
     > .table-tighten {
@@ -344,7 +356,6 @@
 
 //table utility classes
 table {
-
     &.table-small-font {
         font-size: 0.85rem;
         -webkit-text-size-adjust: none;
@@ -415,6 +426,7 @@ table {
         > th,
         > td {
           border-color: var(--bs-border-color);
+          position: relative;
         }
       }
     }
@@ -466,6 +478,29 @@ table {
         }
       }
     }
+  }
+}
 
+// Sorting
+.table-responsive[data-sorting-active=true] thead th:not([colSpan]),
+.table-responsive[data-sorting-active=true] thead th[colSpan="1"] {
+  cursor:pointer;
+  padding-right: 1.5rem;
+  
+  &[data-sorted]:after {
+    display: block;
+    width: auto;
+    height: auto;
+    position: absolute;
+    right: 5px;
+    bottom: .5rem;
+  }
+  
+  &[data-sorted="asc"]:after {
+    content: '↑'
+  }
+  
+  &[data-sorted="desc"]:after {
+    content: '↓'
   }
 }
