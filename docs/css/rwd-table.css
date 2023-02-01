@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v6.0.2 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v6.1.0 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se), Lucas Wiener <lucas@blimp.se> & "Maggie Wachs (www.filamentgroup.com)"
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
@@ -108,6 +108,14 @@
 }
 .table-responsive[data-pattern="priority-columns"] > .table {
   margin-bottom: 0;
+}
+.table-responsive[data-pattern="priority-columns"] > .table > thead > tr > th,
+.table-responsive[data-pattern="priority-columns"] > .table > tbody > tr > th,
+.table-responsive[data-pattern="priority-columns"] > .table > tfoot > tr > th,
+.table-responsive[data-pattern="priority-columns"] > .table > thead > tr > td,
+.table-responsive[data-pattern="priority-columns"] > .table > tbody > tr > td,
+.table-responsive[data-pattern="priority-columns"] > .table > tfoot > tr > td {
+  position: relative;
 }
 .table-responsive[data-pattern="priority-columns"] > .table-tighten > thead > tr > th,
 .table-responsive[data-pattern="priority-columns"] > .table-tighten > tbody > tr > th,
@@ -378,6 +386,7 @@ table.focus-on tfoot tr.focused td {
 .sticky-table-header > .table > tbody > tr > td,
 .sticky-table-header > .table > tfoot > tr > td {
   border-color: var(--bs-border-color);
+  position: relative;
 }
 .sticky-table-header > .table-tighten > thead > tr > th,
 .sticky-table-header > .table-tighten > tbody > tr > th,
@@ -411,4 +420,26 @@ table.focus-on tfoot tr.focused td {
 .sticky-table-header > .table-bordered > tbody > tr:last-child > td,
 .sticky-table-header > .table-bordered > tfoot > tr:last-child > td {
   border-bottom: 0;
+}
+.table-responsive[data-sorting-active=true] thead th:not([colSpan]),
+.table-responsive[data-sorting-active=true] thead th[colSpan="1"] {
+  cursor: pointer;
+  padding-right: 1.5rem;
+}
+.table-responsive[data-sorting-active=true] thead th:not([colSpan])[data-sorted]:after,
+.table-responsive[data-sorting-active=true] thead th[colSpan="1"][data-sorted]:after {
+  display: block;
+  width: auto;
+  height: auto;
+  position: absolute;
+  right: 5px;
+  bottom: 0.5rem;
+}
+.table-responsive[data-sorting-active=true] thead th:not([colSpan])[data-sorted="asc"]:after,
+.table-responsive[data-sorting-active=true] thead th[colSpan="1"][data-sorted="asc"]:after {
+  content: '↑';
+}
+.table-responsive[data-sorting-active=true] thead th:not([colSpan])[data-sorted="desc"]:after,
+.table-responsive[data-sorting-active=true] thead th[colSpan="1"][data-sorted="desc"]:after {
+  content: '↓';
 }

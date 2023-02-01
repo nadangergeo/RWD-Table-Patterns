@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v6.0.2 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v6.1.0 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se), Lucas Wiener <lucas@blimp.se> & "Maggie Wachs (www.filamentgroup.com)"
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
@@ -37,8 +37,12 @@
 
         //good to have - for easy access
         this.$thead = this.$table.find('thead');
-        this.$hdrCells = this.$thead.find("tr").first().find('th');
-        this.$bodyRows = this.$table.find('tbody, tfoot').find('tr');
+        this.$hdrRows = this.$thead.find("tr");
+        this.$hdrCells = this.$hdrRows.first().find('th'); // use first row as basis
+        this.$tbody = this.$table.find('tbody');
+        this.$bodyRows = this.$tbody.find('tr');
+        this.$footRows = this.$table.find('tfoot').find('tr');
+        this.$bodyAndFootRows = $.merge(this.$bodyRows, this.$footRows); // combine tbody and tfoot rows
 
         //toolbar and buttons
         this.$btnToolbar = null; //defined farther down
@@ -77,7 +81,7 @@
         this.setupTableHeader();
 
         //setup standard cells
-        this.setupBodyRows();
+        this.setupBodyAndFootRows();
 
         //create sticky table head
         if(this.options.stickyTableHeader){
@@ -91,6 +95,25 @@
 
         // Event binding
         // -------------------------
+
+        // bind click on rows
+        this.bindClickOnRows();
+
+        if(this.options.sortable) {
+            //apply pattern option as data-attribute, in case it was set via js
+            this.$tableScrollWrapper.attr('data-sortable', true);
+            //needed for the css. Makes sure that sorting is actually active before applying styles.
+            this.$tableScrollWrapper.attr('data-sorting-active', true);
+            // bind click on theads with sorting function
+            this.makeSortableByColumns();
+
+            // for alternate toggling of sort direction
+            this.shiftKeyActive = false;
+            // listen on keydown/up and update shiftKeyActive
+            $(document).on('keydown keyup', function(event) {
+                that.shiftKeyActive = event.shiftKey;
+            });
+        }
 
         // on orientchange, resize and displayAllBtn-click
         $(window).bind('orientationchange resize ' + this.displayAllTrigger, function(){
@@ -114,6 +137,10 @@
         addFocusBtn: true,  // should it have a focus button?
         focusBtnIcon: 'fa fa-crosshairs',
         mainContainer: window,
+        sortable: false,
+        compareFunction: function(a, b, dir) {
+            return a[0].localeCompare(b[0], undefined, { numeric: true }) < 0 ? -dir : dir;
+        },
         i18n: {
             focus     : 'Focus',
             display   : 'Display',
@@ -127,11 +154,23 @@
         this.$tableWrapper = this.$tableScrollWrapper.parent();
     };
 
+    ResponsiveTable.prototype.bindClickOnRows = function() {
+        var that = this;
+
+        if(this.options.addFocusBtn) {
+            this.$bodyAndFootRows.unbind('click'); // remove old event listeners
+            this.$bodyAndFootRows.click(function() {
+                that.focusOnRow($(this));
+            });
+        }
+    }
+
     // Create toolbar with buttons
     ResponsiveTable.prototype.createButtonToolbar = function() {
         var that = this;
 
-        this.$btnToolbar = $('[data-responsive-table-toolbar="' + this.id + '"]').addClass('btn-toolbar justify-content-between');
+        this.$btnToolbar = $('[data-responsive-table-toolbar="' + this.id + '"]');
+        this.$btnToolbar.addClass('btn-toolbar justify-content-between');
         if(this.$btnToolbar.length === 0) {
           this.$btnToolbar = $('<div class="btn-toolbar justify-content-between" />');
         }
@@ -159,12 +198,7 @@
 
             // bind click on focus btn
             this.$focusBtn.click(function(){
-                $.proxy(that.activateFocus(), that);
-            });
-
-            // bind click on rows
-            this.$bodyRows.click(function(){
-                $.proxy(that.focusOnRow($(this)), that);
+                that.activateFocus();
             });
         } else {
             this.$btnToolbar.append($('<div />')); //add empty div instead, keeping same layout
@@ -199,8 +233,8 @@
     };
 
     ResponsiveTable.prototype.clearAllFocus = function() {
-        this.$bodyRows.removeClass('unfocused');
-        this.$bodyRows.removeClass('focused');
+        this.$bodyAndFootRows.removeClass('unfocused');
+        this.$bodyAndFootRows.removeClass('focused');
     };
 
     ResponsiveTable.prototype.activateFocus = function() {
@@ -223,7 +257,7 @@
             this.clearAllFocus();
 
             if(!alreadyFocused) {
-                this.$bodyRows.addClass('unfocused');
+                this.$bodyAndFootRows.addClass('unfocused');
                 $(row).addClass('focused');
             }
         }
@@ -285,16 +319,16 @@
 
         // bind scroll on mainContainer with updateStickyTableHeader
         $(this.options.mainContainer).on('scroll', function(event){
-            $.proxy(that.updateStickyTableHeader(), that);
+            that.updateStickyTableHeader();
         });
 
         // bind resize on window with updateStickyTableHeader
-        $(window).on('resize', function(e){
-            $.proxy(that.updateStickyTableHeader(), that);
+        $(window).on('resize', function(event){
+            that.updateStickyTableHeader();
         });
 
         $(that.$tableScrollWrapper).on('scroll', function(event){
-            $.proxy(that.updateStickyTableHeader(), that);
+            that.updateStickyTableHeader();
         });
 
         // determine what solution to use for rendereing  sticky table head (aboslute/fixed).
@@ -422,6 +456,8 @@
     ResponsiveTable.prototype.setupTableHeader = function() {
         var that = this;
 
+        var colSpans = 0;
+
         // for each header column
         that.$hdrCells.each(function(i){
             var $th = $(this),
@@ -436,6 +472,15 @@
 
             if(thText === ''){
                 thText = $th.attr('data-col-name');
+            }
+
+            // add x pos (used for sorting)
+            $th.attr('data-pos-x', i + colSpans);
+            
+            // take account for colspans
+            var colSpan = parseInt($th.prop('colSpan'));
+            if(colSpan > 1) {
+                colSpans += (colSpan - 1);
             }
 
             // create the hide/show toggle for the current column
@@ -532,22 +577,30 @@
         }); // end hdrCells loop
 
         if(!$.isEmptyObject(this.headerRowIndices)) {
-            that.setupRow(this.$thead.find("tr:eq(1)"), this.headerRowIndices);
+            that.setupRow(this.$thead.find("tr:eq(1)"), this.headerRowIndices, 1);
         }
+
+        // also give first row in thead an index
+        this.$hdrRows.first().attr('data-pos-y', 0);
     };
 
     // Setup body rows
     // assign matching "data-columns" attributes to the associated cells "(cells with colspan>1 has multiple columns).
-    ResponsiveTable.prototype.setupBodyRows = function() {
+    ResponsiveTable.prototype.setupBodyAndFootRows = function() {
         var that = this;
 
-        // for each body rows
-        that.$bodyRows.each(function(){
-            that.setupRow($(this), that.headerColIndices);
+        // for each body
+        that.$bodyRows.each(function(index){
+            that.setupRow($(this), that.headerColIndices, index);
+        });
+
+        // for each footer row
+        that.$footRows.each(function(index){
+            that.setupRow($(this), that.headerColIndices, index);
         });
     };
 
-    ResponsiveTable.prototype.setupRow = function($row, indices) {
+    ResponsiveTable.prototype.setupRow = function($row, indices, index) {
         var that = this;
 
         //check if it's already set up
@@ -556,12 +609,13 @@
             return;
         } else {
             $row.data('setup', true);
+            $row.attr('data-pos-y', index);
         }
 
         var idStart = 0;
 
         // for each cell
-        $row.find('th, td').each(function(){
+        $row.find('th, td').each(function(i){
             var $cell = $(this);
             var columnsAttr = '';
 
@@ -590,8 +644,18 @@
             //remove whitespace in begining of string.
             columnsAttr = columnsAttr.substring(1);
 
-            //set attribute to cell
+            //set data-columns attribute to cell
             $cell.attr('data-columns', columnsAttr);
+
+            // x-position (for sorting function)
+            var rowSpansBeforeCell = 0;
+
+            // Take account to rowspans if it is the seconds row in thead
+            if($row.parent().prop('tagName') === 'THEAD' && $row.attr('data-pos-y') === "1" && that.rowspansBeforeIndex) {
+                var rowSpansBeforeCell = that.rowspansBeforeIndex[i] || 0;
+            }
+
+            $cell.attr('data-pos-x', i + rowSpansBeforeCell);
 
             //increment idStart with the current cells colSpan.
             idStart = idStart + colSpan;
@@ -608,7 +672,7 @@
         var colPadding = 0;
         var rowPadding = 0;
 
-        this.$thead.find("tr").first().find('th').each(function(i){
+        this.$hdrCells.each(function(i){
             var $th = $(this);
             var colSpan = $th.prop('colSpan');
             var rowSpan = $th.prop("rowSpan");
@@ -628,27 +692,27 @@
             colPadding += colSpan - 1;
         });
 
-        if(this.$thead.find("tr").length > 2) {
-            throw new Error("This plugin doesnt support more than two rows in thead.");
-        }
-
-        if(this.$thead.find("tr").length === 2) {
-            var $row = $(this.$thead.find("tr")[1]);
+        if(this.$hdrRows.length === 2) {
+            var $row = $(this.$hdrRows[1]);
             $row.find("th").each(function(cellIndex) {
                 that.headerRowIndices[cellIndex] = that.headerColIndices[rowspansBeforeIndex[cellIndex] + cellIndex];
+                that.rowspansBeforeIndex = rowspansBeforeIndex;
             });
+        } else if(this.$hdrRows.length > 2) {
+            throw new Error("This plugin doesnt support more than two rows in thead.");
         }
     }
 
     // Run this after the content in tbody has changed
     ResponsiveTable.prototype.update = function() {
-        this.$bodyRows = this.$table.find('tbody, tfoot').find('tr');
-        this.setupBodyRows();
+        this.$bodyAndFootRows = this.$table.find('tbody, tfoot').find('tr'); // get fresh list
+        this.setupBodyAndFootRows();
+        this.bindClickOnRows();
 
         // Remove old tbody clone from Tableclone
         this.$tableClone.find('tbody, tfoot').remove();
 
-        // Make new clone of tbody
+        // Make new clone of tbody and tfoot
         var $tbodyClone = this.$table.find('tbody, tfoot').clone();
 
         //replace ids
@@ -699,12 +763,160 @@
         });
     };
 
+    // Utils for sorting
+
+    ResponsiveTable.prototype.getSortedColumn = function(col, dir) {
+        var that = this;
+        
+        for (var i = 0; i < col.length; i++) {
+            col[i] = [col[i], i];
+        }
+
+        var compareFunction;
+        if(that.options.compareFunction instanceof Function) {
+            compareFunction = function(a, b) {
+                return that.options.compareFunction(a, b, dir);
+            };
+        }
+
+        col.sort(compareFunction);
+
+        col.indices = [];
+
+        for (var j = 0; j < col.length; j++) {
+            col.indices.push(col[j][1]);
+            col[j] = col[j][0];
+        }
+
+        return col;
+    };
+
+    ResponsiveTable.prototype.getRestoredColumn = function(col) {
+        for (var i = 0; i < col.length; i++) {
+            col[i] = [col[i], i, $(col[i]).attr("data-pos-y")];
+        }
+
+        col.sort(function(a, b) {
+            return a[2].localeCompare(b[2], undefined, { numeric: true }) < 0 ? -1 : 1;
+        });
+
+        col.indices = [];
+
+        for (var j = 0; j < col.length; j++) {
+            col.indices.push(col[j][1]);
+            col[j] = col[j][0];
+        }
+
+        return col;
+    };
+
+    var sortDirMapping = {
+        "asc": 1,
+        "desc": -1,
+        "org": 0
+    };
+
+    ResponsiveTable.prototype.sortColumn = function(hdr, dir) {
+        var that = this;
+        var $tBody = that.$tbody;
+
+        // if hdr is an number (index), treat as pos-x and use it to get hdr. Otherwise expecting hdr element directly (sent via click-event).
+        var $hdr = Number.isInteger(hdr) ? that.$thead.find('th[data-pos-x='+ hdr +']') : $(hdr);
+        var id = $hdr.prop('id');
+        var $clone = id.indexOf('-clone') === (id.length - 6) ? $('#' + id.slice(0, id.length - 6)) : $('#' + $(hdr).prop('id') + '-clone'); // the clone is the original if 'hdr' is the clone, and vice versa.
+
+        // get fresh list of rows in tbody
+        var $tBodyRows = $tBody.find('tr');
+
+        // get all cells under the column
+        var posX = $hdr.data('pos-x');
+        var col = $tBodyRows.find('[data-pos-x='+ posX +']');
+
+        var sorted = $hdr.attr("data-sorted");
+
+        // get all hdr cells if not cached
+        if(!that.$allHdrCells) {
+            that.$hdrCellsClones = that.$tableClone ? that.$tableClone.find('thead > tr > th') : [];
+            that.$allHdrCells = $.merge(this.$hdrRows.find('th'), that.$hdrCellsClones);
+        }
+
+        // remove sorted attr from all cols
+        that.$allHdrCells.filter("[data-sorted]").each(function() {
+            $(this).removeAttr("data-sorted");
+        });
+
+        var sortDir;
+
+        if((that.shiftKeyActive && sorted === "desc") || (!sorted && !that.shiftKeyActive) || dir === 1) {
+            // add attr to clicked col
+            $hdr.attr("data-sorted", "asc");
+            // do same on clone (sticky)
+            $clone.attr("data-sorted", "asc");
+            sortDir = 1;
+        } else if((that.shiftKeyActive && !sorted) || (sorted === "asc" && !that.shiftKeyActive) || dir === -1) {
+            // switch to desc order
+            $hdr.attr("data-sorted", "desc");
+            // do same on clone (sticky)
+            $clone.attr("data-sorted", "desc");
+            sortDir = -1;
+        } else if((that.shiftKeyActive && sorted === "asc") || (sorted === "desc" && !that.shiftKeyActive) || dir === 0) {
+            // remove
+            $hdr.removeAttr("data-sorted");
+            // do same on clone (sticky)
+            $clone.removeAttr("data-sorted");
+            sortDir = 0;
+        }
+
+        if(sortDir !== 0){
+            col = col.map(function(i, e) {
+                // prepare for sorting by just keeping the inner text
+                return $(e).data('value') || e.innerText;
+            }).get();
+
+            // sort
+            col = that.getSortedColumn(col, sortDir);
+        } else {
+            // restore original order
+            col = that.getRestoredColumn($tBodyRows.get())
+        }
+
+        // Now that we have the new order indexes, modify dom into that order.
+        // This is definetely not the fastest method, but it was the easiest to implement for now.
+        // Todo: optimize by detatching and appending (moving) rows, instead of cloning and deleting.
+        for (var i = 0; i < col.length; i++) {
+            $tBodyRows.eq(col.indices[i]).clone().appendTo($tBody); // add copy to end
+        }
+
+        for (var i = 0; i < col.length; i++) {
+            $tBodyRows.eq(i).remove(); // remove old copies at top (unsorted original)
+        }
+
+        that.$bodyAndFootRows = that.$table.find('tbody, tfoot').find('tr'); // get fresh list
+        that.bindClickOnRows(); // add click events (focus)
+    }
+
+    ResponsiveTable.prototype.makeSortableByColumns = function() {
+        var that = this;
+        that.$hdrCellsClones = that.$tableClone ? that.$tableClone.find('thead > tr > th') : [];
+        that.$allHdrCells = $.merge(this.$hdrRows.find('th'), that.$hdrCellsClones);
+        
+        that.$allHdrCells.each(function(colIndex){
+            if($(this).prop('colSpan') > 1) {
+                return;
+            }
+            
+            $(this).click(function() {
+                that.sortColumn(this);
+            });
+        });
+    };
+
     // RESPONSIVE TABLE PLUGIN DEFINITION
     // ===========================
 
     var old = $.fn.responsiveTable;
 
-    $.fn.responsiveTable = function (option) {
+    $.fn.responsiveTable = function (option, args) {
         return this.each(function () {
             var $this   = $(this);
             var data    = $this.data('responsiveTable');
@@ -718,7 +930,7 @@
                 $this.data('responsiveTable', (data = new ResponsiveTable(this, options)));
             }
             if (typeof option === 'string') {
-                data[option]();
+                data[option].apply(data, args);
             }
         });
     };

@@ -33,4 +33,13 @@ ready(function() {
             history.pushState(null, null, targetHash);
         });
     });
+
+    // Init responsive table
+    $('#group-test-wrapper').responsiveTable({
+        sortable: true, // example option
+        compareFunction: function(a, b, dir) { // custom compare function
+          // console.log(a[0], b[0], dir);
+          return a[0].localeCompare(b[0], undefined, { numeric: true }) < 0 ? -dir : dir;
+        }
+    });
 });

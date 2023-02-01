@@ -95,7 +95,7 @@ module.exports = function(grunt) {
       watch: {
           src: {
             // rebuild if files in src changes
-            files: ['src/**', 'docs/**'],
+            files: ['src/**'],
             tasks: ['build'],
             options: {
               livereload: {

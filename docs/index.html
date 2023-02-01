@@ -41,8 +41,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 
         <!-- Responsive Tables -->
-        <link rel="stylesheet" href="css/rwd-table.min.css?v=6.0.2">
-        <link rel="stylesheet" href="css/docs.min.css?v=6.0.2">
+        <link rel="stylesheet" href="css/rwd-table.min.css?v=6.1.0">
+        <link rel="stylesheet" href="css/docs.min.css?v=6.1.0">
 
         <script type="text/javascript">
             var _gaq = _gaq || [];
@@ -113,9 +113,9 @@
                 <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
 
                 <div class="d-flex flex-column flex-sm-row">
-                    <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v6.0.2.zip" class="btn btn-link btn-outline-dark position-relative float-start" role="button">
+                    <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v6.1.0.zip" class="btn btn-link btn-outline-dark position-relative float-start" role="button">
                         <i class="fa fa-download"></i> Download
-                        <small class="text-muted position-absolute bottom-0 start-50 translate-middle-x pb-1">v.6.0.2</small>
+                        <small class="text-muted position-absolute bottom-0 start-50 translate-middle-x pb-1">v.6.1.0</small>
                     </a>
 
                     <a href="https://github.com/nadangergeo/RWD-Table-Patterns" class="btn btn-link btn-outline-dark position-relative float-start" role="button">
@@ -167,9 +167,9 @@
                     <hr/>
                 </div>
  
-                <div data-responsive-table-toolbar="tech-companies-1"></div>
-                <div class="table-responsive" data-pattern="priority-columns">
-                    <table cellspacing="0" id="tech-companies-1" class="table table-small-font table-tighten table-bordered table-striped">
+                <div data-responsive-table-toolbar="tech-companies"></div>
+                <div class="table-responsive" id="tech-companies-wrapper" data-pattern="priority-columns" data-sortable="true">
+                    <table cellspacing="0" id="tech-companies" class="table table-small-font table-tighten table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Company</th>
@@ -630,7 +630,7 @@
                 </div>
                 <br>
                 <br>
-                <div class="table-responsive" data-pattern="priority-columns">
+                <div class="table-responsive" id="ledger-wrapper" data-pattern="priority-columns" data-sortable="true">
                     <table cellspacing="0" id="ledger" class="table table-small-font table-tighten table-bordered table-striped">
                         <thead>
                             <tr>
@@ -794,7 +794,7 @@
                             </tr>
                             <tr>
                                 <th>4</th>
-                                <td>2014-04-11</td>
+                                <td>2014-04-19</td>
                                 <td>iPhone</td>
                                 <td>7000 SEK</td>
                                 <td></td>
@@ -827,13 +827,293 @@
                                 <td></td>
                                 <td></td>
                             </tr>
+                            <tr>
+                                <th>5</th>
+                                <td>2014-05-14</td>
+                                <td>Office stuff</td>
+                                <td>100 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>25 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>75 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>6</th>
+                                <td>2014-06-02</td>
+                                <td>Speakers</td>
+                                <td>5000 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>1250 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>3750 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>7</th>
+                                <td>2014-07-20</td>
+                                <td>Office stuff</td>
+                                <td>300 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>75 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>225 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>8</th>
+                                <td>2014-08-24</td>
+                                <td>Display</td>
+                                <td>10000 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>2500 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>7500 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>9</th>
+                                <td>2014-09-03</td>
+                                <td>Office stuff</td>
+                                <td>300 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>25 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>75 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>10</th>
+                                <td>2014-10-12</td>
+                                <td>MacBook Air</td>
+                                <td>12000 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>3000 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>9000 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>11</th>
+                                <td>2014-11-20</td>
+                                <td>Office stuff</td>
+                                <td>200 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>50 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>150 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>12</th>
+                                <td>2014-12-11</td>
+                                <td>iMac</td>
+                                <td>15000 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>3750 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>11 250 SEK</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                         </tbody>
                         <tfoot>
                         <tr>
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th>12 200 SEK</th>
+                            <th>55100 SEK</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -844,7 +1124,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th>3050 SEK</th>
+                            <th>13725 SEK</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -854,9 +1134,9 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th>8000 SEK</th>
+                            <th>40500 SEK</th>
                             <th></th>
-                            <th>150 SEK</th>
+                            <th>675 SEK</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -869,10 +1149,11 @@
                 </div>
                 <br>
                 <br>
-                <div class="table-responsive" data-pattern="priority-columns">
+                <!-- initialized via js -->
+                <div class="table-responsive" id="group-test-wrapper">
                     <table cellspacing="0" id="group-test" class="table table-small-font table-tighten table-bordered table-striped">
                         <thead>
-                            <tr class="hide">
+                            <tr>
                                 <th>#</th>
                                 <th colspan="2" data-priority="1">Group A</th>
                                 <th colspan="2" data-priority="1">Group B</th>
@@ -1054,21 +1335,23 @@
                 <h4>Alternative 3: Initialize via JavaScript (selecting with ID)</h4>
                 <pre><code>&lt;<span class="text-danger">script</span>&gt;
    $(<span class="text-info">function</span>() {
-      $(<span class="text-warning">'#myTableWrapper'</span>).<span class="text-code-green">responsiveTable</span>({<em>options</em>});
+      $(<span class="text-warning">'#myTableWrapper'</span>).<span class="text-code-green">responsiveTable</span>({
+        sortable: true <em>// example option</em>
+    });
    });
 &lt;/<span class="text-danger">script</span>&gt;</code></pre>
 
                 <h3>4. Options</h3>
                 <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code><span class="text-info">data-</span></code> with hyphens instead of camelCase, as in <code><span class="text-info">data-add-focus-btn</span>=""</code>.</p>
 
-                <div class="table-responsive" data-pattern="priority-columns">
+                <div class="table-responsive" data-pattern="priority-columns" data-sortable="true">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th style="width: 125px;">Name</th>
-                                <th style="width: 100px;">type</th>
-                                <th style="width: 280px;">default</th>
-                                <th>description</th>
+                                <th style="width: 100px;">Type</th>
+                                <th style="width: 280px;">Default</th>
+                                <th>Description</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1079,6 +1362,60 @@
                                 <td>
                                     <p>What responsive table pattern to use. For now, <code><span class="text-warning">'priority-columns'</span></code> is the only pattern available.</p>
                                     <p><strong>Tip:</strong> When initalizing via JavaScript, add <code><span class="text-info">data-pattern</span>=""</code> to responsive tables you wan't to exclude.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>sortable</td>
+                                <td>boolean</td>
+                                <td><code class="text-danger">false</code></td>
+                                <td>
+                                    <p>
+                                        Makes the table sortable by columns. Simply click a header to sort it. Reversed toggling if shift key is active.
+                                    </p>
+                                    <p>
+                                        The sort function uses the attribute 'data-value' on a cell if it exists, otherwise it uses the 'innerText' prop (the content of the cell).
+                                        Useful if you want the value presented in a certain format, and the sort based on the value in another format.
+                                    </p>
+                                    <p>
+                                        <strong>Tip: </strong>You can also trigger a sort like this:
+                                    </p>
+                                    <pre><code>$(<span class="text-info">function</span>() {
+    $(<span class="text-warning">'#myTableWrapper'</span>).<span class="text-code-green">responsiveTable</span>(
+        <span class="text-warning">'sortColumn'</span>, // name of function to trigger
+        [ // args array
+            <span class="text-warning">pos-x</span>, // x position of column
+            <span class="text-warning">dir</span> // sort direction (-1|1|0)
+        ]
+    );
+});</code></pre>
+                                    <p>
+                                        <strong>Note:</strong> Default is set to <code class="text-danger">false</code>, i.e. the feature is opt-in, to avoid potential click-event conflicts.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>compareFunction</td>
+                                <td>function</td>
+                                <td>
+                                    <pre class="mb-0"><code><span class="text-info">function</span>(<span class="text-warning">a</span>, <span class="text-warning">b</span>, <span class="text-warning">dir</span>) {
+  return <span class="text-warning">a</span>[0].<span class="text-code-green">localeCompare</span>(
+    <span class="text-warning">b</span>[0], 
+    <span class="text-danger">undefined</span>, 
+    { <span class="text-warning">numeric</span>: true }
+  ) < 0 ? -<span class="text-warning">dir</span> : <span class="text-warning">dir</span>;
+}</code></pre>
+                                </td>
+                                <td>
+                                    <p>
+                                        The default compare function uses String.prototype.localeCompare to sort the table columns.
+                                        But you can also pass your own custom compare function for sorting, when initializing via JavaScript. This is in case the built in compare function does not work for you (depends a lot on how the data is formatted).
+                                    </p>
+                                    <p>
+                                        The function should take <code class="text-warning">a</code> (string), <code class="text-warning">b</code> (string) and <code class="text-warning">dir</code> (-1|1) as arguments and return <code class="text-warning">-1</code>, <code class="text-warning">0</code> or <code class="text-warning">1</code>.
+                                    </p>
+                                    <p class="mb-0">
+                                        <strong>Note:</strong> <code class="text-code-green">localeCompare</code> is still highly recommended to base the function on.
+                                    </p>
                                 </td>
                             </tr>
                             <tr>
@@ -1121,7 +1458,7 @@
                             <tr>
                                 <td>i18n</td>
                                 <td>object</td>
-                                <td><pre><code class="">{<br>&nbsp;&nbsp;focus <span class="text-purple">:</span> <span class="text-warning">'Focus'</span>,<br>&nbsp;&nbsp;display <span class="text-purple">:</span> <span class="text-warning">'Display'</span>,<br>&nbsp;&nbsp;displayAll <span class="text-purple">:</span> <span class="text-warning">'Display all'</span><br>}</code></pre>
+                                <td><pre class="mb-0"><code>{<br>&nbsp;&nbsp;focus <span class="text-purple">:</span> <span class="text-warning">'Focus'</span>,<br>&nbsp;&nbsp;display <span class="text-purple">:</span> <span class="text-warning">'Display'</span>,<br>&nbsp;&nbsp;displayAll <span class="text-purple">:</span> <span class="text-warning">'Display all'</span><br>}</code></pre>
                                 </td>
                                 <td>
                                     Used to translate the buttons (only works if you initialize via JavaScript).
@@ -1241,7 +1578,7 @@
         <!-- Latest compiled and minified Bootstrap JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
-        <script src="js/rwd-table.js?v=6.0.2"></script>
+        <script src="js/rwd-table.js?v=6.1.0"></script>
         <script src="js/docs.min.js"></script>
     </body>
 </html>
