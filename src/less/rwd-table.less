@@ -13,12 +13,14 @@
 .dropdown-menu {
     // Checkbox-rows within the dropdown menu
     > li.checkbox-row {
-      padding: 5px 20px;
+      padding: 13px 16px;
     }
 
     // links and checkbox-rows within the dropdown menu
     li.checkbox-row {
       display: block;
+      display: flex;
+      align-items: center;
       clear: both;
       font-weight: normal;
       line-height: @line-height-computed;
@@ -26,10 +28,20 @@
       white-space: nowrap;
 
       label {
-        font-weight: normal;
+        font-weight: 600;
+        line-height: 1;
+        margin-left: 0.5em;
+        margin-bottom: 0;
+
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
       }
         
       &, input, label {
+        margin-top: 0;
+
           &:hover {
             cursor: pointer;
           }
@@ -67,9 +79,9 @@
 .table-responsive {
   border-radius: @border-radius-small;
   border: 1px solid @table-border-color;
-  margin-bottom: @line-height-computed;
+  margin-bottom: 0;
 
-  // Tighten up spacing
+  // Remove bottom margin
   > .table {
     margin-bottom: 0;
   }
@@ -114,9 +126,10 @@
 // Other diffs:
 // - Small border radius
 // - Bigger bottom margin
+// - Position relative on cells
 .table-responsive[data-pattern="priority-columns"] {
     width: 100%;
-    margin-bottom: @line-height-computed;
+    margin-bottom: 0;
     overflow-y: hidden;
     overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -124,11 +137,23 @@
     border: 1px solid @table-border-color;
     -webkit-overflow-scrolling: touch;
 
-    // Tighten up spacing
+    // Remove bottom margin
     > .table {
       margin-bottom: 0;
 
-      // Ensure the content doesn't wrap
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th,
+          > td {
+            position: relative;
+          }
+        }
+      }
+    }
+    // Ensure the content doesn't wrap
+    > .table-tighten {
       > thead,
       > tbody,
       > tfoot {
@@ -313,7 +338,6 @@
 
 //table utility classes
 table {
-
     &.table-small-font {
         font-size: @font-size-small;
         -webkit-text-size-adjust:none;
@@ -327,7 +351,8 @@ table {
             cursor: pointer;
         }
 
-        tr {
+        tr,
+        tr:nth-child(2n+1) { // for overwriting striped styling
             &.unfocused {
                 th, td { 
                     color: @gray-light;
@@ -375,7 +400,20 @@ table {
   > .table {
     margin-bottom: 0;
 
-    // Ensure the content doesn't wrap
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr {
+        > th,
+        > td {
+          position: relative;
+        }
+      }
+    }
+  }
+  
+  // Ensure the content doesn't wrap
+  > .table-tighten {
     > thead,
     > tbody,
     > tfoot {
@@ -420,6 +458,30 @@ table {
         }
       }
     }
+  }
+}
 
+// Sorting
+.table-responsive[data-sorting-active=true] thead th:not([colSpan]),
+.table-responsive[data-sorting-active=true] thead th[colSpan="1"] {
+  cursor:pointer;
+  padding-right: 25px;
+  
+  &[data-sorted]:after {
+    display: block;
+    width: auto;
+    height: auto;
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+  }
+  
+  &[data-sorted="asc"]:after {
+    content: '↑'
+  }
+  
+  &[data-sorted="desc"]:after {
+    content: '↓'
   }
 }
