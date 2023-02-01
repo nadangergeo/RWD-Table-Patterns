@@ -1,14 +1,16 @@
 /*!
- * Responsive Tables v5.3.3 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v5.4.0 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se), Lucas Wiener <lucas@blimp.se> & "Maggie Wachs (www.filamentgroup.com)"
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
  */
 .dropdown-menu > li.checkbox-row {
-  padding: 5px 20px;
+  padding: 13px 16px;
 }
 .dropdown-menu li.checkbox-row {
   display: block;
+  display: flex;
+  align-items: center;
   clear: both;
   font-weight: normal;
   line-height: 20px;
@@ -16,7 +18,19 @@
   white-space: nowrap;
 }
 .dropdown-menu li.checkbox-row label {
-  font-weight: normal;
+  font-weight: 600;
+  line-height: 1;
+  margin-left: 0.5em;
+  margin-bottom: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.dropdown-menu li.checkbox-row,
+.dropdown-menu li.checkbox-row input,
+.dropdown-menu li.checkbox-row label {
+  margin-top: 0;
 }
 .dropdown-menu li.checkbox-row:hover,
 .dropdown-menu li.checkbox-row input:hover,
@@ -38,7 +52,7 @@
 .table-responsive {
   border-radius: 3px;
   border: 1px solid #ddd;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 .table-responsive > .table {
   margin-bottom: 0;
@@ -70,7 +84,7 @@
 }
 .table-responsive[data-pattern="priority-columns"] {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   overflow-y: hidden;
   overflow-x: auto;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -87,6 +101,14 @@
 .table-responsive[data-pattern="priority-columns"] > .table > thead > tr > td,
 .table-responsive[data-pattern="priority-columns"] > .table > tbody > tr > td,
 .table-responsive[data-pattern="priority-columns"] > .table > tfoot > tr > td {
+  position: relative;
+}
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > thead > tr > th,
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > tbody > tr > th,
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > tfoot > tr > th,
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > thead > tr > td,
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > tbody > tr > td,
+.table-responsive[data-pattern="priority-columns"] > .table-tighten > tfoot > tr > td {
   white-space: nowrap;
 }
 .table-responsive[data-pattern="priority-columns"] > .table-bordered {
@@ -286,15 +308,23 @@ table.focus-on tfoot tr:hover {
 }
 table.focus-on tbody tr.unfocused th,
 table.focus-on tfoot tr.unfocused th,
+table.focus-on tbody tr:nth-child(2n+1).unfocused th,
+table.focus-on tfoot tr:nth-child(2n+1).unfocused th,
 table.focus-on tbody tr.unfocused td,
-table.focus-on tfoot tr.unfocused td {
+table.focus-on tfoot tr.unfocused td,
+table.focus-on tbody tr:nth-child(2n+1).unfocused td,
+table.focus-on tfoot tr:nth-child(2n+1).unfocused td {
   color: #777777;
   color: rgba(0, 0, 0, 0.4);
 }
 table.focus-on tbody tr.focused th,
 table.focus-on tfoot tr.focused th,
+table.focus-on tbody tr:nth-child(2n+1).focused th,
+table.focus-on tfoot tr:nth-child(2n+1).focused th,
 table.focus-on tbody tr.focused td,
-table.focus-on tfoot tr.focused td {
+table.focus-on tfoot tr.focused td,
+table.focus-on tbody tr:nth-child(2n+1).focused td,
+table.focus-on tfoot tr:nth-child(2n+1).focused td {
   background-color: #5bc0de;
   color: #000;
 }
@@ -330,6 +360,14 @@ table.focus-on tfoot tr.focused td {
 .sticky-table-header > .table > thead > tr > td,
 .sticky-table-header > .table > tbody > tr > td,
 .sticky-table-header > .table > tfoot > tr > td {
+  position: relative;
+}
+.sticky-table-header > .table-tighten > thead > tr > th,
+.sticky-table-header > .table-tighten > tbody > tr > th,
+.sticky-table-header > .table-tighten > tfoot > tr > th,
+.sticky-table-header > .table-tighten > thead > tr > td,
+.sticky-table-header > .table-tighten > tbody > tr > td,
+.sticky-table-header > .table-tighten > tfoot > tr > td {
   white-space: nowrap;
 }
 .sticky-table-header > .table-bordered {
@@ -356,4 +394,27 @@ table.focus-on tfoot tr.focused td {
 .sticky-table-header > .table-bordered > tbody > tr:last-child > td,
 .sticky-table-header > .table-bordered > tfoot > tr:last-child > td {
   border-bottom: 0;
+}
+.table-responsive[data-sorting-active=true] thead th:not([colSpan]),
+.table-responsive[data-sorting-active=true] thead th[colSpan="1"] {
+  cursor: pointer;
+  padding-right: 25px;
+}
+.table-responsive[data-sorting-active=true] thead th:not([colSpan])[data-sorted]:after,
+.table-responsive[data-sorting-active=true] thead th[colSpan="1"][data-sorted]:after {
+  display: block;
+  width: auto;
+  height: auto;
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+}
+.table-responsive[data-sorting-active=true] thead th:not([colSpan])[data-sorted="asc"]:after,
+.table-responsive[data-sorting-active=true] thead th[colSpan="1"][data-sorted="asc"]:after {
+  content: '↑';
+}
+.table-responsive[data-sorting-active=true] thead th:not([colSpan])[data-sorted="desc"]:after,
+.table-responsive[data-sorting-active=true] thead th[colSpan="1"][data-sorted="desc"]:after {
+  content: '↓';
 }

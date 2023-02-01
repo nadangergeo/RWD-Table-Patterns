@@ -10,6 +10,7 @@
 /* ONLY STYLES FOR DEMO PAGE! */
 
 body {
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     padding-top: 50px;
     padding-bottom: 30px;
     text-rendering: optimizeLegibility;
@@ -65,7 +66,7 @@ section {
         
         &:hover {
             color: @doc-newBlue !important;
-        }        
+        }  
     }
 }
 .navbar-header {
@@ -91,7 +92,7 @@ section {
     h1 {
         font-size: 80px;
         font-weight: bold;
-        letter-spacing: -0.06em;
+        letter-spacing: -0.05em;
     }
     h3 {
         font-size: 30px;
@@ -106,6 +107,8 @@ section {
     }
     .desc {
         margin-bottom: 30px;
+        font-weight: 400;
+
         a {
             color: #000;
             text-decoration: underline;
@@ -223,11 +226,15 @@ table.table-bordered {
 }
 
 table.focus-on  {
-    tbody tr.focused,
-    tfoot tr.focused {
-        th, td { 
-            background-color: @doc-yellow; 
-            color: #000; 
+    tbody, tfoot {
+        tr,
+        tr:nth-child(2n+1) { // for overwriting striped styling
+            &.focused {
+                th, td { 
+                    background-color: @doc-yellow; 
+                    color: #000; 
+                }
+            }
         }
     }
 }

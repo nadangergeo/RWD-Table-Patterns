@@ -35,7 +35,7 @@ How to use:
 
 #### Install using NPM
 ```shell
-npm i RWD-Table-Patterns@5.3.3
+npm i RWD-Table-Patterns@5.4.0
 ```
 
 #### Add CSS file to the ```<head>```
@@ -87,15 +87,26 @@ You can initalize the table without writing any JavaScript, just like Bootstrap.
 </script>
 ```
 
-#### Options
+#### Alternative 3: Initialize via JavaScript (selecting with ID)
+```html
+<script>
+   $(function() {
+      $('#myTableWrapper').responsiveTable({{
+        sortable: true // example option
+    }});
+   });
+</script>
+```
+
+### 4. Options
 Options can be passed via data attributes or JavaScript. For data attributes, append the option name to ```data-``` with hyphens instead of camelCase, as in ```data-add-focus-btn=""```.
 <table>
   <thead>
    <tr>
      <th>Name</th>
-     <th>type</th>
-     <th>default</th>
-     <th>description</th>
+     <th>Type</th>
+     <th>Default</th>
+     <th>Description</th>
    </tr>
   </thead>
   <tbody>
@@ -108,6 +119,61 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
        <p><strong>Tips:</strong> When initalizing via JavaScript, add <code>data-pattern=""</code> to responsive tables you wan't to exclude.</p>
      </td>
    </tr>
+   <tr>
+      <td>sortable</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        <p>
+            Makes the table sortable by columns. Simply click a header to sort it. Reversed toggling if shiftKey is active.
+        </p>
+        <p>
+            The sort function uses the attribute 'data-value' on a cell if it exists, otherwise it uses the 'innerText' prop (the content of the cell).
+            Useful if you want the value presented in a certain format, and the sort based on the value in another format.
+        </p>
+        <p>
+            <strong>Tip: </strong>You can also trigger a sort like this:
+        </p>
+        <pre><code>$(function() {
+  $('#myTableWrapper).responsiveTable(
+    'sortColumn, // name of function to trigger
+    [ // args array
+      pos-x, // x position of column
+      dir // sort direction (-1|1|0)
+    ]
+  );
+});</code></pre>
+        <p>
+            <strong>Note:</strong> Default is set to <code class="text-danger">false</code>, i.e. the feature is opt-in, to avoid potential click-event conflicts.
+        </p>
+      </td>
+    </tr>
+   <tr>
+   <tr>
+      <td>compareFunction</td>
+      <td>function</td>
+     <td>
+       <pre class="mb-0"><code>function(a, b, dir) {
+  return a[0].localeCompare(
+    b[0], 
+    undefined, 
+    { numeric: true }
+  ) < 0 ? -dir : dir;
+}</code></pre>
+     </td>
+     <td>
+        <p>
+            The default compare function uses String.prototype.localeCompare to sort the table columns.
+            But you can also pass your own custom compare function for sorting, when initializing via JavaScript. This is in case the built in compare function does not work for you (depends a lot on how the data is formatted).
+        </p>
+        <p>
+            The function should take a (string), b (string) and dir (-1|1) as arguments and return -1, 0 or 1.
+        </p>
+        <p class="mb-0">
+            <strong>Note:</strong> localeCompare is still highly recommended to base the function on.
+        </p>
+     </td>
+</tr>
    <tr>
      <td>stickyTableHeader</td>
      <td>boolean</td>
@@ -148,11 +214,11 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
    <tr>
      <td>i18n</td>
      <td>object</td>
-     <td>{
-           focus     : 'Focus',
-           display   : 'Display',
-           displayAll: 'Display all'
-         }
+     <td><pre><code>{
+  focus : 'Focus',
+  display : 'Display',
+  displayAll : 'Display all'
+}</code></pre>
      </td>
      <td>
          Used to translate the buttons (only works if you initialize via JavaScript).

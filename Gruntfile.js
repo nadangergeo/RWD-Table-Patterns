@@ -23,6 +23,10 @@ module.exports = function(grunt) {
         build: {
           src: 'src/js/<%= filename %>.js',
           dest: 'dist/js/<%= filename %>.min.js'
+        },
+        docs: {
+          src: 'docs/js/docs.js',
+          dest: 'docs/js/docs.min.js'
         }
       },
       less: {
@@ -113,7 +117,7 @@ module.exports = function(grunt) {
       bump: {
           options: {
             files: ['package.json', 'bower.json'],
-            updateConfigs: ['pkg','banner'],
+            updateConfigs: ['pkg'],
             commit: true,
             commitMessage: 'Release v%VERSION%',
             commitFiles: ['-a'], // '-a' for all files
@@ -137,7 +141,8 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', [
-        'uglify',
+        'uglify:build',
+        'uglify:docs',
         'less',
         'copy:dist',
         'usebanner',
