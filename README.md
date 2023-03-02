@@ -35,7 +35,7 @@ How to use:
 
 #### Install using NPM
 ```shell
-npm i RWD-Table-Patterns@5.4.0
+npm i RWD-Table-Patterns@bs3
 ```
 
 #### Add CSS file to the ```<head>```
