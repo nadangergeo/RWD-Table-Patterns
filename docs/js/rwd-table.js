@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v6.1.0 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v6.1.1 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se), Lucas Wiener <lucas@blimp.se> & "Maggie Wachs (www.filamentgroup.com)"
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
@@ -61,6 +61,11 @@
 
         this.headerColIndices = {};
         this.headerRowIndices = {};
+
+        this.displayValue = 'table-cell';
+        if($('html').hasClass('lt-ie9')){
+            this.displayValue = 'inline';
+        }
 
         // Setup table
         // -------------------------
@@ -284,14 +289,9 @@
     };
 
     ResponsiveTable.prototype.preserveDisplayAll = function() {
-        var displayProp = 'table-cell';
-        if($('html').hasClass('lt-ie9')){
-            displayProp = 'inline';
-        }
-
-        $(this.$table).find('th, td').css('display', displayProp);
+        $(this.$table).find('th, td').css('display', this.displayValue);
         if(this.$tableClone){
-            $(this.$tableClone).find('th, td').css('display', displayProp);
+            $(this.$tableClone).find('th, td').css('display', this.displayValue);
         }
     };
 
@@ -548,7 +548,8 @@
                             }
 
                             // show cell
-                            $cell.show();
+                            // $cell.show();
+                            $cell.css("display", that.displayValue);
 
                         }
                       // checkbox has been unchecked
@@ -750,7 +751,8 @@
 
             // if one of the columns that the cell belongs to is visible then show the cell
             if(numOfHidden !== colSpan){
-                $cell.show();
+                // $cell.show();
+                $cell.css("display", that.displayValue);
             } else {
                 $cell.hide(); //just in case
             }
