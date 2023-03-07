@@ -584,6 +584,11 @@
     ResponsiveTable.prototype.setupBodyAndFootRows = function() {
         var that = this;
 
+        // get fresh lists
+        that.$tbody = that.$table.find('tbody');
+        that.$bodyRows = that.$tbody.find('tr');
+        that.$footRows = that.$table.find('tfoot').find('tr');
+
         // for each body
         that.$bodyRows.each(function(index){
             that.setupRow($(this), that.headerColIndices, index);
@@ -708,7 +713,7 @@
         this.$tableClone.find('tbody, tfoot').remove();
 
         // Make new clone of tbody and tfoot
-        var $tbodyClone = this.$table.find('tbody, tfoot').clone();
+        var $tbodyClone = this.$bodyAndFootRows.clone();
 
         //replace ids
         $tbodyClone.find('[id]').each(function() {
