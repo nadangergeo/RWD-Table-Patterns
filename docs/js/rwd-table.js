@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v5.4.1 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v5.4.2 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se), Lucas Wiener <lucas@blimp.se> & "Maggie Wachs (www.filamentgroup.com)"
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
@@ -590,6 +590,11 @@
     ResponsiveTable.prototype.setupBodyAndFootRows = function() {
         var that = this;
 
+        // get fresh lists
+        that.$tbody = that.$table.find('tbody');
+        that.$bodyRows = that.$tbody.find('tr');
+        that.$footRows = that.$table.find('tfoot').find('tr');
+
         // for each body
         that.$bodyRows.each(function(index){
             that.setupRow($(this), that.headerColIndices, index);
@@ -714,7 +719,7 @@
         this.$tableClone.find('tbody, tfoot').remove();
 
         // Make new clone of tbody and tfoot
-        var $tbodyClone = this.$table.find('tbody, tfoot').clone();
+        var $tbodyClone = this.$bodyAndFootRows.clone();
 
         //replace ids
         $tbodyClone.find('[id]').each(function() {

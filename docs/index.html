@@ -40,8 +40,8 @@
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
         <!-- Responsive Tables -->
-        <link rel="stylesheet" href="css/rwd-table.min.css?v=5.4.1">
-        <link rel="stylesheet" href="css/docs.min.css?v=5.4.1">
+        <link rel="stylesheet" href="css/rwd-table.min.css?v=5.4.2">
+        <link rel="stylesheet" href="css/docs.min.css?v=5.4.2">
 
         <script type="text/javascript">
             var _gaq = _gaq || [];
@@ -85,7 +85,7 @@
 
                 <p class="desc">This is an <strike>experimental</strike> awesome solution for responsive tables with complex data.</p>
                 <p>
-                    <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v5.4.1.zip" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
+                    <a href="https://github.com/nadangergeo/RWD-Table-Patterns/archive/v5.4.2.zip" id="download-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-download"></span> Download</a>
                     <a href="https://github.com/nadangergeo/RWD-Table-Patterns" id="fork-btn" class="btn btn-outline btn-lg" role="button"><span class="fa fa-github"></span> GitHub Repo</a>
                 </p>
             </div>
@@ -124,9 +124,9 @@
                 <div class="page-header">
                     <h2>Demo</h2>
                 </div>
-                <div data-responsive-table-toolbar="tech-companies-1"></div>
-                <div class="table-responsive" data-pattern="priority-columns" data-sortable="true">
-                    <table cellspacing="0" id="tech-companies-1" class="table table-small-font table-tighten table-bordered table-striped">
+                <div data-responsive-table-toolbar="tech-companies"></div>
+                <div class="table-responsive" id="tech-companies-wrapper" data-pattern="priority-columns" data-sortable="true">
+                    <table cellspacing="0" id="tech-companies" class="table table-small-font table-tighten table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Company</th>
@@ -587,7 +587,7 @@
                 </div>
                 <br>
                 <br>
-                <div class="table-responsive" data-pattern="priority-columns" data-sortable="true">
+                <div class="table-responsive" id="ledger-wrapper" data-pattern="priority-columns" data-sortable="true">
                     <table cellspacing="0" id="ledger" class="table table-small-font table-tighten table-bordered table-striped">
                         <thead>
                             <tr>
@@ -1106,7 +1106,8 @@
                 </div>
                 <br>
                 <br>
-                <div class="table-responsive" data-pattern="priority-columns" data-sortable="true">
+                <!-- initialized via js -->
+                <div class="table-responsive" id="group-test-wrapper">
                     <table cellspacing="0" id="group-test" class="table table-small-font table-tighten table-bordered table-striped">
                         <thead>
                             <tr>
@@ -1530,7 +1531,7 @@
         <!-- Latest compiled and minified Bootstrap JavaScript -->
         <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-        <script src="js/rwd-table.js?v=5.4.1"></script>
+        <script src="js/rwd-table.js?v=5.4.2"></script>
         <script src="js/docs.min.js"></script>
     </body>
 </html>
