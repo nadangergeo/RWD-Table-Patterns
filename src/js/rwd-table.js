@@ -871,7 +871,7 @@
         if(sortDir !== 0){
             col = col.map(function(i, e) {
                 // prepare for sorting by just keeping the inner text
-                return $(e).data('value') || e.innerText;
+                return $(e).attr('data-value') || e.innerText;
             }).get();
 
             // sort
