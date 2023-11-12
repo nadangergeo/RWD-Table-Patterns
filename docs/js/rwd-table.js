@@ -1,5 +1,5 @@
 /*!
- * Responsive Tables v5.4.2 (http://gergeo.se/RWD-Table-Patterns)
+ * Responsive Tables v5.4.3 (http://gergeo.se/RWD-Table-Patterns)
  * This is an awesome solution for responsive tables with complex data.
  * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se), Lucas Wiener <lucas@blimp.se> & "Maggie Wachs (www.filamentgroup.com)"
  * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
@@ -877,7 +877,7 @@
         if(sortDir !== 0){
             col = col.map(function(i, e) {
                 // prepare for sorting by just keeping the inner text
-                return $(e).data('value') || e.innerText;
+                return $(e).attr('data-value') || e.innerText;
             }).get();
 
             // sort

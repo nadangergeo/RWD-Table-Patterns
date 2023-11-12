@@ -1,7 +1,7 @@
 {
   "name": "RWD-Table-Patterns",
   "description": "This is an awesome solution for responsive tables with complex data.",
-  "version": "5.4.2",
+  "version": "5.4.3",
   "keywords": [
     "RWD",
     "responsive",
@@ -31,6 +31,6 @@
   ],
   "dependencies": {
     "jquery": ">=1.10.1",
-    "bootstrap": ">=3.0.3"
+    "bootstrap": "3.0.3"
   }
 }
